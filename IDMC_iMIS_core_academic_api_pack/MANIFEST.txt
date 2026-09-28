@@ -1,0 +1,14 @@
+IDMC iMIS - Core Academic API Pack
+
+Adds API routes for:
+- Applications / Admissions
+- Academic core and registration
+- Assessment
+- Examinations
+- Results / GPA / transcripts
+- Graduation / certificates
+- Alumni
+
+Also adds migration 20260917250000_core_academic_api_permissions.sql to reconcile API RBAC permission codes and grant the new permissions to the active ADMIN role when present.
+
+Backup is created before route or migration replacement.

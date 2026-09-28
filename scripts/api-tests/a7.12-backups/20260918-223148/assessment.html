@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Assessment | IDMC iMIS</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/module-pages.css"
+    >
+</head>
+
+<body data-module="assessment">
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <strong>IDMC iMIS</strong>
+            <span>Integrated Management Information System</span>
+        </div>
+
+        <div class="nav-title">Management</div>
+
+<a class="nav-link" href="dashboard.html">
+  <span class="nav-icon">DB</span>
+  <span>Dashboard</span>
+</a>
+<a class="nav-link" data-module-link="admissions" href="admissions.html">
+  <span class="nav-icon">AD</span>
+  <span>Admissions</span>
+</a>
+<a class="nav-link" data-module-link="registration" href="registration.html">
+  <span class="nav-icon">RG</span>
+  <span>Registration</span>
+</a>
+<a class="nav-link" data-module-link="attendance" href="attendance.html">
+  <span class="nav-icon">AT</span>
+  <span>Attendance</span>
+</a>
+<a class="nav-link" data-module-link="assessment" href="assessment.html">
+  <span class="nav-icon">AS</span>
+  <span>Assessment</span>
+</a>
+<a class="nav-link" data-module-link="examinations" href="examinations.html">
+  <span class="nav-icon">EX</span>
+  <span>Examinations</span>
+</a>
+<a class="nav-link" data-module-link="results" href="results.html">
+  <span class="nav-icon">RS</span>
+  <span>Results</span>
+</a>
+<a class="nav-link" data-module-link="timetable" href="timetable.html">
+  <span class="nav-icon">TT</span>
+  <span>Timetable</span>
+</a>
+<a class="nav-link" data-module-link="finance" href="finance.html">
+  <span class="nav-icon">FN</span>
+  <span>Finance</span>
+</a>
+<a class="nav-link" data-module-link="communications" href="communications.html">
+  <span class="nav-icon">CM</span>
+  <span>Communications</span>
+</a>
+<a class="nav-link" data-module-link="library" href="library.html">
+  <span class="nav-icon">LB</span>
+  <span>Library</span>
+</a>
+<a class="nav-link" data-module-link="hostel" href="hostel.html">
+  <span class="nav-icon">HS</span>
+  <span>Hostel</span>
+</a>
+<a class="nav-link" data-module-link="hr" href="hr.html">
+  <span class="nav-icon">HR</span>
+  <span>Human Resources</span>
+</a>
+<a class="nav-link" data-module-link="research" href="research.html">
+  <span class="nav-icon">RE</span>
+  <span>Research</span>
+</a>
+<a class="nav-link" data-module-link="graduation" href="graduation.html">
+  <span class="nav-icon">GR</span>
+  <span>Graduation</span>
+</a>
+<a class="nav-link" data-module-link="alumni" href="alumni.html">
+  <span class="nav-icon">AL</span>
+  <span>Alumni</span>
+</a>
+<a class="nav-link" data-module-link="transcripts" href="transcripts.html">
+  <span class="nav-icon">TR</span>
+  <span>Transcripts</span>
+</a>
+<a class="nav-link" data-module-link="operations" href="operations.html">
+  <span class="nav-icon">OP</span>
+  <span>Operations</span>
+</a>
+<a class="nav-link" data-module-link="reports" href="reports.html">
+  <span class="nav-icon">RP</span>
+  <span>Reports</span>
+</a>
+<a class="nav-link" data-module-link="system" href="system.html">
+  <span class="nav-icon">SY</span>
+  <span>System</span>
+</a>
+
+
+        <div class="nav-title">Account</div>
+
+        <a class="nav-link" href="profile.html">
+            <span class="nav-icon">ME</span>
+            <span>Profile</span>
+        </a>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <h1 id="moduleTitle">Assessment</h1>
+                <small>IDMC iMIS</small>
+            </div>
+
+            <div class="user-area">
+                <span
+                    class="badge"
+                    id="moduleBadge"
+                >
+                    assessment.view
+                </span>
+            </div>
+
+        </header>
+
+        <section class="content">
+
+            <div class="hero">
+
+                <div>
+                    <h2>Assessment</h2>
+
+                    <p id="moduleSubtitle">
+                        Assessment management workspace
+                    </p>
+                </div>
+
+                <button
+                    class="btn btn-secondary"
+                    id="refreshButton"
+                    type="button"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Total Records
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="statTotal"
+                    >
+                        —
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Active
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="statActive"
+                    >
+                        —
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Pending
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="statPending"
+                    >
+                        —
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">
+                        Workspace
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="statUpdated"
+                    >
+                        —
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="toolbar">
+
+                <input
+                    id="moduleSearch"
+                    class="input search"
+                    type="search"
+                    placeholder="Search assessment..."
+                    autocomplete="off"
+                >
+
+                <select class="input" id="statusFilter">
+                    <option value="">
+                        All statuses
+                    </option>
+
+                    <option value="ACTIVE">
+                        Active
+                    </option>
+
+                    <option value="PENDING">
+                        Pending
+                    </option>
+
+                    <option value="INACTIVE">
+                        Inactive
+                    </option>
+                </select>
+
+            </div>
+
+            <section class="card">
+
+                <div class="card-head">
+
+                    <h3>
+                        Assessment Records
+                    </h3>
+
+                    <span class="badge">
+                        Live Workspace
+                    </span>
+
+                </div>
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Name / Description</th>
+                                <th>Status</th>
+                                <th>Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="moduleTableBody">
+
+                            <tr>
+                                <td colspan="5">
+
+                                    <div
+                                        class="state"
+                                        id="moduleState"
+                                    >
+                                        <strong>
+                                            Loading...
+                                        </strong>
+
+                                        <span>
+                                            Preparing module workspace.
+                                        </span>
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+
+<script>
+window.IDMC_MODULE_PAGE = {
+    key: "assessment",
+    title: "Assessment",
+    permission: "assessment.view",
+    description: "Assessment management workspace"
+};
+</script>
+
+<script src="assets/js/module-contracts.js"></script>
+<script src="assets/js/module-pages.js"></script>
+
+        <script src="assets/js/module-relationships.js"></script>
+<script src="assets/js/module-crud.js"></script>
+</body>
+</html>

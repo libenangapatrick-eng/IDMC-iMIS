@@ -1,0 +1,161 @@
+/* ==========================================================
+   IDMC iMIS - A7.15 MODULE NAVIGATION
+   ========================================================== */
+
+.idmc-module-navigation {
+    display: grid;
+    gap: 18px;
+}
+
+.idmc-module-nav-group {
+    display: grid;
+    gap: 10px;
+}
+
+.idmc-module-nav-heading {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.4;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    opacity: .62;
+}
+
+.idmc-module-nav-list {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px, 1fr)
+        );
+    gap: 10px;
+}
+
+.idmc-module-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(127,127,127,.18);
+    border-radius: 12px;
+    color: inherit;
+    text-decoration: none;
+    background: rgba(127,127,127,.045);
+    transition:
+        transform .15s ease,
+        border-color .15s ease,
+        background .15s ease;
+}
+
+.idmc-module-nav-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(127,127,127,.38);
+    background: rgba(127,127,127,.09);
+}
+
+.idmc-module-nav-link[aria-current="page"] {
+    border-color: currentColor;
+    background: rgba(127,127,127,.12);
+}
+
+.idmc-module-nav-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 10px;
+    background: rgba(127,127,127,.12);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .04em;
+}
+
+.idmc-module-nav-copy {
+    min-width: 0;
+    display: grid;
+    gap: 2px;
+}
+
+.idmc-module-nav-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.idmc-module-nav-subtitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+    opacity: .62;
+}
+
+.idmc-dashboard-module-shell {
+    margin-top: 22px;
+    padding: 18px;
+    border: 1px solid rgba(127,127,127,.18);
+    border-radius: 16px;
+    background: rgba(127,127,127,.035);
+}
+
+.idmc-dashboard-module-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.idmc-dashboard-module-header h2 {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.idmc-dashboard-module-header p {
+    margin: 0;
+    opacity: .68;
+    font-size: 13px;
+}
+
+.idmc-dashboard-module-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(127,127,127,.12);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.idmc-module-navigation-empty {
+    padding: 18px;
+    border: 1px dashed rgba(127,127,127,.28);
+    border-radius: 12px;
+    text-align: center;
+    opacity: .7;
+}
+
+.idmc-module-navigation-loading {
+    padding: 12px 0;
+    opacity: .65;
+    font-size: 13px;
+}
+
+@media (max-width: 720px) {
+
+    .idmc-module-nav-list {
+        grid-template-columns: 1fr;
+    }
+
+    .idmc-dashboard-module-header {
+        flex-direction: column;
+    }
+}

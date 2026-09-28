@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Panel | IDMC iMIS</title>
+    <link rel="stylesheet" href="assets/css/student-portal-home.css">
+</head>
+<body>
+<div class="student-shell">
+    <header class="topbar">
+        <a class="institution-brand" href="student-portal.html" aria-label="Student Panel home">
+            <span class="institution-mark">IDMS</span>
+            <span><strong>Institute of Development and Medical Sciences</strong><small>Integrated Management Information System</small></span>
+        </a>
+        <div class="topbar-actions">
+            <button id="menuButton" class="menu-button" type="button" aria-label="Open menu">☰</button>
+            <button id="refreshPanel" class="quiet-button" type="button">Refresh</button>
+            <button id="logoutTop" class="logout-button" type="button">Log Out</button>
+        </div>
+    </header>
+
+    <aside id="studentSidebar" class="sidebar">
+        <section class="student-identity">
+            <div class="photo-wrap"><img id="studentPhoto" alt="Student profile photograph" hidden><span id="photoFallback">ST</span></div>
+            <div><strong id="sidebarName">Student</strong><small>Student Panel</small></div>
+        </section>
+        <div class="student-number"><span>Student Number</span><strong id="sidebarNumber">—</strong></div>
+
+        <nav class="student-nav" aria-label="Student services">
+            <a class="active" href="student-portal.html"><span>⌂</span>Home</a>
+            <p>Student Information</p>
+            <a href="student-profile.html"><span>◉</span>My Profile</a>
+            <a href="student-registration.html"><span>▣</span>Course Registration</a>
+            <a href="student-timetable.html"><span>▦</span>Timetable</a>
+            <p>Academic</p>
+            <a href="student-attendance.html"><span>✓</span>Attendance</a>
+            <a href="student-results.html"><span>▥</span>Results</a>
+            <a href="student-transcript.html"><span>▤</span>Transcript</a>
+            <a href="student-placements.html"><span>◇</span>Placements</a>
+            <p>Services</p>
+            <a href="student-fees.html"><span>¤</span>Financial</a>
+            <a href="student-accommodation.html"><span>⌂</span>Accommodation</a>
+            <a href="student-documents.html"><span>□</span>Documents</a>
+            <a href="student-requests.html"><span>↗</span>Requests</a>
+            <a href="student-notifications.html"><span>●</span>Communication</a>
+            <a href="student-help.html"><span>?</span>Help</a>
+            <a href="student-security.html"><span>⚿</span>Security</a>
+            <button id="logoutSide" type="button"><span>⇥</span>Log Out</button>
+        </nav>
+    </aside>
+
+    <main id="studentMain" class="main-content">
+        <div id="panelMessage" class="panel-message" hidden></div>
+
+        <section class="page-heading">
+            <div><p>IDMC iMIS</p><h1>Student Panel</h1></div>
+            <div class="panel-badge">Academic Self-Service</div>
+        </section>
+
+        <section class="panel-summary" aria-label="Student panel summary">
+            <div><span>Current Year</span><strong id="currentYear">—</strong></div>
+            <div><span>Last Login</span><strong id="lastLogin">—</strong></div>
+            <div><span>Today</span><strong id="todayDate">—</strong></div>
+        </section>
+
+        <section class="welcome-card">
+            <div class="welcome-copy">
+                <p>Welcome to Student Information System</p>
+                <h2 id="welcomeName">Student</h2>
+                <div class="status-line">
+                    <div><span>Year of Study</span><strong id="yearOfStudy">—</strong></div>
+                    <div><span>Stream / Class</span><strong id="studentStream">Not assigned</strong></div>
+                    <div><span>Student Status</span><strong id="studentStatus" class="status-value">—</strong></div>
+                </div>
+            </div>
+            <div class="registration-seal"><span>Registration</span><strong id="registrationStatus">—</strong><small id="registrationNumber">—</small></div>
+        </section>
+
+        <section class="content-grid">
+            <article class="card timetable-card">
+                <header class="card-header"><div><span class="section-number">01</span><h2>Latest Timetable</h2></div><a href="student-timetable.html">View full timetable</a></header>
+                <div class="day-tabs"><button class="active" data-day="today" type="button">Today</button><button data-day="tomorrow" type="button">Tomorrow</button></div>
+                <div class="table-scroll"><table><thead><tr><th>#</th><th>Code</th><th>Module Name</th><th>Time</th><th>Room</th></tr></thead><tbody id="timetableRows"><tr><td colspan="5" class="empty-cell">Loading timetable…</td></tr></tbody></table></div>
+            </article>
+
+            <article class="card profile-card">
+                <header class="card-header"><div><span class="section-number">02</span><h2>Academic Profile</h2></div><a href="student-profile.html">View profile</a></header>
+                <dl class="profile-list">
+                    <div><dt>Student Number</dt><dd id="profileStudentNumber">—</dd></div>
+                    <div><dt>Entry Year</dt><dd id="entryYear">—</dd></div>
+                    <div><dt>Intake</dt><dd id="intake">—</dd></div>
+                    <div><dt>Session</dt><dd id="session">—</dd></div>
+                    <div><dt>Programme</dt><dd id="programme">—</dd></div>
+                    <div><dt>Department</dt><dd id="department">—</dd></div>
+                    <div><dt>School / Faculty</dt><dd id="school">—</dd></div>
+                    <div><dt>Campus</dt><dd id="campus">—</dd></div>
+                </dl>
+            </article>
+        </section>
+
+        <section class="content-grid lower-grid">
+            <article class="card compact-card">
+                <header class="card-header"><div><span class="section-number">03</span><h2>Academic Summary</h2></div></header>
+                <div class="summary-list">
+                    <a href="student-registration.html"><span>Registered Courses</span><strong id="registeredCourses">0</strong></a>
+                    <a href="student-attendance.html"><span>Attendance</span><strong id="attendanceRate">—</strong></a>
+                    <a href="student-results.html"><span>Published Results</span><strong id="publishedResults">0</strong></a>
+                    <a href="student-fees.html"><span>Account Balance</span><strong id="accountBalance">TZS 0</strong></a>
+                </div>
+            </article>
+            <article class="card compact-card">
+                <header class="card-header"><div><span class="section-number">04</span><h2>Notices</h2></div><a href="student-notifications.html">View all</a></header>
+                <div id="noticeList" class="notice-list"><p class="empty-notice">Loading notices…</p></div>
+            </article>
+        </section>
+
+        <footer class="student-footer"><p><strong>Institute of Development and Medical Sciences</strong></p><p>Copyright © <span id="copyrightYear"></span> IDMS. All rights reserved.</p></footer>
+    </main>
+</div>
+<script src="assets/js/idmc-session.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/student-portal-home.js"></script>
+</body>
+</html>

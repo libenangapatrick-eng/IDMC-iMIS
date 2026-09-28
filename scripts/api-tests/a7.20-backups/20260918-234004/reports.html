@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Reports | IDMC iMIS</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/module-full-forms.css"
+    >
+    <link rel="stylesheet" href="assets/css/module-navigation.css">
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+    <link rel="stylesheet" href="assets/css/module-e2e.css">
+</head>
+
+<body
+    class="idmc-module-shell"
+    data-idmc-module="reports"
+>
+    <main class="idmc-module-main">
+
+        <header class="idmc-module-header">
+            <div>
+                <p class="idmc-module-eyebrow">
+                    IDMC iMIS
+                </p>
+
+                <h1 class="idmc-module-title">
+                    Reports
+                </h1>
+
+                <p class="idmc-module-subtitle">
+                    Manage Reports records through the
+                    verified IDMC backend contract. Available
+                    actions are enabled only when supported by
+                    the current module API.
+                </p>
+            </div>
+
+            <div class="idmc-module-actions">
+
+                <button
+                    type="button"
+                    class="idmc-btn"
+                    data-action="refresh"
+                >
+                    Refresh
+                </button>
+
+                <button
+                    type="button"
+                    class="idmc-btn idmc-btn-primary"
+                    data-action="create"
+                    hidden
+                >
+                    Add Record
+                </button>
+
+                <button
+                    type="button"
+                    class="idmc-btn"
+                    onclick="history.back()"
+                >
+                    Back
+                </button>
+
+            </div>
+        </header>
+
+        <div
+            class="idmc-status"
+            data-idmc-status
+            role="status"
+            aria-live="polite"
+        ></div>
+
+        <section class="idmc-module-grid">
+
+            <section class="idmc-card">
+
+                <div class="idmc-card-header">
+                    <h2>Reports Records</h2>
+                </div>
+
+                <div class="idmc-card-body">
+
+                    <div class="idmc-toolbar">
+
+                        <input
+                            type="search"
+                            class="idmc-search"
+                            data-idmc-search
+                            placeholder="Search visible records..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                    <div
+                        class="idmc-runtime-host"
+                        data-idmc-runtime-host
+                    >
+
+                        <div
+                            id="module-crud"
+                            class="idmc-module-crud"
+                            data-module-crud
+                            data-module="reports"
+                        ></div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <aside>
+
+                <section class="idmc-card">
+
+                    <div class="idmc-card-header">
+                        <h3>Record Form</h3>
+                    </div>
+
+                    <div class="idmc-card-body">
+
+                        <div
+                            class="idmc-form-host"
+                            data-idmc-form-host
+                        >
+                            <p class="idmc-module-note">
+                                Form controls are generated from
+                                the verified module CRUD contract.
+                                Unsupported mutation methods are
+                                not exposed.
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section
+                    class="idmc-card"
+                    style="margin-top:20px"
+                >
+
+                    <div class="idmc-card-header">
+                        <h3>API Capabilities</h3>
+                    </div>
+
+                    <div class="idmc-card-body">
+
+                        <div class="idmc-capability-list">
+
+                            <div class="idmc-capability">
+                                <span>List records</span>
+                                <span data-capability="list">
+                                    Checking...
+                                </span>
+                            </div>
+
+                            <div class="idmc-capability">
+                                <span>Create records</span>
+                                <span data-capability="create">
+                                    Checking...
+                                </span>
+                            </div>
+
+                            <div class="idmc-capability">
+                                <span>Update records</span>
+                                <span data-capability="update">
+                                    Checking...
+                                </span>
+                            </div>
+
+                            <div class="idmc-capability">
+                                <span>Delete records</span>
+                                <span data-capability="delete">
+                                    Checking...
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
+
+            </aside>
+
+        </section>
+        <section class="idmc-dashboard-module-shell" data-idmc-module-nav-shell>
+        <div class="idmc-dashboard-module-header">
+            <div>
+                <h2>Module Navigation</h2>
+                <p>Open another module available to your account.</p>
+            </div>
+        </div>
+
+        <div data-idmc-module-navigation></div>
+    </section>
+</main>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/rbac.js"></script>
+    <script src="assets/js/module-navigation.js"></script>
+
+    <script src="assets/js/module-contracts.js"></script>
+    <script src="assets/js/module-pages.js"></script>
+
+    <script src="assets/js/module-relationships.js"></script>
+    <script src="assets/js/module-crud.js"></script>
+
+    <script src="assets/js/module-form-binding.js"></script>
+    <script src="assets/js/module-crud-execution.js"></script>
+    <script src="assets/js/module-full-forms.js"></script>
+    <script src="assets/js/app-workflow.js"></script>
+    <script src="assets/js/module-crud-live-guard.js"></script>
+    <script src="assets/js/module-e2e.js"></script>
+</body>
+</html>

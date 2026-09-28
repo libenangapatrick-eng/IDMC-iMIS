@@ -1,0 +1,16 @@
+IDMC iMIS - SECTION 16A
+========================
+
+1. Extract the ZIP.
+2. Open PowerShell in the extracted IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR folder.
+3. Run these commands exactly, one line at a time:
+
+   Set-ExecutionPolicy -Scope Process Bypass -Force
+   .\IDMC-Section-16A-Deep-Forms-Portal-Repair.ps1 -ProjectRoot "C:\Users\liben\Documents\IDMC_iMIS" -RestartServers -OpenBrowser
+
+The script backs up every overwritten file, installs the source, builds the backend,
+pushes the Supabase migration, restarts only Node listeners on ports 4000 and 5500,
+checks both services, and opens login.html in the default browser.
+
+If you intentionally do not want to apply the database migration, add -SkipDatabase.
+Do not paste terminal output back into PowerShell; paste commands only.

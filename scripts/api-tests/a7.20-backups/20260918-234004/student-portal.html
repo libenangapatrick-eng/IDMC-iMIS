@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | IDMC iMIS</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="assets/css/student-portal-home.css">
+
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+</head>
+
+<body>
+
+<div class="portal-shell">
+
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <header class="portal-topbar">
+
+        <div class="portal-topbar-inner">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+
+                    <div class="brand-title">
+                        IDMC iMIS
+                    </div>
+
+                    <div class="brand-subtitle">
+                        Student Portal
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    id="refreshPortal"
+                    class="icon-button"
+                    type="button"
+                    title="Refresh portal">
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                </button>
+
+                <div class="user-chip">
+
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div
+                        id="currentUserName"
+                        class="user-name">
+                        Student
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <div class="portal-layout">
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="sidebar">
+
+            <section class="student-card">
+
+                <div class="student-avatar">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+
+                <h3 id="studentName">
+                    Student
+                </h3>
+
+                <p>
+                    <strong>Student No:</strong>
+                    <span id="studentNumber">—</span>
+                </p>
+
+                <p>
+                    <strong>Programme:</strong>
+                    <span id="studentProgramme">—</span>
+                </p>
+
+            </section>
+
+            <nav class="portal-nav">
+
+                <a
+                    href="student-portal.html"
+                    class="active">
+
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+
+                </a>
+
+                <a href="student-registration.html">
+
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    Registration
+
+                </a>
+
+                <a href="student-attendance.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+
+                </a>
+
+                <a href="student-results.html">
+
+                    <i class="fa-solid fa-chart-column"></i>
+                    Results
+
+                </a>
+
+                <a href="student-timetable.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Timetable
+
+                </a>
+
+                <a href="student-fees.html">
+
+                    <i class="fa-solid fa-wallet"></i>
+                    Fees & Finance
+
+                </a>
+
+                <a href="student-documents.html">
+
+                    <i class="fa-solid fa-folder-open"></i>
+                    Documents
+
+                </a>
+
+                <a href="student-notifications.html">
+
+                    <i class="fa-solid fa-bell"></i>
+                    Notifications
+
+                </a>
+
+                <a href="student-profile.html">
+
+                    <i class="fa-solid fa-id-card"></i>
+                    My Profile
+
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- =================================================
+             MAIN
+        ================================================== -->
+
+        <main
+            id="portalMain"
+            class="main">
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="hero-label">
+                        Student Self-Service
+                    </div>
+
+                    <h1>
+                        Welcome,
+                        <span id="heroStudentName">
+                            Student
+                        </span>
+                    </h1>
+
+                    <p>
+                        Access your academic registration,
+                        attendance, results, timetable,
+                        financial information, documents and
+                        institutional notifications from one
+                        place.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- SUMMARY -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>Academic Overview</h2>
+
+                        <p>
+                            Current student information from IDMC iMIS.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+
+                        <div class="summary-top">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="summary-label">
+                            Registration
+                        </div>
+
+                        <div
+                            id="registrationStatus"
+                            class="summary-value">
+                            —
+                        </div>
+
+                    </article>
+
+                    <article class="summary-card">
+
+                        <div class="summary-top">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="summary-label">
+                            Attendance
+                        </div>
+
+                        <div
+                            id="attendanceRate"
+                            class="summary-value">
+                            —
+                        </div>
+
+                    </article>
+
+                    <article class="summary-card">
+
+                        <div class="summary-top">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="summary-label">
+                            Latest GPA / CGPA
+                        </div>
+
+                        <div class="summary-value">
+
+                            <span id="latestGpa">—</span>
+
+                            /
+
+                            <span id="latestCgpa">—</span>
+
+                        </div>
+
+                    </article>
+
+                    <article class="summary-card">
+
+                        <div class="summary-top">
+
+                            <div class="summary-icon">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="summary-label">
+                            Account Balance
+                        </div>
+
+                        <div
+                            id="financeBalance"
+                            class="summary-value">
+                            —
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- MODULES -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>Student Services</h2>
+
+                        <p>
+                            Open a student service to view its
+                            full information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="module-grid">
+
+                    <a
+                        class="module-card"
+                        href="student-registration.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+
+                        <h3>Course Registration</h3>
+
+                        <p>
+                            View semester registration and
+                            registered course information.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Registration</span>
+
+                            <span
+                                id="registrationCount"
+                                class="module-count">
+                                —
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-attendance.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <h3>Attendance</h3>
+
+                        <p>
+                            Review your attendance records,
+                            presence and lateness.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Attendance</span>
+
+                            <span
+                                id="attendanceCount"
+                                class="module-count">
+                                —
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-results.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+
+                        <h3>Academic Results</h3>
+
+                        <p>
+                            View marks, grades, GPA, CGPA and
+                            academic results.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Results</span>
+
+                            <span
+                                id="resultsCount"
+                                class="module-count">
+                                —
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-timetable.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+
+                        <h3>Timetable</h3>
+
+                        <p>
+                            View classes and timetable entries
+                            for your registered courses.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Timetable</span>
+
+                            <span class="module-count">
+                                View
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-fees.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+
+                        <h3>Fees & Finance</h3>
+
+                        <p>
+                            Review your account, transactions,
+                            invoices and payment information.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Finance</span>
+
+                            <span
+                                id="financeCount"
+                                class="module-count">
+                                —
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-documents.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+
+                        <h3>Documents</h3>
+
+                        <p>
+                            Access documents linked to your
+                            student record.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Documents</span>
+
+                            <span
+                                id="documentsCount"
+                                class="module-count">
+                                —
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-notifications.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+
+                        <h3>Notifications</h3>
+
+                        <p>
+                            Read active announcements and
+                            institutional communication.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Notifications</span>
+
+                            <span
+                                id="notificationsCount"
+                                class="module-count">
+                                —
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <a
+                        class="module-card"
+                        href="student-profile.html">
+
+                        <div class="module-icon">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+
+                        <h3>Student Profile</h3>
+
+                        <p>
+                            Review your student identity and
+                            profile information.
+                        </p>
+
+                        <div class="module-footer">
+
+                            <span>Open Profile</span>
+
+                            <span class="module-count">
+                                View
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- LOWER DASHBOARD -->
+
+            <section class="section">
+
+                <div class="two-column">
+
+                    <!-- ANNOUNCEMENTS -->
+
+                    <section class="panel">
+
+                        <div class="panel-header">
+
+                            <h3>
+                                <i class="fa-solid fa-bullhorn"></i>
+                                Latest Announcements
+                            </h3>
+
+                            <a
+                                class="link-button"
+                                href="student-notifications.html">
+                                View all
+                            </a>
+
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div
+                                id="announcementList"
+                                class="announcement-list">
+
+                                <div class="loading-state">
+
+                                    <div class="spinner"></div>
+
+                                    Loading announcements...
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- PROFILE -->
+
+                    <section class="panel">
+
+                        <div class="panel-header">
+
+                            <h3>
+                                <i class="fa-solid fa-user-graduate"></i>
+                                Student Details
+                            </h3>
+
+                            <a
+                                class="link-button"
+                                href="student-profile.html">
+                                Profile
+                            </a>
+
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="detail-list">
+
+                                <div class="detail-row">
+
+                                    <div class="detail-label">
+                                        Registration Number
+                                    </div>
+
+                                    <div
+                                        id="detailRegistrationNumber"
+                                        class="detail-value">
+                                        —
+                                    </div>
+
+                                </div>
+
+                                <div class="detail-row">
+
+                                    <div class="detail-label">
+                                        Programme
+                                    </div>
+
+                                    <div
+                                        id="detailProgramme"
+                                        class="detail-value">
+                                        —
+                                    </div>
+
+                                </div>
+
+                                <div class="detail-row">
+
+                                    <div class="detail-label">
+                                        Student Status
+                                    </div>
+
+                                    <div
+                                        id="detailStatus"
+                                        class="detail-value">
+                                        —
+                                    </div>
+
+                                </div>
+
+                                <div class="detail-row">
+
+                                    <div class="detail-label">
+                                        Email
+                                    </div>
+
+                                    <div
+                                        id="detailEmail"
+                                        class="detail-value">
+                                        —
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     APPLICATION RUNTIME
+========================================================= -->
+
+<script src="assets/js/idmc-session.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+<script src="assets/js/student-portal-home.js"></script>
+
+    <script src="assets/js/app-workflow.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Assessment Management | IDMC iMIS</title>
+  <link rel="stylesheet" href="assets/css/academic-workspaces.css">
+</head>
+<body>
+<header class="aw-topbar"><div><strong>IDMC iMIS</strong><span>Academic Management</span></div><nav><a href="dashboard.html">Dashboard</a><a href="results.html">Results</a><button type="button" id="refreshAssessment">Refresh</button></nav></header>
+<main class="aw-shell">
+  <section class="aw-heading"><div><p>ACADEMIC ASSESSMENT</p><h1>Assessments and Marks</h1><span>Create assessments against named course offerings and enter student marks in a clear register.</span></div><button class="aw-primary" type="button" id="openAssessmentForm">Add Assessment</button></section>
+  <div id="assessmentMessage" class="aw-message" role="status" aria-live="polite"></div>
+  <nav class="aw-tabs"><button type="button" class="active" data-view="records">Assessment Register</button><button type="button" data-view="marks">Marks Entry</button></nav>
+  <section class="aw-panel active" data-panel="records">
+    <div class="aw-toolbar"><input type="search" id="assessmentSearch" placeholder="Search course, assessment code, name or status"><span id="assessmentCount">0 records</span></div>
+    <div class="aw-table-wrap"><table><thead><tr><th>Course Offering</th><th>Code</th><th>Assessment</th><th>Type</th><th>Maximum</th><th>Weight</th><th>Due</th><th>Status</th></tr></thead><tbody id="assessmentRows"></tbody></table></div>
+  </section>
+  <section class="aw-panel" data-panel="marks">
+    <div class="aw-mark-selector"><label><span>Assessment</span><select id="markAssessment"><option value="">Select an assessment</option></select></label><button class="aw-primary" type="button" id="loadMarkRoster">Load Students</button></div>
+    <div id="markSummary" class="aw-summary">Choose an assessment to load registered students.</div>
+    <form id="marksForm"><div class="aw-table-wrap"><table><thead><tr><th>No.</th><th>Student Number</th><th>Student Name</th><th>Marks</th><th>Remarks</th><th>Status</th></tr></thead><tbody id="markRows"><tr><td colspan="6" class="aw-empty">No assessment selected.</td></tr></tbody></table></div><div class="aw-form-actions"><button class="aw-primary" id="saveMarks" type="submit" disabled>Save Draft Marks</button></div></form>
+  </section>
+</main>
+<dialog id="assessmentDialog" class="aw-dialog"><form id="assessmentForm"><div class="aw-dialog-title"><div><small>NEW RECORD</small><h2>Add Assessment</h2></div><button type="button" id="closeAssessmentForm" aria-label="Close">×</button></div>
+  <div class="aw-form-grid">
+    <label class="wide"><span>Course Offering *</span><select name="courseOfferingId" required><option value="">Select course by code and name</option></select></label>
+    <label><span>Assessment Code *</span><input name="assessmentCode" required maxlength="50" placeholder="Example: ACC04101-TEST1"></label>
+    <label><span>Assessment Name *</span><input name="assessmentName" required maxlength="255" placeholder="Example: Test One"></label>
+    <label><span>Assessment Type *</span><select name="assessmentType" required><option value="">Select type</option><option>ASSIGNMENT</option><option>QUIZ</option><option>TEST</option><option>PRACTICAL</option><option>PRESENTATION</option><option>PROJECT</option><option>CONTINUOUS_ASSESSMENT</option><option>OTHER</option></select></label>
+    <label><span>Assessment Number</span><input name="assessmentNumber" type="number" min="1" step="1"></label>
+    <label><span>Maximum Marks *</span><input name="maximumMarks" type="number" min="0.01" max="10000" step="0.01" required></label>
+    <label><span>Weight Percentage *</span><input name="weightPercentage" type="number" min="0.01" max="100" step="0.01" required></label>
+    <label><span>Due Date</span><input name="dueDate" type="date"></label><label><span>Due Time</span><input name="dueTime" type="time"></label>
+    <label><span>Status *</span><select name="status" required><option>DRAFT</option><option>OPEN</option><option>SUBMITTED</option><option>UNDER_REVIEW</option><option>APPROVED</option><option>CANCELLED</option></select></label>
+    <label class="wide"><span>Instructions</span><textarea name="instructions" rows="4" placeholder="Instructions visible to students"></textarea></label>
+  </div><div class="aw-form-actions"><button type="button" id="cancelAssessmentForm">Cancel</button><button class="aw-primary" type="submit">Save Assessment</button></div>
+</form></dialog>
+<script src="assets/js/idmc-session.js"></script><script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/assessment-workspace.js"></script>
+</body></html>

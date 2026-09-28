@@ -1,0 +1,3105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="IDMC iMIS Institution Management"
+    >
+
+    <title>IDMC iMIS | Institutions</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/app.css"
+    >
+
+    <style>
+
+        :root {
+
+            --maroon-950: #330914;
+            --maroon-900: #4A0D1C;
+            --maroon-800: #631226;
+            --maroon-700: #7C1830;
+            --maroon-600: #932039;
+            --maroon-500: #AB2A44;
+
+            --maroon-tint: #F5E8EB;
+            --maroon-tint-strong: #ECD3D9;
+
+            --white: #FFFFFF;
+            --paper: #FAF7F7;
+
+            --line: #E8DEE1;
+            --line-soft: #F1E8EA;
+
+            --ink: #2A1116;
+            --muted: #7C6165;
+            --faint: #A58A8E;
+
+            --sans:
+                "Inter",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            --display:
+                "Fraunces",
+                Georgia,
+                serif;
+
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+
+            margin: 0;
+            min-height: 100%;
+
+            font-family: var(--sans);
+
+            color: var(--ink);
+
+            background: var(--paper);
+
+        }
+
+        body {
+
+            background-image:
+                radial-gradient(
+                    circle at 1px 1px,
+                    rgba(74,13,28,.04) 1px,
+                    transparent 0
+                );
+
+            background-size: 22px 22px;
+
+        }
+
+        .app-shell {
+
+            display: flex;
+
+            min-height: 100vh;
+
+        }
+
+        .sidebar {
+
+            width: 280px;
+            min-width: 280px;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--maroon-900),
+                    var(--maroon-950)
+                );
+
+            color: var(--white);
+
+        }
+
+        .sidebar-brand {
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 20px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.14);
+
+        }
+
+        .brand-logo {
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--white);
+
+            color: var(--maroon-900);
+
+            font-family: var(--display);
+
+            font-weight: 600;
+
+        }
+
+        .brand-text strong {
+
+            display: block;
+
+            font-size: 15px;
+
+        }
+
+        .brand-text span {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: rgba(255,255,255,.52);
+
+            font-size: 10px;
+
+        }
+
+        .institution-mini {
+
+            padding: 14px 20px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.10);
+
+        }
+
+        .institution-mini strong {
+
+            display: block;
+
+            font-family: var(--display);
+
+            font-size: 12px;
+
+        }
+
+        .institution-mini span {
+
+            color: rgba(255,255,255,.52);
+
+            font-size: 10px;
+
+        }
+
+        .sidebar-navigation {
+
+            padding: 10px 0;
+
+        }
+
+        .nav-section {
+
+            margin-bottom: 12px;
+
+        }
+
+        .nav-section-title {
+
+            padding:
+                8px 20px;
+
+            color:
+                rgba(255,255,255,.40);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .10em;
+
+        }
+
+        .nav-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding:
+                10px 20px;
+
+            color:
+                rgba(255,255,255,.76);
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            border-left:
+                3px solid transparent;
+
+        }
+
+        .nav-item:hover {
+
+            background:
+                rgba(255,255,255,.06);
+
+            color: var(--white);
+
+        }
+
+        .nav-item.active {
+
+            background:
+                rgba(255,255,255,.09);
+
+            color: var(--white);
+
+            border-left-color:
+                var(--white);
+
+        }
+
+        .nav-icon {
+
+            width: 20px;
+
+            text-align: center;
+
+        }
+
+        .main-content {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+        .topbar {
+
+            min-height: 74px;
+
+            padding: 0 30px;
+
+            background: var(--white);
+
+            border-bottom:
+                1px solid
+                var(--line);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+        .page-heading {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+        }
+
+        .page-eyebrow {
+
+            color:
+                var(--maroon-600);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .10em;
+
+        }
+
+        .page-title {
+
+            margin: 0;
+
+            color:
+                var(--maroon-900);
+
+            font-family: var(--display);
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+        }
+
+        .topbar-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+        .clock-box {
+
+            padding:
+                7px 11px;
+
+            background:
+                var(--paper);
+
+            border:
+                1px solid
+                var(--line);
+
+            border-left:
+                2px solid
+                var(--maroon-700);
+
+        }
+
+        .clock-box strong {
+
+            display: block;
+
+            color:
+                var(--maroon-900);
+
+            font-size: 12px;
+
+        }
+
+        .clock-box span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color:
+                var(--faint);
+
+            font-size: 9px;
+
+        }
+
+        .logout-button {
+
+            border:
+                1px solid
+                var(--line);
+
+            background:
+                var(--white);
+
+            color:
+                var(--maroon-800);
+
+            padding:
+                8px 12px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+        }
+
+        .logout-button:hover {
+
+            background:
+                var(--maroon-tint);
+
+            border-color:
+                var(--maroon-500);
+
+        }
+
+        .page {
+
+            padding:
+                28px 32px 40px;
+
+        }
+
+        .breadcrumb {
+
+            margin-bottom: 20px;
+
+            color:
+                var(--faint);
+
+            font-size: 10px;
+
+        }
+
+        .breadcrumb strong {
+
+            color:
+                var(--maroon-700);
+
+        }
+
+        .module-header {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .module-label {
+
+            display: block;
+
+            color:
+                var(--maroon-600);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .10em;
+
+        }
+
+        .module-title {
+
+            margin:
+                4px 0 0;
+
+            color:
+                var(--maroon-900);
+
+            font-family: var(--display);
+
+            font-size: 24px;
+
+            font-weight: 600;
+
+        }
+
+        .module-description {
+
+            margin:
+                7px 0 0;
+
+            max-width: 700px;
+
+            color:
+                var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                10px 14px;
+
+            border: 1px solid
+                var(--maroon-700);
+
+            background:
+                var(--maroon-700);
+
+            color:
+                var(--white);
+
+            font-family: var(--sans);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+        .button:hover {
+
+            background:
+                var(--maroon-800);
+
+            border-color:
+                var(--maroon-800);
+
+        }
+
+        .button.secondary {
+
+            background:
+                var(--white);
+
+            color:
+                var(--maroon-800);
+
+            border-color:
+                var(--line);
+
+        }
+
+        .button.secondary:hover {
+
+            background:
+                var(--maroon-tint);
+
+            border-color:
+                var(--maroon-500);
+
+        }
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0,1fr));
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .stat-card {
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--line);
+
+            padding:
+                15px 16px;
+
+        }
+
+        .stat-card span {
+
+            display: block;
+
+            color:
+                var(--faint);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .06em;
+
+        }
+
+        .stat-card strong {
+
+            display: block;
+
+            margin-top: 7px;
+
+            color:
+                var(--maroon-900);
+
+            font-family:
+                var(--display);
+
+            font-size: 23px;
+
+        }
+
+        .stat-card small {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                var(--muted);
+
+            font-size: 9px;
+
+        }
+
+        .content-card {
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--line);
+
+        }
+
+        .toolbar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 14px;
+
+            padding:
+                14px 16px;
+
+            border-bottom:
+                1px solid
+                var(--line);
+
+        }
+
+        .search-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            width: min(380px,100%);
+
+            border:
+                1px solid
+                var(--line);
+
+            background:
+                var(--paper);
+
+            padding:
+                8px 10px;
+
+        }
+
+        .search-box input {
+
+            width: 100%;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+
+            color: var(--ink);
+
+            font: inherit;
+
+            font-size: 11px;
+
+        }
+
+        .filter-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        .select {
+
+            border:
+                1px solid
+                var(--line);
+
+            background:
+                var(--white);
+
+            color:
+                var(--ink);
+
+            padding:
+                8px 10px;
+
+            font-size: 10px;
+
+            outline: none;
+
+        }
+
+        .table-wrap {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+        th {
+
+            padding:
+                11px 14px;
+
+            text-align: left;
+
+            background:
+                var(--paper);
+
+            color:
+                var(--maroon-800);
+
+            border-bottom:
+                1px solid
+                var(--line);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .05em;
+
+            white-space: nowrap;
+
+        }
+
+        td {
+
+            padding:
+                12px 14px;
+
+            border-bottom:
+                1px solid
+                var(--line-soft);
+
+            color:
+                var(--ink);
+
+            font-size: 11px;
+
+            vertical-align: middle;
+
+        }
+
+        tbody tr:hover {
+
+            background:
+                #FCF9F9;
+
+        }
+
+        .entity-name {
+
+            color:
+                var(--maroon-900);
+
+            font-weight: 700;
+
+        }
+
+        .entity-code {
+
+            color:
+                var(--muted);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+
+            font-size: 10px;
+
+        }
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                4px 7px;
+
+            background:
+                var(--maroon-tint);
+
+            color:
+                var(--maroon-800);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+        }
+
+        .status-dot {
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background:
+                var(--maroon-700);
+
+        }
+
+        .actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+        }
+
+        .icon-button {
+
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid
+                var(--line);
+
+            background:
+                var(--white);
+
+            color:
+                var(--maroon-800);
+
+            cursor: pointer;
+
+        }
+
+        .icon-button:hover {
+
+            background:
+                var(--maroon-tint);
+
+            border-color:
+                var(--maroon-500);
+
+        }
+
+        .empty-state {
+
+            padding:
+                50px 20px;
+
+            text-align: center;
+
+            color:
+                var(--muted);
+
+        }
+
+        .empty-state strong {
+
+            display: block;
+
+            color:
+                var(--maroon-900);
+
+            font-family:
+                var(--display);
+
+            font-size: 18px;
+
+        }
+
+        .empty-state span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 11px;
+
+        }
+
+        .modal-backdrop {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(42,17,22,.45);
+
+            z-index: 100;
+
+        }
+
+        .modal-backdrop.show {
+
+            display: flex;
+
+        }
+
+        .modal {
+
+            width: 100%;
+
+            max-width: 560px;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--line);
+
+            box-shadow:
+                0 20px 50px
+                rgba(51,9,20,.20);
+
+        }
+
+        .modal-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                18px 20px;
+
+            border-bottom:
+                1px solid
+                var(--line);
+
+        }
+
+        .modal-header h2 {
+
+            margin: 0;
+
+            color:
+                var(--maroon-900);
+
+            font-family:
+                var(--display);
+
+            font-size: 18px;
+
+        }
+
+        .modal-close {
+
+            border: 0;
+
+            background: transparent;
+
+            color:
+                var(--muted);
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+        }
+
+        .modal-body {
+
+            padding:
+                20px;
+
+        }
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+
+            gap: 14px;
+
+        }
+
+        .form-field.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .form-field label {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color:
+                var(--muted);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .05em;
+
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+
+            width: 100%;
+
+            padding:
+                9px 10px;
+
+            border:
+                1px solid
+                var(--line);
+
+            background:
+                var(--paper);
+
+            color:
+                var(--ink);
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+        }
+
+        .form-field textarea {
+
+            min-height: 85px;
+
+            resize: vertical;
+
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+
+            border-color:
+                var(--maroon-500);
+
+            background:
+                var(--white);
+
+        }
+
+        .modal-footer {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            padding:
+                14px 20px;
+
+            border-top:
+                1px solid
+                var(--line);
+
+        }
+
+        [data-rbac-hidden="true"] {
+
+            display: none !important;
+
+        }
+
+        @media (max-width: 1050px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
+
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+
+                display: none;
+
+            }
+
+            .page {
+
+                padding:
+                    20px 15px 30px;
+
+            }
+
+            .topbar {
+
+                padding:
+                    0 15px;
+
+            }
+
+            .module-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+            .toolbar {
+
+                align-items:
+                    stretch;
+
+                flex-direction:
+                    column;
+
+            }
+
+            .search-box {
+
+                width: 100%;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .form-field.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-logo">
+                IDMC
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    IDMC iMIS
+                </strong>
+
+                <span>
+                    Integrated Management Information System
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="institution-mini">
+
+            <strong>
+                Institute of Development
+            </strong>
+
+            <span>
+                and Medical Sciences
+            </span>
+
+        </div>
+
+
+        <nav
+            class="sidebar-navigation"
+            data-navigation
+        >
+
+            <div class="nav-section">
+
+                <div class="nav-section-title">
+                    MAIN
+                </div>
+
+                <a
+                    class="nav-item"
+                    href="dashboard.html"
+                    data-rbac="system.view"
+                >
+                    <span class="nav-icon">▦</span>
+                    <span class="nav-label">
+                        Dashboard
+                    </span>
+                </a>
+
+            </div>
+
+
+            <div class="nav-section">
+
+                <div class="nav-section-title">
+                    INSTITUTION
+                </div>
+
+                <a
+                    class="nav-item active"
+                    href="institutions.html"
+                    data-rbac="institutions.view"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span class="nav-label">
+                        Institutions
+                    </span>
+                </a>
+
+                <a
+                    class="nav-item"
+                    href="campuses.html"
+                    data-rbac="campuses.view"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span class="nav-label">
+                        Campuses
+                    </span>
+                </a>
+
+                <a
+                    class="nav-item"
+                    href="schools.html"
+                    data-rbac="schools.view"
+                >
+                    <span class="nav-icon">▥</span>
+                    <span class="nav-label">
+                        Schools
+                    </span>
+                </a>
+
+                <a
+                    class="nav-item"
+                    href="departments.html"
+                    data-rbac="departments.view"
+                >
+                    <span class="nav-icon">▦</span>
+                    <span class="nav-label">
+                        Departments
+                    </span>
+                </a>
+
+            </div>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div class="page-heading">
+
+                <span class="page-eyebrow">
+                    INSTITUTION MANAGEMENT
+                </span>
+
+                <h1 class="page-title">
+                    Institutions
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="clock-box">
+
+                    <strong data-clock>
+                        --:--
+                    </strong>
+
+                    <span data-date>
+                        Loading date...
+                    </span>
+
+                </div>
+
+                <button
+                    class="logout-button"
+                    type="button"
+                    data-logout
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="page">
+
+
+            <div class="breadcrumb">
+
+                IDMC iMIS
+                /
+                Institution Management
+                /
+                <strong>
+                    Institutions
+                </strong>
+
+            </div>
+
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="module-label">
+                        INSTITUTIONAL STRUCTURE
+                    </span>
+
+                    <h2 class="module-title">
+                        Institution Registry
+                    </h2>
+
+                    <p class="module-description">
+                        Manage institutions registered within
+                        the IDMC iMIS environment, including
+                        institution identity, code, status and
+                        institutional description.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="button"
+                    data-rbac="institutions.manage"
+                    data-add-institution
+                >
+                    + Add Institution
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <span>
+                        TOTAL INSTITUTIONS
+                    </span>
+
+                    <strong data-total>
+                        0
+                    </strong>
+
+                    <small>
+                        Registered records
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        ACTIVE
+                    </span>
+
+                    <strong data-active>
+                        0
+                    </strong>
+
+                    <small>
+                        Currently active
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        INACTIVE
+                    </span>
+
+                    <strong data-inactive>
+                        0
+                    </strong>
+
+                    <small>
+                        Currently inactive
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        LAST UPDATED
+                    </span>
+
+                    <strong
+                        style="font-size:16px"
+                        data-last-updated
+                    >
+                        —
+                    </strong>
+
+                    <small>
+                        Latest registry activity
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+
+                <div class="toolbar">
+
+
+                    <div class="search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="search"
+                            placeholder="Search institution name or code..."
+                            data-search
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-row">
+
+                        <select
+                            class="select"
+                            data-status-filter
+                        >
+
+                            <option value="ALL">
+                                All statuses
+                            </option>
+
+                            <option value="ACTIVE">
+                                Active
+                            </option>
+
+                            <option value="INACTIVE">
+                                Inactive
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="button"
+                            class="button secondary"
+                            data-refresh
+                        >
+                            Refresh
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    CODE
+                                </th>
+
+                                <th>
+                                    INSTITUTION
+                                </th>
+
+                                <th>
+                                    DESCRIPTION
+                                </th>
+
+                                <th>
+                                    STATUS
+                                </th>
+
+                                <th>
+                                    UPDATED
+                                </th>
+
+                                <th>
+                                    ACTIONS
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            data-institutions-table
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="empty-state"
+                                >
+
+                                    <strong>
+                                        Loading institutions...
+                                    </strong>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     INSTITUTION MODAL
+========================================================== -->
+
+<div
+    class="modal-backdrop"
+    data-modal
+>
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <h2 data-modal-title>
+                Add Institution
+            </h2>
+
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form data-institution-form>
+
+
+            <div class="modal-body">
+
+                <div class="form-grid">
+
+
+                    <div class="form-field">
+
+                        <label>
+                            INSTITUTION CODE
+                        </label>
+
+                        <input
+                            type="text"
+                            name="institutionCode"
+                            placeholder="e.g. IDMC"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            STATUS
+                        </label>
+
+                        <select
+                            name="status"
+                            required
+                        >
+
+                            <option value="ACTIVE">
+                                Active
+                            </option>
+
+                            <option value="INACTIVE">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-field full">
+
+                        <label>
+                            INSTITUTION NAME
+                        </label>
+
+                        <input
+                            type="text"
+                            name="institutionName"
+                            placeholder="Enter institution name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field full">
+
+                        <label>
+                            DESCRIPTION
+                        </label>
+
+                        <textarea
+                            name="description"
+                            placeholder="Institution description..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="button secondary"
+                    data-close-modal
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="button"
+                    data-rbac="institutions.manage"
+                >
+                    Save Institution
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CORE SCRIPTS
+========================================================== -->
+
+<script src="assets/js/idmc-session.js"></script>
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+
+<script src="assets/js/rbac.js"></script>
+
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    let institutions = [];
+
+    let editingId = null;
+
+
+    /* =========================================================
+       HELPERS
+    ========================================================== */
+
+    function escapeHtml(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    function formatDate(value) {
+
+        if (!value) {
+            return "—";
+        }
+
+        const date =
+            new Date(value);
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "—";
+
+        }
+
+        return date.toLocaleDateString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    function getField(row, ...names) {
+
+        for (const name of names) {
+
+            if (
+                row &&
+                row[name] !== undefined &&
+                row[name] !== null
+            ) {
+
+                return row[name];
+
+            }
+
+        }
+
+        return "";
+
+    }
+
+
+    /* =========================================================
+       API
+    ========================================================== */
+
+    async function apiRequest(path, options = {}) {
+        if (
+            !window.IDMCAPI ||
+            typeof window.IDMCAPI.request !== "function"
+        ) {
+            throw new Error(
+                "IDMC API client is not available."
+            );
+        }
+
+        return window.IDMCAPI.request(path, options);
+    }
+    async function loadInstitutions() {
+
+        const table =
+            document.querySelector(
+                "[data-institutions-table]"
+            );
+
+        if (table) {
+
+            table.innerHTML = `
+                <tr>
+                    <td
+                        colspan="6"
+                        class="empty-state"
+                    >
+                        <strong>
+                            Loading institutions...
+                        </strong>
+                    </td>
+                </tr>
+            `;
+
+        }
+
+        try {
+
+            console.log(
+                "[Institutions] Loading institutions..."
+            );
+
+            const result =
+                await apiRequest(
+                    "/institutions"
+                );
+
+            console.log(
+                "[Institutions] Raw API response:",
+                result
+            );
+
+            /*
+             * Backend response:
+             *
+             * {
+             *     success: true,
+             *     data: {
+             *         items: [...],
+             *         pagination: {...}
+             *     }
+             * }
+             */
+
+            let data = [];
+
+            if (
+                Array.isArray(
+                    result?.data?.items
+                )
+            ) {
+
+                data =
+                    result.data.items;
+
+            } else if (
+                Array.isArray(
+                    result?.items
+                )
+            ) {
+
+                data =
+                    result.items;
+
+            } else if (
+                Array.isArray(
+                    result?.data
+                )
+            ) {
+
+                data =
+                    result.data;
+
+            } else if (
+                Array.isArray(
+                    result?.institutions
+                )
+            ) {
+
+                data =
+                    result.institutions;
+
+            } else if (
+                Array.isArray(result)
+            ) {
+
+                data =
+                    result;
+
+            }
+
+            console.log(
+                "[Institutions] Extracted records:",
+                data
+            );
+
+            console.log(
+                "[Institutions] Number of records:",
+                data.length
+            );
+
+            institutions =
+                Array.isArray(data)
+                    ? data
+                    : [];
+
+            updateStats();
+
+            renderInstitutions();
+
+        } catch (error) {
+
+            console.error(
+                "[Institutions] Failed to load:",
+                error
+            );
+
+            institutions = [];
+
+            updateStats();
+
+            if (table) {
+
+                table.innerHTML = `
+                    <tr>
+                        <td
+                            colspan="6"
+                            class="empty-state"
+                        >
+                            <strong>
+                                Unable to load institutions
+                            </strong>
+
+                            <span>
+                                ${escapeHtml(
+                                    error?.message ||
+                                    "Please check the backend service."
+                                )}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+
+            }
+
+        }
+
+    }
+
+    /* =========================================================
+       STATS
+    ========================================================== */
+
+    function updateStats() {
+
+        const total =
+            institutions.length;
+
+
+        const active =
+            institutions.filter(
+                item =>
+                    String(
+                        getField(
+                            item,
+                            "status"
+                        )
+                    ).toUpperCase() ===
+                    "ACTIVE"
+            ).length;
+
+
+        const inactive =
+            total - active;
+
+
+        const latest =
+            institutions
+                .map(
+                    item =>
+                        getField(
+                            item,
+                            "updated_at",
+                            "updatedAt"
+                        )
+                )
+                .filter(Boolean)
+                .sort()
+                .pop();
+
+
+        document
+            .querySelector(
+                "[data-total]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    total
+                )
+            );
+
+
+        document
+            .querySelector(
+                "[data-active]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    active
+                )
+            );
+
+
+        document
+            .querySelector(
+                "[data-inactive]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    inactive
+                )
+            );
+
+
+        document
+            .querySelector(
+                "[data-last-updated]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    latest
+                        ? formatDate(latest)
+                        : "—"
+                )
+            );
+
+    }
+
+
+    /* =========================================================
+       RENDER TABLE
+    ========================================================== */
+
+    function renderInstitutions() {
+
+        const table =
+            document.querySelector(
+                "[data-institutions-table]"
+            );
+
+
+        if (!table) {
+            return;
+        }
+
+
+        const search =
+            document
+                .querySelector(
+                    "[data-search]"
+                )
+                ?.value
+                .trim()
+                .toLowerCase() ||
+            "";
+
+
+        const statusFilter =
+            document
+                .querySelector(
+                    "[data-status-filter]"
+                )
+                ?.value ||
+            "ALL";
+
+
+        const filtered =
+            institutions.filter(
+                item => {
+
+                    const code =
+                        String(
+                            getField(
+                                item,
+                                "institution_code",
+                                "institutionCode",
+                                "code"
+                            )
+                        ).toLowerCase();
+
+
+                    const name =
+                        String(
+                            getField(
+                                item,
+                                "institution_name",
+                                "institutionName",
+                                "name"
+                            )
+                        ).toLowerCase();
+
+
+                    const status =
+                        String(
+                            getField(
+                                item,
+                                "status"
+                            )
+                        ).toUpperCase();
+
+
+                    const matchesSearch =
+                        !search ||
+                        code.includes(search) ||
+                        name.includes(search);
+
+
+                    const matchesStatus =
+                        statusFilter === "ALL" ||
+                        status ===
+                        statusFilter;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus
+                    );
+
+                }
+            );
+
+
+        if (!filtered.length) {
+
+            table.innerHTML = `
+                <tr>
+                    <td
+                        colspan="6"
+                        class="empty-state"
+                    >
+                        <strong>
+                            No institutions found
+                        </strong>
+
+                        <span>
+                            Adjust your search or add a new institution.
+                        </span>
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        table.innerHTML =
+            filtered
+                .map(item => {
+
+                    const id =
+                        getField(
+                            item,
+                            "id"
+                        );
+
+
+                    const code =
+                        getField(
+                            item,
+                            "institution_code",
+                            "institutionCode",
+                            "code"
+                        );
+
+
+                    const name =
+                        getField(
+                            item,
+                            "institution_name",
+                            "institutionName",
+                            "name"
+                        );
+
+
+                    const description =
+                        getField(
+                            item,
+                            "description"
+                        ) ||
+                        "—";
+
+
+                    const status =
+                        String(
+                            getField(
+                                item,
+                                "status"
+                            ) ||
+                            "ACTIVE"
+                        ).toUpperCase();
+
+
+                    const updated =
+                        getField(
+                            item,
+                            "updated_at",
+                            "updatedAt"
+                        );
+
+
+                    return `
+                        <tr>
+
+                            <td>
+                                <span class="entity-code">
+                                    ${escapeHtml(code)}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="entity-name">
+                                    ${escapeHtml(name)}
+                                </span>
+                            </td>
+
+                            <td>
+                                ${escapeHtml(description)}
+                            </td>
+
+                            <td>
+
+                                <span class="status">
+
+                                    <span
+                                        class="status-dot"
+                                    ></span>
+
+                                    ${escapeHtml(status)}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+                                ${escapeHtml(
+                                    formatDate(updated)
+                                )}
+                            </td>
+
+                            <td>
+
+                                <div class="actions">
+
+                                    <button
+                                        type="button"
+                                        class="icon-button"
+                                        title="Edit institution"
+                                        data-rbac="institutions.manage"
+                                        data-edit-id="${escapeHtml(id)}"
+                                    >
+                                        ✎
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    `;
+
+                })
+                .join("");
+
+
+        if (
+            window.IDMC_RBAC_API &&
+            typeof window.IDMC_RBAC_API
+                .applyPermissionVisibility ===
+            "function"
+        ) {
+
+            window.IDMC_RBAC_API
+                .applyPermissionVisibility(
+                    table
+                );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       MODAL
+    ========================================================== */
+
+    function openModal(
+        institution = null
+    ) {
+
+        const modal =
+            document.querySelector(
+                "[data-modal]"
+            );
+
+
+        const form =
+            document.querySelector(
+                "[data-institution-form]"
+            );
+
+
+        const title =
+            document.querySelector(
+                "[data-modal-title]"
+            );
+
+
+        if (!modal || !form) {
+            return;
+        }
+
+
+        form.reset();
+
+
+        editingId =
+            institution
+                ? getField(
+                    institution,
+                    "id"
+                )
+                : null;
+
+
+        if (title) {
+
+            title.textContent =
+                institution
+                    ? "Edit Institution"
+                    : "Add Institution";
+
+        }
+
+
+        if (institution) {
+
+            form.elements
+                .institutionCode
+                .value =
+                getField(
+                    institution,
+                    "institution_code",
+                    "institutionCode",
+                    "code"
+                );
+
+
+            form.elements
+                .institutionName
+                .value =
+                getField(
+                    institution,
+                    "institution_name",
+                    "institutionName",
+                    "name"
+                );
+
+
+            form.elements
+                .description
+                .value =
+                getField(
+                    institution,
+                    "description"
+                );
+
+
+            form.elements
+                .status
+                .value =
+                getField(
+                    institution,
+                    "status"
+                ) ||
+                "ACTIVE";
+
+        }
+
+
+        modal.classList.add(
+            "show"
+        );
+
+    }
+
+
+    function closeModal() {
+
+        const modal =
+            document.querySelector(
+                "[data-modal]"
+            );
+
+
+        modal?.classList.remove(
+            "show"
+        );
+
+
+        editingId = null;
+
+    }
+
+
+    /* =========================================================
+       SAVE
+    ========================================================== */
+
+    async function saveInstitution(
+        event
+    ) {
+
+        event.preventDefault();
+
+
+        const form =
+            event.currentTarget;
+
+
+        const payload = {
+
+            institution_code:
+                form.elements
+                    .institutionCode
+                    .value
+                    .trim(),
+
+            institution_name:
+                form.elements
+                    .institutionName
+                    .value
+                    .trim(),
+
+            description:
+                form.elements
+                    .description
+                    .value
+                    .trim() ||
+                null,
+
+            status:
+                form.elements
+                    .status
+                    .value
+
+        };
+
+
+        if (
+            !payload.institution_code ||
+            !payload.institution_name
+        ) {
+
+            alert(
+                "Institution code and name are required."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            if (editingId) {
+
+                await apiRequest(
+                    `/institutions/${encodeURIComponent(
+                        editingId
+                    )}`,
+                    {
+                        method: "PATCH",
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+            } else {
+
+                await apiRequest(
+                    "/institutions",
+                    {
+                        method: "POST",
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+            }
+
+
+            closeModal();
+
+            await loadInstitutions();
+
+
+        } catch (error) {
+
+            console.error(
+                "Failed to save institution:",
+                error
+            );
+
+
+            const errorMessage =
+                typeof error?.message === "string"
+                    ? error.message
+                    : typeof error?.error === "string"
+                        ? error.error
+                        : typeof error?.details === "string"
+                            ? error.details
+                            : typeof error === "string"
+                                ? error
+                                : (
+                                    error?.message?.message ||
+                                    error?.error?.message ||
+                                    error?.details?.message ||
+                                    "Unable to save institution."
+                                );
+
+            alert(
+                typeof errorMessage === "string"
+                    ? errorMessage
+                    : JSON.stringify(
+                        errorMessage,
+                        null,
+                        2
+                    )
+            );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       EVENTS
+    ========================================================== */
+
+    function setupEvents() {
+
+        document
+            .querySelector(
+                "[data-add-institution]"
+            )
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !IDMC_RBAC_API
+                            .hasPermission(
+                                "institutions.manage"
+                            )
+                    ) {
+
+                        return;
+
+                    }
+
+                    openModal();
+
+                }
+            );
+
+
+        document
+            .querySelector(
+                "[data-refresh]"
+            )
+            ?.addEventListener(
+                "click",
+                loadInstitutions
+            );
+
+
+        document
+            .querySelector(
+                "[data-search]"
+            )
+            ?.addEventListener(
+                "input",
+                renderInstitutions
+            );
+
+
+        document
+            .querySelector(
+                "[data-status-filter]"
+            )
+            ?.addEventListener(
+                "change",
+                renderInstitutions
+            );
+
+
+        document
+            .querySelector(
+                "[data-institution-form]"
+            )
+            ?.addEventListener(
+                "submit",
+                saveInstitution
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-close-modal]"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    closeModal
+                );
+
+            });
+
+
+        document
+            .querySelector(
+                "[data-modal]"
+            )
+            ?.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target.matches(
+                            "[data-modal]"
+                        )
+                    ) {
+
+                        closeModal();
+
+                    }
+
+                }
+            );
+
+
+        document
+            .addEventListener(
+                "click",
+                event => {
+
+                    const button =
+                        event.target.closest(
+                            "[data-edit-id]"
+                        );
+
+
+                    if (!button) {
+                        return;
+                    }
+
+
+                    if (
+                        !IDMC_RBAC_API
+                            .hasPermission(
+                                "institutions.manage"
+                            )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const id =
+                        button.dataset.editId;
+
+
+                    const institution =
+                        institutions.find(
+                            item =>
+                                String(
+                                    getField(
+                                        item,
+                                        "id"
+                                    )
+                                ) ===
+                                String(id)
+                        );
+
+
+                    if (institution) {
+
+                        openModal(
+                            institution
+                        );
+
+                    }
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-logout]"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        try {
+
+                            await window.IDMCAuth
+                                .logout();
+
+                        } catch (error) {
+
+                            console.error(
+                                "Logout failed:",
+                                error
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       CLOCK
+    ========================================================== */
+
+    function setupClock() {
+
+        const clock =
+            document.querySelector(
+                "[data-clock]"
+            );
+
+
+        const date =
+            document.querySelector(
+                "[data-date]"
+            );
+
+
+        function update() {
+
+            const now =
+                new Date();
+
+
+            if (clock) {
+
+                clock.textContent =
+                    now.toLocaleTimeString(
+                        [],
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    );
+
+            }
+
+
+            if (date) {
+
+                date.textContent =
+                    now.toLocaleDateString(
+                        [],
+                        {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                        }
+                    );
+
+            }
+
+        }
+
+
+        update();
+
+        setInterval(
+            update,
+            1000
+        );
+
+    }
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================== */
+
+    async function initialize() {
+
+        try {
+
+            await window.IDMCAuth
+                .requireAuth();
+
+
+            await IDMC_RBAC_API
+                .loadCurrentUserRBAC();
+
+
+            const allowed =
+                IDMC_RBAC_API
+                    .hasPermission(
+                        "institutions.view"
+                    );
+
+
+            if (!allowed) {
+
+                await IDMC_RBAC_API
+                    .requireRBACPage(
+                        "institutions.view"
+                    );
+
+                return;
+
+            }
+
+
+            setupClock();
+
+            setupEvents();
+
+            renderUserFromSession();
+
+            await loadInstitutions();
+
+
+        } catch (error) {
+
+            console.error(
+                "Institutions page initialization failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+    function renderUserFromSession() {
+
+        let account = null;
+
+
+        try {
+
+            const raw =
+                sessionStorage.getItem(
+                    "idmc_user"
+                );
+
+
+            if (raw) {
+
+                account =
+                    JSON.parse(raw);
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Failed to read session account:",
+                error
+            );
+
+        }
+
+
+        if (!account) {
+            return;
+        }
+
+
+        const user =
+            account.user || {};
+
+
+        const name =
+            user.displayName ||
+            user.display_name ||
+            user.username ||
+            user.email ||
+            "IDMC User";
+
+
+        document
+            .querySelectorAll(
+                "[data-user-name]"
+            )
+            .forEach(
+                element =>
+                    element.textContent =
+                        name
+            );
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialize
+        );
+
+    } else {
+
+        initialize();
+
+    }
+
+})();
+
+</script>
+
+    <script src="assets/js/app-workflow.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+

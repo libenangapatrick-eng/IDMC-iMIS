@@ -1,0 +1,15 @@
+2183b78658895568ffed34c22dfef76ab62df5c328388cd089397581a185bfc9  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/IDMC-Section-16A-Deep-Forms-Portal-Repair.ps1
+d02a4fd986d90939ad6008a93a54e45e4741f3004f5d966694fd99f3e58de3ff  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/SECTION-16A-AUDIT-REPORT.md
+16596d37a0db0a288f27901f67984d41a0dfb82b669a6910290dd2e472da3ff2  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/SECTION-16A-INSTRUCTIONS.txt
+37a682c693cc1511d34ef3196ff245417d85eefa4206cc4cbc62de0562e8010d  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/backend/src/modules/admissions/admissions.routes.ts
+737542b8404a583000119470e2edce870edc52bef1c17b62dd7c0a40025eccc7  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts
+115267e17eb46d3145bebd158a1aeee2d9228168cb860c4850f9b7acaa380920  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/backend/src/routes/index.ts
+96bfd16826d3a39c5253e9969e108ca92baeb96c8d2b45126a66794f9c21c8b6  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/admissions.html
+6fab11a8d87b34a1633992b7c68c642797c3d1fe1ff5c211ca871d01a6d4d1fc  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/applications.html
+af24295a19529b883ca61382b3b872d3865052e142e51fe7b5064c2b295d2794  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/assets/css/applicant-live-forms.css
+06bb1c97643e0567d0625138de0c0846c1e25404a11bce6f23c77fa966be7cfb  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/assets/css/idmc-current-repair.css
+bee23d3d9c86d69815f831c62d01eae0e6558dd22fa0439ce68cbfad55e7880f  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/assets/js/applicant-live-forms.js
+f309603ef1e7a28b64dc2134a4a09c49de11b38518afdaddfc90358c8d8012f7  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/assets/js/auth.js
+ea599cd9a13c9f331ca2b7447c9b6742dfc493fd87f763c45a0e244976b0f4f7  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/dashboard.html
+9d8dccb6c4d102a9cd553893883d4ad75d9e05321433bce9807c449469fa5452  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/apps/frontend/student-results.html
+ce711d27b546005814de9b4e7e46282d3de413f5eb7198a40a386b8afa92c6ed  /workspace/scratch/d9198c5dc373/IDMC-SECTION-16A-DEEP-FORMS-PORTAL-REPAIR/payload/supabase/migrations/202609230002_applicant_self_service.sql

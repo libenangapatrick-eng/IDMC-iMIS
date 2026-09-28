@@ -1,0 +1,53 @@
+
+Resource    File                                                                                                                
+--------    ----                                                                                                                
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.routes.ts      
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts 
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts                           
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                   
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts                                         
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.routes.ts
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts 
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\operations\operations.routes.ts                         
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\research\research.routes.ts                             
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                   
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts                     
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\research\research.routes.ts                             
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\system\system.routes.ts                                 
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\roles.routes.ts                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\users.routes.ts                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts                            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts 
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.routes.ts        
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                   
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\alumni\alumni.routes.ts                                 
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\assessment\assessment.routes.ts                         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts                         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts                 
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts                     
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts                        
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts                         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts                                 
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts                               
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts                     
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts                               
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\student-management.routes.ts         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.routes.ts          
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts                       
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                   
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts                         
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts                 
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts                     
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts                         
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts                                 
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts                                         
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\research\research.routes.ts                             
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\users.routes.ts                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts                            
+
+
+

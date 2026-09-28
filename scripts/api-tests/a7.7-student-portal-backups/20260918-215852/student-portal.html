@@ -1,0 +1,1417 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>IDMC iMIS | Student Portal</title>
+
+<link
+    rel="stylesheet"
+    href="assets/css/app.css"
+>
+
+<style>
+
+    body {
+        margin: 0;
+        background: #faf7f7;
+        color: #2a1116;
+        font-family: Inter, Arial, sans-serif;
+    }
+
+    .portal {
+        min-height: 100vh;
+        display: flex;
+    }
+
+    .sidebar {
+        width: 250px;
+        background: #330914;
+        color: white;
+        padding: 22px 15px;
+        flex-shrink: 0;
+    }
+
+    .brand {
+        padding: 0 8px 18px;
+        border-bottom: 1px solid rgba(255,255,255,.15);
+        margin-bottom: 15px;
+    }
+
+    .brand strong {
+        display: block;
+        font-family: Georgia, serif;
+        font-size: 19px;
+    }
+
+    .brand span {
+        display: block;
+        margin-top: 3px;
+        font-size: 10px;
+        color: rgba(255,255,255,.55);
+    }
+
+    .nav {
+        display: grid;
+        gap: 5px;
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: rgba(255,255,255,.8);
+        padding: 11px 12px;
+        border-left: 2px solid transparent;
+        font-size: 12px;
+        transition: .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+        color: white;
+        background: rgba(255,255,255,.07);
+        border-left-color: white;
+    }
+
+    .main {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .topbar {
+        background: white;
+        border-bottom: 1px solid #e8dee1;
+        min-height: 70px;
+        padding: 0 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .topbar h1 {
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: 23px;
+        color: #4a0d1c;
+    }
+
+    .topbar span {
+        display: block;
+        margin-top: 4px;
+        font-size: 10px;
+        color: #7c6165;
+    }
+
+    #studentNumberTop {
+        margin-top: 0;
+        font-weight: 700;
+        color: #4a0d1c;
+        white-space: nowrap;
+    }
+
+    .content {
+        max-width: 1200px;
+        margin: auto;
+        padding: 24px;
+    }
+
+    .welcome {
+        padding: 25px;
+        background:
+            linear-gradient(
+                120deg,
+                #330914,
+                #7c1830
+            );
+        color: white;
+    }
+
+    .welcome small {
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        color: rgba(255,255,255,.6);
+    }
+
+    .welcome h2 {
+        margin: 8px 0 3px;
+        font-family: Georgia, serif;
+    }
+
+    .welcome p {
+        margin: 0;
+        color: rgba(255,255,255,.7);
+        font-size: 12px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns:
+            repeat(4, minmax(0,1fr));
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .card {
+        background: white;
+        border: 1px solid #e8dee1;
+        padding: 17px;
+        text-decoration: none;
+        color: inherit;
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease,
+            border-color .2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        border-color: #d7c4c9;
+        box-shadow:
+            0 8px 22px rgba(51,9,20,.07);
+    }
+
+    .card strong {
+        display: block;
+        margin-top: 10px;
+        color: #4a0d1c;
+        font-family: Georgia, serif;
+        font-size: 15px;
+    }
+
+    .card span {
+        display: block;
+        margin-top: 4px;
+        color: #7c6165;
+        font-size: 11px;
+        line-height: 1.45;
+    }
+
+    .icon {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        background: #f5e8eb;
+        color: #631226;
+        font-weight: 700;
+    }
+
+    .summary {
+        margin-top: 18px;
+        background: white;
+        border: 1px solid #e8dee1;
+    }
+
+    .summary-head {
+        padding: 14px 16px;
+        border-bottom: 1px solid #e8dee1;
+    }
+
+    .summary-head strong {
+        color: #4a0d1c;
+        font-family: Georgia, serif;
+    }
+
+    .summary-body {
+        padding: 16px;
+        display: grid;
+        grid-template-columns:
+            repeat(3, minmax(0,1fr));
+        gap: 10px;
+    }
+
+    .item {
+        border: 1px solid #f0e8ea;
+        padding: 13px;
+    }
+
+    .item small {
+        color: #7c6165;
+        display: block;
+        font-size: 10px;
+    }
+
+    .item strong {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+    }
+
+    .error {
+        margin-top: 15px;
+        padding: 13px;
+        border-left: 3px solid #4a0d1c;
+        background: white;
+        color: #7c6165;
+        display: none;
+        line-height: 1.5;
+    }
+
+    .loading {
+        margin-top: 15px;
+        padding: 13px;
+        border-left: 3px solid #7c1830;
+        background: white;
+        color: #7c6165;
+        font-size: 12px;
+    }
+
+    .debug-info {
+        margin-top: 10px;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #e8dee1;
+        color: #7c6165;
+        font-size: 10px;
+        display: none;
+    }
+
+    @media (max-width: 1100px) {
+
+        .grid {
+            grid-template-columns:
+                repeat(3, minmax(0,1fr));
+        }
+
+    }
+
+    @media (max-width: 900px) {
+
+        .grid {
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+        }
+
+        .summary-body {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+    @media (max-width: 700px) {
+
+        .portal {
+            display: block;
+        }
+
+        .sidebar {
+            display: none;
+        }
+
+        .topbar {
+            min-height: auto;
+            padding: 16px;
+            align-items: flex-start;
+        }
+
+        .topbar h1 {
+            font-size: 20px;
+        }
+
+        .topbar span {
+            font-size: 9px;
+        }
+
+        #studentNumberTop {
+            font-size: 10px;
+            padding-top: 5px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .welcome {
+            padding: 20px;
+        }
+
+    }
+
+    @media (max-width: 480px) {
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .topbar {
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        #studentNumberTop {
+            padding-top: 0;
+        }
+
+        .welcome h2 {
+            font-size: 20px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="portal">
+
+```
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <strong>IDMC iMIS</strong>
+
+        <span>
+            Student Self-Service
+        </span>
+
+    </div>
+
+    <nav class="nav">
+
+        <a
+            href="student-portal.html"
+            class="active"
+        >
+            Dashboard
+        </a>
+
+        <a href="student-profile.html">
+            My Profile
+        </a>
+
+        <a href="student-registration.html">
+            Registration
+        </a>
+
+        <a href="student-attendance.html">
+            Attendance
+        </a>
+
+        <a href="student-results.html">
+            Results & GPA
+        </a>
+
+        <a href="student-timetable.html">
+            Timetable
+        </a>
+
+        <a href="student-fees.html">
+            Fees
+        </a>
+
+        <a href="student-documents.html">
+            Documents
+        </a>
+
+        <a href="student-notifications.html">
+            Notifications
+        </a>
+
+        <a
+            href="javascript:void(0)"
+            data-logout
+        >
+            Sign out
+        </a>
+
+    </nav>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                Student Portal
+            </h1>
+
+            <span>
+                Institute of Development and Medical Sciences
+            </span>
+
+        </div>
+
+        <span id="studentNumberTop">
+            —
+        </span>
+
+    </header>
+
+    <section class="content">
+
+        <div class="welcome">
+
+            <small>
+                Student Self-Service
+            </small>
+
+            <h2 id="welcomeName">
+                Welcome
+            </h2>
+
+            <p>
+                Your academic and institutional
+                services in one place.
+            </p>
+
+        </div>
+
+        <div
+            id="portalLoading"
+            class="loading"
+        >
+            Loading your student record...
+        </div>
+
+        <div
+            id="portalError"
+            class="error"
+        ></div>
+
+        <div
+            id="debugInfo"
+            class="debug-info"
+        ></div>
+
+        <div class="grid">
+
+            <a
+                class="card"
+                href="student-profile.html"
+            >
+
+                <div class="icon">
+                    P
+                </div>
+
+                <strong>
+                    My Profile
+                </strong>
+
+                <span>
+                    View your student information.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-registration.html"
+            >
+
+                <div class="icon">
+                    R
+                </div>
+
+                <strong>
+                    Registration
+                </strong>
+
+                <span>
+                    View your registration records.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-attendance.html"
+            >
+
+                <div class="icon">
+                    A
+                </div>
+
+                <strong>
+                    Attendance
+                </strong>
+
+                <span>
+                    Review your attendance.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-results.html"
+            >
+
+                <div class="icon">
+                    G
+                </div>
+
+                <strong>
+                    Results & GPA
+                </strong>
+
+                <span>
+                    View academic results.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-timetable.html"
+            >
+
+                <div class="icon">
+                    T
+                </div>
+
+                <strong>
+                    Timetable
+                </strong>
+
+                <span>
+                    View your timetable.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-fees.html"
+            >
+
+                <div class="icon">
+                    F
+                </div>
+
+                <strong>
+                    Fees
+                </strong>
+
+                <span>
+                    View financial records.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-documents.html"
+            >
+
+                <div class="icon">
+                    D
+                </div>
+
+                <strong>
+                    Documents
+                </strong>
+
+                <span>
+                    Access authorised documents.
+                </span>
+
+            </a>
+
+            <a
+                class="card"
+                href="student-notifications.html"
+            >
+
+                <div class="icon">
+                    N
+                </div>
+
+                <strong>
+                    Notifications
+                </strong>
+
+                <span>
+                    View institutional notices.
+                </span>
+
+            </a>
+
+        </div>
+
+        <section class="summary">
+
+            <div class="summary-head">
+
+                <strong>
+                    Current Student Record
+                </strong>
+
+            </div>
+
+            <div class="summary-body">
+
+                <div class="item">
+
+                    <small>
+                        Student Number
+                    </small>
+
+                    <strong id="studentNumber">
+                        —
+                    </strong>
+
+                </div>
+
+                <div class="item">
+
+                    <small>
+                        Full Name
+                    </small>
+
+                    <strong id="studentName">
+                        —
+                    </strong>
+
+                </div>
+
+                <div class="item">
+
+                    <small>
+                        Status
+                    </small>
+
+                    <strong id="studentStatus">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+```
+
+</div>
+
+<!-- =========================================================
+     IDMC SYSTEM SCRIPTS
+========================================================= -->
+
+<script src="assets/js/idmc-session.js"></script>
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+
+<script src="assets/js/rbac.js"></script>
+
+<script>
+
+(() => {
+
+    "use strict";
+
+
+    /*
+     * =========================================================
+     * DOM HELPER
+     * =========================================================
+     */
+
+    const $ = (id) =>
+        document.getElementById(id);
+
+
+    /*
+     * =========================================================
+     * SHOW ERROR
+     * =========================================================
+     */
+
+    function showError(message) {
+
+        const loading =
+            $("portalLoading");
+
+        if (loading) {
+
+            loading.style.display =
+                "none";
+
+        }
+
+        const error =
+            $("portalError");
+
+        if (!error) {
+            return;
+        }
+
+        error.textContent =
+            message ||
+            "Unable to load student portal.";
+
+        error.style.display =
+            "block";
+
+    }
+
+
+    /*
+     * =========================================================
+     * HIDE LOADING
+     * =========================================================
+     */
+
+    function hideLoading() {
+
+        const loading =
+            $("portalLoading");
+
+        if (loading) {
+
+            loading.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /*
+     * =========================================================
+     * WAIT FOR RBAC API
+     *
+     * Prevents the page from checking permissions before
+     * rbac.js has finished initialising.
+     * =========================================================
+     */
+
+    async function waitForRBAC(timeout = 10000) {
+
+        const started =
+            Date.now();
+
+        while (
+            Date.now() - started <
+            timeout
+        ) {
+
+            if (
+                window.IDMC_RBAC_API &&
+                typeof window.IDMC_RBAC_API.hasPermission ===
+                    "function"
+            ) {
+
+                return window.IDMC_RBAC_API;
+
+            }
+
+            await new Promise(
+                resolve =>
+                    setTimeout(
+                        resolve,
+                        100
+                    )
+            );
+
+        }
+
+        throw new Error(
+            "IDMC RBAC service failed to initialise."
+        );
+
+    }
+
+
+    /*
+     * =========================================================
+     * LOAD RBAC
+     *
+     * This is intentionally called BEFORE permission checking.
+     * =========================================================
+     */
+
+    async function loadRBAC() {
+
+        const api =
+            await waitForRBAC();
+
+        if (
+            typeof api.loadCurrentUserRBAC ===
+            "function"
+        ) {
+
+            await api.loadCurrentUserRBAC();
+
+        }
+
+        return api;
+
+    }
+
+
+    /*
+     * =========================================================
+     * CHECK STUDENT PORTAL ACCESS
+     *
+     * The account may enter using any valid student permission.
+     *
+     * students.self.view
+     * students.view
+     * students.manage
+     *
+     * Your current account has all three after RBAC loads.
+     * =========================================================
+     */
+
+    function hasStudentPortalAccess(api) {
+
+        if (
+            !api ||
+            typeof api.hasPermission !==
+                "function"
+        ) {
+
+            return false;
+
+        }
+
+        const selfView =
+            api.hasPermission(
+                "students.self.view"
+            );
+
+        const studentView =
+            api.hasPermission(
+                "students.view"
+            );
+
+        const studentManage =
+            api.hasPermission(
+                "students.manage"
+            );
+
+        console.log(
+            "IDMC Student Portal Permissions:",
+            {
+                studentsSelfView:
+                    selfView,
+
+                studentsView:
+                    studentView,
+
+                studentsManage:
+                    studentManage
+            }
+        );
+
+        return (
+            selfView ||
+            studentView ||
+            studentManage
+        );
+
+    }
+
+
+    /*
+     * =========================================================
+     * BUILD STUDENT NAME
+     * =========================================================
+     */
+
+    function getStudentName(student) {
+
+        return [
+
+            student?.first_name,
+
+            student?.middle_name,
+
+            student?.last_name
+
+        ]
+            .filter(
+                value =>
+                    value !== null &&
+                    value !== undefined &&
+                    String(value).trim() !== ""
+            )
+            .join(" ")
+            .trim();
+
+    }
+
+
+    /*
+     * =========================================================
+     * NORMALISE STUDENT RESPONSE
+     * =========================================================
+     */
+
+    function getStudentFromResponse(result) {
+
+        return (
+            result?.data?.student ||
+            result?.student ||
+            result?.data ||
+            null
+        );
+
+    }
+
+
+    /*
+     * =========================================================
+     * RENDER STUDENT
+     * =========================================================
+     */
+
+    function renderStudent(student) {
+
+        const name =
+            getStudentName(student);
+
+
+        const studentNumber =
+            student?.student_number ||
+            student?.studentNumber ||
+            "—";
+
+
+        const studentStatus =
+            student?.student_status ||
+            student?.status ||
+            "—";
+
+
+        if ($("welcomeName")) {
+
+            $("welcomeName")
+                .textContent =
+                `Welcome, ${name || "Student"}`;
+
+        }
+
+
+        if ($("studentNumberTop")) {
+
+            $("studentNumberTop")
+                .textContent =
+                studentNumber;
+
+        }
+
+
+        if ($("studentNumber")) {
+
+            $("studentNumber")
+                .textContent =
+                studentNumber;
+
+        }
+
+
+        if ($("studentName")) {
+
+            $("studentName")
+                .textContent =
+                name || "—";
+
+        }
+
+
+        if ($("studentStatus")) {
+
+            $("studentStatus")
+                .textContent =
+                studentStatus;
+
+        }
+
+    }
+
+
+    /*
+     * =========================================================
+     * LOAD CURRENT STUDENT
+     * =========================================================
+     */
+
+    async function loadStudent(api) {
+
+        if (
+            !api ||
+            typeof api.request !==
+                "function"
+        ) {
+
+            throw new Error(
+                "IDMC RBAC request service is not available."
+            );
+
+        }
+
+
+        console.log(
+            "Requesting current student: /students/me"
+        );
+
+
+        const result =
+            await api.request(
+                "/students/me"
+            );
+
+
+        console.log(
+            "Student API response:",
+            result
+        );
+
+
+        const student =
+            getStudentFromResponse(
+                result
+            );
+
+
+        if (!student) {
+
+            throw new Error(
+                "No student record is linked to this account."
+            );
+
+        }
+
+
+        renderStudent(student);
+
+    }
+
+
+    /*
+     * =========================================================
+     * DEBUG INFORMATION
+     * =========================================================
+     */
+
+    function showDebug(api) {
+
+        const box =
+            $("debugInfo");
+
+        if (!box) {
+            return;
+        }
+
+
+        let permissions = [];
+
+
+        try {
+
+            const authUser =
+                window.IDMCAuth?.getUser?.();
+
+
+            if (
+                authUser?.permissions &&
+                Array.isArray(
+                    authUser.permissions
+                )
+            ) {
+
+                permissions =
+                    authUser.permissions;
+
+            }
+
+        } catch (_) {
+
+            /* Ignore */
+
+        }
+
+
+        console.log(
+            "=== IDMC STUDENT PORTAL DEBUG ==="
+        );
+
+        console.log(
+            "RBAC API:",
+            api
+        );
+
+        console.log(
+            "students.view:",
+            api?.hasPermission?.(
+                "students.view"
+            )
+        );
+
+        console.log(
+            "students.manage:",
+            api?.hasPermission?.(
+                "students.manage"
+            )
+        );
+
+        console.log(
+            "students.self.view:",
+            api?.hasPermission?.(
+                "students.self.view"
+            )
+        );
+
+        console.log(
+            "AUTH USER:",
+            window.IDMCAuth?.getUser?.()
+        );
+
+        console.log(
+            "=== END DEBUG ==="
+        );
+
+        /*
+         * Keep debug hidden during normal operation.
+         * Open console if troubleshooting is needed.
+         */
+
+        box.style.display =
+            "none";
+
+    }
+
+
+    /*
+     * =========================================================
+     * INITIALIZE PORTAL
+     * =========================================================
+     */
+
+    async function initialize() {
+
+        try {
+
+            /*
+             * -------------------------------------------------
+             * STEP 1
+             * AUTHENTICATION
+             * -------------------------------------------------
+             */
+
+            if (
+                !window.IDMCAuth ||
+                typeof window.IDMCAuth.requireAuth !==
+                    "function"
+            ) {
+
+                throw new Error(
+                    "IDMC authentication service is not available."
+                );
+
+            }
+
+
+            await window.IDMCAuth.requireAuth();
+
+
+            /*
+             * -------------------------------------------------
+             * STEP 2
+             * WAIT FOR RBAC
+             * -------------------------------------------------
+             */
+
+            const api =
+                await loadRBAC();
+
+
+            /*
+             * -------------------------------------------------
+             * STEP 3
+             * DEBUG
+             * -------------------------------------------------
+             */
+
+            showDebug(api);
+
+
+            /*
+             * -------------------------------------------------
+             * STEP 4
+             * PERMISSION
+             *
+             * IMPORTANT:
+             * Do not check before loadCurrentUserRBAC().
+             * -------------------------------------------------
+             */
+
+            if (
+                !hasStudentPortalAccess(api)
+            ) {
+
+                throw new Error(
+                    "Your account does not have permission to access the Student Portal."
+                );
+
+            }
+
+
+            /*
+             * -------------------------------------------------
+             * STEP 5
+             * LOAD STUDENT RECORD
+             * -------------------------------------------------
+             */
+
+            await loadStudent(api);
+
+
+            /*
+             * -------------------------------------------------
+             * STEP 6
+             * SUCCESS
+             * -------------------------------------------------
+             */
+
+            hideLoading();
+
+            console.log(
+                "IDMC Student Portal loaded successfully."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Student portal failed:",
+                error
+            );
+
+            showError(
+                error?.message ||
+                "Unable to load student portal."
+            );
+
+        }
+
+    }
+
+
+    /*
+     * =========================================================
+     * LOGOUT
+     * =========================================================
+     */
+
+    function initializeLogout() {
+
+        document
+            .querySelectorAll(
+                "[data-logout]"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        button.style.pointerEvents =
+                            "none";
+
+                        try {
+
+                            if (
+                                window.IDMCAuth &&
+                                typeof window.IDMCAuth.logout ===
+                                    "function"
+                            ) {
+
+                                await window.IDMCAuth.logout();
+
+                            }
+
+                        } catch (error) {
+
+                            console.error(
+                                "Logout failed:",
+                                error
+                            );
+
+                        } finally {
+
+                            window.location.href =
+                                "login.html";
+
+                        }
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /*
+     * =========================================================
+     * START
+     * =========================================================
+     */
+
+    async function start() {
+
+        initializeLogout();
+
+        await initialize();
+
+    }
+
+
+    /*
+     * =========================================================
+     * DOM READY
+     * =========================================================
+     */
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            start,
+            {
+                once: true
+            }
+        );
+
+    } else {
+
+        start();
+
+    }
+
+})();
+
+</script>
+
+</body>
+
+</html>
+

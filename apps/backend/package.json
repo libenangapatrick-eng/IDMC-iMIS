@@ -1,0 +1,42 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build --silent && node --test test/*.test.mjs",
+    "test:ci": "npm run typecheck && npm test",
+    "audit:integration": "node ../../scripts/audit-integration.mjs",
+    "audit:write": "node ../../scripts/audit-integration.mjs --write",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "frontend": "node ../frontend/server.mjs --root ../frontend --host 127.0.0.1 --port 5500",
+    "dev:all": "npx concurrentify \"npm run dev\" \"npm run frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^10.0.10",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.5.1",
+    "@types/nodemailer": "^8.0.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

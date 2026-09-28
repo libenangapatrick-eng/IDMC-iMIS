@@ -1,0 +1,18 @@
+﻿
+apps\frontend\institutions.html:1859:    function escapeHtml(value) {
+apps\frontend\institutions.html:1871:    function formatDate(value) {
+apps\frontend\institutions.html:1902:    function getField(row, ...names) {
+apps\frontend\institutions.html:1927:    async function apiRequest(
+apps\frontend\institutions.html:1944:    async function loadInstitutions() {
+apps\frontend\institutions.html:2105:    function updateStats() {
+apps\frontend\institutions.html:2195:    function renderInstitutions() {
+apps\frontend\institutions.html:2448:    function openModal(
+apps\frontend\institutions.html:2549:    function closeModal() {
+apps\frontend\institutions.html:2571:    async function saveInstitution(
+apps\frontend\institutions.html:2706:    function setupEvents() {
+apps\frontend\institutions.html:2902:    function setupClock() {
+apps\frontend\institutions.html:2916:        function update() {
+apps\frontend\institutions.html:2968:    async function initialize() {
+apps\frontend\institutions.html:3020:    function renderUserFromSession() {
+
+

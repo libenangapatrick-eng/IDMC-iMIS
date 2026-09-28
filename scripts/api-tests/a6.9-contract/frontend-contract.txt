@@ -1,0 +1,348 @@
+﻿====================================================
+ IDMC iMIS - A6.9 FRONTEND CONTRACT REPORT
+ Generated: 2026-09-18 20:55:13
+====================================================
+
+
+====================================================
+PAGE: campuses.html
+====================================================
+
+----- IDMC_RBAC_API -----
+2105: window.IDMC_RBAC_API &&
+2107: window.IDMC_RBAC_API
+2112: window.IDMC_RBAC_API
+2156: await IDMC_RBAC_API
+2341: !IDMC_RBAC_API
+2449: IDMC_RBAC_API
+2557: !IDMC_RBAC_API
+2691: await IDMC_RBAC_API
+2695: await IDMC_RBAC_API
+
+----- IDMCAPI -----
+2386: await window.IDMCAPI.request(
+2401: await window.IDMCAPI.request(
+
+----- apiRequest -----
+NOT FOUND
+
+----- DIRECT FETCH -----
+NOT FOUND
+
+----- POST -----
+2404: method:"POST",
+
+----- PATCH -----
+2391: method:"PATCH",
+
+----- PUT -----
+NOT FOUND
+
+----- DELETE -----
+NOT FOUND
+
+----- FORMS AND SUBMIT -----
+1591: <form data-form>
+
+----- CRUD FUNCTIONS -----
+1805: function updateStats(){
+2174: updateStats();
+2189: updateStats();
+2326: ?.classList.remove(
+2335: async function save(event){
+2635: function update(){
+2673: update();
+
+----- SCRIPT SOURCES -----
+1717: <script src="assets/js/idmc-session.js"></script>
+1719: <script src="assets/js/config.js"></script>
+1721: <script src="assets/js/auth.js"></script>
+1722: <script src="assets/js/api.js"></script>
+1724: <script src="assets/js/rbac.js"></script>
+
+
+====================================================
+PAGE: departments.html
+====================================================
+
+----- IDMC_RBAC_API -----
+2191: window.IDMC_RBAC_API &&
+2193: window.IDMC_RBAC_API
+2198: window.IDMC_RBAC_API
+2219: await IDMC_RBAC_API
+2295: await IDMC_RBAC_API
+2454: !IDMC_RBAC_API
+2503: await IDMC_RBAC_API
+2519: await IDMC_RBAC_API
+2568: IDMC_RBAC_API
+2677: !IDMC_RBAC_API
+2815: await IDMC_RBAC_API
+2819: await IDMC_RBAC_API
+
+----- IDMCAPI -----
+NOT FOUND
+
+----- apiRequest -----
+NOT FOUND
+
+----- DIRECT FETCH -----
+NOT FOUND
+
+----- POST -----
+2523: method:"POST",
+
+----- PATCH -----
+2509: method:"PATCH",
+
+----- PUT -----
+NOT FOUND
+
+----- DELETE -----
+NOT FOUND
+
+----- FORMS AND SUBMIT -----
+1590: <form data-form>
+
+----- CRUD FUNCTIONS -----
+1773: function updateStats(){
+1897: document.createElement(
+2237: updateStats();
+2252: updateStats();
+2439: ?.classList.remove(
+2448: async function save(event){
+2759: function update(){
+2797: update();
+
+----- SCRIPT SOURCES -----
+1716: <script src="assets/js/idmc-session.js"></script>
+1718: <script src="assets/js/config.js"></script>
+1720: <script src="assets/js/auth.js"></script>
+1721: <script src="assets/js/api.js"></script>
+1723: <script src="assets/js/rbac.js"></script>
+
+
+====================================================
+PAGE: schools.html
+====================================================
+
+----- IDMC_RBAC_API -----
+2166: window.IDMC_RBAC_API &&
+2168: window.IDMC_RBAC_API
+2173: window.IDMC_RBAC_API
+2194: await IDMC_RBAC_API
+2270: await IDMC_RBAC_API
+2429: !IDMC_RBAC_API
+2536: IDMC_RBAC_API
+2645: !IDMC_RBAC_API
+2783: await IDMC_RBAC_API
+2787: await IDMC_RBAC_API
+
+----- IDMCAPI -----
+2473: await window.IDMCAPI.request(
+2488: await window.IDMCAPI.request(
+
+----- apiRequest -----
+NOT FOUND
+
+----- DIRECT FETCH -----
+NOT FOUND
+
+----- POST -----
+2491: method:"POST",
+
+----- PATCH -----
+2478: method:"PATCH",
+
+----- PUT -----
+NOT FOUND
+
+----- DELETE -----
+NOT FOUND
+
+----- FORMS AND SUBMIT -----
+1580: <form data-form>
+
+----- CRUD FUNCTIONS -----
+1763: function updateStats(){
+1883: document.createElement(
+2212: updateStats();
+2227: updateStats();
+2414: ?.classList.remove(
+2423: async function save(event){
+2727: function update(){
+2765: update();
+
+----- SCRIPT SOURCES -----
+1706: <script src="assets/js/idmc-session.js"></script>
+1708: <script src="assets/js/config.js"></script>
+1710: <script src="assets/js/auth.js"></script>
+1711: <script src="assets/js/api.js"></script>
+1713: <script src="assets/js/rbac.js"></script>
+
+
+====================================================
+PAGE: students.html
+====================================================
+
+----- IDMC_RBAC_API -----
+748: typeof window.IDMC_RBAC_API?.hasPermission ===
+750: window.IDMC_RBAC_API.hasPermission(permission)
+967: await window.IDMC_RBAC_API
+1038: await window.IDMC_RBAC_API
+
+----- IDMCAPI -----
+1192: await window.IDMCAPI.request(
+
+----- apiRequest -----
+NOT FOUND
+
+----- DIRECT FETCH -----
+NOT FOUND
+
+----- POST -----
+NOT FOUND
+
+----- PATCH -----
+NOT FOUND
+
+----- PUT -----
+NOT FOUND
+
+----- DELETE -----
+NOT FOUND
+
+----- FORMS AND SUBMIT -----
+412: <form id="studentForm">
+
+----- CRUD FUNCTIONS -----
+852: .remove("open");
+1092: async function saveStudent(event) {
+
+----- SCRIPT SOURCES -----
+717: <script src="assets/js/idmc-session.js"></script>
+718: <script src="assets/js/config.js"></script>
+719: <script src="assets/js/auth.js"></script>
+720: <script src="assets/js/api.js"></script>
+721: <script src="assets/js/rbac.js"></script>
+
+
+====================================================
+PAGE: users.html
+====================================================
+
+----- IDMC_RBAC_API -----
+2141: const allowed = await IDMC_RBAC_API.requireRBACPage("users.view");
+
+----- IDMCAPI -----
+NOT FOUND
+
+----- apiRequest -----
+NOT FOUND
+
+----- DIRECT FETCH -----
+NOT FOUND
+
+----- POST -----
+NOT FOUND
+
+----- PATCH -----
+NOT FOUND
+
+----- PUT -----
+NOT FOUND
+
+----- DELETE -----
+NOT FOUND
+
+----- FORMS AND SUBMIT -----
+1498: <form id="createUserForm">
+1811: <form id="editForm">
+2052: <form id="roleForm">
+
+----- CRUD FUNCTIONS -----
+NOT FOUND
+
+----- SCRIPT SOURCES -----
+36: <script src="./assets/js/config.js"></script>
+37: <script src="./assets/js/auth.js"></script>
+38: <script src="./assets/js/api.js"></script>
+39: <script src="./assets/js/rbac.js"></script>
+2164: <script src="./assets/js/users.js"></script>
+
+
+====================================================
+PAGE: roles.html
+====================================================
+
+----- IDMC_RBAC_API -----
+1701: await IDMC_RBAC_API.listRoles();
+1890: await IDMC_RBAC_API.getRole(
+2083: await IDMC_RBAC_API.getRolePermissions(
+2279: await IDMC_RBAC_API.listPermissions();
+2634: await IDMC_RBAC_API.updateRole(
+2650: await IDMC_RBAC_API.createRole(
+2802: await IDMC_RBAC_API.assignPermission(
+2854: await IDMC_RBAC_API.removePermission(
+
+----- IDMCAPI -----
+NOT FOUND
+
+----- apiRequest -----
+NOT FOUND
+
+----- DIRECT FETCH -----
+NOT FOUND
+
+----- POST -----
+NOT FOUND
+
+----- PATCH -----
+NOT FOUND
+
+----- PUT -----
+NOT FOUND
+
+----- DELETE -----
+NOT FOUND
+
+----- FORMS AND SUBMIT -----
+NOT FOUND
+
+----- CRUD FUNCTIONS -----
+968: onclick="openCreateRoleModal()"
+1174: onclick="saveRole()"
+2441: function openCreateRoleModal() {
+2574: ).classList.remove(
+2586: async function saveRole() {
+2634: await IDMC_RBAC_API.updateRole(
+2650: await IDMC_RBAC_API.createRole(
+2756: ).classList.remove(
+2836: async function removePermission(
+2854: await IDMC_RBAC_API.removePermission(
+2986: removePermission(
+
+----- SCRIPT SOURCES -----
+1281: <script src="./assets/js/config.js"></script>
+1283: <script src="./assets/js/auth.js"></script>
+1284: <script src="./assets/js/api.js"></script>
+1286: <script src="./assets/js/rbac.js"></script>
+
+
+====================================================
+JAVASCRIPT: api.js
+====================================================
+
+----- IDMC_RBAC_API -----
+NOT FOUND
+
+----- IDMCAPI -----
+212: window.IDMCAPI = {
+
+----- DIRECT FETCH -----
+127: response = await fetch(
+
+----- AUTH TRANSPORT -----
+20: function getAccessToken() {
+23: typeof window.IDMCAuth.getAccessToken === "function"
+25: return window.IDMCAuth.getAccessToken();
+52: !headers.has("Authorization")

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Results | IDMC iMIS</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="assets/css/student-portal-pages.css">
+
+    <link rel="stylesheet" href="assets/css/application-integration.css">
+    <link rel="stylesheet" href="assets/css/idmc-deep-ui.css">
+    <link rel="stylesheet" href="assets/css/idmc-current-repair.css">
+</head>
+
+<body>
+
+<div class="portal-shell">
+
+    <header class="portal-header">
+
+        <div class="portal-header-inner">
+
+            <div class="portal-brand">
+
+                <div class="portal-brand-mark">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+                    IDMC iMIS
+                    <small>Student Portal</small>
+                </div>
+
+            </div>
+
+            <div class="portal-user">
+
+                <div class="portal-user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="portal-user-text"
+                     id="currentUser">
+                    Student
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <div class="portal-layout">
+
+        <aside class="portal-sidebar">
+
+            <section class="portal-student-card">
+
+                <h3 id="studentName">
+                    Student
+                </h3>
+
+                <p>
+                    <strong>Student No:</strong>
+                    <span id="studentNumber">&mdash;</span>
+                </p>
+
+                <p>
+                    <strong>Programme:</strong>
+                    <span id="studentProgramme">&mdash;</span>
+                </p>
+
+            </section>
+
+            <nav class="portal-nav">
+<a href="student-portal.html">
+    <i class="fa-solid fa-house"></i>
+    Portal Home
+</a>
+
+<a href="student-registration.html" data-view="registration">
+    <i class="fa-solid fa-clipboard-check"></i>
+    Registration
+</a>
+
+<a href="student-attendance.html" data-view="attendance">
+    <i class="fa-solid fa-calendar-check"></i>
+    Attendance
+</a>
+
+<a href="student-results.html" data-view="results">
+    <i class="fa-solid fa-chart-column"></i>
+    Results
+</a>
+
+<a href="student-timetable.html" data-view="timetable">
+    <i class="fa-solid fa-calendar-days"></i>
+    Timetable
+</a>
+
+<a href="student-fees.html" data-view="fees">
+    <i class="fa-solid fa-wallet"></i>
+    Fees
+</a>
+
+<a href="student-documents.html" data-view="documents">
+    <i class="fa-solid fa-folder-open"></i>
+    Documents
+</a>
+
+<a href="student-notifications.html" data-view="notifications">
+    <i class="fa-solid fa-bell"></i>
+    Notifications
+</a>
+            </nav>
+
+        </aside>
+
+        <main class="portal-main">
+
+            <section class="portal-page-heading">
+
+                <h1>
+                    <i class="fa-solid fa-chart-column"></i>
+                    Examination Results
+                </h1>
+
+                <p>
+                    View your officially published module marks, grades and semester GPA.
+                </p>
+
+            </section>
+
+            <section class="portal-card">
+
+                <div class="portal-card-header">
+
+                    <h2>Examination Results</h2>
+
+                    <button type="button"
+                            class="portal-button"
+                            id="portalRefreshButton">
+
+                        <i class="fa-solid fa-rotate"></i>
+                        Refresh
+
+                    </button>
+
+                </div>
+
+                <div class="portal-card-body"
+                     id="portalContent">
+
+                    <div class="portal-state">
+
+                        <div class="portal-spinner"></div>
+
+                        <h3>Loading Examination Results</h3>
+
+                        <p>
+                            Please wait while your information is loaded.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script>
+window.IDMC_STUDENT_PAGE = { view: "results", permission: "results.self.view", title: "Examination Results" };
+</script>
+
+<script src="assets/js/idmc-session.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+<script src="assets/js/student-exam-results.js"></script>
+
+    <script src="assets/js/application-integration.js"></script>
+    <script src="assets/js/idmc-deep-ui.js"></script>
+    <script src="assets/js/idmc-current-repair.js"></script>
+</body>
+</html>

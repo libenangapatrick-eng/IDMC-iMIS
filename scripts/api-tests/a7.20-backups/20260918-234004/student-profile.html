@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>IDMC iMIS | Student Profile</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/app.css"
+    >
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #faf7f7;
+            color: #2a1116;
+            font-family: Inter, Arial, sans-serif;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #4a0d1c;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .header {
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #4a0d1c;
+            font-family: Georgia, serif;
+        }
+
+        .subtitle {
+            margin-top: 5px;
+            color: #7c6165;
+            font-size: 12px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e8dee1;
+        }
+
+        .card-head {
+            padding: 15px 17px;
+            border-bottom: 1px solid #e8dee1;
+        }
+
+        .card-head strong {
+            color: #4a0d1c;
+            font-family: Georgia, serif;
+        }
+
+        .grid {
+            padding: 18px;
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+            gap: 12px;
+        }
+
+        .field {
+            border: 1px solid #f0e8ea;
+            padding: 13px;
+        }
+
+        .field small {
+            display: block;
+            font-size: 10px;
+            color: #7c6165;
+        }
+
+        .field strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .error {
+            padding: 18px;
+            color: #4a0d1c;
+        }
+
+        @media (max-width: 700px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                padding: 16px;
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+</head>
+
+<body>
+
+<main class="page">
+
+    <a
+        class="back"
+        href="student-portal.html"
+    >
+        ← Back to Student Portal
+    </a>
+
+    <header class="header">
+
+        <h1>
+            My Student Profile
+        </h1>
+
+        <div class="subtitle">
+            Personal and institutional student record
+        </div>
+
+    </header>
+
+    <section class="card">
+
+        <div class="card-head">
+
+            <strong>
+                Student Information
+            </strong>
+
+        </div>
+
+        <div
+            id="profileGrid"
+            class="grid"
+        >
+
+            <div class="field">
+                <small>
+                    Student Number
+                </small>
+                <strong data-field="student_number">
+                    Loading...
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Full Name
+                </small>
+                <strong data-field="full_name">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Gender
+                </small>
+                <strong data-field="gender">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Date of Birth
+                </small>
+                <strong data-field="date_of_birth">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Nationality
+                </small>
+                <strong data-field="nationality">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Email
+                </small>
+                <strong data-field="email">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Phone
+                </small>
+                <strong data-field="phone">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Status
+                </small>
+                <strong data-field="student_status">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Admission Year
+                </small>
+                <strong data-field="admission_year">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Entry Type
+                </small>
+                <strong data-field="entry_type">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    National ID
+                </small>
+                <strong data-field="national_id">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Passport Number
+                </small>
+                <strong data-field="passport_number">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Physical Address
+                </small>
+                <strong data-field="physical_address">
+                    —
+                </strong>
+            </div>
+
+            <div class="field">
+                <small>
+                    Postal Address
+                </small>
+                <strong data-field="postal_address">
+                    —
+                </strong>
+            </div>
+
+        </div>
+
+        <div
+            id="profileError"
+            class="error"
+            style="display:none;"
+        ></div>
+
+    </section>
+
+</main>
+
+<script src="assets/js/idmc-session.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+
+<script>
+
+(async () => {
+
+    try {
+
+        await window.IDMCAuth.requireAuth();
+
+        if (
+            !window.IDMC_RBAC_API?.hasPermission(
+                "students.self.view"
+            )
+        ) {
+
+            throw new Error(
+                "Student profile access is not available for this account."
+            );
+
+        }
+
+        const result =
+            await window.IDMCAPI.request(
+                "/students/me"
+            );
+
+        const student =
+            result?.data;
+
+        if (!student) {
+
+            throw new Error(
+                "No student record is linked to this account."
+            );
+
+        }
+
+        const fullName =
+            [
+                student.first_name,
+                student.middle_name,
+                student.last_name
+            ]
+                .filter(Boolean)
+                .join(" ");
+
+        const fields = {
+            student_number:
+                student.student_number,
+
+            full_name:
+                fullName,
+
+            gender:
+                student.gender,
+
+            date_of_birth:
+                student.date_of_birth,
+
+            nationality:
+                student.nationality,
+
+            email:
+                student.email,
+
+            phone:
+                student.phone,
+
+            student_status:
+                student.student_status,
+
+            admission_year:
+                student.admission_year,
+
+            entry_type:
+                student.entry_type,
+
+            national_id:
+                student.national_id,
+
+            passport_number:
+                student.passport_number,
+
+            physical_address:
+                student.physical_address,
+
+            postal_address:
+                student.postal_address,
+        };
+
+        Object.entries(fields)
+            .forEach(([key, value]) => {
+
+                const element =
+                    document.querySelector(
+                        `[data-field="${key}"]`
+                    );
+
+                if (element) {
+
+                    element.textContent =
+                        value ??
+                        "—";
+
+                }
+
+            });
+
+    } catch (error) {
+
+        console.error(
+            "Student profile failed:",
+            error
+        );
+
+        const element =
+            document.getElementById(
+                "profileError"
+            );
+
+        if (element) {
+
+            element.textContent =
+                error?.message ||
+                "Unable to load student profile.";
+
+            element.style.display =
+                "block";
+
+        }
+
+    }
+
+})();
+
+</script>
+
+    <script src="assets/js/app-workflow.js"></script>
+</body>
+</html>
+
+

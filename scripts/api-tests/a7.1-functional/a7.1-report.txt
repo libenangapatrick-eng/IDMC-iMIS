@@ -1,0 +1,107 @@
+IDMC iMIS - A7.1 FRONTEND FUNCTIONAL CERTIFICATION
+Generated: 2026-09-18 20:52:37
+
+HTML files: 14
+JavaScript files: 8
+API route references: 11
+RBAC permissions: 45
+Issues: 21
+
+=== UI CONTRACTS ===
+academics\academics.html | Forms=1 | Buttons=6 | Submit=1 | POST=0 | PATCH=0 | PUT=0 | DELETE=1
+campuses.html | Forms=1 | Buttons=7 | Submit=1 | POST=1 | PATCH=1 | PUT=0 | DELETE=0
+dashboard.html | Forms=0 | Buttons=4 | Submit=0 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+departments.html | Forms=1 | Buttons=7 | Submit=1 | POST=1 | PATCH=1 | PUT=0 | DELETE=0
+institutions.html | Forms=1 | Buttons=7 | Submit=1 | POST=1 | PATCH=1 | PUT=0 | DELETE=0
+login.html | Forms=1 | Buttons=3 | Submit=1 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+profile.html | Forms=0 | Buttons=0 | Submit=0 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+roles.html | Forms=0 | Buttons=15 | Submit=0 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+schools.html | Forms=1 | Buttons=7 | Submit=1 | POST=1 | PATCH=1 | PUT=0 | DELETE=0
+set-password.html | Forms=1 | Buttons=1 | Submit=1 | POST=0 | PATCH=0 | PUT=1 | DELETE=0
+student-portal.html | Forms=0 | Buttons=0 | Submit=0 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+student-profile.html | Forms=0 | Buttons=0 | Submit=0 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+students.html | Forms=1 | Buttons=7 | Submit=1 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+users.html | Forms=3 | Buttons=14 | Submit=3 | POST=0 | PATCH=0 | PUT=0 | DELETE=0
+
+=== API ROUTES ===
+/api/v1/academics
+/campuses
+/departments
+/institutions
+/roles
+/roles/permissions
+/schools
+/students
+/students/me
+/users
+/users/roles
+
+=== RBAC PERMISSIONS ===
+admissions.view
+alumni.view
+applications.view
+assets.view
+attendance.view
+audit.view
+campuses.manage
+campuses.view
+clinical.view
+communications.view
+courses.view
+curriculum.view
+departments.manage
+departments.view
+documents.view
+examinations.view
+field_practical.view
+finance.view
+graduation.view
+helpdesk.view
+hostel.view
+hr.view
+institutions.manage
+institutions.view
+inventory.view
+library.view
+payroll.view
+procurement.view
+programmes.view
+qa.view
+registration.view
+research.view
+results.view
+roles.manage
+roles.view
+schools.manage
+schools.view
+staff.view
+students.manage
+students.view
+system.view
+timetable.view
+users.create
+users.update
+users.view
+
+=== ISSUES ===
+student-portal.html: broken HTML link -> student-registration.html
+student-portal.html: broken HTML link -> student-attendance.html
+student-portal.html: broken HTML link -> student-results.html
+student-portal.html: broken HTML link -> student-timetable.html
+student-portal.html: broken HTML link -> student-fees.html
+student-portal.html: broken HTML link -> student-documents.html
+student-portal.html: broken HTML link -> student-notifications.html
+student-portal.html: broken HTML link -> student-registration.html
+student-portal.html: broken HTML link -> student-attendance.html
+student-portal.html: broken HTML link -> student-results.html
+student-portal.html: broken HTML link -> student-timetable.html
+student-portal.html: broken HTML link -> student-fees.html
+student-portal.html: broken HTML link -> student-documents.html
+student-portal.html: broken HTML link -> student-notifications.html
+Institutions: authenticated GET returned 401
+Campuses: authenticated GET returned 401
+Departments: authenticated GET returned 401
+Schools: authenticated GET returned 401
+Students: authenticated GET returned 401
+Users: authenticated GET returned 401
+Roles: authenticated GET returned 401

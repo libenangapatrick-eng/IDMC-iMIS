@@ -1,0 +1,16 @@
+1. Extract the ZIP directly into:
+   C:\Users\liben\Documents\IDMC_iMIS
+
+2. Open a NEW PowerShell window and run ONLY these commands (do not paste old console output):
+
+cd C:\Users\liben\Documents\IDMC_iMIS
+Set-ExecutionPolicy -Scope Process Bypass -Force
+.\IDMC-Section-14C-Dashboard-Staff-Accounts.ps1 -StartServers
+
+3. Sign in with an authorized SUPER_ADMIN, ADMIN or HR_OFFICER account.
+
+4. Open:
+   http://127.0.0.1:5500/staff-accounts.html
+
+5. Enter verified staff details. Do not invent names, email addresses or roles.
+

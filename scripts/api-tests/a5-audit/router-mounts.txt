@@ -1,0 +1,80 @@
+﻿
+Path                                                                                                                   LineNumber Line                                                           
+----                                                                                                                   ---------- ----                                                           
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     17 app.use(                                                       
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     23 app.use(                                                       
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     30 app.use(express.json({ limit: "10mb" }));                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     31 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     89 app.use(API_BASE, apiRouter);                                  
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     90 app.use(API_BASE, institutionManagementRoutes);                
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     91 app.use(API_BASE, studentManagementRoutes);                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     93 app.use(notFoundHandler);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts                                                                     94 app.use(errorHandler);                                         
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts                               6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.routes.ts                                      14 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts                                     6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\alumni\alumni.routes.ts                                             4 const router=Router(); router.use(authenticate);               
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\assessment\assessment.routes.ts                                     5 const router = Router(); router.use(authenticate);             
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts                                     7 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts                             6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts                                 4 const router=Router(); router.use(authenticate);               
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts                                    7 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts                                     4 const router=Router(); router.use(authenticate);               
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts                                             6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts                                                     6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts            17 router.use(                                                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts            22 router.use(                                                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts            27 router.use(                                                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts            32 router.use(                                                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.routes.ts                 20 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.routes.ts           20 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.routes.ts         20 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.routes.ts                   20 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts                                           6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\operations\operations.routes.ts                                     6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts                                 7 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\reports\reports.routes.ts                                           6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\research\research.routes.ts                                         6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts                                           4 const router=Router(); router.use(authenticate);               
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\student-management.routes.ts                     8 router.use(                                                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.routes.ts                     22 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\system\system.routes.ts                                             6 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts                                       7 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts                                   7 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\roles.routes.ts                                       18 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\users.routes.ts                                       23 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts                                        8 router.use(authenticate);                                      
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      12 router.use("/applications", admissionsRoutes);                 
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      13 router.use("/admissions", admissionsRoutes);                   
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      14 router.use("/academic-core", academicCoreRoutes);              
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      15 router.use("/assessment", assessmentRoutes);                   
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      16 router.use("/assessments", assessmentRoutes);                  
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      17 router.use("/examinations", examinationRoutes);                
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      18 router.use("/results", resultsRoutes);                         
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      19 router.use("/graduation", graduationRoutes);                   
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts                                                      20 router.use("/alumni", alumniRoutes);                           
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            44 router.use("/auth", authRoutes);                               
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            45 router.use("/users", usersRoutes);                             
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            46 router.use("/roles", rolesRoutes);                             
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            53 router.use("/finance", financeRoutes);                         
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            54 router.use("/hr", hrRoutes);                                   
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            61 router.use("/academics", academicsRoutes);                     
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            69 router.use("/operations", operationsRoutes);                   
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            83 router.use("/assets", operationsRoutes);                       
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            84 router.use("/procurement", operationsRoutes);                  
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            91 router.use("/hostel", hostelRoutes);                           
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            92 router.use("/library", libraryRoutes);                         
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                            99 router.use("/research", researchRoutes);                       
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           100 router.use("/communications", communicationsRoutes);           
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           116 router.use("/documents", communicationsRoutes);                
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           117 router.use("/helpdesk", communicationsRoutes);                 
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           124 router.use("/reports", reportsRoutes);                         
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           125 router.use("/system", systemRoutes);                           
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           141 router.use("/registrations", registrationRoutes);              
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           142 router.use("/timetables", timetableRoutes);                    
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           143 router.use("/attendance", attendanceRoutes);                   
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           144 router.use("/transcripts", transcriptsRoutes);                 
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           146 router.use("/", coreAcademicRoutes);                           
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts                                                           153 router.use("/workflows", workflowRoutes);                      
+
+

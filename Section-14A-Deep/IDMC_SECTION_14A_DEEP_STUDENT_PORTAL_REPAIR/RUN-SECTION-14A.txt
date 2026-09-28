@@ -1,0 +1,35 @@
+IDMC iMIS - SECTION 14A DEEP STUDENT PORTAL REPAIR
+
+1. Extract this ZIP into:
+   C:\Users\liben\Documents\IDMC_iMIS\Section-14A-Deep
+
+2. Open a NEW PowerShell window. Do not paste old console output.
+
+3. Run only these commands:
+
+   cd C:\Users\liben\Documents\IDMC_iMIS\Section-14A-Deep
+   Set-ExecutionPolicy -Scope Process Bypass -Force
+   .\IDMC-Section-14A-Deep-Student-Portal-Repair.ps1 -StartServers
+
+4. Wait for:
+   SECTION 14A COMPLETE - STUDENT PORTAL INSTALLED
+
+5. Open:
+   http://127.0.0.1:5500/login.html
+
+6. Sign in with the student's real credentials, then open:
+   http://127.0.0.1:5500/student-portal.html
+
+If the Supabase CLI says the project is not linked, run this once from the
+IDMC_iMIS project root, using the project reference already configured for
+the institution, and rerun the installer:
+
+   npx.cmd supabase link --project-ref ocvfpoxukbquzmapfqjx
+
+Safe rerun after files were installed:
+
+   .\IDMC-Section-14A-Deep-Student-Portal-Repair.ps1 -SkipSourceInstall -StartServers
+
+Do not use -SkipDatabase on the first successful installation because the
+new student self-service tables, RBAC permission and admission photo column
+must exist before the write forms are tested.

@@ -1,0 +1,14 @@
+﻿============================================================
+IDMC iMIS — INSTITUTION MANAGEMENT ANALYSIS
+============================================================
+
+DATABASE SCHEMA (FOUND TABLES & COLUMNS)
+============================================================
+Γöé public     Γöé campuses                       Γöé false       Γöé
+Γöé public     Γöé departments                    Γöé false       Γöé
+Γöé public     Γöé institutions                   Γöé false       Γöé
+Γöé public     Γöé schools                        Γöé false       Γöé
+
+============================================================
+BACKEND SEARCH (ROUTES & CONTROLLERS)
+============================================================

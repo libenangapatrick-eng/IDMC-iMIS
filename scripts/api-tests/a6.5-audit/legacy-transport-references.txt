@@ -1,0 +1,98 @@
+﻿C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\academics\academics.html:649: await fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\api.js:127: response = await fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\auth.js:138: response = await fetch(endpoint, {
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\auth.js:198: response = await fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\auth.js:245: response = await fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\auth.js:287: await fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:636: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:637: typeof window.IDMC_RBAC_API.hasPermission ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:641: return window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:1139: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:1140: typeof window.IDMC_RBAC_API.loadCurrentUserRBAC ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:1144: await window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:1164: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:1165: typeof window.IDMC_RBAC_API.applyPermissionVisibility ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\dashboard.js:1169: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:342: return fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2232: window.IDMC_RBAC_API = {
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:199: !window.IDMC_RBAC_API ||
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:201: window.IDMC_RBAC_API.request !==
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:213: window.IDMC_RBAC_API.hasPermission ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:218: !window.IDMC_RBAC_API.hasPermission(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:269: await window.IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:334: await window.IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:25: const response = await fetch(`${API_BASE}${url}`, {
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2105: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2107: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2112: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2156: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2341: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2386: await IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2401: await IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2449: IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2557: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2691: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2695: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4271: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4272: typeof window.IDMC_RBAC_API.loadCurrentUserRBAC === "function"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4276: await window.IDMC_RBAC_API.loadCurrentUserRBAC();
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4279: typeof window.IDMC_RBAC_API.applyPermissionVisibility ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4283: window.IDMC_RBAC_API.applyPermissionVisibility(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4382: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4383: typeof window.IDMC_RBAC_API.applyPermissionVisibility ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html:4389: window.IDMC_RBAC_API.applyPermissionVisibility(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2191: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2193: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2198: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2219: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2295: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2454: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2503: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2519: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2568: IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2677: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2815: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2819: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2423: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2424: typeof window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2429: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2712: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2821: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2971: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2976: IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2984: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\profile.html:2560: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\profile.html:2561: typeof window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\profile.html:2568: await window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:1701: await IDMC_RBAC_API.listRoles();
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:1890: await IDMC_RBAC_API.getRole(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:2083: await IDMC_RBAC_API.getRolePermissions(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:2279: await IDMC_RBAC_API.listPermissions();
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:2634: await IDMC_RBAC_API.updateRole(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:2650: await IDMC_RBAC_API.createRole(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:2802: await IDMC_RBAC_API.assignPermission(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html:2854: await IDMC_RBAC_API.removePermission(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2166: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2168: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2173: window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2194: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2270: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2429: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2473: await IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2488: await IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2536: IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2645: !IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2783: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2787: await IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\set-password.html:337: await fetch(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-portal.html:813: window.IDMC_RBAC_API &&
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-portal.html:814: typeof window.IDMC_RBAC_API.hasPermission ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-portal.html:818: return window.IDMC_RBAC_API;
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-profile.html:311: !window.IDMC_RBAC_API?.hasPermission(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-profile.html:323: await window.IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:748: typeof window.IDMC_RBAC_API?.hasPermission ===
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:750: window.IDMC_RBAC_API.hasPermission(permission)
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:967: await window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:1038: await window.IDMC_RBAC_API
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:1192: await window.IDMC_RBAC_API.request(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\users.html:2141: const allowed = await IDMC_RBAC_API.requireRBACPage("users.view");

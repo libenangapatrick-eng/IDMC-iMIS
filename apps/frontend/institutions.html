@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IDMC iMIS | Institution</title>
+    <link rel="stylesheet" href="assets/css/institution-workspace.css">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="dashboard.html"><span>IDMS</span><strong>Institution Administration</strong></a>
+    <div class="top-actions"><span class="online">Online</span><a href="dashboard.html">Dashboard</a><button id="logoutButton" type="button">Logout</button></div>
+</header>
+<main class="page-shell">
+    <section class="hero">
+        <div><p class="eyebrow">Institutional structure</p><h1>Institution</h1><p>Maintain the official IDMS profile, campuses, schools and departments from one workspace.</p></div>
+        <button class="button secondary" id="refreshButton" type="button">Refresh</button>
+    </section>
+    <div id="message" class="message" hidden></div>
+    <section class="identity-card">
+        <div class="crest">IDMS</div>
+        <div class="identity-copy"><span class="lock-pill">Locked official identity</span><h2>Institute of Development and Medical Sciences</h2><p>Institution code: <strong>IDMS</strong> · Status: <strong>ACTIVE</strong></p></div>
+        <div class="metric"><strong id="campusCount">0</strong><span>Campuses</span></div>
+        <div class="metric"><strong id="schoolCount">0</strong><span>Schools</span></div>
+        <div class="metric"><strong id="departmentCount">0</strong><span>Departments</span></div>
+    </section>
+    <nav class="tabs" aria-label="Institution sections">
+        <button class="tab active" data-tab="profile" type="button">Institution Profile</button>
+        <button class="tab" data-tab="campuses" type="button">Campuses</button>
+        <button class="tab" data-tab="schools" type="button">Schools</button>
+        <button class="tab" data-tab="departments" type="button">Departments</button>
+    </nav>
+    <section class="panel active" data-panel="profile">
+        <div class="panel-heading"><div><p class="eyebrow">Official record</p><h2>Institution Profile</h2></div></div>
+        <form id="institutionForm" class="form-grid">
+            <label>Institution Code<input value="IDMS" readonly aria-readonly="true"></label>
+            <label class="span-2">Institution Name<input value="Institute of Development and Medical Sciences" readonly aria-readonly="true"></label>
+            <label>Status<input value="ACTIVE" readonly aria-readonly="true"></label>
+            <label>Registration Number<input name="registration_number"></label><label>Accreditation Number<input name="accreditation_number"></label>
+            <label>Institution Type<input name="institution_type"></label><label>Ownership Type<input name="ownership_type"></label>
+            <label>Email<input name="email" type="email"></label><label>Phone<input name="phone"></label><label class="span-2">Website<input name="website" type="url"></label>
+            <label class="span-2">Physical Address<textarea name="physical_address" rows="3"></textarea></label><label class="span-2">Postal Address<textarea name="postal_address" rows="3"></textarea></label>
+            <label>City<input name="city"></label><label>Region<input name="region"></label><label>Country<input name="country" value="Tanzania"></label>
+            <div class="form-actions span-4"><button class="button" type="submit">Save Institution Profile</button></div>
+        </form>
+    </section>
+    <section class="panel" data-panel="campuses">
+        <div class="panel-heading"><div><p class="eyebrow">Institution structure</p><h2>Campuses</h2></div><button class="button" data-open="campus" type="button">Add Campus</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Code</th><th>Campus</th><th>Type</th><th>Location</th><th>Status</th><th>Action</th></tr></thead><tbody id="campusRows"></tbody></table></div>
+    </section>
+    <section class="panel" data-panel="schools">
+        <div class="panel-heading"><div><p class="eyebrow">Academic structure</p><h2>Schools and Faculties</h2></div><button class="button" data-open="school" type="button">Add School</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Code</th><th>School / Faculty</th><th>Campus</th><th>Dean Title</th><th>Status</th><th>Action</th></tr></thead><tbody id="schoolRows"></tbody></table></div>
+    </section>
+    <section class="panel" data-panel="departments">
+        <div class="panel-heading"><div><p class="eyebrow">Academic structure</p><h2>Departments</h2></div><button class="button" data-open="department" type="button">Add Department</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Code</th><th>Department</th><th>School / Faculty</th><th>Head Title</th><th>Status</th><th>Action</th></tr></thead><tbody id="departmentRows"></tbody></table></div>
+    </section>
+</main>
+<dialog id="recordDialog">
+    <form id="recordForm"><div class="dialog-heading"><div><p class="eyebrow">Institution structure</p><h2 id="dialogTitle">Add Record</h2></div><button class="icon-button" id="closeDialog" type="button" aria-label="Close">×</button></div>
+        <input name="id" type="hidden"><input name="kind" type="hidden"><div id="recordFields" class="form-grid compact"></div>
+        <div class="dialog-actions"><button class="button secondary" id="cancelDialog" type="button">Cancel</button><button class="button" type="submit">Save Record</button></div>
+    </form>
+</dialog>
+<script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/institution-workspace.js"></script>
+</body>
+</html>

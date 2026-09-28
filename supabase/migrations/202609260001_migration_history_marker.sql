@@ -1,0 +1,4 @@
+-- Migration history marker.
+-- Version 202609260001 was recorded remotely during the earlier collision.
+-- The actual migrations were moved to unique versions 20260926151501+
+-- so each real migration is applied and tracked independently.

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Student Profile | IDMC iMIS</title>
+    <link rel="stylesheet" href="assets/css/module-full-forms.css">
+    <link rel="stylesheet" href="assets/css/student-record.css">
+</head>
+<body class="idmc-module-shell">
+<main class="idmc-module-main">
+    <header class="idmc-module-header">
+        <div><p class="idmc-module-eyebrow">Students</p><h1 class="idmc-module-title">Student Profile Workspace</h1><p class="idmc-module-subtitle">REGNO identity, programme, registration and academic records.</p></div>
+        <div class="idmc-module-actions"><button class="idmc-btn" id="activateStudentButton" type="button" hidden>Activate Student</button><a class="idmc-btn" href="students.html">Back to Students</a></div>
+    </header>
+    <div id="studentRecordStatus" class="student-record-status">Loading student profile...</div>
+    <section class="student-identity-card" id="studentIdentity" hidden>
+        <div><span>Student Number / REGNO</span><strong id="recordRegno">—</strong></div>
+        <div><span>Legacy Student Number</span><strong id="recordLegacyNumber">—</strong></div>
+        <div><span>Full Name</span><strong id="recordName">—</strong></div>
+        <div><span>Programme</span><strong id="recordProgramme">—</strong></div>
+        <div><span>Programme Version</span><strong id="recordProgrammeVersion">—</strong></div>
+        <div><span>Cohort / Entry</span><strong id="recordCohort">—</strong></div>
+        <div><span>Status</span><strong id="recordStatus">—</strong></div>
+        <div><span>Portal Account</span><strong id="recordAccount">—</strong></div>
+        <div><span>Contact</span><strong id="recordContact">—</strong></div>
+        <div><span>Record Source</span><strong id="recordSource">—</strong></div>
+        <div><span>Current Academic Year</span><strong id="recordYear">—</strong></div>
+        <div><span>Current Semester</span><strong id="recordSemester">—</strong></div>
+        <div><span>Semester Registration No.</span><strong id="recordRegistration">—</strong></div>
+        <div><span>Registration Status</span><strong id="recordRegistrationStatus">—</strong></div>
+    </section>
+    <nav class="student-record-tabs">
+        <button class="active" data-record-tab="academic">Academic</button><button data-record-tab="registration">Registration</button>
+        <button data-record-tab="results">Results</button><button data-record-tab="fees">Fees</button>
+        <button data-record-tab="attendance">Attendance</button><button data-record-tab="documents">Documents</button><button data-record-tab="requests">Requests</button>
+    </nav>
+    <section class="student-record-panel"><h2 id="recordPanelTitle">Academic</h2><div class="student-record-table-wrap"><table><thead id="recordTableHead"></thead><tbody id="recordTableBody"></tbody></table></div></section>
+</main>
+<script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/student-record.js"></script>
+</body>
+</html>

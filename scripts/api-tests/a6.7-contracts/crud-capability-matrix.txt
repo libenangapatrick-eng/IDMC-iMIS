@@ -1,0 +1,12 @@
+
+Resource    BackendGET BackendPOST BackendPATCH BackendPUT BackendDELETE FrontPOST FrontPATCH FrontPUT FrontDELETE
+--------    ---------- ----------- ------------ ---------- ------------- --------- ---------- -------- -----------
+Campuses          True        True         True      False         False      True       True    False       False
+Departments       True        True         True      False         False      True       True    False       False
+Schools           True        True         True      False         False      True       True    False       False
+Students          True        True         True      False         False     False      False    False       False
+Users             True        True         True      False          True     False      False    False       False
+Roles             True        True         True      False          True     False      False    False       False
+
+
+

@@ -1,0 +1,3171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Roles &amp; Permissions | IDMC iMIS</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         PAGE STYLE
+    ====================================================== -->
+
+    <style>
+
+        :root {
+            --maroon: #5a1020;
+            --maroon-dark: #3d0a16;
+            --gold: #b08d3f;
+            --gold-light: #f4ecd8;
+            --bg: #f4f5f7;
+            --border: #e4e7eb;
+            --border-strong: #d7dae0;
+            --text: #17212b;
+            --text-strong: #101820;
+            --muted: #687381;
+            --muted-2: #98a1ae;
+            --success: #176a3a;
+            --success-bg: #e7f6ed;
+            --danger: #9d1c35;
+            --danger-bg: #fce8ec;
+            --shadow-sm: 0 1px 2px rgba(16,24,32,.04);
+            --shadow-md: 0 8px 24px rgba(16,24,32,.06);
+            --shadow-lg: 0 20px 60px rgba(16,24,32,.22);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+
+        /* =================================================
+           INSTITUTION STRIP
+        ================================================= */
+
+        .institution-bar {
+            background: var(--maroon-dark);
+            color: rgba(255,255,255,.82);
+            font-size: 11.5px;
+            padding: 7px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .institution-bar .left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .institution-bar .right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .institution-bar i {
+            font-size: 11px;
+            opacity: .85;
+        }
+
+
+        /* =================================================
+           TOPBAR
+        ================================================= */
+
+        .topbar {
+            min-height: 70px;
+            background: linear-gradient(155deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 28px;
+
+            position: sticky;
+            top: 0;
+            z-index: 20;
+
+            box-shadow: 0 4px 14px rgba(58,10,22,.18);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.28);
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Lora", serif;
+            font-size: 15px;
+            font-weight: 700;
+            flex: 0 0 40px;
+        }
+
+        .brand-text {
+            font-family: "Lora", serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: .01em;
+        }
+
+        .brand-text small {
+            display: block;
+            font-family: "Inter", sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            opacity: .8;
+            margin-top: 3px;
+            letter-spacing: .01em;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+
+        /* =================================================
+           BUTTONS
+        ================================================= */
+
+        button {
+            border: 0;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: .15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn i {
+            font-size: 12px;
+        }
+
+        .btn-light {
+            background: rgba(255,255,255,.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,.25);
+        }
+
+        .btn-light:hover {
+            background: rgba(255,255,255,.18);
+        }
+
+        .btn {
+            background: white;
+            color: var(--text);
+            border: 1px solid var(--border-strong);
+        }
+
+        .btn:hover {
+            background: #f9fafb;
+            border-color: var(--muted-2);
+        }
+
+        .btn-primary {
+            background: var(--maroon);
+            color: white;
+            border: 1px solid var(--maroon);
+            box-shadow: 0 2px 6px rgba(90,16,32,.22);
+        }
+
+        .btn-primary:hover {
+            background: var(--maroon-dark);
+            border-color: var(--maroon-dark);
+        }
+
+        .btn-danger {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid #f5c6cf;
+        }
+
+        .btn-danger:hover {
+            background: #f9d3db;
+        }
+
+        .btn:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+
+        /* =================================================
+           CONTAINER
+        ================================================= */
+
+        .container {
+            padding: 30px 28px 60px;
+            max-width: 1500px;
+            margin: auto;
+        }
+
+
+        /* =================================================
+           PAGE HEADER
+        ================================================= */
+
+        .breadcrumb {
+            margin: 0 0 8px;
+            font-size: 12px;
+            color: var(--muted-2);
+            font-weight: 600;
+        }
+
+        .breadcrumb span {
+            color: var(--maroon);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 20px;
+
+            margin-bottom: 22px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-family: "Lora", serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-strong);
+        }
+
+        .page-header p {
+            margin: 7px 0 0;
+            color: var(--muted);
+            font-size: 13.5px;
+        }
+
+
+        /* =================================================
+           MAIN GRID
+        ================================================= */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 20px;
+        }
+
+
+        /* =================================================
+           CARD
+        ================================================= */
+
+        .card {
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            padding: 17px 20px;
+
+            border-bottom: 1px solid var(--border);
+            background: #fbfbfc;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-strong);
+        }
+
+
+        /* =================================================
+           ROLE LIST
+        ================================================= */
+
+        .role-list {
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        .role-item {
+            padding: 17px 20px;
+
+            border-bottom: 1px solid #edf0f2;
+            border-left: 4px solid transparent;
+
+            cursor: pointer;
+
+            transition: .15s;
+        }
+
+        .role-item:hover {
+            background: #faf7f8;
+        }
+
+        .role-item.selected {
+            background: var(--gold-light);
+            border-left: 4px solid var(--maroon);
+        }
+
+        .role-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-strong);
+        }
+
+        .role-code {
+            font-size: 11px;
+            color: var(--muted-2);
+            font-family: "SFMono-Regular", Consolas, monospace;
+            letter-spacing: .02em;
+        }
+
+        .role-description {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 7px;
+            line-height: 1.5;
+        }
+
+
+        /* =================================================
+           BADGES
+        ================================================= */
+
+        .badge {
+            display: inline-block;
+
+            padding: 4px 9px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .02em;
+
+            margin-top: 8px;
+        }
+
+        .badge-active {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .badge-inactive {
+            background: #f1f3f5;
+            color: #6c757d;
+        }
+
+        .badge-system {
+            background: var(--gold-light);
+            color: #6b4f16;
+            margin-left: 5px;
+        }
+
+
+        /* =================================================
+           DETAIL
+        ================================================= */
+
+        .detail {
+            min-height: 650px;
+        }
+
+        .detail-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #fbfbfc 0%, #ffffff 100%);
+        }
+
+        .detail-header h2 {
+            margin: 0;
+            font-family: "Lora", serif;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--text-strong);
+        }
+
+        .detail-header p {
+            color: var(--muted);
+            margin: 8px 0 0;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .detail-actions {
+            margin-top: 16px;
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+
+        /* =================================================
+           PERMISSIONS
+        ================================================= */
+
+        .permissions {
+            padding: 20px;
+        }
+
+        .permission-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 10px;
+        }
+
+        .permission {
+            border: 1px solid var(--border-strong);
+
+            border-radius: 10px;
+
+            padding: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            background: #fbfbfc;
+        }
+
+        .permission-code {
+            font-family: "SFMono-Regular", Consolas, monospace;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: var(--text-strong);
+        }
+
+        .permission-name {
+            font-size: 12px;
+
+            color: var(--muted);
+
+            margin-top: 4px;
+        }
+
+        .module {
+            font-size: 10px;
+
+            color: var(--muted-2);
+
+            margin-top: 4px;
+
+            text-transform: uppercase;
+            letter-spacing: .03em;
+        }
+
+
+        /* =================================================
+           EMPTY
+        ================================================= */
+
+        .empty {
+            padding: 55px 20px;
+
+            text-align: center;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+
+        /* =================================================
+           MODALS
+        ================================================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(16,24,32,.5);
+            backdrop-filter: blur(2px);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 100;
+
+            padding: 20px;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+
+            width: min(600px, 100%);
+
+            border-radius: 16px;
+
+            box-shadow: var(--shadow-lg);
+
+            overflow: hidden;
+        }
+
+        .modal-header {
+            padding: 19px 22px;
+
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #fbfbfc 0%, #ffffff 100%);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-family: "Lora", serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-strong);
+        }
+
+        .modal-body {
+            padding: 22px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+
+            font-size: 11.5px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+            color: #374151;
+            letter-spacing: .01em;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid var(--border-strong);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-family: inherit;
+            font-size: 13.5px;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+
+            border-color: var(--maroon);
+
+            box-shadow:
+                0 0 0 3px rgba(90,16,32,.08);
+
+        }
+
+        .field textarea {
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .modal-footer {
+            padding: 16px 22px;
+
+            border-top: 1px solid var(--border);
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+        }
+
+        .close {
+            width: 32px;
+            height: 32px;
+            font-size: 18px;
+
+            background: #f3f4f6;
+            border-radius: 8px;
+
+            color: var(--muted);
+        }
+
+        .close:hover {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+
+        /* =================================================
+           TOAST
+        ================================================= */
+
+        .toast {
+
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            background: #1e2933;
+
+            color: white;
+
+            padding: 14px 18px;
+
+            border-radius: 10px;
+
+            display: none;
+
+            z-index: 200;
+
+            max-width: 400px;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast.error {
+            background: var(--maroon);
+        }
+
+
+        /* =================================================
+           SESSION WARNING
+        ================================================= */
+
+        .session-warning {
+
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 13px 16px;
+
+            border: 1px solid #f0d9a0;
+
+            border-left: 4px solid var(--gold);
+
+            border-radius: 9px;
+
+            background: #fdf8ec;
+
+            color: #7a5410;
+
+            font-size: 13px;
+
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .session-warning.show {
+            display: flex;
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        .site-footer {
+            text-align: center;
+            padding: 22px 20px 10px;
+            color: var(--muted-2);
+            font-size: 11.5px;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 900px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .permission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                height: auto;
+
+                min-height: 70px;
+
+                padding: 14px 18px;
+
+                gap: 12px;
+
+                flex-wrap: wrap;
+            }
+
+            .container {
+                padding: 18px;
+            }
+
+            .page-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .institution-bar {
+                padding: 6px 15px;
+                font-size: 10.5px;
+            }
+
+            .institution-bar .right span:not(:last-child) {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     INSTITUTION STRIP
+====================================================== -->
+
+<div class="institution-bar">
+
+    <div class="left">
+        <i class="fa-solid fa-shield-halved"></i>
+        Institute of Development and Medical Sciences
+    </div>
+
+    <div class="right">
+        <span><i class="fa-solid fa-lock"></i>&nbsp; Secure Session</span>
+        <span><i class="fa-regular fa-clock"></i>&nbsp; System Time: <span id="systemClock">--:--</span></span>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOPBAR
+====================================================== -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-mark">IM</div>
+
+        <div class="brand-text">
+            IDMC iMIS
+            <small>
+                Roles &amp; Permissions Management
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="btn btn-light"
+            data-goto="dashboard.html"
+        >
+            <i class="fa-solid fa-gauge"></i>
+            Dashboard
+        </button>
+
+
+        <button
+            class="btn btn-light"
+            data-goto="users.html"
+        >
+            <i class="fa-solid fa-users"></i>
+            Users
+        </button>
+
+
+        <button
+            class="btn btn-light"
+            onclick="logoutUser()"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <!-- SESSION WARNING -->
+
+    <div
+        id="sessionWarning"
+        class="session-warning"
+    >
+
+        <i class="fa-solid fa-triangle-exclamation"></i>
+
+        Connection problem.
+        Your session is still active —
+        press Refresh to try again.
+
+    </div>
+
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div>
+
+            <p class="breadcrumb">Administration &nbsp;/&nbsp; <span>Roles &amp; Permissions</span></p>
+
+            <h1>
+                Roles &amp; Permissions
+            </h1>
+
+            <p>
+                Manage system roles and control access
+                to IDMC iMIS modules.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="openCreateRoleModal()"
+        >
+            <i class="fa-solid fa-plus"></i>
+            New Role
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         MAIN GRID
+    ================================================= -->
+
+    <section class="grid">
+
+
+        <!-- =================================================
+             ROLES
+        ================================================= -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    <i class="fa-solid fa-user-shield" style="color: var(--maroon); margin-right: 7px;"></i>
+                    System Roles
+                </h2>
+
+                <button
+                    class="btn"
+                    onclick="loadRoles()"
+                >
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <div
+                id="roleList"
+                class="role-list"
+            >
+
+                <div class="empty">
+                    Loading roles...
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ROLE DETAIL
+        ================================================= -->
+
+        <div class="card detail">
+
+            <div id="roleDetail">
+
+                <div class="empty">
+
+                    Select a role
+                    to view its permissions.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <footer class="site-footer">
+        IDMC iMIS &mdash; Institute of Development and Medical Sciences &copy; <span id="footerYear"></span>. All rights reserved.
+    </footer>
+
+</main>
+
+
+
+<!-- =====================================================
+     CREATE / EDIT ROLE MODAL
+====================================================== -->
+
+<div
+    id="roleModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h3 id="roleModalTitle">
+                Create Role
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeRoleModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div class="modal-body">
+
+
+            <input
+                type="hidden"
+                id="roleId"
+            >
+
+
+            <div class="field">
+
+                <label>
+                    Role Code *
+                </label>
+
+                <input
+                    id="roleCode"
+                    placeholder="e.g. REGISTRAR"
+                >
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Role Name *
+                </label>
+
+                <input
+                    id="roleName"
+                    placeholder="e.g. Registrar"
+                >
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="roleDescription"
+                    placeholder="Describe the responsibilities of this role."
+                ></textarea>
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="roleStatus">
+
+                    <option value="ACTIVE">
+                        ACTIVE
+                    </option>
+
+                    <option value="INACTIVE">
+                        INACTIVE
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn"
+                onclick="closeRoleModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="saveRole()"
+            >
+                <i class="fa-solid fa-check"></i>
+                Save Role
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ASSIGN PERMISSION MODAL
+====================================================== -->
+
+<div
+    id="permissionModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h3>
+                Assign Permission
+            </h3>
+
+            <button
+                class="close"
+                onclick="closePermissionModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div class="modal-body">
+
+            <div class="field">
+
+                <label>
+                    Permission
+                </label>
+
+                <select id="permissionSelect">
+
+                    <option value="">
+                        Select permission
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn"
+                onclick="closePermissionModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="assignSelectedPermission()"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Assign Permission
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT FILES
+====================================================== -->
+
+<script src="./assets/js/config.js"></script>
+
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/api.js"></script>
+
+<script src="./assets/js/rbac.js"></script>
+
+
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
+
+let roles = [];
+
+let permissions = [];
+
+let selectedRole = null;
+
+
+/* =========================================================
+   SESSION
+   IDMCAuth ndiyo mfumo mkuu wa authentication.
+========================================================= */
+
+function getToken() {
+
+    if (
+        window.IDMCAuth &&
+        typeof window.IDMCAuth.getAccessToken === "function"
+    ) {
+
+        return window.IDMCAuth.getAccessToken();
+
+    }
+
+    return null;
+
+}
+
+
+function clearSession() {
+
+    if (
+        window.IDMCAuth &&
+        typeof window.IDMCAuth.clearSession === "function"
+    ) {
+
+        window.IDMCAuth.clearSession();
+
+    }
+
+}
+
+
+function redirectToLogin(reason) {
+
+    console.warn(
+        "Redirecting to login:",
+        reason
+    );
+
+    clearSession();
+
+    window.location.replace("login.html");
+
+}
+
+
+
+/* =========================================================
+   AUTH ERROR DETECTION
+========================================================= */
+
+function isAuthError(error) {
+
+    if (!error) {
+        return false;
+    }
+
+
+    const status =
+        error.status ||
+        error.statusCode ||
+        error.response?.status;
+
+
+    if (
+        status === 401 ||
+        status === 403
+    ) {
+
+        return true;
+
+    }
+
+
+    return /unauthori[sz]ed|forbidden|invalid token|jwt expired|token expired|not authenticated/i
+        .test(
+            String(error.message || "")
+        );
+
+}
+
+
+
+/* =========================================================
+   SESSION WARNING
+========================================================= */
+
+function showSessionWarning(show) {
+
+    const box =
+        document.getElementById(
+            "sessionWarning"
+        );
+
+
+    if (!box) {
+        return;
+    }
+
+
+    box.className =
+        show
+            ? "session-warning show"
+            : "session-warning";
+
+}
+
+
+
+/* =========================================================
+   API ERROR HANDLER
+========================================================= */
+
+function handleApiError(
+    error,
+    fallbackMessage
+) {
+
+    /*
+     * 401/403:
+     * Authentication / authorization problem.
+     */
+
+    if (isAuthError(error)) {
+
+        redirectToLogin(
+            error.message ||
+            "Authentication or authorization error."
+        );
+
+        return true;
+
+    }
+
+
+    /*
+     * Network / backend / server error:
+     * KEEP SESSION.
+     */
+
+    showSessionWarning(true);
+
+
+    showToast(
+        error?.message ||
+        fallbackMessage ||
+        "Request failed.",
+        true
+    );
+
+
+    return false;
+
+}
+
+
+
+/* =========================================================
+   HTML SECURITY
+========================================================= */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    message,
+    error = false
+) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    if (!toast) {
+        return;
+    }
+
+
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        `toast show${error ? " error" : ""}`;
+
+
+    setTimeout(
+        () => {
+
+            toast.className =
+                "toast";
+
+        },
+        3500
+    );
+
+}
+
+
+
+/* =========================================================
+   PAGE AUTHENTICATION GUARD
+========================================================= */
+
+async function requireRBACPage() {
+
+    /*
+     * No token:
+     * definitely not logged in.
+     */
+
+    if (!getToken()) {
+
+        redirectToLogin(
+            "No authentication session."
+        );
+
+        return false;
+
+    }
+
+
+    /*
+     * Use the official IDMCAuth
+     * authentication system.
+     */
+
+    if (
+        !window.IDMCAuth ||
+        typeof window.IDMCAuth.requireAuth !== "function"
+    ) {
+
+        console.error(
+            "IDMCAuth.requireAuth is unavailable."
+        );
+
+        showSessionWarning(true);
+
+        showToast(
+            "Authentication system is unavailable.",
+            true
+        );
+
+        return false;
+
+    }
+
+
+    try {
+
+        const user =
+            await window.IDMCAuth.requireAuth();
+
+
+        /*
+         * requireAuth() returns null when
+         * it already redirected to login.
+         */
+
+        if (!user) {
+
+            return false;
+
+        }
+
+
+        showSessionWarning(false);
+
+
+        return true;
+
+    } catch (error) {
+
+        console.warn(
+            "Roles page authentication check failed:",
+            error
+        );
+
+
+        /*
+         * Network error:
+         * DO NOT LOG OUT.
+         */
+
+        const message =
+            String(
+                error?.message || ""
+            );
+
+
+        const isNetworkProblem =
+            /unable to connect|network|failed to fetch|fetch|backend/i
+                .test(message);
+
+
+        if (isNetworkProblem) {
+
+            showSessionWarning(true);
+
+            return true;
+
+        }
+
+
+        /*
+         * Real authentication error.
+         */
+
+        if (isAuthError(error)) {
+
+            redirectToLogin(
+                error.message ||
+                "Authentication failed."
+            );
+
+            return false;
+
+        }
+
+
+        /*
+         * Unknown error:
+         * Keep user on page.
+         */
+
+        showSessionWarning(true);
+
+        return true;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LOAD ROLES
+========================================================= */
+
+async function loadRoles() {
+
+    const container =
+        document.getElementById(
+            "roleList"
+        );
+
+
+    container.innerHTML =
+        `<div class="empty">
+            Loading roles...
+        </div>`;
+
+
+    try {
+
+        const response =
+            await IDMC_RBAC_API.listRoles();
+
+
+        roles =
+            Array.isArray(response?.data)
+                ? response.data
+                : [];
+
+
+        showSessionWarning(false);
+
+
+        renderRoles();
+
+
+        /*
+         * Restore selected role after refresh.
+         */
+
+        if (selectedRole) {
+
+            const updated =
+                roles.find(
+                    role =>
+                        role.id ===
+                        selectedRole.id
+                );
+
+
+            if (updated) {
+
+                selectedRole =
+                    updated;
+
+                await selectRole(
+                    updated.id
+                );
+
+            }
+
+        }
+
+    } catch (error) {
+
+        if (
+            handleApiError(
+                error,
+                "Could not load roles."
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            `<div class="empty">
+                ${escapeHtml(
+                    error?.message ||
+                    "Could not load roles."
+                )}
+            </div>`;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RENDER ROLES
+========================================================= */
+
+function renderRoles() {
+
+    const container =
+        document.getElementById(
+            "roleList"
+        );
+
+
+    if (!roles.length) {
+
+        container.innerHTML =
+            `<div class="empty">
+                No roles found.
+            </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        roles
+            .map(
+                role => {
+
+                    const selected =
+                        selectedRole?.id ===
+                        role.id
+                            ? " selected"
+                            : "";
+
+
+                    return `
+
+                        <div
+                            class="role-item${selected}"
+                            data-role-id="${escapeHtml(
+                                role.id
+                            )}"
+                        >
+
+                            <div class="role-name">
+
+                                ${escapeHtml(
+                                    role.role_name
+                                )}
+
+                            </div>
+
+
+                            <div class="role-code">
+
+                                ${escapeHtml(
+                                    role.role_code
+                                )}
+
+                            </div>
+
+
+                            <div class="role-description">
+
+                                ${escapeHtml(
+                                    role.description ||
+                                    "No description provided."
+                                )}
+
+                            </div>
+
+
+                            <span
+                                class="badge ${
+                                    role.status === "ACTIVE"
+                                        ? "badge-active"
+                                        : "badge-inactive"
+                                }"
+                            >
+
+                                ${escapeHtml(
+                                    role.status
+                                )}
+
+                            </span>
+
+
+                            ${
+                                role.is_system_role
+                                    ? `
+                                        <span class="badge badge-system">
+                                            SYSTEM
+                                        </span>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+
+/* =========================================================
+   SELECT ROLE
+========================================================= */
+
+async function selectRole(roleId) {
+
+    try {
+
+        const response =
+            await IDMC_RBAC_API.getRole(
+                roleId
+            );
+
+
+        selectedRole =
+            response?.data || null;
+
+
+        showSessionWarning(false);
+
+
+        renderRoles();
+
+
+        await renderRoleDetail();
+
+    } catch (error) {
+
+        handleApiError(
+            error,
+            "Could not open this role."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ROLE DETAIL
+========================================================= */
+
+async function renderRoleDetail() {
+
+    const container =
+        document.getElementById(
+            "roleDetail"
+        );
+
+
+    if (!selectedRole) {
+
+        container.innerHTML =
+            `<div class="empty">
+                Select a role.
+            </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="detail-header">
+
+            <h2>
+                ${escapeHtml(
+                    selectedRole.role_name
+                )}
+            </h2>
+
+
+            <p>
+
+                ${escapeHtml(
+                    selectedRole.description ||
+                    "No description provided."
+                )}
+
+            </p>
+
+
+            <div>
+
+                <span
+                    class="badge ${
+                        selectedRole.status === "ACTIVE"
+                            ? "badge-active"
+                            : "badge-inactive"
+                    }"
+                >
+
+                    ${escapeHtml(
+                        selectedRole.status
+                    )}
+
+                </span>
+
+
+                ${
+                    selectedRole.is_system_role
+                        ? `
+                            <span class="badge badge-system">
+                                SYSTEM ROLE
+                            </span>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div class="detail-actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="openAssignPermissionModal()"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Assign Permission
+                </button>
+
+
+                <button
+                    class="btn"
+                    onclick="openEditRoleModal()"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Edit Role
+                </button>
+
+
+                <button
+                    class="btn"
+                    onclick="loadRolePermissionsOnly()"
+                >
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh Permissions
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="permissionArea"
+            class="permissions"
+        >
+
+            <div class="empty">
+                Loading permissions...
+            </div>
+
+        </div>
+
+    `;
+
+
+    await loadRolePermissionsOnly();
+
+}
+
+
+
+/* =========================================================
+   LOAD ROLE PERMISSIONS
+========================================================= */
+
+/* =========================================================
+   LOAD ROLE PERMISSIONS
+========================================================= */
+
+async function loadRolePermissionsOnly() {
+
+    if (!selectedRole) {
+        return;
+    }
+
+
+    const area =
+        document.getElementById(
+            "permissionArea"
+        );
+
+
+    if (!area) {
+        return;
+    }
+
+
+    area.innerHTML =
+        `<div class="empty">
+            Loading permissions...
+        </div>`;
+
+
+    try {
+
+        const response =
+            await IDMC_RBAC_API.getRolePermissions(
+                selectedRole.id
+            );
+
+
+        const assigned =
+            Array.isArray(response?.data)
+                ? response.data
+                : [];
+
+
+        /*
+         * Keep selectedRole synchronized
+         * with the latest backend data.
+         */
+
+        selectedRole.role_permissions =
+            assigned;
+
+
+        showSessionWarning(false);
+
+
+        if (!assigned.length) {
+
+            area.innerHTML = `
+
+                <div class="empty">
+
+                    No permissions assigned
+                    to this role.
+
+                </div>
+
+            `;
+
+
+            populatePermissionSelect();
+
+            return;
+
+        }
+
+
+        area.innerHTML = `
+
+            <div class="permission-grid">
+
+                ${
+                    assigned
+                        .map(
+                            item => {
+
+                                const permission =
+                                    item?.permissions ||
+                                    item?.permission ||
+                                    item;
+
+
+                                if (
+                                    !permission ||
+                                    !permission.permission_code
+                                ) {
+
+                                    return "";
+
+                                }
+
+
+                                return `
+
+                                    <div
+                                        class="permission"
+                                    >
+
+                                        <div>
+
+                                            <div
+                                                class="permission-code"
+                                            >
+
+                                                ${escapeHtml(
+                                                    permission.permission_code
+                                                )}
+
+                                            </div>
+
+
+                                            <div
+                                                class="permission-name"
+                                            >
+
+                                                ${escapeHtml(
+                                                    permission.permission_name ||
+                                                    ""
+                                                )}
+
+                                            </div>
+
+
+                                            <div
+                                                class="module"
+                                            >
+
+                                                ${escapeHtml(
+                                                    permission.module_code ||
+                                                    ""
+                                                )}
+
+                                                /
+
+                                                ${escapeHtml(
+                                                    permission.action_code ||
+                                                    ""
+                                                )}
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger"
+                                            data-remove-permission="${escapeHtml(
+                                                permission.id
+                                            )}"
+                                        >
+
+                                            Remove
+
+                                        </button>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        )
+                        .join("")
+                }
+
+            </div>
+
+        `;
+
+
+        /*
+         * Refresh available permission list.
+         */
+
+        populatePermissionSelect();
+
+
+    } catch (error) {
+
+        if (
+            handleApiError(
+                error,
+                "Could not load permissions."
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        area.innerHTML =
+            `<div class="empty">
+
+                ${escapeHtml(
+                    error?.message ||
+                    "Could not load permissions."
+                )}
+
+            </div>`;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD ALL PERMISSIONS
+========================================================= */
+
+/* =========================================================
+   LOAD ALL PERMISSIONS
+========================================================= */
+
+async function loadPermissions() {
+
+    try {
+
+        const response =
+            await IDMC_RBAC_API.listPermissions();
+
+        permissions =
+            Array.isArray(response?.data)
+                ? response.data
+                : [];
+
+        populatePermissionSelect();
+
+        showSessionWarning(false);
+
+    } catch (error) {
+
+        handleApiError(
+            error,
+            "Could not load permissions list."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   POPULATE AVAILABLE PERMISSIONS
+========================================================= */
+
+function populatePermissionSelect() {
+
+    const select =
+        document.getElementById(
+            "permissionSelect"
+        );
+
+    if (!select) {
+        return;
+    }
+
+
+    /*
+     * Get permissions already assigned
+     * to the currently selected role.
+     */
+
+    const assignedPermissionIds =
+        new Set(
+            getAssignedPermissionIds()
+        );
+
+
+    /*
+     * Only show permissions that have
+     * NOT already been assigned.
+     */
+
+    const availablePermissions =
+        permissions.filter(
+            permission =>
+                permission?.id &&
+                !assignedPermissionIds.has(
+                    String(permission.id)
+                ) &&
+                String(
+                    permission.status ||
+                    "ACTIVE"
+                ).toUpperCase() === "ACTIVE"
+        );
+
+
+    if (!availablePermissions.length) {
+
+        select.innerHTML = `
+            <option value="">
+                All permissions already assigned
+            </option>
+        `;
+
+        select.disabled = true;
+
+        return;
+
+    }
+
+
+    select.disabled = false;
+
+
+    select.innerHTML = `
+
+        <option value="">
+            Select permission
+        </option>
+
+        ${
+            availablePermissions
+                .map(
+                    permission => `
+
+                        <option
+                            value="${escapeHtml(
+                                permission.id
+                            )}"
+                        >
+
+                            ${escapeHtml(
+                                permission.permission_code
+                            )}
+
+                            -
+
+                            ${escapeHtml(
+                                permission.permission_name ||
+                                ""
+                            )}
+
+                        </option>
+
+                    `
+                )
+                .join("")
+        }
+
+    `;
+
+}
+
+
+/* =========================================================
+   GET ASSIGNED PERMISSION IDS
+========================================================= */
+
+function getAssignedPermissionIds() {
+
+    if (!selectedRole) {
+        return [];
+    }
+
+
+    const rolePermissions =
+        Array.isArray(
+            selectedRole.role_permissions
+        )
+            ? selectedRole.role_permissions
+            : [];
+
+
+    return rolePermissions
+        .map(
+            item =>
+                item?.permission_id ||
+                item?.permissions?.id ||
+                item?.permission?.id ||
+                null
+        )
+        .filter(Boolean)
+        .map(String);
+
+}
+/* =========================================================
+   CREATE ROLE MODAL
+========================================================= */
+
+function openCreateRoleModal() {
+
+    document.getElementById(
+        "roleModalTitle"
+    ).textContent =
+        "Create Role";
+
+
+    document.getElementById(
+        "roleId"
+    ).value = "";
+
+
+    document.getElementById(
+        "roleCode"
+    ).value = "";
+
+
+    document.getElementById(
+        "roleName"
+    ).value = "";
+
+
+    document.getElementById(
+        "roleDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "roleStatus"
+    ).value =
+        "ACTIVE";
+
+
+    document.getElementById(
+        "roleCode"
+    ).disabled =
+        false;
+
+
+    document.getElementById(
+        "roleModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+
+/* =========================================================
+   EDIT ROLE MODAL
+========================================================= */
+
+function openEditRoleModal() {
+
+    if (!selectedRole) {
+
+        showToast(
+            "Select a role first.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "roleModalTitle"
+    ).textContent =
+        "Edit Role";
+
+
+    document.getElementById(
+        "roleId"
+    ).value =
+        selectedRole.id;
+
+
+    document.getElementById(
+        "roleCode"
+    ).value =
+        selectedRole.role_code;
+
+
+    document.getElementById(
+        "roleName"
+    ).value =
+        selectedRole.role_name;
+
+
+    document.getElementById(
+        "roleDescription"
+    ).value =
+        selectedRole.description || "";
+
+
+    document.getElementById(
+        "roleStatus"
+    ).value =
+        selectedRole.status;
+
+
+    /*
+     * System role codes should not
+     * be changed accidentally.
+     */
+
+    document.getElementById(
+        "roleCode"
+    ).disabled =
+        true;
+
+
+    document.getElementById(
+        "roleModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+
+/* =========================================================
+   CLOSE ROLE MODAL
+========================================================= */
+
+function closeRoleModal() {
+
+    document.getElementById(
+        "roleModal"
+    ).classList.remove(
+        "open"
+    );
+
+}
+
+
+
+/* =========================================================
+   SAVE ROLE
+========================================================= */
+
+async function saveRole() {
+
+    const id =
+        document.getElementById(
+            "roleId"
+        ).value;
+
+
+    const roleCode =
+        document.getElementById(
+            "roleCode"
+        ).value.trim();
+
+
+    const roleName =
+        document.getElementById(
+            "roleName"
+        ).value.trim();
+
+
+    const description =
+        document.getElementById(
+            "roleDescription"
+        ).value.trim();
+
+
+    const status =
+        document.getElementById(
+            "roleStatus"
+        ).value;
+
+
+    if (!roleCode || !roleName) {
+
+        showToast(
+            "Role code and role name are required.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        if (id) {
+
+            await IDMC_RBAC_API.updateRole(
+                id,
+                {
+                    roleName,
+                    description,
+                    status
+                }
+            );
+
+
+            showToast(
+                "Role updated successfully."
+            );
+
+        } else {
+
+            await IDMC_RBAC_API.createRole(
+                {
+                    roleCode,
+                    roleName,
+                    description,
+                    status
+                }
+            );
+
+
+            showToast(
+                "Role created successfully."
+            );
+
+        }
+
+
+        closeRoleModal();
+
+
+        await loadRoles();
+
+
+    } catch (error) {
+
+        handleApiError(
+            error,
+            "Could not save the role."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ASSIGN PERMISSION MODAL
+========================================================= */
+
+/* =========================================================
+   ASSIGN PERMISSION MODAL
+========================================================= */
+
+function openAssignPermissionModal() {
+
+    if (!selectedRole) {
+
+        showToast(
+            "Select a role first.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Refresh the permission list so that
+     * already assigned permissions are hidden.
+     */
+
+    populatePermissionSelect();
+
+
+    const select =
+        document.getElementById(
+            "permissionSelect"
+        );
+
+
+    if (
+        !select ||
+        select.disabled
+    ) {
+
+        showToast(
+            "All available permissions are already assigned to this role.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    select.value = "";
+
+
+    document.getElementById(
+        "permissionModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+/* =========================================================
+   CLOSE PERMISSION MODAL
+========================================================= */
+
+function closePermissionModal() {
+
+    document.getElementById(
+        "permissionModal"
+    ).classList.remove(
+        "open"
+    );
+
+}
+
+
+
+/* =========================================================
+   ASSIGN PERMISSION
+========================================================= */
+
+async function assignSelectedPermission() {
+
+    const permissionId =
+        document.getElementById(
+            "permissionSelect"
+        ).value;
+
+
+    if (!permissionId) {
+
+        showToast(
+            "Select a permission.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    if (!selectedRole) {
+
+        showToast(
+            "Select a role first.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        await IDMC_RBAC_API.assignPermission(
+            selectedRole.id,
+            permissionId
+        );
+
+
+        showToast(
+            "Permission assigned successfully."
+        );
+
+
+        closePermissionModal();
+
+
+        await loadRolePermissionsOnly();
+
+
+    } catch (error) {
+
+        handleApiError(
+            error,
+            "Could not assign the permission."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   REMOVE PERMISSION
+========================================================= */
+
+async function removePermission(
+    roleId,
+    permissionId
+) {
+
+    const confirmed =
+        window.confirm(
+            "Remove this permission from the role?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        await IDMC_RBAC_API.removePermission(
+            roleId,
+            permissionId
+        );
+
+
+        showToast(
+            "Permission removed successfully."
+        );
+
+
+        await loadRolePermissionsOnly();
+
+
+    } catch (error) {
+
+        handleApiError(
+            error,
+            "Could not remove the permission."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LOGOUT
+   ONLY explicit Logout calls this.
+========================================================= */
+
+async function logoutUser() {
+
+    const confirmed =
+        window.confirm(
+            "Log out of IDMC iMIS?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        if (
+            window.IDMCAuth &&
+            typeof window.IDMCAuth.logout === "function"
+        ) {
+
+            await window.IDMCAuth.logout();
+
+            return;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Logout failed:",
+            error
+        );
+
+    }
+
+
+    /*
+     * Fallback.
+     */
+
+    clearSession();
+
+
+    window.location.replace(
+        "login.html"
+    );
+
+}
+
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+
+        /* -----------------------------------------------
+           NAVIGATION
+        ------------------------------------------------ */
+
+        const goto =
+            event.target.closest(
+                "[data-goto]"
+            );
+
+
+        if (goto) {
+
+            /*
+             * Do NOT clear or replace session.
+             */
+
+            window.location.href =
+                goto.dataset.goto;
+
+            return;
+
+        }
+
+
+
+        /* -----------------------------------------------
+           REMOVE PERMISSION
+        ------------------------------------------------ */
+
+        const removeBtn =
+            event.target.closest(
+                "[data-remove-permission]"
+            );
+
+
+        if (
+            removeBtn &&
+            selectedRole
+        ) {
+
+            removePermission(
+                selectedRole.id,
+                removeBtn.dataset
+                    .removePermission
+            );
+
+            return;
+
+        }
+
+
+
+        /* -----------------------------------------------
+           SELECT ROLE
+        ------------------------------------------------ */
+
+        const roleItem =
+            event.target.closest(
+                "[data-role-id]"
+            );
+
+
+        if (roleItem) {
+
+            selectRole(
+                roleItem.dataset.roleId
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const roleModal =
+            document.getElementById(
+                "roleModal"
+            );
+
+
+        const permissionModal =
+            document.getElementById(
+                "permissionModal"
+            );
+
+
+        if (
+            event.target ===
+            roleModal
+        ) {
+
+            closeRoleModal();
+
+        }
+
+
+        if (
+            event.target ===
+            permissionModal
+        ) {
+
+            closePermissionModal();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        closeRoleModal();
+
+        closePermissionModal();
+
+    }
+);
+
+
+
+/* =========================================================
+   CLOCK & FOOTER (visual only)
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const yearEl =
+            document.getElementById("footerYear");
+
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+
+
+        const clockEl =
+            document.getElementById("systemClock");
+
+        function tick() {
+
+            if (!clockEl) {
+                return;
+            }
+
+            const now = new Date();
+
+            const h =
+                String(now.getHours()).padStart(2, "0");
+
+            const m =
+                String(now.getMinutes()).padStart(2, "0");
+
+            clockEl.textContent =
+                h + ":" + m;
+
+        }
+
+        tick();
+
+        setInterval(tick, 1000 * 30);
+
+    }
+);
+
+
+
+/* =========================================================
+   PAGE INITIALIZATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const allowed =
+            await requireRBACPage();
+
+
+        if (!allowed) {
+            return;
+        }
+
+
+        /*
+         * Load roles and permissions
+         * after authentication succeeds.
+         */
+
+        await Promise.all([
+            loadRoles(),
+            loadPermissions()
+        ]);
+
+    }
+);
+
+</script>
+
+
+    <script src="assets/js/app-workflow.js"></script>
+</body>
+
+</html>

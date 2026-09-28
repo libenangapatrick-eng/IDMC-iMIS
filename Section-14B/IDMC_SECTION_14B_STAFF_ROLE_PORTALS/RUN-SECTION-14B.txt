@@ -1,0 +1,16 @@
+IDMC iMIS - SECTION 14B STAFF ROLE PORTALS
+
+Extract this ZIP, open a NEW PowerShell window, then run only these commands:
+
+  $Root = "C:\Users\liben\Documents\IDMC_iMIS"
+  $Script = Get-ChildItem "$env:USERPROFILE\Downloads","$Root" -Filter "IDMC-Section-14B-Staff-Role-Portals.ps1" -File -Recurse -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+  if (-not $Script) { throw "Section 14B installer was not found. Extract the downloaded ZIP first." }
+  Set-ExecutionPolicy -Scope Process Bypass -Force
+  & $Script.FullName -ProjectRoot $Root -StartServers
+
+Wait for:
+  SECTION 14B COMPLETE - STAFF PORTALS INSTALLED
+
+Then assign each existing staff user the correct role through the administrator
+Roles/User interface: LECTURER, ACCOUNTANT or FINANCE_OFFICER, and REGISTRAR or
+ACADEMIC_OFFICER. The installer intentionally does not guess real staff identities.

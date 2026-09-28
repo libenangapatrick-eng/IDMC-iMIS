@@ -1,0 +1,18 @@
+﻿
+  apps\frontend\institutions.html:2876:                        try {
+  apps\frontend\institutions.html:2877:
+> apps\frontend\institutions.html:2878:                            await window.IDMCAuth
+  apps\frontend\institutions.html:2879:                                .logout();
+  apps\frontend\institutions.html:2880:
+  apps\frontend\institutions.html:2881:                        } catch (error) {
+  apps\frontend\institutions.html:2882:
+  apps\frontend\institutions.html:2970:        try {
+  apps\frontend\institutions.html:2971:
+> apps\frontend\institutions.html:2972:            await window.IDMCAuth
+> apps\frontend\institutions.html:2973:                .requireAuth();
+  apps\frontend\institutions.html:2974:
+  apps\frontend\institutions.html:2975:
+  apps\frontend\institutions.html:2976:            await IDMC_RBAC_API
+  apps\frontend\institutions.html:2977:                .loadCurrentUserRBAC();
+
+

@@ -1,0 +1,59 @@
+IDMC iMIS — Next Modules Pack
+================================
+Migrations:
+- 20260917210000_research_quality_assurance.sql
+- 20260917220000_communications_documents_helpdesk.sql
+- 20260917230000_reports_analytics.sql
+- 20260917240000_system_configuration_final_controls.sql
+
+Backend route APIs:
+- /api/v1/research/...
+- /api/v1/communications/...
+- /api/v1/reports/...
+- /api/v1/system/...
+
+RBAC permissions added:
+Research:
+  research.view
+  research.manage
+  research.approve
+Quality Assurance:
+  qa.view
+  qa.manage
+  qa.approve
+Communications:
+  communications.view
+  communications.manage
+  communications.publish
+Documents:
+  documents.view
+  documents.manage
+Helpdesk:
+  helpdesk.view
+  helpdesk.manage
+  helpdesk.assign
+  helpdesk.resolve
+Reports:
+  reports.view
+  reports.manage
+  reports.run
+  reports.schedule
+Dashboard:
+  dashboard.widgets.view
+  dashboard.widgets.manage
+System:
+  system.config.view
+  system.config.manage
+  system.features.view
+  system.features.manage
+  system.maintenance.view
+  system.maintenance.manage
+  system.workflows.view
+  system.workflows.manage
+
+Notes:
+- This pack is based on the uploaded public_schema_remote.sql snapshot.
+- No existing tables are dropped.
+- Existing migrations 001–030 are not replaced.
+- The backend route index includes the previously-installed HR, Operations, Hostel and Library routes.
+- The generic CRUD API still needs module-specific workflow action endpoints and validation for stricter production controls.

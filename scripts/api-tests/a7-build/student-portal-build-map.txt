@@ -1,0 +1,936 @@
+IDMC iMIS - STUDENT PORTAL BUILD MAP
+Generated: 2026-09-18 20:59:37
+
+
+====================================================
+FEATURE: REGISTRATION
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+71: registerCrudResource(
+105: registerCrudResource(
+145: registerCrudResource(
+
+====================================================
+FEATURE: ATTENDANCE
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+65: registerCrudResource(
+105: registerCrudResource(
+
+====================================================
+FEATURE: RESULTS
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+6: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_results",table:"course_results",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","result_status","result_type","pass_status","remarks"],filterFields:["student_id","course_offering_id","course_registration_id","academic_year_id","semester_id","result_status","pass_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",academicYearId:"academic_year_id",semesterId:"semester_id",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",passStatus:"pass_status",resultStatus:"result_status",attemptNumber:"attempt_number",resultType:"result_type",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/course-results");
+7: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_result_corrections",table:"course_result_corrections",permissionView:VIEW,permissionManage:CORRECT,searchFields:["reason","status","review_comment"],filterFields:["course_result_id","requested_by","status"],defaultOrderField:"requested_at",fields:{courseResultId:"course_result_id",requestedBy:"requested_by",requestedAt:"requested_at",oldCourseworkMark:"old_coursework_mark",newCourseworkMark:"new_coursework_mark",oldExaminationMark:"old_examination_mark",newExaminationMark:"new_examination_mark",oldTotalMark:"old_total_mark",newTotalMark:"new_total_mark",oldGradeCode:"old_grade_code",newGradeCode:"new_grade_code",oldGradePoint:"old_grade_point",newGradePoint:"new_grade_point",reason:"reason",evidenceFileId:"evidence_file_id",status:"status",reviewedBy:"reviewed_by",reviewedAt:"reviewed_at",reviewComment:"review_comment"}},"/course-result-corrections");
+8: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_semester_results",table:"student_semester_results",permissionView:VIEW,permissionManage:APPROVE,searchFields:["academic_standing","result_status","remarks"],filterFields:["student_id","academic_year_id","semester_id","programme_version_id","academic_standing","result_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",programmeVersionId:"programme_version_id",totalRegisteredCredits:"total_registered_credits",totalAttemptedCredits:"total_attempted_credits",totalEarnedCredits:"total_earned_credits",totalQualityPoints:"total_quality_points",gpa:"gpa",coursesAttempted:"courses_attempted",coursesPassed:"courses_passed",coursesFailed:"courses_failed",academicStanding:"academic_standing",resultStatus:"result_status",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/semester-results");
+9: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_standings",table:"student_academic_standings",permissionView:VIEW,permissionManage:APPROVE,searchFields:["standing_code","standing_name","status","remarks"],filterFields:["student_id","academic_year_id","semester_id","standing_rule_id","standing_code","status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",cgpa:"cgpa",standingRuleId:"standing_rule_id",standingCode:"standing_code",standingName:"standing_name",remarks:"remarks",status:"status",calculatedAt:"calculated_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/academic-standings");
+10: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"grade_scales",table:"grade_scales",permissionView:VIEW,permissionManage:MANAGE,searchFields:["scale_code","scale_name","description","status"],filterFields:["status","is_default"],defaultOrderField:"created_at",fields:{scaleCode:"scale_code",scaleName:"scale_name",description:"description",minimumTotal:"minimum_total",maximumTotal:"maximum_total",status:"status",isDefault:"is_default"}},"/grade-scales");
+11: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"grade_scale_details",table:"grade_scale_details",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","grade_name","result_classification","status"],filterFields:["grade_scale_id","pass_status","status"],defaultOrderField:"minimum_mark",fields:{gradeScaleId:"grade_scale_id",gradeCode:"grade_code",gradeName:"grade_name",minimumMark:"minimum_mark",maximumMark:"maximum_mark",gradePoint:"grade_point",passStatus:"pass_status",resultClassification:"result_classification",status:"status"}},"/grade-scale-details");
+12: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_result_policies",table:"course_result_policies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["status"],filterFields:["course_offering_id","grade_scale_id","status"],defaultOrderField:"created_at",fields:{courseOfferingId:"course_offering_id",gradeScaleId:"grade_scale_id",courseworkWeight:"coursework_weight",examinationWeight:"examination_weight",minimumCourseworkRequired:"minimum_coursework_required",minimumExamRequired:"minimum_exam_required",minimumPassMark:"minimum_pass_mark",status:"status",createdBy:"created_by",approvedBy:"approved_by",approvedAt:"approved_at"}},"/course-result-policies");
+13: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_gpa_records",table:"student_gpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",totalCredits:"total_credits",totalQualityPoints:"total_quality_points",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/gpa-records");
+14: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_cgpa_records",table:"student_cgpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/cgpa-records");
+15: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_course_attempts",table:"student_course_attempts",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attempt_type","attempt_status","grade_code","remarks"],filterFields:["student_id","course_id","course_offering_id","course_registration_id","academic_year_id","semester_id","attempt_number","attempt_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",courseResultId:"course_result_id",academicYearId:"academic_year_id",semesterId:"semester_id",attemptNumber:"attempt_number",attemptType:"attempt_type",attemptStatus:"attempt_status",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",credits:"credits",startedAt:"started_at",completedAt:"completed_at",remarks:"remarks"}},"/course-attempts");
+16: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_deficiencies",table:"student_academic_deficiencies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["deficiency_type","deficiency_status","remarks"],filterFields:["student_id","course_id","course_offering_id","course_result_id","deficiency_type","deficiency_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseResultId:"course_result_id",deficiencyType:"deficiency_type",deficiencyStatus:"deficiency_status",firstRecordedAt:"first_recorded_at",resolvedAt:"resolved_at",resolutionCourseResultId:"resolution_course_result_id",remarks:"remarks"}},"/academic-deficiencies");
+17: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcripts",table:"student_transcripts",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["transcript_number","transcript_type","transcript_status","verification_code"],filterFields:["student_id","programme_version_id","transcript_type","transcript_status"],defaultOrderField:"created_at",fields:{transcriptNumber:"transcript_number",studentId:"student_id",programmeVersionId:"programme_version_id",transcriptType:"transcript_type",issueReason:"issue_reason",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",finalAcademicStanding:"final_academic_standing",transcriptStatus:"transcript_status",generatedAt:"generated_at",generatedBy:"generated_by",approvedAt:"approved_at",approvedBy:"approved_by",issuedAt:"issued_at",issuedBy:"issued_by",revokedAt:"revoked_at",revokedBy:"revoked_by",replacementOf:"replacement_of",documentFileId:"document_file_id",verificationCode:"verification_code",remarks:"remarks"}},"/transcripts");
+18: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_semesters",table:"student_transcript_semesters",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["academic_standing"],filterFields:["transcript_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"sequence_no",fields:{transcriptId:"transcript_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",registeredCredits:"registered_credits",attemptedCredits:"attempted_credits",earnedCredits:"earned_credits",qualityPoints:"quality_points",academicStanding:"academic_standing",sequenceNo:"sequence_no"}},"/transcript-semesters");
+19: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_courses",table:"student_transcript_courses",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["course_code","course_name","grade_code","result_type","pass_status"],filterFields:["transcript_id","transcript_semester_id","course_result_id","course_id"],defaultOrderField:"display_sequence",fields:{transcriptId:"transcript_id",transcriptSemesterId:"transcript_semester_id",courseResultId:"course_result_id",courseRegistrationId:"course_registration_id",courseId:"course_id",courseCode:"course_code",courseName:"course_name",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",resultType:"result_type",attemptNumber:"attempt_number",passStatus:"pass_status",displaySequence:"display_sequence"}},"/transcript-courses");
+
+====================================================
+FEATURE: TIMETABLE
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+54: registerCrudResource(
+94: registerCrudResource(
+123: registerCrudResource(
+156: registerCrudResource(
+
+====================================================
+FEATURE: FINANCE
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts
+4: import { requirePermission } from "../../../middleware/rbac.js";
+9: router.get("/fee-structures", requirePermission("finance.view"), controller.listFeeStructures);
+10: router.get("/fee-structures/:id", requirePermission("finance.view"), controller.getFeeStructure);
+12: router.get("/students/:studentId/account", requirePermission("finance.view"), controller.getFinancialAccount);
+13: router.get("/students/:studentId/charges", requirePermission("finance.charges.view"), controller.getCharges);
+14: router.get("/students/:studentId/invoices", requirePermission("finance.invoices.view"), controller.getInvoices);
+15: router.get("/students/:studentId/payments", requirePermission("finance.payments.view"), controller.getPayments);
+16: router.get("/students/:studentId/refunds", requirePermission("finance.refunds.view"), controller.getRefunds);
+17: router.get("/students/:studentId/scholarships", requirePermission("finance.scholarships.view"), controller.getScholarships);
+18: router.get("/students/:studentId/adjustments", requirePermission("finance.charges.view"), controller.getAdjustments);
+19: router.get("/students/:studentId/transactions", requirePermission("finance.view"), controller.getTransactions);
+
+====================================================
+FEATURE: DOCUMENTS
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+17: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"academic_years", table:"academic_years", permissionView:VIEW, permissionManage:MANAGE,
+21: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"semesters", table:"semesters", permissionView:VIEW, permissionManage:MANAGE,
+25: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"programmes", table:"programmes", permissionView:VIEW, permissionManage:MANAGE,
+29: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"programme_versions", table:"programme_versions", permissionView:VIEW, permissionManage:MANAGE,
+33: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"courses", table:"courses", permissionView:VIEW, permissionManage:MANAGE,
+37: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"curricula", table:"curricula", permissionView:VIEW, permissionManage:MANAGE,
+41: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"curriculum_courses", table:"curriculum_courses", permissionView:VIEW, permissionManage:MANAGE,
+45: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"course_prerequisites", table:"course_prerequisites", permissionView:VIEW, permissionManage:MANAGE,
+48: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"course_offerings", table:"course_offerings", permissionView:VIEW, permissionManage:MANAGE,
+52: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"student_registrations", table:"student_registrations", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+56: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"registration_approvals", table:"registration_approvals", permissionView:REG_VIEW, permissionManage:REG_APPROVE,
+60: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"course_registrations", table:"course_registrations", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+64: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"course_add_drop_requests", table:"course_add_drop_requests", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+68: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetables", table:"timetables", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+72: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetable_slots", table:"timetable_slots", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+76: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetable_entries", table:"timetable_entries", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+80: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"classes", table:"classes", permissionView:VIEW, permissionManage:MANAGE,
+84: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"lecturer_assignments", table:"lecturer_assignments", permissionView:VIEW, permissionManage:MANAGE,
+88: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"class_students", table:"class_students", permissionView:VIEW, permissionManage:MANAGE,
+92: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"joining_instructions", table:"joining_instructions", permissionView:VIEW, permissionManage:MANAGE,
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.routes.ts
+9: import { requirePermission }
+16: router.get(
+18: requirePermission("academics.view"),
+22: router.get(
+24: requirePermission("academics.view"),
+28: router.post(
+30: requirePermission("academics.manage"),
+34: router.patch(
+36: requirePermission("academics.manage"),
+40: router.delete(
+42: requirePermission("academics.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+20: registerCrudResource(router, {
+33: registerCrudResource(router, {
+41: registerCrudResource(router, {
+52: registerCrudResource(router, {
+62: registerCrudResource(router, {
+71: registerCrudResource(router, {
+80: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\alumni\alumni.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+5: registerCrudResource(router,{moduleCode:"ALUMNI",entityType:"alumni_records",table:"alumni_records",permissionView:"alumni.view",permissionManage:"alumni.manage",searchFields:["alumni_number","graduation_year","current_employer","current_position","phone","email","address"],filterFields:["student_id","graduation_candidate_id","graduation_award_id","graduation_year","status"],defaultOrderField:"joined_at",fields:{studentId:"student_id",graduationCandidateId:"graduation_candidate_id",graduationAwardId:"graduation_award_id",alumniNumber:"alumni_number",graduationYear:"graduation_year",status:"status",currentEmployer:"current_employer",currentPosition:"current_position",phone:"phone",email:"email",address:"address",linkedinUrl:"linkedin_url",websiteUrl:"website_url",joinedAt:"joined_at"}},"/records");
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\assessment\assessment.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+7: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessments",table:"assessments",permissionView:VIEW,permissionManage:MANAGE,searchFields:["assessment_code","assessment_name","assessment_type","status"],filterFields:["course_offering_id","assessment_type","status"],defaultOrderField:"due_date",fields:{courseOfferingId:"course_offering_id",assessmentCode:"assessment_code",assessmentName:"assessment_name",assessmentType:"assessment_type",assessmentNumber:"assessment_number",maximumMarks:"maximum_marks",weightPercentage:"weight_percentage",dueDate:"due_date",dueTime:"due_time",status:"status",instructions:"instructions",createdBy:"created_by",updatedBy:"updated_by",approvedBy:"approved_by",approvedAt:"approved_at",lockedBy:"locked_by",lockedAt:"locked_at"}},"/assessments");
+8: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessment_submissions",table:"assessment_submissions",permissionView:VIEW,permissionManage:MANAGE,searchFields:["submission_status","submission_reference","remarks"],filterFields:["assessment_id","student_id","submission_status"],defaultOrderField:"submitted_at",fields:{assessmentId:"assessment_id",studentId:"student_id",submittedAt:"submitted_at",submissionStatus:"submission_status",fileId:"file_id",submissionReference:"submission_reference",remarks:"remarks"}},"/submissions");
+9: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessment_marks",table:"assessment_marks",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade","status","remarks"],filterFields:["assessment_id","student_id","course_registration_id","status"],defaultOrderField:"created_at",fields:{assessmentId:"assessment_id",studentId:"student_id",courseRegistrationId:"course_registration_id",marks:"marks",percentage:"percentage",grade:"grade",remarks:"remarks",status:"status",enteredBy:"entered_by",enteredAt:"entered_at",submittedBy:"submitted_by",submittedAt:"submitted_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/marks");
+10: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessment_mark_corrections",table:"assessment_mark_corrections",permissionView:VIEW,permissionManage:CORRECT,searchFields:["reason","status","review_comment"],filterFields:["assessment_mark_id","requested_by","status"],defaultOrderField:"requested_at",fields:{assessmentMarkId:"assessment_mark_id",requestedBy:"requested_by",requestedAt:"requested_at",oldMarks:"old_marks",newMarks:"new_marks",oldGrade:"old_grade",newGrade:"new_grade",reason:"reason",evidenceFileId:"evidence_file_id",status:"status",reviewedBy:"reviewed_by",reviewedAt:"reviewed_at",reviewComment:"review_comment"}},"/mark-corrections");
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+65: registerCrudResource(
+105: registerCrudResource(
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\auth\routes\auth.routes.ts
+7: router.get("/health", controller.authHealth);
+9: router.get("/me", authenticate, controller.me);
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+21: registerCrudResource(router, {
+31: registerCrudResource(router, {
+46: registerCrudResource(router, {
+58: registerCrudResource(router, {
+69: registerCrudResource(router, {
+84: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+6: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_periods",table:"examination_periods",permissionView:VIEW,permissionManage:MANAGE,searchFields:["period_code","period_name","examination_type","status"],filterFields:["academic_year_id","semester_id","examination_type","status"],defaultOrderField:"start_date",fields:{academicYearId:"academic_year_id",semesterId:"semester_id",periodCode:"period_code",periodName:"period_name",examinationType:"examination_type",startDate:"start_date",endDate:"end_date",status:"status",approvedBy:"approved_by",approvedAt:"approved_at",publishedBy:"published_by",publishedAt:"published_at",lockedBy:"locked_by",lockedAt:"locked_at",notes:"notes",createdBy:"created_by",updatedBy:"updated_by"}},"/periods");
+7: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_papers",table:"examination_papers",permissionView:VIEW,permissionManage:MANAGE,searchFields:["paper_code","paper_title","examination_type","status"],filterFields:["examination_period_id","course_offering_id","examination_type","status"],defaultOrderField:"created_at",fields:{examinationPeriodId:"examination_period_id",courseOfferingId:"course_offering_id",paperCode:"paper_code",paperTitle:"paper_title",examinationType:"examination_type",maximumMarks:"maximum_marks",durationMinutes:"duration_minutes",instructions:"instructions",status:"status",createdBy:"created_by",updatedBy:"updated_by",approvedBy:"approved_by",approvedAt:"approved_at",lockedBy:"locked_by",lockedAt:"locked_at"}},"/papers");
+8: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_sessions",table:"examination_sessions",permissionView:VIEW,permissionManage:MANAGE,searchFields:["session_code","status"],filterFields:["examination_paper_id","campus_id","room_id","examination_date","status"],defaultOrderField:"examination_date",fields:{examinationPaperId:"examination_paper_id",campusId:"campus_id",roomId:"room_id",examinationDate:"examination_date",startTime:"start_time",endTime:"end_time",sessionCode:"session_code",capacity:"capacity",status:"status",createdBy:"created_by",updatedBy:"updated_by",approvedBy:"approved_by",approvedAt:"approved_at",lockedBy:"locked_by",lockedAt:"locked_at"}},"/sessions");
+9: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_candidates",table:"examination_candidates",permissionView:VIEW,permissionManage:MANAGE,searchFields:["candidate_number","eligibility_status","attendance_status","candidate_status"],filterFields:["examination_paper_id","student_id","course_registration_id","eligibility_status","candidate_status"],defaultOrderField:"created_at",fields:{examinationPaperId:"examination_paper_id",studentId:"student_id",courseRegistrationId:"course_registration_id",candidateNumber:"candidate_number",eligibilityStatus:"eligibility_status",eligibilityReason:"eligibility_reason",attendanceStatus:"attendance_status",candidateStatus:"candidate_status"}},"/candidates");
+10: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_candidate_sessions",table:"examination_candidate_sessions",permissionView:VIEW,permissionManage:MANAGE,searchFields:["seat_number","assignment_status","notes"],filterFields:["examination_session_id","examination_candidate_id","assignment_status"],defaultOrderField:"created_at",fields:{examinationSessionId:"examination_session_id",examinationCandidateId:"examination_candidate_id",seatNumber:"seat_number",assignmentStatus:"assignment_status",assignedBy:"assigned_by",assignedAt:"assigned_at",notes:"notes"}},"/candidate-sessions");
+11: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_attendance",table:"examination_attendance",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attendance_status","seat_number","remarks"],filterFields:["examination_session_id","examination_candidate_id","attendance_status"],defaultOrderField:"marked_at",fields:{examinationSessionId:"examination_session_id",examinationCandidateId:"examination_candidate_id",attendanceStatus:"attendance_status",checkInTime:"check_in_time",seatNumber:"seat_number",identityVerified:"identity_verified",remarks:"remarks",markedBy:"marked_by",markedAt:"marked_at"}},"/attendance");
+12: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_invigilators",table:"examination_invigilators",permissionView:VIEW,permissionManage:MANAGE,searchFields:["assignment_role","status","notes"],filterFields:["examination_session_id","user_id","assignment_role","status"],defaultOrderField:"created_at",fields:{examinationSessionId:"examination_session_id",userId:"user_id",assignmentRole:"assignment_role",status:"status",assignedBy:"assigned_by",assignedAt:"assigned_at",confirmedAt:"confirmed_at",notes:"notes"}},"/invigilators");
+13: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_marks",table:"examination_marks",permissionView:VIEW,permissionManage:MARKS,searchFields:["grade","status","remarks"],filterFields:["examination_paper_id","examination_candidate_id","student_id","course_registration_id","status"],defaultOrderField:"created_at",fields:{examinationPaperId:"examination_paper_id",examinationCandidateId:"examination_candidate_id",studentId:"student_id",courseRegistrationId:"course_registration_id",marks:"marks",percentage:"percentage",grade:"grade",remarks:"remarks",status:"status",enteredBy:"entered_by",enteredAt:"entered_at",submittedBy:"submitted_by",submittedAt:"submitted_at",approvedBy:"approved_by",approvedAt:"approved_at",lockedBy:"locked_by",lockedAt:"locked_at"}},"/marks");
+14: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_mark_corrections",table:"examination_mark_corrections",permissionView:VIEW,permissionManage:CORRECT,searchFields:["reason","status","review_comment"],filterFields:["examination_mark_id","requested_by","status"],defaultOrderField:"requested_at",fields:{examinationMarkId:"examination_mark_id",requestedBy:"requested_by",requestedAt:"requested_at",oldMarks:"old_marks",newMarks:"new_marks",oldGrade:"old_grade",newGrade:"new_grade",reason:"reason",evidenceFileId:"evidence_file_id",status:"status",reviewedBy:"reviewed_by",reviewedAt:"reviewed_at",reviewComment:"review_comment"}},"/mark-corrections");
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts
+4: import { requirePermission } from "../../../middleware/rbac.js";
+9: router.get("/fee-structures", requirePermission("finance.view"), controller.listFeeStructures);
+10: router.get("/fee-structures/:id", requirePermission("finance.view"), controller.getFeeStructure);
+12: router.get("/students/:studentId/account", requirePermission("finance.view"), controller.getFinancialAccount);
+13: router.get("/students/:studentId/charges", requirePermission("finance.charges.view"), controller.getCharges);
+14: router.get("/students/:studentId/invoices", requirePermission("finance.invoices.view"), controller.getInvoices);
+15: router.get("/students/:studentId/payments", requirePermission("finance.payments.view"), controller.getPayments);
+16: router.get("/students/:studentId/refunds", requirePermission("finance.refunds.view"), controller.getRefunds);
+17: router.get("/students/:studentId/scholarships", requirePermission("finance.scholarships.view"), controller.getScholarships);
+18: router.get("/students/:studentId/adjustments", requirePermission("finance.charges.view"), controller.getAdjustments);
+19: router.get("/students/:studentId/transactions", requirePermission("finance.view"), controller.getTransactions);
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+6: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_periods",table:"graduation_periods",permissionView:VIEW,permissionManage:MANAGE,searchFields:["graduation_number","graduation_name","status","remarks"],filterFields:["academic_year_id","status"],defaultOrderField:"graduation_date",fields:{academicYearId:"academic_year_id",graduationNumber:"graduation_number",graduationName:"graduation_name",graduationDate:"graduation_date",applicationOpenAt:"application_open_at",applicationCloseAt:"application_close_at",status:"status",remarks:"remarks",createdBy:"created_by",updatedBy:"updated_by"}},"/periods");
+7: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_candidates",table:"graduation_candidates",permissionView:VIEW,permissionManage:MANAGE,searchFields:["eligibility_status","academic_completion_status","award_classification","candidate_status","remarks"],filterFields:["graduation_period_id","student_id","programme_id","programme_version_id","eligibility_status","candidate_status"],defaultOrderField:"created_at",fields:{graduationPeriodId:"graduation_period_id",studentId:"student_id",programmeId:"programme_id",programmeVersionId:"programme_version_id",eligibilityStatus:"eligibility_status",academicCompletionStatus:"academic_completion_status",finalCgpa:"final_cgpa",awardClassification:"award_classification",candidateStatus:"candidate_status",eligibleAt:"eligible_at",approvedAt:"approved_at",approvedBy:"approved_by",remarks:"remarks"}},"/candidates");
+8: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_clearances",table:"graduation_clearances",permissionView:VIEW,permissionManage:MANAGE,searchFields:["clearance_type","status","remarks"],filterFields:["graduation_candidate_id","clearance_type","status"],defaultOrderField:"created_at",fields:{graduationCandidateId:"graduation_candidate_id",clearanceType:"clearance_type",status:"status",amountDue:"amount_due",amountCleared:"amount_cleared",remarks:"remarks",clearedBy:"cleared_by",clearedAt:"cleared_at"}},"/clearances");
+9: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_clearance_items",table:"graduation_clearance_items",permissionView:VIEW,permissionManage:MANAGE,searchFields:["item_code","item_name","status","remarks"],filterFields:["graduation_clearance_id","item_code","status"],defaultOrderField:"created_at",fields:{graduationClearanceId:"graduation_clearance_id",itemCode:"item_code",itemName:"item_name",status:"status",amountDue:"amount_due",amountCleared:"amount_cleared",remarks:"remarks",resolvedBy:"resolved_by",resolvedAt:"resolved_at"}},"/clearance-items");
+10: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_approvals",table:"graduation_approvals",permissionView:VIEW,permissionManage:APPROVE,searchFields:["approval_stage","decision","comments"],filterFields:["graduation_candidate_id","approval_stage","decision"],defaultOrderField:"created_at",fields:{graduationCandidateId:"graduation_candidate_id",approvalStage:"approval_stage",decision:"decision",comments:"comments",approvedBy:"approved_by",approvedAt:"approved_at"}},"/approvals");
+11: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_awards",table:"graduation_awards",permissionView:VIEW,permissionManage:APPROVE,searchFields:["award_name","award_classification","certificate_number"],filterFields:["graduation_candidate_id","graduation_date"],defaultOrderField:"graduation_date",fields:{graduationCandidateId:"graduation_candidate_id",awardName:"award_name",awardClassification:"award_classification",finalCgpa:"final_cgpa",graduationDate:"graduation_date",certificateNumber:"certificate_number",transcriptId:"transcript_id"}},"/awards");
+12: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"certificates",table:"certificates",permissionView:VIEW,permissionManage:APPROVE,searchFields:["certificate_number","certificate_type","award_name","verification_code","status"],filterFields:["graduation_award_id","student_id","programme_id","certificate_type","status"],defaultOrderField:"issue_date",fields:{graduationAwardId:"graduation_award_id",studentId:"student_id",certificateNumber:"certificate_number",certificateType:"certificate_type",awardName:"award_name",programmeId:"programme_id",programmeVersionId:"programme_version_id",issueDate:"issue_date",verificationCode:"verification_code",documentFileId:"document_file_id",status:"status",issuedBy:"issued_by",issuedAt:"issued_at",revokedBy:"revoked_by",revokedAt:"revoked_at",revocationReason:"revocation_reason",replacementOf:"replacement_of"}},"/certificates");
+13: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"certificate_verifications",table:"certificate_verifications",permissionView:VIEW,permissionManage:APPROVE,searchFields:["verification_code","verification_result"],filterFields:["certificate_id","verification_result"],defaultOrderField:"verified_at",fields:{certificateId:"certificate_id",verificationCode:"verification_code",verifiedAt:"verified_at",verificationResult:"verification_result",ipAddress:"ip_address",userAgent:"user_agent"}},"/certificate-verifications");
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+14: registerCrudResource(router, {
+20: registerCrudResource(router, {
+26: registerCrudResource(router, {
+32: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+31: registerCrudResource(router, {
+38: registerCrudResource(router, {
+45: registerCrudResource(router, {
+52: registerCrudResource(router, {
+58: registerCrudResource(router, {
+64: registerCrudResource(router, {
+70: registerCrudResource(router, {
+76: registerCrudResource(router, {
+82: registerCrudResource(router, {
+88: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.routes.ts
+8: requirePermission
+22: router.get(
+24: requirePermission("campuses.view"),
+28: router.get(
+30: requirePermission("campuses.view"),
+34: router.post(
+36: requirePermission("campuses.manage"),
+40: router.patch(
+42: requirePermission("campuses.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.routes.ts
+8: requirePermission
+22: router.get(
+24: requirePermission("departments.view"),
+28: router.get(
+30: requirePermission("departments.view"),
+34: router.post(
+36: requirePermission("departments.manage"),
+40: router.patch(
+42: requirePermission("departments.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.routes.ts
+8: requirePermission
+22: router.get(
+24: requirePermission("institutions.view"),
+28: router.get(
+30: requirePermission("institutions.view"),
+34: router.post(
+36: requirePermission("institutions.manage"),
+40: router.patch(
+42: requirePermission("institutions.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.routes.ts
+8: requirePermission
+22: router.get(
+24: requirePermission("schools.view"),
+28: router.get(
+30: requirePermission("schools.view"),
+34: router.post(
+36: requirePermission("schools.manage"),
+40: router.patch(
+42: requirePermission("schools.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+14: registerCrudResource(router, {
+20: registerCrudResource(router, {
+26: registerCrudResource(router, {
+32: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\operations\operations.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+14: registerCrudResource(router, {
+20: registerCrudResource(router, {
+26: registerCrudResource(router, {
+32: registerCrudResource(router, {
+38: registerCrudResource(router, {
+44: registerCrudResource(router, {
+50: registerCrudResource(router, {
+56: registerCrudResource(router, {
+62: registerCrudResource(router, {
+68: registerCrudResource(router, {
+74: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+71: registerCrudResource(
+105: registerCrudResource(
+145: registerCrudResource(
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\reports\reports.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+22: registerCrudResource(router, {
+35: registerCrudResource(router, {
+48: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\research\research.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+26: registerCrudResource(router, {
+41: registerCrudResource(router, {
+56: registerCrudResource(router, {
+72: registerCrudResource(router, {
+88: registerCrudResource(router, {
+104: registerCrudResource(router, {
+121: registerCrudResource(router, {
+138: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+6: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_results",table:"course_results",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","result_status","result_type","pass_status","remarks"],filterFields:["student_id","course_offering_id","course_registration_id","academic_year_id","semester_id","result_status","pass_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",academicYearId:"academic_year_id",semesterId:"semester_id",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",passStatus:"pass_status",resultStatus:"result_status",attemptNumber:"attempt_number",resultType:"result_type",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/course-results");
+7: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_result_corrections",table:"course_result_corrections",permissionView:VIEW,permissionManage:CORRECT,searchFields:["reason","status","review_comment"],filterFields:["course_result_id","requested_by","status"],defaultOrderField:"requested_at",fields:{courseResultId:"course_result_id",requestedBy:"requested_by",requestedAt:"requested_at",oldCourseworkMark:"old_coursework_mark",newCourseworkMark:"new_coursework_mark",oldExaminationMark:"old_examination_mark",newExaminationMark:"new_examination_mark",oldTotalMark:"old_total_mark",newTotalMark:"new_total_mark",oldGradeCode:"old_grade_code",newGradeCode:"new_grade_code",oldGradePoint:"old_grade_point",newGradePoint:"new_grade_point",reason:"reason",evidenceFileId:"evidence_file_id",status:"status",reviewedBy:"reviewed_by",reviewedAt:"reviewed_at",reviewComment:"review_comment"}},"/course-result-corrections");
+8: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_semester_results",table:"student_semester_results",permissionView:VIEW,permissionManage:APPROVE,searchFields:["academic_standing","result_status","remarks"],filterFields:["student_id","academic_year_id","semester_id","programme_version_id","academic_standing","result_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",programmeVersionId:"programme_version_id",totalRegisteredCredits:"total_registered_credits",totalAttemptedCredits:"total_attempted_credits",totalEarnedCredits:"total_earned_credits",totalQualityPoints:"total_quality_points",gpa:"gpa",coursesAttempted:"courses_attempted",coursesPassed:"courses_passed",coursesFailed:"courses_failed",academicStanding:"academic_standing",resultStatus:"result_status",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/semester-results");
+9: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_standings",table:"student_academic_standings",permissionView:VIEW,permissionManage:APPROVE,searchFields:["standing_code","standing_name","status","remarks"],filterFields:["student_id","academic_year_id","semester_id","standing_rule_id","standing_code","status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",cgpa:"cgpa",standingRuleId:"standing_rule_id",standingCode:"standing_code",standingName:"standing_name",remarks:"remarks",status:"status",calculatedAt:"calculated_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/academic-standings");
+10: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"grade_scales",table:"grade_scales",permissionView:VIEW,permissionManage:MANAGE,searchFields:["scale_code","scale_name","description","status"],filterFields:["status","is_default"],defaultOrderField:"created_at",fields:{scaleCode:"scale_code",scaleName:"scale_name",description:"description",minimumTotal:"minimum_total",maximumTotal:"maximum_total",status:"status",isDefault:"is_default"}},"/grade-scales");
+11: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"grade_scale_details",table:"grade_scale_details",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","grade_name","result_classification","status"],filterFields:["grade_scale_id","pass_status","status"],defaultOrderField:"minimum_mark",fields:{gradeScaleId:"grade_scale_id",gradeCode:"grade_code",gradeName:"grade_name",minimumMark:"minimum_mark",maximumMark:"maximum_mark",gradePoint:"grade_point",passStatus:"pass_status",resultClassification:"result_classification",status:"status"}},"/grade-scale-details");
+12: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_result_policies",table:"course_result_policies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["status"],filterFields:["course_offering_id","grade_scale_id","status"],defaultOrderField:"created_at",fields:{courseOfferingId:"course_offering_id",gradeScaleId:"grade_scale_id",courseworkWeight:"coursework_weight",examinationWeight:"examination_weight",minimumCourseworkRequired:"minimum_coursework_required",minimumExamRequired:"minimum_exam_required",minimumPassMark:"minimum_pass_mark",status:"status",createdBy:"created_by",approvedBy:"approved_by",approvedAt:"approved_at"}},"/course-result-policies");
+13: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_gpa_records",table:"student_gpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",totalCredits:"total_credits",totalQualityPoints:"total_quality_points",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/gpa-records");
+14: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_cgpa_records",table:"student_cgpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/cgpa-records");
+15: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_course_attempts",table:"student_course_attempts",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attempt_type","attempt_status","grade_code","remarks"],filterFields:["student_id","course_id","course_offering_id","course_registration_id","academic_year_id","semester_id","attempt_number","attempt_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",courseResultId:"course_result_id",academicYearId:"academic_year_id",semesterId:"semester_id",attemptNumber:"attempt_number",attemptType:"attempt_type",attemptStatus:"attempt_status",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",credits:"credits",startedAt:"started_at",completedAt:"completed_at",remarks:"remarks"}},"/course-attempts");
+16: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_deficiencies",table:"student_academic_deficiencies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["deficiency_type","deficiency_status","remarks"],filterFields:["student_id","course_id","course_offering_id","course_result_id","deficiency_type","deficiency_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseResultId:"course_result_id",deficiencyType:"deficiency_type",deficiencyStatus:"deficiency_status",firstRecordedAt:"first_recorded_at",resolvedAt:"resolved_at",resolutionCourseResultId:"resolution_course_result_id",remarks:"remarks"}},"/academic-deficiencies");
+17: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcripts",table:"student_transcripts",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["transcript_number","transcript_type","transcript_status","verification_code"],filterFields:["student_id","programme_version_id","transcript_type","transcript_status"],defaultOrderField:"created_at",fields:{transcriptNumber:"transcript_number",studentId:"student_id",programmeVersionId:"programme_version_id",transcriptType:"transcript_type",issueReason:"issue_reason",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",finalAcademicStanding:"final_academic_standing",transcriptStatus:"transcript_status",generatedAt:"generated_at",generatedBy:"generated_by",approvedAt:"approved_at",approvedBy:"approved_by",issuedAt:"issued_at",issuedBy:"issued_by",revokedAt:"revoked_at",revokedBy:"revoked_by",replacementOf:"replacement_of",documentFileId:"document_file_id",verificationCode:"verification_code",remarks:"remarks"}},"/transcripts");
+18: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_semesters",table:"student_transcript_semesters",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["academic_standing"],filterFields:["transcript_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"sequence_no",fields:{transcriptId:"transcript_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",registeredCredits:"registered_credits",attemptedCredits:"attempted_credits",earnedCredits:"earned_credits",qualityPoints:"quality_points",academicStanding:"academic_standing",sequenceNo:"sequence_no"}},"/transcript-semesters");
+19: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_courses",table:"student_transcript_courses",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["course_code","course_name","grade_code","result_type","pass_status"],filterFields:["transcript_id","transcript_semester_id","course_result_id","course_id"],defaultOrderField:"display_sequence",fields:{transcriptId:"transcript_id",transcriptSemesterId:"transcript_semester_id",courseResultId:"course_result_id",courseRegistrationId:"course_registration_id",courseId:"course_id",courseCode:"course_code",courseName:"course_name",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",resultType:"result_type",attemptNumber:"attempt_number",passStatus:"pass_status",displaySequence:"display_sequence"}},"/transcript-courses");
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\student-management.routes.ts
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.routes.ts
+8: requirePermission,
+24: router.get(
+26: requirePermission("students.self.view"),
+30: router.get(
+32: requirePermission("students.view"),
+36: router.get(
+38: requirePermission("students.view"),
+42: router.post(
+44: requirePermission("students.manage"),
+48: router.patch(
+50: requirePermission("students.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\system\system.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+20: registerCrudResource(router, {
+31: registerCrudResource(router, {
+43: registerCrudResource(router, {
+53: registerCrudResource(router, {
+66: registerCrudResource(router, {
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+54: registerCrudResource(
+94: registerCrudResource(
+123: registerCrudResource(
+156: registerCrudResource(
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+12: registerCrudResource(
+70: registerCrudResource(
+100: registerCrudResource(
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\roles.routes.ts
+3: import { requirePermission } from "../../../middleware/rbac.js";
+20: router.get(
+22: requirePermission("roles.view"),
+26: router.get(
+28: requirePermission("permissions.view"),
+32: router.get(
+34: requirePermission("roles.view"),
+38: router.get(
+40: requirePermission("roles.view"),
+44: router.post(
+46: requirePermission("roles.manage"),
+50: router.patch(
+52: requirePermission("roles.manage"),
+56: router.post(
+58: requirePermission("roles.manage"),
+62: router.delete(
+64: requirePermission("roles.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\users.routes.ts
+8: requirePermission,
+31: router.get(
+33: requirePermission("users.view"),
+37: router.get(
+39: requirePermission("roles.view"),
+43: router.get(
+45: requirePermission("users.view"),
+49: router.post(
+51: requirePermission("users.create"),
+55: router.patch(
+57: requirePermission("users.update"),
+67: router.post(
+69: requirePermission("roles.manage"),
+73: router.delete(
+75: requirePermission("roles.manage"),
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts
+4: import { requirePermission } from "../../middleware/rbac.js";
+77: router.post("/applications/:id/submit", requirePermission("admissions.submit"), async (req, res, next) => {
+90: router.post("/applications/:id/review", requirePermission("admissions.review"), async (req, res, next) => {
+94: router.post("/applications/:id/verify", requirePermission("admissions.verify"), async (req, res, next) => {
+106: router.post("/applications/:id/eligibility", requirePermission("admissions.eligibility"), async (req, res, next) => {
+120: router.post("/admission-decisions/:id/decide", requirePermission("admissions.decide"), async (req, res, next) => {
+135: router.post("/admission-offers/:id/issue", requirePermission("admissions.offer"), async (req, res, next) => {
+154: router.post("/admission-acceptances/:id/accept", requirePermission("admissions.accept"), async (req, res, next) => {
+167: router.post("/admission-acceptances/:id/decline", requirePermission("admissions.accept"), async (req, res, next) => {
+181: router.post("/students/:id/activate", requirePermission("students.activate"), async (req, res, next) => {
+194: router.post("/registrations/:id/submit", requirePermission("registration.submit"), async (req, res, next) => {
+209: router.post("/registrations/:id/approve", requirePermission("registration.approve"), async (req, res, next) => {
+223: router.post("/registrations/:id/register", requirePermission("registration.register"), async (req, res, next) => {
+227: router.post("/registrations/:id/lock", requirePermission("registration.lock"), async (req, res, next) => {
+231: router.post("/add-drop/:id/decide", requirePermission("registration.add_drop.decide"), async (req, res, next) => {
+238: router.post("/timetables/:id/review", requirePermission("timetable.review"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "UNDER_REVIEW", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.review", "TIMETABLE_REVIEW", "timetables"));
+239: router.post("/timetables/:id/approve", requirePermission("timetable.approve"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "APPROVED", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.approve", "TIMETABLE_APPROVE", "timetables"));
+240: router.post("/timetables/:id/publish", requirePermission("timetable.publish"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.publish", "TIMETABLE_PUBLISH", "timetables"));
+241: router.post("/timetables/:id/lock", requirePermission("timetable.lock"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.lock", "TIMETABLE_LOCK", "timetables"));
+244: router.post("/assessments/:id/open", requirePermission("assessment.open"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "OPEN", updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.open", "ASSESSMENT_OPEN", "assessments"));
+245: router.post("/assessments/:id/submit", requirePermission("assessment.submit"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "SUBMITTED", updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.submit", "ASSESSMENT_SUBMIT", "assessments"));
+246: router.post("/assessments/:id/approve", requirePermission("assessment.approve"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.approve", "ASSESSMENT_APPROVE", "assessments"));
+247: router.post("/assessments/:id/lock", requirePermission("assessment.lock"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.lock", "ASSESSMENT_LOCK", "assessments"));
+249: router.post("/assessment-marks/:id/submit", requirePermission("assessment.marks.submit"), async (req, res, next) => updateById(req, res, next, "assessment_marks", String(req.params.id), { status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "assessment.marks.submit", "ASSESSMENT_MARK_SUBMIT", "assessment_marks"));
+250: router.post("/assessment-marks/:id/approve", requirePermission("assessment.marks.approve"), async (req, res, next) => updateById(req, res, next, "assessment_marks", String(req.params.id), { status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "assessment.marks.approve", "ASSESSMENT_MARK_APPROVE", "assessment_marks"));
+251: router.post("/assessment-marks/:id/lock", requirePermission("assessment.marks.lock"), async (req, res, next) => updateById(req, res, next, "assessment_marks", String(req.params.id), { status: "LOCKED", updated_at: new Date().toISOString() }, "assessment.marks.lock", "ASSESSMENT_MARK_LOCK", "assessment_marks"));
+253: router.post("/assessment-corrections/:id/decide", requirePermission("assessment.correction.decide"), async (req, res, next) => {
+277: router.post("/examination-candidates/:id/eligibility", requirePermission("examination.eligibility"), async (req, res, next) => {
+282: router.post("/examination-marks/:id/submit", requirePermission("examination.marks.submit"), async (req, res, next) => updateById(req, res, next, "examination_marks", String(req.params.id), { status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "examination.marks.submit", "EXAM_MARK_SUBMIT", "examination_marks"));
+283: router.post("/examination-marks/:id/approve", requirePermission("examination.marks.approve"), async (req, res, next) => updateById(req, res, next, "examination_marks", String(req.params.id), { status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "examination.marks.approve", "EXAM_MARK_APPROVE", "examination_marks"));
+284: router.post("/examination-marks/:id/lock", requirePermission("examination.marks.lock"), async (req, res, next) => updateById(req, res, next, "examination_marks", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "examination.marks.lock", "EXAM_MARK_LOCK", "examination_marks"));
+287: router.post("/course-results/:id/calculate", requirePermission("results.calculate"), async (req, res, next) => {
+299: router.post("/course-results/:id/submit", requirePermission("results.submit"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.submit", "RESULT_SUBMIT", "course_results"));
+300: router.post("/course-results/:id/review", requirePermission("results.review"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "UNDER_REVIEW", updated_at: new Date().toISOString() }, "results.review", "RESULT_REVIEW", "course_results"));
+301: router.post("/course-results/:id/approve", requirePermission("results.approve"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.approve", "RESULT_APPROVE", "course_results"));
+302: router.post("/course-results/:id/publish", requirePermission("results.publish"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.publish", "RESULT_PUBLISH", "course_results"));
+303: router.post("/course-results/:id/lock", requirePermission("results.lock"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.lock", "RESULT_LOCK", "course_results"));
+306: router.post("/transcripts/:id/generate", requirePermission("transcript.generate"), async (req, res, next) => {
+319: router.post("/transcripts/:id/review", requirePermission("transcript.review"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "REVIEW", updated_at: new Date().toISOString() }, "transcript.review", "TRANSCRIPT_REVIEW", "student_transcripts"));
+320: router.post("/transcripts/:id/approve", requirePermission("transcript.approve"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "transcript.approve", "TRANSCRIPT_APPROVE", "student_transcripts"));
+321: router.post("/transcripts/:id/issue", requirePermission("transcript.issue"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "ISSUED", issued_by: actor(req), issued_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "transcript.issue", "TRANSCRIPT_ISSUE", "student_transcripts"));
+322: router.post("/transcripts/:id/revoke", requirePermission("transcript.revoke"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "REVOKED", revoked_by: actor(req), revoked_at: new Date().toISOString(), remarks: req.body?.reason ?? "Revoked", updated_at: new Date().toISOString() }, "transcript.revoke", "TRANSCRIPT_REVOKE", "student_transcripts"));
+325: router.post("/graduation-clearances/:id/clear", requirePermission("graduation.clearance"), async (req, res, next) => updateById(req, res, next, "graduation_clearances", String(req.params.id), { status: "CLEARED", cleared_by: actor(req), cleared_at: new Date().toISOString(), remarks: req.body?.remarks ?? null, updated_at: new Date().toISOString() }, "graduation.clearance", "GRADUATION_CLEARANCE", "graduation_clearances"));
+326: router.post("/graduation-candidates/:id/eligibility", requirePermission("graduation.eligibility"), async (req, res, next) => {
+331: router.post("/graduation-candidates/:id/approve", requirePermission("graduation.approve"), async (req, res, next) => {
+347: router.post("/graduation-candidates/:id/graduate", requirePermission("graduation.graduate"), async (req, res, next) => {
+350: router.post("/certificates/:id/issue", requirePermission("certificate.issue"), async (req, res, next) => updateById(req, res, next, "certificates", String(req.params.id), { status: "ISSUED", issued_by: actor(req), issue_date: new Date().toISOString().slice(0,10), issued_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "certificate.issue", "CERTIFICATE_ISSUE", "certificates"));
+351: router.post("/certificates/:id/revoke", requirePermission("certificate.revoke"), async (req, res, next) => {
+356: router.post("/alumni/:id/activate", requirePermission("alumni.activate"), async (req, res, next) => updateById(req, res, next, "alumni_records", String(req.params.id), { status: "ACTIVE", updated_at: new Date().toISOString() }, "alumni.activate", "ALUMNI_ACTIVATE", "alumni_records"));
+
+====================================================
+FEATURE: COMMUNICATIONS
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts
+3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+8: registerCrudResource(router, {
+21: registerCrudResource(router, {
+31: registerCrudResource(router, {
+46: registerCrudResource(router, {
+58: registerCrudResource(router, {
+69: registerCrudResource(router, {
+84: registerCrudResource(router, {
+
+====================================================
+ROUTER MOUNTS
+====================================================
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:17: app.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:23: app.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:30: app.use(express.json({ limit: "10mb" }));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:31: app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:89: app.use(API_BASE, apiRouter);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:90: app.use(API_BASE, institutionManagementRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:91: app.use(API_BASE, studentManagementRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:93: app.use(notFoundHandler);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:94: app.use(errorHandler);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:54: fields:{ studentId:"student_id", academicYearId:"academic_year_id", semesterId:"semester_id", programmeId:"programme_id", programmeVersionId:"programme_version_id", registrationNumber:"registration_number", registrationStatus:"registration_status", academicEligibilityStatus:"academic_eligibility_status", financeEligibilityStatus:"finance_eligibility_status", documentEligibilityStatus:"document_eligibility_status", totalRegisteredCredits:"total_registered_credits", minimumCredits:"minimum_credits", maximumCredits:"maximum_credits", submittedAt:"submitted_at", approvedAt:"approved_at", approvedBy:"approved_by", lockedAt:"locked_at", lockedBy:"locked_by", rejectionReason:"rejection_reason", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/registrations");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:58: fields:{ studentRegistrationId:"student_registration_id", approvalLevel:"approval_level", approvalRole:"approval_role", approvalStatus:"approval_status", comments:"comments", approvedBy:"approved_by", approvedAt:"approved_at", rejectedAt:"rejected_at" } }, "/registration-approvals");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:70: fields:{ academicYearId:"academic_year_id", semesterId:"semester_id", campusId:"campus_id", timetableCode:"timetable_code", timetableName:"timetable_name", status:"status", publishedAt:"published_at", publishedBy:"published_by", lockedAt:"locked_at", lockedBy:"locked_by", createdBy:"created_by", updatedBy:"updated_by" } }, "/timetables");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:74: fields:{ slotCode:"slot_code", dayOfWeek:"day_of_week", startTime:"start_time", endTime:"end_time", durationMinutes:"duration_minutes", status:"status" } }, "/timetable-slots");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:78: fields:{ timetableId:"timetable_id", classId:"class_id", courseOfferingId:"course_offering_id", lecturerAssignmentId:"lecturer_assignment_id", roomId:"room_id", timetableSlotId:"timetable_slot_id", entryDate:"entry_date", entryType:"entry_type", status:"status", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/timetable-entries");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.routes.ts:14: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:60: }, "/documents");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\alumni\alumni.routes.ts:4: const router=Router(); router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\assessment\assessment.routes.ts:5: const router = Router(); router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:7: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:44: }, "/documents");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts:4: const router=Router(); router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts:11: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_attendance",table:"examination_attendance",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attendance_status","seat_number","remarks"],filterFields:["examination_session_id","examination_candidate_id","attendance_status"],defaultOrderField:"marked_at",fields:{examinationSessionId:"examination_session_id",examinationCandidateId:"examination_candidate_id",attendanceStatus:"attendance_status",checkInTime:"check_in_time",seatNumber:"seat_number",identityVerified:"identity_verified",remarks:"remarks",markedBy:"marked_by",markedAt:"marked_at"}},"/attendance");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:2: import * as financeService from '../services/finance.service.js';
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:2: import * as controller from "../controllers/finance.controller.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:7: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts:4: const router=Router(); router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:50: }, "/documents");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:80: }, "/attendance");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:86: }, "/attendance/adjustments");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts:17: router.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts:22: router.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts:27: router.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institution-management.routes.ts:32: router.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.routes.ts:20: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.routes.ts:20: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.routes.ts:20: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.routes.ts:20: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\operations\operations.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:7: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\reports\reports.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\research\research.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:4: const router=Router(); router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\student-management.routes.ts:8: router.use(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.routes.ts:22: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\system\system.routes.ts:6: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:7: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts:7: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\roles.routes.ts:18: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\routes\users.routes.ts:23: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:8: router.use(authenticate);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:194: router.post("/registrations/:id/submit", requirePermission("registration.submit"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:209: router.post("/registrations/:id/approve", requirePermission("registration.approve"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:223: router.post("/registrations/:id/register", requirePermission("registration.register"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:227: router.post("/registrations/:id/lock", requirePermission("registration.lock"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:238: router.post("/timetables/:id/review", requirePermission("timetable.review"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "UNDER_REVIEW", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.review", "TIMETABLE_REVIEW", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:239: router.post("/timetables/:id/approve", requirePermission("timetable.approve"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "APPROVED", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.approve", "TIMETABLE_APPROVE", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:240: router.post("/timetables/:id/publish", requirePermission("timetable.publish"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.publish", "TIMETABLE_PUBLISH", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:241: router.post("/timetables/:id/lock", requirePermission("timetable.lock"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.lock", "TIMETABLE_LOCK", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:7: import resultsRoutes from "../modules/results/results.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:12: router.use("/applications", admissionsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:13: router.use("/admissions", admissionsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:14: router.use("/academic-core", academicCoreRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:15: router.use("/assessment", assessmentRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:16: router.use("/assessments", assessmentRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:17: router.use("/examinations", examinationRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:18: router.use("/results", resultsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:19: router.use("/graduation", graduationRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\core-routes.ts:20: router.use("/alumni", alumniRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:4: import financeRoutes from "../modules/finance/routes/finance.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:15: import communicationsRoutes from "../modules/communications/communications.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:19: import registrationRoutes from "../modules/registration/registration.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:20: import timetableRoutes from "../modules/timetable/timetable.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:21: import attendanceRoutes from "../modules/attendance/attendance.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:44: router.use("/auth", authRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:45: router.use("/users", usersRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:46: router.use("/roles", rolesRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:53: router.use("/finance", financeRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:54: router.use("/hr", hrRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:61: router.use("/academics", academicsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:69: router.use("/operations", operationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:83: router.use("/assets", operationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:84: router.use("/procurement", operationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:91: router.use("/hostel", hostelRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:92: router.use("/library", libraryRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:99: router.use("/research", researchRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:100: router.use("/communications", communicationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:107: //   /documents
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:116: router.use("/documents", communicationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:117: router.use("/helpdesk", communicationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:124: router.use("/reports", reportsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:125: router.use("/system", systemRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:141: router.use("/registrations", registrationRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:142: router.use("/timetables", timetableRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:143: router.use("/attendance", attendanceRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:144: router.use("/transcripts", transcriptsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:146: router.use("/", coreAcademicRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:153: router.use("/workflows", workflowRoutes);
+
+====================================================
+STUDENT-SPECIFIC API CONTRACTS
+====================================================
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\app.ts:82: "documents",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:10: const REG_VIEW = "registration.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:11: const REG_MANAGE = "registration.manage";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:12: const REG_APPROVE = "registration.approve";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:13: const TT_VIEW = "timetable.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:14: const TT_MANAGE = "timetable.manage";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:15: const TT_PUBLISH = "timetable.publish";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:50: fields:{ academicYearId:"academic_year_id", semesterId:"semester_id", programmeId:"programme_id", programmeVersionId:"programme_version_id", courseId:"course_id", offeringCode:"offering_code", sectionName:"section_name", capacity:"capacity", minimumStudents:"minimum_students", deliveryMode:"delivery_mode", status:"status", registrationOpenAt:"registration_open_at", registrationCloseAt:"registration_close_at", createdBy:"created_by", updatedBy:"updated_by" } }, "/course-offerings");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:52: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"student_registrations", table:"student_registrations", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:53: searchFields:["registration_number","registration_status","academic_eligibility_status","finance_eligibility_status","document_eligibility_status"], filterFields:["student_id","academic_year_id","semester_id","programme_id","programme_version_id","registration_status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:54: fields:{ studentId:"student_id", academicYearId:"academic_year_id", semesterId:"semester_id", programmeId:"programme_id", programmeVersionId:"programme_version_id", registrationNumber:"registration_number", registrationStatus:"registration_status", academicEligibilityStatus:"academic_eligibility_status", financeEligibilityStatus:"finance_eligibility_status", documentEligibilityStatus:"document_eligibility_status", totalRegisteredCredits:"total_registered_credits", minimumCredits:"minimum_credits", maximumCredits:"maximum_credits", submittedAt:"submitted_at", approvedAt:"approved_at", approvedBy:"approved_by", lockedAt:"locked_at", lockedBy:"locked_by", rejectionReason:"rejection_reason", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/registrations");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:56: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"registration_approvals", table:"registration_approvals", permissionView:REG_VIEW, permissionManage:REG_APPROVE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:57: searchFields:["approval_level","approval_role","approval_status","comments"], filterFields:["student_registration_id","approval_level","approval_role","approval_status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:58: fields:{ studentRegistrationId:"student_registration_id", approvalLevel:"approval_level", approvalRole:"approval_role", approvalStatus:"approval_status", comments:"comments", approvedBy:"approved_by", approvedAt:"approved_at", rejectedAt:"rejected_at" } }, "/registration-approvals");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:60: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"course_registrations", table:"course_registrations", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:61: searchFields:["registration_type","registration_status","eligibility_status","prerequisite_status"], filterFields:["student_registration_id","student_id","course_id","course_offering_id","registration_type","registration_status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:62: fields:{ studentRegistrationId:"student_registration_id", studentId:"student_id", courseId:"course_id", courseOfferingId:"course_offering_id", registrationType:"registration_type", registrationStatus:"registration_status", credits:"credits", attemptNumber:"attempt_number", isCore:"is_core", isElective:"is_elective", prerequisiteStatus:"prerequisite_status", eligibilityStatus:"eligibility_status", selectedAt:"selected_at", approvedAt:"approved_at", approvedBy:"approved_by", droppedAt:"dropped_at", dropReason:"drop_reason", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/course-registrations");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:64: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"course_add_drop_requests", table:"course_add_drop_requests", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:65: searchFields:["request_type","request_status","reason","decision_reason"], filterFields:["student_registration_id","student_id","course_id","course_offering_id","request_type","request_status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:66: fields:{ studentRegistrationId:"student_registration_id", studentId:"student_id", courseId:"course_id", courseOfferingId:"course_offering_id", requestType:"request_type", requestStatus:"request_status", reason:"reason", decisionReason:"decision_reason", requestedBy:"requested_by", reviewedBy:"reviewed_by", requestedAt:"requested_at", reviewedAt:"reviewed_at" } }, "/add-drop-requests");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:68: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetables", table:"timetables", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:69: searchFields:["timetable_code","timetable_name","status"], filterFields:["academic_year_id","semester_id","campus_id","status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:70: fields:{ academicYearId:"academic_year_id", semesterId:"semester_id", campusId:"campus_id", timetableCode:"timetable_code", timetableName:"timetable_name", status:"status", publishedAt:"published_at", publishedBy:"published_by", lockedAt:"locked_at", lockedBy:"locked_by", createdBy:"created_by", updatedBy:"updated_by" } }, "/timetables");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:72: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetable_slots", table:"timetable_slots", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:74: fields:{ slotCode:"slot_code", dayOfWeek:"day_of_week", startTime:"start_time", endTime:"end_time", durationMinutes:"duration_minutes", status:"status" } }, "/timetable-slots");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:76: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetable_entries", table:"timetable_entries", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:77: searchFields:["entry_type","status","notes"], filterFields:["timetable_id","class_id","course_offering_id","lecturer_assignment_id","room_id","timetable_slot_id","entry_date","status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:78: fields:{ timetableId:"timetable_id", classId:"class_id", courseOfferingId:"course_offering_id", lecturerAssignmentId:"lecturer_assignment_id", roomId:"room_id", timetableSlotId:"timetable_slot_id", entryDate:"entry_date", entryType:"entry_type", status:"status", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/timetable-entries");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:89: searchFields:["enrollment_status"], filterFields:["class_id","student_id","course_registration_id","enrollment_status"], defaultOrderField:"created_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:90: fields:{ classId:"class_id", studentId:"student_id", courseRegistrationId:"course_registration_id", enrollmentStatus:"enrollment_status", enrolledAt:"enrolled_at", withdrawnAt:"withdrawn_at" } }, "/class-students");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:94: fields:{ academicYearId:"academic_year_id", programmeId:"programme_id", title:"title", description:"description", documentUrl:"document_url", versionNumber:"version_number", status:"status", publishedAt:"published_at", publishedBy:"published_by" } }, "/joining-instructions");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.controller.ts:95: !input.studentId
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.controller.ts:99: "institutionId and studentId are required"
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:63: student_id: input.studentId,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:80: registration_status:
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:81: input.registrationStatus ?? "ACTIVE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:125: if (input.studentId !== undefined) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:126: payload.student_id =
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:127: input.studentId;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:155: if (input.registrationStatus !== undefined) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:156: payload.registration_status =
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts:157: input.registrationStatus;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\shared\academics.types.ts:10: studentId: string;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\shared\academics.types.ts:19: registrationStatus?: AcademicStatus;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\shared\academics.types.ts:30: studentId?: string;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\shared\academics.types.ts:39: registrationStatus?: AcademicStatus;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\shared\academics.types.ts:52: student_id: string;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\shared\academics.types.ts:61: registration_status: AcademicStatus;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:23: searchFields: ["application_number","status","payment_status","verification_status","eligibility_status","selection_status"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:24: filterFields: ["applicant_id","academic_year_id","application_type","application_round","status","payment_status","verification_status","eligibility_status","selection_status"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:28: paymentStatus:"payment_status", verificationStatus:"verification_status", eligibilityStatus:"eligibility_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:47: awardName:"award_name", indexNumber:"index_number", registrationNumber:"registration_number", startYear:"start_year",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:53: moduleCode: "APPLICATIONS", entityType: "application_documents", table: "application_documents",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:55: searchFields: ["document_type","document_name","document_number","mime_type","verification_status"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:56: filterFields: ["application_id","document_type","verification_status"], defaultOrderField: "uploaded_at",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:57: fields: { applicationId:"application_id", documentType:"document_type", documentName:"document_name", fileUrl:"file_url",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:58: fileSize:"file_size", mimeType:"mime_type", documentNumber:"document_number", issueDate:"issue_date", expiryDate:"expiry_date",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:60: }, "/documents");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\admissions\admissions.routes.ts:68: academicCheck:"academic_check", documentCheck:"document_check", approvedBy:"approved_by", approvedAt:"approved_at" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\alumni\alumni.routes.ts:5: registerCrudResource(router,{moduleCode:"ALUMNI",entityType:"alumni_records",table:"alumni_records",permissionView:"alumni.view",permissionManage:"alumni.manage",searchFields:["alumni_number","graduation_year","current_employer","current_position","phone","email","address"],filterFields:["student_id","graduation_candidate_id","graduation_award_id","graduation_year","status"],defaultOrderField:"joined_at",fields:{studentId:"student_id",graduationCandidateId:"graduation_candidate_id",graduationAwardId:"graduation_award_id",alumniNumber:"alumni_number",graduationYear:"graduation_year",status:"status",currentEmployer:"current_employer",currentPosition:"current_position",phone:"phone",email:"email",address:"address",linkedinUrl:"linkedin_url",websiteUrl:"website_url",joinedAt:"joined_at"}},"/records");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\assessment\assessment.routes.ts:8: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessment_submissions",table:"assessment_submissions",permissionView:VIEW,permissionManage:MANAGE,searchFields:["submission_status","submission_reference","remarks"],filterFields:["assessment_id","student_id","submission_status"],defaultOrderField:"submitted_at",fields:{assessmentId:"assessment_id",studentId:"student_id",submittedAt:"submitted_at",submissionStatus:"submission_status",fileId:"file_id",submissionReference:"submission_reference",remarks:"remarks"}},"/submissions");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\assessment\assessment.routes.ts:9: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessment_marks",table:"assessment_marks",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade","status","remarks"],filterFields:["assessment_id","student_id","course_registration_id","status"],defaultOrderField:"created_at",fields:{assessmentId:"assessment_id",studentId:"student_id",courseRegistrationId:"course_registration_id",marks:"marks",percentage:"percentage",grade:"grade",remarks:"remarks",status:"status",enteredBy:"entered_by",enteredAt:"entered_at",submittedBy:"submitted_by",submittedAt:"submitted_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/marks");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:9: const VIEW = "attendance.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:10: const MANAGE = "attendance.manage";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:15: moduleCode: "ATTENDANCE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:16: entityType: "attendance_sessions",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:17: table: "attendance_sessions",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:31: "timetable_entry_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:44: timetableEntryId: "timetable_entry_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:68: moduleCode: "ATTENDANCE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:69: entityType: "attendance_records",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:70: table: "attendance_records",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:75: "attendance_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:80: "attendance_session_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:81: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:82: "course_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:83: "attendance_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:90: attendanceSessionId: "attendance_session_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:91: studentId: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:92: courseRegistrationId: "course_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:93: attendanceStatus: "attendance_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:108: moduleCode: "ATTENDANCE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:109: entityType: "attendance_corrections",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:110: table: "attendance_corrections",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:123: "attendance_record_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:132: attendanceRecordId: "attendance_record_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\auth\routes\auth.routes.ts:9: router.get("/me", authenticate, controller.me);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:32: moduleCode: "DOCUMENTS", entityType: "documents", table: "documents",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:33: permissionView: "documents.view", permissionManage: "documents.manage",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:34: searchFields: ["document_number","title","document_type","module_code","file_name"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:38: institutionId:"institution_id", documentNumber:"document_number", title:"title", documentType:"document_type",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:44: }, "/documents");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:47: moduleCode: "DOCUMENTS", entityType: "document_versions", table: "document_versions",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:48: permissionView: "documents.view", permissionManage: "documents.manage",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:49: searchFields: ["file_name","mime_type","change_summary"], filterFields: ["document_id","version_number","uploaded_by"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:52: documentId:"document_id", versionNumber:"version_number", fileName:"file_name", mimeType:"mime_type",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:56: }, "/document-versions");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:73: filterFields: ["institution_id","category_id","requester_user_id","requester_student_id","assigned_to_user_id","priority","status","source"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:77: requesterUserId:"requester_user_id", requesterStudentId:"requester_student_id", assignedToUserId:"assigned_to_user_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:87: searchFields: ["body","message_type"], filterFields: ["ticket_id","sender_user_id","sender_student_id","message_type","is_internal"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:90: ticketId:"ticket_id", senderUserId:"sender_user_id", senderStudentId:"sender_student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:93: }, "/helpdesk/messages");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts:9: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_candidates",table:"examination_candidates",permissionView:VIEW,permissionManage:MANAGE,searchFields:["candidate_number","eligibility_status","attendance_status","candidate_status"],filterFields:["examination_paper_id","student_id","course_registration_id","eligibility_status","candidate_status"],defaultOrderField:"created_at",fields:{examinationPaperId:"examination_paper_id",studentId:"student_id",courseRegistrationId:"course_registration_id",candidateNumber:"candidate_number",eligibilityStatus:"eligibility_status",eligibilityReason:"eligibility_reason",attendanceStatus:"attendance_status",candidateStatus:"candidate_status"}},"/candidates");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts:11: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_attendance",table:"examination_attendance",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attendance_status","seat_number","remarks"],filterFields:["examination_session_id","examination_candidate_id","attendance_status"],defaultOrderField:"marked_at",fields:{examinationSessionId:"examination_session_id",examinationCandidateId:"examination_candidate_id",attendanceStatus:"attendance_status",checkInTime:"check_in_time",seatNumber:"seat_number",identityVerified:"identity_verified",remarks:"remarks",markedBy:"marked_by",markedAt:"marked_at"}},"/attendance");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\examinations\examinations.routes.ts:13: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_marks",table:"examination_marks",permissionView:VIEW,permissionManage:MARKS,searchFields:["grade","status","remarks"],filterFields:["examination_paper_id","examination_candidate_id","student_id","course_registration_id","status"],defaultOrderField:"created_at",fields:{examinationPaperId:"examination_paper_id",examinationCandidateId:"examination_candidate_id",studentId:"student_id",courseRegistrationId:"course_registration_id",marks:"marks",percentage:"percentage",grade:"grade",remarks:"remarks",status:"status",enteredBy:"entered_by",enteredAt:"entered_at",submittedBy:"submitted_by",submittedAt:"submitted_at",approvedBy:"approved_by",approvedAt:"approved_at",lockedBy:"locked_by",lockedAt:"locked_at"}},"/marks");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:68: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:71: await financeService.getStudentFinancialAccount(studentId);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:92: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:96: await financeService.getStudentCharges(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:103: export async function getInvoices(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:109: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:113: await financeService.getStudentInvoices(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:120: export async function getPayments(
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:126: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:130: await financeService.getStudentPayments(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:143: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:147: await financeService.getStudentRefunds(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:160: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:164: await financeService.getStudentScholarships(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:177: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:181: await financeService.getStudentAdjustments(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:194: const studentId = getParam(req, 'studentId');
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts:198: await financeService.getStudentFinancialTransactions(studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:12: router.get("/students/:studentId/account", requirePermission("finance.view"), controller.getFinancialAccount);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:13: router.get("/students/:studentId/charges", requirePermission("finance.charges.view"), controller.getCharges);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:14: router.get("/students/:studentId/invoices", requirePermission("finance.invoices.view"), controller.getInvoices);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:15: router.get("/students/:studentId/payments", requirePermission("finance.payments.view"), controller.getPayments);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:16: router.get("/students/:studentId/refunds", requirePermission("finance.refunds.view"), controller.getRefunds);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:17: router.get("/students/:studentId/scholarships", requirePermission("finance.scholarships.view"), controller.getScholarships);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:18: router.get("/students/:studentId/adjustments", requirePermission("finance.charges.view"), controller.getAdjustments);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:19: router.get("/students/:studentId/transactions", requirePermission("finance.view"), controller.getTransactions);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:84: export async function getStudentFinancialAccount(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:89: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:102: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:110: export async function getStudentCharges(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:115: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:133: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:141: export async function getStudentInvoices(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:143: .from('invoices')
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:146: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:147: invoice_number,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:148: invoice_date,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:166: invoice_items (
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:176: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:177: .order('invoice_date', { ascending: false });
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:184: export async function getStudentPayments(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:186: .from('payments')
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:189: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:190: payment_number,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:193: payment_method,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:197: payment_date,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:208: payment_allocations (
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:210: invoice_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:218: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:219: .order('payment_date', { ascending: false });
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:226: export async function getStudentRefunds(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:231: payment_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:232: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:248: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:256: export async function getStudentScholarships(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:261: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:280: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:288: export async function getStudentAdjustments(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:293: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:310: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:318: export async function getStudentFinancialTransactions(studentId: string) {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:324: student_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:325: payment_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:326: invoice_id,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts:341: .eq('student_id', studentId)
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts:7: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"graduation_candidates",table:"graduation_candidates",permissionView:VIEW,permissionManage:MANAGE,searchFields:["eligibility_status","academic_completion_status","award_classification","candidate_status","remarks"],filterFields:["graduation_period_id","student_id","programme_id","programme_version_id","eligibility_status","candidate_status"],defaultOrderField:"created_at",fields:{graduationPeriodId:"graduation_period_id",studentId:"student_id",programmeId:"programme_id",programmeVersionId:"programme_version_id",eligibilityStatus:"eligibility_status",academicCompletionStatus:"academic_completion_status",finalCgpa:"final_cgpa",awardClassification:"award_classification",candidateStatus:"candidate_status",eligibleAt:"eligible_at",approvedAt:"approved_at",approvedBy:"approved_by",remarks:"remarks"}},"/candidates");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\graduation\graduation.routes.ts:12: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"certificates",table:"certificates",permissionView:VIEW,permissionManage:APPROVE,searchFields:["certificate_number","certificate_type","award_name","verification_code","status"],filterFields:["graduation_award_id","student_id","programme_id","certificate_type","status"],defaultOrderField:"issue_date",fields:{graduationAwardId:"graduation_award_id",studentId:"student_id",certificateNumber:"certificate_number",certificateType:"certificate_type",awardName:"award_name",programmeId:"programme_id",programmeVersionId:"programme_version_id",issueDate:"issue_date",verificationCode:"verification_code",documentFileId:"document_file_id",status:"status",issuedBy:"issued_by",issuedAt:"issued_at",revokedBy:"revoked_by",revokedAt:"revoked_at",revocationReason:"revocation_reason",replacementOf:"replacement_of"}},"/certificates");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts:28: searchFields: ["academic_year", "allocation_status", "remarks"], filterFields: ["student_id", "hostel_id", "room_id", "academic_year", "allocation_status"], defaultOrderField: "allocation_date",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hostel\hostel.routes.ts:29: fields: { studentId: "student_id", hostelId: "hostel_id", roomId: "room_id", bedId: "bed_id", academicYear: "academic_year", allocationDate: "allocation_date", moveInDate: "move_in_date", moveOutDate: "move_out_date", allocationStatus: "allocation_status", remarks: "remarks", allocatedBy: "allocated_by" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:25: professionalRegistrationNumber: "professional_registration_number", emergencyContactName: "emergency_contact_name",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:46: moduleCode: "HUMAN_RESOURCES", entityType: "staff_documents", table: "staff_documents",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:47: permissionView: "staff.view", permissionManage: "staff.manage", searchFields: ["document_type", "document_name", "document_number"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:49: fields: { staffId: "staff_id", documentType: "document_type", documentName: "document_name", documentUrl: "document_url", storagePath: "storage_path", documentNumber: "document_number", issueDate: "issue_date", expiryDate: "expiry_date", verificationStatus: "verification_status", verificationNotes: "verification_notes" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:50: }, "/documents");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:55: fields: { institutionId: "institution_id", leaveCode: "leave_code", leaveName: "leave_name", annualEntitlement: "annual_entitlement", requiresDocument: "requires_document", requiresApproval: "requires_approval", paidLeave: "paid_leave", carryForwardAllowed: "carry_forward_allowed", maxCarryForwardDays: "max_carry_forward_days", status: "status", description: "description" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:77: moduleCode: "HUMAN_RESOURCES", entityType: "staff_attendance", table: "staff_attendance",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:78: permissionView: "staff.attendance.view", permissionManage: "staff.attendance.manage", searchFields: ["location", "remarks"], filterFields: ["staff_id", "attendance_date", "attendance_status", "source"], defaultOrderField: "attendance_date",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:79: fields: { staffId: "staff_id", attendanceDate: "attendance_date", attendanceStatus: "attendance_status", checkIn: "check_in", checkOut: "check_out", lateMinutes: "late_minutes", workedMinutes: "worked_minutes", source: "source", location: "location", remarks: "remarks", markedBy: "marked_by" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:80: }, "/attendance");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:83: moduleCode: "HUMAN_RESOURCES", entityType: "staff_attendance_adjustments", table: "staff_attendance_adjustments",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:84: permissionView: "staff.attendance.view", permissionManage: "staff.attendance.manage", searchFields: ["adjustment_reason", "adjustment_status"], filterFields: ["attendance_id", "adjustment_status"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:85: fields: { attendanceId: "attendance_id", requestedBy: "requested_by", reviewedBy: "reviewed_by", oldStatus: "old_status", newStatus: "new_status", oldCheckIn: "old_check_in", newCheckIn: "new_check_in", oldCheckOut: "old_check_out", newCheckOut: "new_check_out", adjustmentReason: "adjustment_reason", adjustmentStatus: "adjustment_status", reviewedAt: "reviewed_at" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:86: }, "/attendance/adjustments");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.controller.ts:148: registration_number:
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.controller.ts:150: req.body?.registration_number
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.controller.ts:281: "registration_number",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.service.ts:49: `registration_number.ilike.%${safeSearch}%`,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\institutions\institutions.service.ts:106: registration_number: input.registration_number ?? null,
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\shared\types.ts:17: registration_number?: string | null;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts:16: searchFields: ["membership_number", "membership_type"], filterFields: ["institution_id", "student_id", "staff_id", "membership_status", "membership_type"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts:17: fields: { institutionId: "institution_id", studentId: "student_id", staffId: "staff_id", membershipNumber: "membership_number", membershipType: "membership_type", membershipStatus: "membership_status", registrationDate: "registration_date", expiryDate: "expiry_date", maxActiveLoans: "max_active_loans" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\library\library.routes.ts:18: }, "/members");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\operations\operations.routes.ts:11: fields: { institutionId: "institution_id", supplierCode: "supplier_code", supplierName: "supplier_name", supplierType: "supplier_type", registrationNumber: "registration_number", taxIdentificationNumber: "tax_identification_number", contactPerson: "contact_person", phone: "phone", email: "email", physicalAddress: "physical_address", postalAddress: "postal_address", bankName: "bank_name", bankAccountName: "bank_account_name", bankAccountNumber: "bank_account_number", status: "status", notes: "notes" }
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:9: const VIEW = "registration.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:10: const MANAGE = "registration.manage";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:15: moduleCode: "REGISTRATION",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:16: entityType: "student_registrations",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:17: table: "student_registrations",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:22: "registration_number",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:23: "registration_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:26: "document_eligibility_status"
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:30: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:35: "registration_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:38: "document_eligibility_status"
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:44: studentId: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:49: registrationNumber: "registration_number",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:50: registrationStatus: "registration_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:53: documentEligibilityStatus: "document_eligibility_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:74: moduleCode: "REGISTRATION",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:75: entityType: "course_registrations",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:76: table: "course_registrations",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:81: "registration_status"
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:85: "student_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:86: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:88: "registration_status"
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:94: studentRegistrationId: "student_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:95: studentId: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:97: registrationStatus: "registration_status",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:108: moduleCode: "REGISTRATION",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:122: "student_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:123: "course_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:131: studentRegistrationId: "student_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:132: courseRegistrationId: "course_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:148: moduleCode: "REGISTRATION",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:149: entityType: "registration_approvals",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:150: table: "registration_approvals",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:161: "student_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:169: studentRegistrationId: "student_registration_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:6: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_results",table:"course_results",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","result_status","result_type","pass_status","remarks"],filterFields:["student_id","course_offering_id","course_registration_id","academic_year_id","semester_id","result_status","pass_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",academicYearId:"academic_year_id",semesterId:"semester_id",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",passStatus:"pass_status",resultStatus:"result_status",attemptNumber:"attempt_number",resultType:"result_type",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/course-results");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:8: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_semester_results",table:"student_semester_results",permissionView:VIEW,permissionManage:APPROVE,searchFields:["academic_standing","result_status","remarks"],filterFields:["student_id","academic_year_id","semester_id","programme_version_id","academic_standing","result_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",programmeVersionId:"programme_version_id",totalRegisteredCredits:"total_registered_credits",totalAttemptedCredits:"total_attempted_credits",totalEarnedCredits:"total_earned_credits",totalQualityPoints:"total_quality_points",gpa:"gpa",coursesAttempted:"courses_attempted",coursesPassed:"courses_passed",coursesFailed:"courses_failed",academicStanding:"academic_standing",resultStatus:"result_status",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/semester-results");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:9: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_standings",table:"student_academic_standings",permissionView:VIEW,permissionManage:APPROVE,searchFields:["standing_code","standing_name","status","remarks"],filterFields:["student_id","academic_year_id","semester_id","standing_rule_id","standing_code","status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",cgpa:"cgpa",standingRuleId:"standing_rule_id",standingCode:"standing_code",standingName:"standing_name",remarks:"remarks",status:"status",calculatedAt:"calculated_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/academic-standings");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:13: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_gpa_records",table:"student_gpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",totalCredits:"total_credits",totalQualityPoints:"total_quality_points",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/gpa-records");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:14: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_cgpa_records",table:"student_cgpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/cgpa-records");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:15: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_course_attempts",table:"student_course_attempts",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attempt_type","attempt_status","grade_code","remarks"],filterFields:["student_id","course_id","course_offering_id","course_registration_id","academic_year_id","semester_id","attempt_number","attempt_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",courseResultId:"course_result_id",academicYearId:"academic_year_id",semesterId:"semester_id",attemptNumber:"attempt_number",attemptType:"attempt_type",attemptStatus:"attempt_status",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",credits:"credits",startedAt:"started_at",completedAt:"completed_at",remarks:"remarks"}},"/course-attempts");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:16: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_deficiencies",table:"student_academic_deficiencies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["deficiency_type","deficiency_status","remarks"],filterFields:["student_id","course_id","course_offering_id","course_result_id","deficiency_type","deficiency_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseResultId:"course_result_id",deficiencyType:"deficiency_type",deficiencyStatus:"deficiency_status",firstRecordedAt:"first_recorded_at",resolvedAt:"resolved_at",resolutionCourseResultId:"resolution_course_result_id",remarks:"remarks"}},"/academic-deficiencies");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:17: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcripts",table:"student_transcripts",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["transcript_number","transcript_type","transcript_status","verification_code"],filterFields:["student_id","programme_version_id","transcript_type","transcript_status"],defaultOrderField:"created_at",fields:{transcriptNumber:"transcript_number",studentId:"student_id",programmeVersionId:"programme_version_id",transcriptType:"transcript_type",issueReason:"issue_reason",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",finalAcademicStanding:"final_academic_standing",transcriptStatus:"transcript_status",generatedAt:"generated_at",generatedBy:"generated_by",approvedAt:"approved_at",approvedBy:"approved_by",issuedAt:"issued_at",issuedBy:"issued_by",revokedAt:"revoked_at",revokedBy:"revoked_by",replacementOf:"replacement_of",documentFileId:"document_file_id",verificationCode:"verification_code",remarks:"remarks"}},"/transcripts");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:19: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_courses",table:"student_transcript_courses",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["course_code","course_name","grade_code","result_type","pass_status"],filterFields:["transcript_id","transcript_semester_id","course_result_id","course_id"],defaultOrderField:"display_sequence",fields:{transcriptId:"transcript_id",transcriptSemesterId:"transcript_semester_id",courseResultId:"course_result_id",courseRegistrationId:"course_registration_id",courseId:"course_id",courseCode:"course_code",courseName:"course_name",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",resultType:"result_type",attemptNumber:"attempt_number",passStatus:"pass_status",displaySequence:"display_sequence"}},"/transcript-courses");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.routes.ts:25: "/me",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:9: const VIEW = "timetable.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:10: const MANAGE = "timetable.manage";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:15: moduleCode: "TIMETABLE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:16: entityType: "timetables",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:17: table: "timetables",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:22: "timetable_code",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:23: "timetable_name",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:40: timetableCode: "timetable_code",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:41: timetableName: "timetable_name",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:57: moduleCode: "TIMETABLE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:58: entityType: "timetable_entries",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:59: table: "timetable_entries",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:68: "timetable_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:73: "timetable_slot_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:80: timetableId: "timetable_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:85: timetableSlotId: "timetable_slot_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:97: moduleCode: "TIMETABLE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:98: entityType: "timetable_slots",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:99: table: "timetable_slots",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:126: moduleCode: "TIMETABLE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:159: moduleCode: "TIMETABLE",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts:32: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts:43: studentId: "student_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\transcripts\transcripts.routes.ts:62: documentFileId: "document_file_id",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:193: // ---------------- Registration ----------------
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:194: router.post("/registrations/:id/submit", requirePermission("registration.submit"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:196: const { data, error } = await supabase.from("student_registrations").select("*").eq("id", String(req.params.id)).maybeSingle();
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:198: if (!data) return fail(res, 404, "Student registration not found");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:199: if (!transition(data.registration_status, ["DRAFT"], "SUBMITTED", res)) return;
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:202: if (!["CLEARED", "OVERRIDE"].includes(data.document_eligibility_status)) return fail(res, 409, "Document eligibility is not cleared");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:203: const { data: updated, error: updateError } = await supabase.from("student_registrations").update({ registration_status: "SUBMITTED", submitted_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }).eq("id", String(req.params.id)).select("*").single();
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:205: await audit(req, "REGISTRATION_SUBMIT", "student_registrations", String(req.params.id), data, updated);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:209: router.post("/registrations/:id/approve", requirePermission("registration.approve"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:211: const { data, error } = await supabase.from("student_registrations").select("*").eq("id", String(req.params.id)).maybeSingle();
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:213: if (!data) return fail(res, 404, "Student registration not found");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:214: if (!["SUBMITTED", "PENDING_APPROVAL"].includes(data.registration_status)) return fail(res, 409, `Registration cannot be approved from ${data.registration_status}`);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:215: const { data: updated, error: updateError } = await supabase.from("student_registrations").update({ registration_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }).eq("id", String(req.params.id)).select("*").single();
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:217: const { error: approvalError } = await supabase.from("registration_approvals").upsert({ student_registration_id: String(req.params.id), approval_level: Number(req.body?.approval_level ?? 1), approval_role: String(req.body?.approval_role ?? "ACADEMIC"), approval_status: "APPROVED", comments: req.body?.comments ?? null, approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, { onConflict: "student_registration_id,approval_level" });
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:219: await audit(req, "REGISTRATION_APPROVE", "student_registrations", String(req.params.id), data, updated);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:223: router.post("/registrations/:id/register", requirePermission("registration.register"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:224: return updateById(req, res, next, "student_registrations", String(req.params.id), { registration_status: "REGISTERED", updated_by: actor(req), updated_at: new Date().toISOString() }, "registration.register", "REGISTRATION_REGISTER", "student_registrations");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:227: router.post("/registrations/:id/lock", requirePermission("registration.lock"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:228: return updateById(req, res, next, "student_registrations", String(req.params.id), { registration_status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "registration.lock", "REGISTRATION_LOCK", "student_registrations");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:231: router.post("/add-drop/:id/decide", requirePermission("registration.add_drop.decide"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:234: return updateById(req, res, next, "course_add_drop_requests", String(req.params.id), { request_status: decision, decision_reason: req.body?.reason ?? null, reviewed_by: actor(req), reviewed_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "registration.add_drop.decide", "ADD_DROP_DECIDE", "course_add_drop_requests");
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:237: // ---------------- Timetable ----------------
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:238: router.post("/timetables/:id/review", requirePermission("timetable.review"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "UNDER_REVIEW", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.review", "TIMETABLE_REVIEW", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:239: router.post("/timetables/:id/approve", requirePermission("timetable.approve"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "APPROVED", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.approve", "TIMETABLE_APPROVE", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:240: router.post("/timetables/:id/publish", requirePermission("timetable.publish"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.publish", "TIMETABLE_PUBLISH", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:241: router.post("/timetables/:id/lock", requirePermission("timetable.lock"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.lock", "TIMETABLE_LOCK", "timetables"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:287: router.post("/course-results/:id/calculate", requirePermission("results.calculate"), async (req, res, next) => {
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:299: router.post("/course-results/:id/submit", requirePermission("results.submit"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.submit", "RESULT_SUBMIT", "course_results"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:300: router.post("/course-results/:id/review", requirePermission("results.review"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "UNDER_REVIEW", updated_at: new Date().toISOString() }, "results.review", "RESULT_REVIEW", "course_results"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:301: router.post("/course-results/:id/approve", requirePermission("results.approve"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.approve", "RESULT_APPROVE", "course_results"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:302: router.post("/course-results/:id/publish", requirePermission("results.publish"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.publish", "RESULT_PUBLISH", "course_results"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:303: router.post("/course-results/:id/lock", requirePermission("results.lock"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.lock", "RESULT_LOCK", "course_results"));
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\workflows\workflow.routes.ts:312: const { data: cgpa, error: cgpaError } = await supabase.rpc("calculate_student_cgpa", { p_student_id: data.student_id });
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:19: import registrationRoutes from "../modules/registration/registration.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:20: import timetableRoutes from "../modules/timetable/timetable.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:21: import attendanceRoutes from "../modules/attendance/attendance.routes.js";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:104: // Documents / Helpdesk
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:107: //   /documents
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:108: //   /document-versions
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:111: //   /helpdesk/messages
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:116: router.use("/documents", communicationsRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:141: router.use("/registrations", registrationRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:142: router.use("/timetables", timetableRoutes);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\routes\index.ts:143: router.use("/attendance", attendanceRoutes);
+
+====================================================
+EXISTING STUDENT PORTAL CONTRACT
+====================================================
+395: <a href="student-registration.html">
+399: <a href="student-attendance.html">
+403: <a href="student-results.html">
+407: <a href="student-timetable.html">
+411: <a href="student-fees.html">
+415: <a href="student-documents.html">
+419: <a href="student-notifications.html">
+515: href="student-registration.html"
+534: href="student-attendance.html"
+553: href="student-results.html"
+572: href="student-timetable.html"
+591: href="student-fees.html"
+610: href="student-documents.html"
+629: href="student-notifications.html"
+813: window.IDMC_RBAC_API &&
+814: typeof window.IDMC_RBAC_API.hasPermission ===
+818: return window.IDMC_RBAC_API;
+1128: window.IDMCAuth?.getUser?.();
+1182: window.IDMCAuth?.getUser?.()
+1218: !window.IDMCAuth ||
+1219: typeof window.IDMCAuth.requireAuth !==
+1230: await window.IDMCAuth.requireAuth();
+1339: window.IDMCAuth &&
+1340: typeof window.IDMCAuth.logout ===
+1344: await window.IDMCAuth.logout();
+
+====================================================
+RELEVANT PERMISSIONS
+====================================================
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:10: const REG_VIEW = "registration.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academic-core\academic-core.routes.ts:13: const TT_VIEW = "timetable.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\attendance\attendance.routes.ts:9: const VIEW = "attendance.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:10: permissionView: "communications.view", permissionManage: "communications.manage",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:23: permissionView: "communications.view", permissionManage: "communications.manage",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:33: permissionView: "documents.view", permissionManage: "documents.manage",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\communications\communications.routes.ts:48: permissionView: "documents.view", permissionManage: "documents.manage",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:9: router.get("/fee-structures", requirePermission("finance.view"), controller.listFeeStructures);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:10: router.get("/fee-structures/:id", requirePermission("finance.view"), controller.getFeeStructure);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:12: router.get("/students/:studentId/account", requirePermission("finance.view"), controller.getFinancialAccount);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\routes\finance.routes.ts:19: router.get("/students/:studentId/transactions", requirePermission("finance.view"), controller.getTransactions);
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:78: permissionView: "staff.attendance.view", permissionManage: "staff.attendance.manage", searchFields: ["location", "remarks"], filterFields: ["staff_id", "attendance_date", "attendance_status", "source"], defaultOrderField: "attendance_date",
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts:84: permissionView: "staff.attendance.view", permissionManage: "staff.attendance.manage", searchFields: ["adjustment_reason", "adjustment_status"], filterFields: ["attendance_id", "adjustment_status"],
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\registration\registration.routes.ts:9: const VIEW = "registration.view";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\results\results.routes.ts:5: const VIEW="results.view", MANAGE="results.manage", APPROVE="results.approve", CORRECT="results.corrections.manage";
+C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\timetable\timetable.routes.ts:9: const VIEW = "timetable.view";

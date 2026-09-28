@@ -1,0 +1,142 @@
+﻿
+  apps\frontend\institutions.html:860:
+> apps\frontend\institutions.html:861:        .status {
+  apps\frontend\institutions.html:862:
+  apps\frontend\institutions.html:863:            display: inline-flex;
+  apps\frontend\institutions.html:883:
+> apps\frontend\institutions.html:884:        .status-dot {
+  apps\frontend\institutions.html:885:
+  apps\frontend\institutions.html:886:            width: 5px;
+  apps\frontend\institutions.html:1467:                        the IDMC iMIS environment, including
+> apps\frontend\institutions.html:1468:                        institution identity, code, status and
+  apps\frontend\institutions.html:1469:                        institutional description.
+  apps\frontend\institutions.html:1470:                    </p>
+  apps\frontend\institutions.html:1588:                            class="select"
+> apps\frontend\institutions.html:1589:                            data-status-filter
+  apps\frontend\institutions.html:1590:                        >
+  apps\frontend\institutions.html:1591:
+  apps\frontend\institutions.html:1592:                            <option value="ALL">
+> apps\frontend\institutions.html:1593:                                All statuses
+  apps\frontend\institutions.html:1594:                            </option>
+  apps\frontend\institutions.html:1595:
+  apps\frontend\institutions.html:1640:                                <th>
+> apps\frontend\institutions.html:1641:                                    STATUS
+  apps\frontend\institutions.html:1642:                                </th>
+  apps\frontend\institutions.html:1643:
+  apps\frontend\institutions.html:1746:                        <label>
+> apps\frontend\institutions.html:1747:                            STATUS
+  apps\frontend\institutions.html:1748:                        </label>
+  apps\frontend\institutions.html:1749:
+  apps\frontend\institutions.html:1750:                        <select
+> apps\frontend\institutions.html:1751:                            name="status"
+  apps\frontend\institutions.html:1752:                            required
+  apps\frontend\institutions.html:1753:                        >
+  apps\frontend\institutions.html:2116:                            item,
+> apps\frontend\institutions.html:2117:                            "status"
+  apps\frontend\institutions.html:2118:                        )
+  apps\frontend\institutions.html:2119:                    ).toUpperCase() ===
+  apps\frontend\institutions.html:2218:
+> apps\frontend\institutions.html:2219:        const statusFilter =
+  apps\frontend\institutions.html:2220:            document
+  apps\frontend\institutions.html:2221:                .querySelector(
+> apps\frontend\institutions.html:2222:                    "[data-status-filter]"
+  apps\frontend\institutions.html:2223:                )
+  apps\frontend\institutions.html:2224:                ?.value ||
+  apps\frontend\institutions.html:2235:                                item,
+> apps\frontend\institutions.html:2236:                                "institution_code",
+  apps\frontend\institutions.html:2237:                                "institutionCode",
+  apps\frontend\institutions.html:2238:                                "code"
+  apps\frontend\institutions.html:2246:                                item,
+> apps\frontend\institutions.html:2247:                                "institution_name",
+  apps\frontend\institutions.html:2248:                                "institutionName",
+  apps\frontend\institutions.html:2249:                                "name"
+  apps\frontend\institutions.html:2253:
+> apps\frontend\institutions.html:2254:                    const status =
+  apps\frontend\institutions.html:2255:                        String(
+  apps\frontend\institutions.html:2256:                            getField(
+  apps\frontend\institutions.html:2257:                                item,
+> apps\frontend\institutions.html:2258:                                "status"
+  apps\frontend\institutions.html:2259:                            )
+  apps\frontend\institutions.html:2260:                        ).toUpperCase();
+  apps\frontend\institutions.html:2268:
+> apps\frontend\institutions.html:2269:                    const matchesStatus =
+> apps\frontend\institutions.html:2270:                        statusFilter === "ALL" ||
+> apps\frontend\institutions.html:2271:                        status ===
+> apps\frontend\institutions.html:2272:                        statusFilter;
+  apps\frontend\institutions.html:2273:
+  apps\frontend\institutions.html:2274:
+  apps\frontend\institutions.html:2276:                        matchesSearch &&
+> apps\frontend\institutions.html:2277:                        matchesStatus
+  apps\frontend\institutions.html:2278:                    );
+  apps\frontend\institutions.html:2279:
+  apps\frontend\institutions.html:2321:                            item,
+> apps\frontend\institutions.html:2322:                            "institution_code",
+  apps\frontend\institutions.html:2323:                            "institutionCode",
+  apps\frontend\institutions.html:2324:                            "code"
+  apps\frontend\institutions.html:2330:                            item,
+> apps\frontend\institutions.html:2331:                            "institution_name",
+  apps\frontend\institutions.html:2332:                            "institutionName",
+  apps\frontend\institutions.html:2333:                            "name"
+  apps\frontend\institutions.html:2344:
+> apps\frontend\institutions.html:2345:                    const status =
+  apps\frontend\institutions.html:2346:                        String(
+  apps\frontend\institutions.html:2347:                            getField(
+  apps\frontend\institutions.html:2348:                                item,
+> apps\frontend\institutions.html:2349:                                "status"
+  apps\frontend\institutions.html:2350:                            ) ||
+  apps\frontend\institutions.html:2351:                            "ACTIVE"
+  apps\frontend\institutions.html:2383:
+> apps\frontend\institutions.html:2384:                                <span class="status">
+  apps\frontend\institutions.html:2385:
+  apps\frontend\institutions.html:2386:                                    <span
+> apps\frontend\institutions.html:2387:                                        class="status-dot"
+  apps\frontend\institutions.html:2388:                                    ></span>
+  apps\frontend\institutions.html:2389:
+> apps\frontend\institutions.html:2390:                                    ${escapeHtml(status)}
+  apps\frontend\institutions.html:2391:
+  apps\frontend\institutions.html:2392:                                </span>
+  apps\frontend\institutions.html:2503:                    institution,
+> apps\frontend\institutions.html:2504:                    "institution_code",
+  apps\frontend\institutions.html:2505:                    "institutionCode",
+  apps\frontend\institutions.html:2506:                    "code"
+  apps\frontend\institutions.html:2514:                    institution,
+> apps\frontend\institutions.html:2515:                    "institution_name",
+  apps\frontend\institutions.html:2516:                    "institutionName",
+  apps\frontend\institutions.html:2517:                    "name"
+  apps\frontend\institutions.html:2530:            form.elements
+> apps\frontend\institutions.html:2531:                .status
+  apps\frontend\institutions.html:2532:                .value =
+  apps\frontend\institutions.html:2533:                getField(
+  apps\frontend\institutions.html:2534:                    institution,
+> apps\frontend\institutions.html:2535:                    "status"
+  apps\frontend\institutions.html:2536:                ) ||
+  apps\frontend\institutions.html:2537:                "ACTIVE";
+  apps\frontend\institutions.html:2583:
+> apps\frontend\institutions.html:2584:            institution_code:
+  apps\frontend\institutions.html:2585:                form.elements
+  apps\frontend\institutions.html:2586:                    .institutionCode
+  apps\frontend\institutions.html:2589:
+> apps\frontend\institutions.html:2590:            institution_name:
+  apps\frontend\institutions.html:2591:                form.elements
+  apps\frontend\institutions.html:2592:                    .institutionName
+  apps\frontend\institutions.html:2602:
+> apps\frontend\institutions.html:2603:            status:
+  apps\frontend\institutions.html:2604:                form.elements
+> apps\frontend\institutions.html:2605:                    .status
+  apps\frontend\institutions.html:2606:                    .value
+  apps\frontend\institutions.html:2607:
+  apps\frontend\institutions.html:2611:        if (
+> apps\frontend\institutions.html:2612:            !payload.institution_code ||
+> apps\frontend\institutions.html:2613:            !payload.institution_name
+  apps\frontend\institutions.html:2614:        ) {
+  apps\frontend\institutions.html:2615:
+  apps\frontend\institutions.html:2754:            .querySelector(
+> apps\frontend\institutions.html:2755:                "[data-status-filter]"
+  apps\frontend\institutions.html:2756:            )
+  apps\frontend\institutions.html:2757:            ?.addEventListener(
+  apps\frontend\institutions.html:3062:            user.username ||
+> apps\frontend\institutions.html:3063:            user.email ||
+  apps\frontend\institutions.html:3064:            "IDMC User";
+  apps\frontend\institutions.html:3065:
+
+

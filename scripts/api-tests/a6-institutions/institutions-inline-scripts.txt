@@ -1,0 +1,1257 @@
+﻿====================================================
+ INLINE SCRIPT 1
+====================================================
+(function () {
+
+    "use strict";
+
+
+    let institutions = [];
+
+    let editingId = null;
+
+
+    /* =========================================================
+       HELPERS
+    ========================================================== */
+
+    function escapeHtml(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    function formatDate(value) {
+
+        if (!value) {
+            return "—";
+        }
+
+        const date =
+            new Date(value);
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "—";
+
+        }
+
+        return date.toLocaleDateString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    function getField(row, ...names) {
+
+        for (const name of names) {
+
+            if (
+                row &&
+                row[name] !== undefined &&
+                row[name] !== null
+            ) {
+
+                return row[name];
+
+            }
+
+        }
+
+        return "";
+
+    }
+
+
+    /* =========================================================
+       API
+    ========================================================== */
+
+    async function apiRequest(
+        path,
+        options = {}
+    ) {
+
+        return IDMC_RBAC_API.request(
+            path,
+            options
+        );
+
+    }
+
+
+    /* =========================================================
+       LOAD INSTITUTIONS
+    ========================================================== */
+
+    async function loadInstitutions() {
+
+        const table =
+            document.querySelector(
+                "[data-institutions-table]"
+            );
+
+        if (table) {
+
+            table.innerHTML = `
+                <tr>
+                    <td
+                        colspan="6"
+                        class="empty-state"
+                    >
+                        <strong>
+                            Loading institutions...
+                        </strong>
+                    </td>
+                </tr>
+            `;
+
+        }
+
+        try {
+
+            console.log(
+                "[Institutions] Loading institutions..."
+            );
+
+            const result =
+                await apiRequest(
+                    "/institutions"
+                );
+
+            console.log(
+                "[Institutions] Raw API response:",
+                result
+            );
+
+            /*
+             * Backend response:
+             *
+             * {
+             *     success: true,
+             *     data: {
+             *         items: [...],
+             *         pagination: {...}
+             *     }
+             * }
+             */
+
+            let data = [];
+
+            if (
+                Array.isArray(
+                    result?.data?.items
+                )
+            ) {
+
+                data =
+                    result.data.items;
+
+            } else if (
+                Array.isArray(
+                    result?.items
+                )
+            ) {
+
+                data =
+                    result.items;
+
+            } else if (
+                Array.isArray(
+                    result?.data
+                )
+            ) {
+
+                data =
+                    result.data;
+
+            } else if (
+                Array.isArray(
+                    result?.institutions
+                )
+            ) {
+
+                data =
+                    result.institutions;
+
+            } else if (
+                Array.isArray(result)
+            ) {
+
+                data =
+                    result;
+
+            }
+
+            console.log(
+                "[Institutions] Extracted records:",
+                data
+            );
+
+            console.log(
+                "[Institutions] Number of records:",
+                data.length
+            );
+
+            institutions =
+                Array.isArray(data)
+                    ? data
+                    : [];
+
+            updateStats();
+
+            renderInstitutions();
+
+        } catch (error) {
+
+            console.error(
+                "[Institutions] Failed to load:",
+                error
+            );
+
+            institutions = [];
+
+            updateStats();
+
+            if (table) {
+
+                table.innerHTML = `
+                    <tr>
+                        <td
+                            colspan="6"
+                            class="empty-state"
+                        >
+                            <strong>
+                                Unable to load institutions
+                            </strong>
+
+                            <span>
+                                ${escapeHtml(
+                                    error?.message ||
+                                    "Please check the backend service."
+                                )}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+
+            }
+
+        }
+
+    }
+
+    /* =========================================================
+       STATS
+    ========================================================== */
+
+    function updateStats() {
+
+        const total =
+            institutions.length;
+
+
+        const active =
+            institutions.filter(
+                item =>
+                    String(
+                        getField(
+                            item,
+                            "status"
+                        )
+                    ).toUpperCase() ===
+                    "ACTIVE"
+            ).length;
+
+
+        const inactive =
+            total - active;
+
+
+        const latest =
+            institutions
+                .map(
+                    item =>
+                        getField(
+                            item,
+                            "updated_at",
+                            "updatedAt"
+                        )
+                )
+                .filter(Boolean)
+                .sort()
+                .pop();
+
+
+        document
+            .querySelector(
+                "[data-total]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    total
+                )
+            );
+
+
+        document
+            .querySelector(
+                "[data-active]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    active
+                )
+            );
+
+
+        document
+            .querySelector(
+                "[data-inactive]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    inactive
+                )
+            );
+
+
+        document
+            .querySelector(
+                "[data-last-updated]"
+            )
+            ?.replaceChildren(
+                document.createTextNode(
+                    latest
+                        ? formatDate(latest)
+                        : "—"
+                )
+            );
+
+    }
+
+
+    /* =========================================================
+       RENDER TABLE
+    ========================================================== */
+
+    function renderInstitutions() {
+
+        const table =
+            document.querySelector(
+                "[data-institutions-table]"
+            );
+
+
+        if (!table) {
+            return;
+        }
+
+
+        const search =
+            document
+                .querySelector(
+                    "[data-search]"
+                )
+                ?.value
+                .trim()
+                .toLowerCase() ||
+            "";
+
+
+        const statusFilter =
+            document
+                .querySelector(
+                    "[data-status-filter]"
+                )
+                ?.value ||
+            "ALL";
+
+
+        const filtered =
+            institutions.filter(
+                item => {
+
+                    const code =
+                        String(
+                            getField(
+                                item,
+                                "institution_code",
+                                "institutionCode",
+                                "code"
+                            )
+                        ).toLowerCase();
+
+
+                    const name =
+                        String(
+                            getField(
+                                item,
+                                "institution_name",
+                                "institutionName",
+                                "name"
+                            )
+                        ).toLowerCase();
+
+
+                    const status =
+                        String(
+                            getField(
+                                item,
+                                "status"
+                            )
+                        ).toUpperCase();
+
+
+                    const matchesSearch =
+                        !search ||
+                        code.includes(search) ||
+                        name.includes(search);
+
+
+                    const matchesStatus =
+                        statusFilter === "ALL" ||
+                        status ===
+                        statusFilter;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus
+                    );
+
+                }
+            );
+
+
+        if (!filtered.length) {
+
+            table.innerHTML = `
+                <tr>
+                    <td
+                        colspan="6"
+                        class="empty-state"
+                    >
+                        <strong>
+                            No institutions found
+                        </strong>
+
+                        <span>
+                            Adjust your search or add a new institution.
+                        </span>
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        table.innerHTML =
+            filtered
+                .map(item => {
+
+                    const id =
+                        getField(
+                            item,
+                            "id"
+                        );
+
+
+                    const code =
+                        getField(
+                            item,
+                            "institution_code",
+                            "institutionCode",
+                            "code"
+                        );
+
+
+                    const name =
+                        getField(
+                            item,
+                            "institution_name",
+                            "institutionName",
+                            "name"
+                        );
+
+
+                    const description =
+                        getField(
+                            item,
+                            "description"
+                        ) ||
+                        "—";
+
+
+                    const status =
+                        String(
+                            getField(
+                                item,
+                                "status"
+                            ) ||
+                            "ACTIVE"
+                        ).toUpperCase();
+
+
+                    const updated =
+                        getField(
+                            item,
+                            "updated_at",
+                            "updatedAt"
+                        );
+
+
+                    return `
+                        <tr>
+
+                            <td>
+                                <span class="entity-code">
+                                    ${escapeHtml(code)}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="entity-name">
+                                    ${escapeHtml(name)}
+                                </span>
+                            </td>
+
+                            <td>
+                                ${escapeHtml(description)}
+                            </td>
+
+                            <td>
+
+                                <span class="status">
+
+                                    <span
+                                        class="status-dot"
+                                    ></span>
+
+                                    ${escapeHtml(status)}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+                                ${escapeHtml(
+                                    formatDate(updated)
+                                )}
+                            </td>
+
+                            <td>
+
+                                <div class="actions">
+
+                                    <button
+                                        type="button"
+                                        class="icon-button"
+                                        title="Edit institution"
+                                        data-rbac="institutions.manage"
+                                        data-edit-id="${escapeHtml(id)}"
+                                    >
+                                        ✎
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    `;
+
+                })
+                .join("");
+
+
+        if (
+            window.IDMC_RBAC_API &&
+            typeof window.IDMC_RBAC_API
+                .applyPermissionVisibility ===
+            "function"
+        ) {
+
+            window.IDMC_RBAC_API
+                .applyPermissionVisibility(
+                    table
+                );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       MODAL
+    ========================================================== */
+
+    function openModal(
+        institution = null
+    ) {
+
+        const modal =
+            document.querySelector(
+                "[data-modal]"
+            );
+
+
+        const form =
+            document.querySelector(
+                "[data-institution-form]"
+            );
+
+
+        const title =
+            document.querySelector(
+                "[data-modal-title]"
+            );
+
+
+        if (!modal || !form) {
+            return;
+        }
+
+
+        form.reset();
+
+
+        editingId =
+            institution
+                ? getField(
+                    institution,
+                    "id"
+                )
+                : null;
+
+
+        if (title) {
+
+            title.textContent =
+                institution
+                    ? "Edit Institution"
+                    : "Add Institution";
+
+        }
+
+
+        if (institution) {
+
+            form.elements
+                .institutionCode
+                .value =
+                getField(
+                    institution,
+                    "institution_code",
+                    "institutionCode",
+                    "code"
+                );
+
+
+            form.elements
+                .institutionName
+                .value =
+                getField(
+                    institution,
+                    "institution_name",
+                    "institutionName",
+                    "name"
+                );
+
+
+            form.elements
+                .description
+                .value =
+                getField(
+                    institution,
+                    "description"
+                );
+
+
+            form.elements
+                .status
+                .value =
+                getField(
+                    institution,
+                    "status"
+                ) ||
+                "ACTIVE";
+
+        }
+
+
+        modal.classList.add(
+            "show"
+        );
+
+    }
+
+
+    function closeModal() {
+
+        const modal =
+            document.querySelector(
+                "[data-modal]"
+            );
+
+
+        modal?.classList.remove(
+            "show"
+        );
+
+
+        editingId = null;
+
+    }
+
+
+    /* =========================================================
+       SAVE
+    ========================================================== */
+
+    async function saveInstitution(
+        event
+    ) {
+
+        event.preventDefault();
+
+
+        const form =
+            event.currentTarget;
+
+
+        const payload = {
+
+            institution_code:
+                form.elements
+                    .institutionCode
+                    .value
+                    .trim(),
+
+            institution_name:
+                form.elements
+                    .institutionName
+                    .value
+                    .trim(),
+
+            description:
+                form.elements
+                    .description
+                    .value
+                    .trim() ||
+                null,
+
+            status:
+                form.elements
+                    .status
+                    .value
+
+        };
+
+
+        if (
+            !payload.institution_code ||
+            !payload.institution_name
+        ) {
+
+            alert(
+                "Institution code and name are required."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            if (editingId) {
+
+                await apiRequest(
+                    `/institutions/${encodeURIComponent(
+                        editingId
+                    )}`,
+                    {
+                        method: "PATCH",
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+            } else {
+
+                await apiRequest(
+                    "/institutions",
+                    {
+                        method: "POST",
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+            }
+
+
+            closeModal();
+
+            await loadInstitutions();
+
+
+        } catch (error) {
+
+            console.error(
+                "Failed to save institution:",
+                error
+            );
+
+
+            const errorMessage =
+                typeof error?.message === "string"
+                    ? error.message
+                    : typeof error?.error === "string"
+                        ? error.error
+                        : typeof error?.details === "string"
+                            ? error.details
+                            : typeof error === "string"
+                                ? error
+                                : (
+                                    error?.message?.message ||
+                                    error?.error?.message ||
+                                    error?.details?.message ||
+                                    "Unable to save institution."
+                                );
+
+            alert(
+                typeof errorMessage === "string"
+                    ? errorMessage
+                    : JSON.stringify(
+                        errorMessage,
+                        null,
+                        2
+                    )
+            );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       EVENTS
+    ========================================================== */
+
+    function setupEvents() {
+
+        document
+            .querySelector(
+                "[data-add-institution]"
+            )
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !IDMC_RBAC_API
+                            .hasPermission(
+                                "institutions.manage"
+                            )
+                    ) {
+
+                        return;
+
+                    }
+
+                    openModal();
+
+                }
+            );
+
+
+        document
+            .querySelector(
+                "[data-refresh]"
+            )
+            ?.addEventListener(
+                "click",
+                loadInstitutions
+            );
+
+
+        document
+            .querySelector(
+                "[data-search]"
+            )
+            ?.addEventListener(
+                "input",
+                renderInstitutions
+            );
+
+
+        document
+            .querySelector(
+                "[data-status-filter]"
+            )
+            ?.addEventListener(
+                "change",
+                renderInstitutions
+            );
+
+
+        document
+            .querySelector(
+                "[data-institution-form]"
+            )
+            ?.addEventListener(
+                "submit",
+                saveInstitution
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-close-modal]"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    closeModal
+                );
+
+            });
+
+
+        document
+            .querySelector(
+                "[data-modal]"
+            )
+            ?.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target.matches(
+                            "[data-modal]"
+                        )
+                    ) {
+
+                        closeModal();
+
+                    }
+
+                }
+            );
+
+
+        document
+            .addEventListener(
+                "click",
+                event => {
+
+                    const button =
+                        event.target.closest(
+                            "[data-edit-id]"
+                        );
+
+
+                    if (!button) {
+                        return;
+                    }
+
+
+                    if (
+                        !IDMC_RBAC_API
+                            .hasPermission(
+                                "institutions.manage"
+                            )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const id =
+                        button.dataset.editId;
+
+
+                    const institution =
+                        institutions.find(
+                            item =>
+                                String(
+                                    getField(
+                                        item,
+                                        "id"
+                                    )
+                                ) ===
+                                String(id)
+                        );
+
+
+                    if (institution) {
+
+                        openModal(
+                            institution
+                        );
+
+                    }
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-logout]"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        try {
+
+                            await window.IDMCAuth
+                                .logout();
+
+                        } catch (error) {
+
+                            console.error(
+                                "Logout failed:",
+                                error
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       CLOCK
+    ========================================================== */
+
+    function setupClock() {
+
+        const clock =
+            document.querySelector(
+                "[data-clock]"
+            );
+
+
+        const date =
+            document.querySelector(
+                "[data-date]"
+            );
+
+
+        function update() {
+
+            const now =
+                new Date();
+
+
+            if (clock) {
+
+                clock.textContent =
+                    now.toLocaleTimeString(
+                        [],
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    );
+
+            }
+
+
+            if (date) {
+
+                date.textContent =
+                    now.toLocaleDateString(
+                        [],
+                        {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                        }
+                    );
+
+            }
+
+        }
+
+
+        update();
+
+        setInterval(
+            update,
+            1000
+        );
+
+    }
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================== */
+
+    async function initialize() {
+
+        try {
+
+            await window.IDMCAuth
+                .requireAuth();
+
+
+            await IDMC_RBAC_API
+                .loadCurrentUserRBAC();
+
+
+            const allowed =
+                IDMC_RBAC_API
+                    .hasPermission(
+                        "institutions.view"
+                    );
+
+
+            if (!allowed) {
+
+                await IDMC_RBAC_API
+                    .requireRBACPage(
+                        "institutions.view"
+                    );
+
+                return;
+
+            }
+
+
+            setupClock();
+
+            setupEvents();
+
+            renderUserFromSession();
+
+            await loadInstitutions();
+
+
+        } catch (error) {
+
+            console.error(
+                "Institutions page initialization failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+    function renderUserFromSession() {
+
+        let account = null;
+
+
+        try {
+
+            const raw =
+                sessionStorage.getItem(
+                    "idmc_user"
+                );
+
+
+            if (raw) {
+
+                account =
+                    JSON.parse(raw);
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Failed to read session account:",
+                error
+            );
+
+        }
+
+
+        if (!account) {
+            return;
+        }
+
+
+        const user =
+            account.user || {};
+
+
+        const name =
+            user.displayName ||
+            user.display_name ||
+            user.username ||
+            user.email ||
+            "IDMC User";
+
+
+        document
+            .querySelectorAll(
+                "[data-user-name]"
+            )
+            .forEach(
+                element =>
+                    element.textContent =
+                        name
+            );
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialize
+        );
+
+    } else {
+
+        initialize();
+
+    }
+
+})();
+
+

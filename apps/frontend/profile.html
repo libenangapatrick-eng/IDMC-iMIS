@@ -1,0 +1,2660 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="IDMC iMIS User Profile"
+>
+
+<title>IDMC iMIS | My Profile</title>
+
+
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- =========================================================
+     CORE CSS
+========================================================== -->
+
+<link
+    rel="stylesheet"
+    href="assets/css/app.css"
+>
+
+
+<style>
+
+    :root {
+
+        --idmc-maroon-950: #330914;
+        --idmc-maroon-900: #4A0D1C;
+        --idmc-maroon-800: #631226;
+        --idmc-maroon-700: #7C1830;
+        --idmc-maroon-600: #932039;
+        --idmc-maroon-500: #AB2A44;
+
+        --idmc-maroon-tint: #F5E8EB;
+        --idmc-maroon-tint-strong: #ECD3D9;
+
+        --idmc-paper: #FFFFFF;
+        --idmc-parchment: #FAF7F7;
+
+        --idmc-line: #E8DEE1;
+        --idmc-line-soft: #F1E8EA;
+
+        --idmc-ink: #2A1116;
+        --idmc-text-muted: #7C6165;
+        --idmc-text-faint: #A58A8E;
+
+        --idmc-font-sans:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+
+        --idmc-font-display:
+            "Fraunces",
+            Georgia,
+            serif;
+
+    }
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+
+        margin: 0;
+
+        width: 100%;
+
+        min-height: 100%;
+
+        font-family:
+            var(--idmc-font-sans);
+
+        color:
+            var(--idmc-ink);
+
+        background:
+            var(--idmc-parchment);
+
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        background-image:
+            radial-gradient(
+                circle at 1px 1px,
+                rgba(74,13,28,.045) 1px,
+                transparent 0
+            );
+
+        background-size:
+            22px 22px;
+
+    }
+
+
+    /* =========================================================
+       PAGE SHELL
+    ========================================================== */
+
+    .profile-page {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+
+    /* =========================================================
+       TOP HEADER
+    ========================================================== */
+
+    .profile-topbar {
+
+        width: 100%;
+
+        min-height: 76px;
+
+        padding:
+            0 28px;
+
+        background:
+            rgba(255,255,255,.96);
+
+        border-bottom:
+            1px solid
+            var(--idmc-line);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 20;
+
+        backdrop-filter:
+            blur(10px);
+
+    }
+
+
+    .topbar-brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        min-width: 0;
+
+    }
+
+
+    .brand-logo {
+
+        width: 42px;
+
+        height: 42px;
+
+        flex: 0 0 42px;
+
+        background:
+            var(--idmc-maroon-900);
+
+        color:
+            #FFFFFF;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-family:
+            var(--idmc-font-display);
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        letter-spacing: .02em;
+
+    }
+
+
+    .brand-copy {
+
+        min-width: 0;
+
+    }
+
+
+    .brand-copy strong {
+
+        display: block;
+
+        color:
+            var(--idmc-maroon-900);
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+    }
+
+
+    .brand-copy span {
+
+        display: block;
+
+        margin-top: 2px;
+
+        color:
+            var(--idmc-text-faint);
+
+        font-size: 9px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+    }
+
+
+    .topbar-actions {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .dashboard-button {
+
+        min-height: 38px;
+
+        padding:
+            0 15px;
+
+        border:
+            1px solid
+            var(--idmc-maroon-700);
+
+        background:
+            var(--idmc-maroon-900);
+
+        color:
+            #FFFFFF;
+
+        text-decoration: none;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        transition:
+            .16s ease;
+
+    }
+
+
+    .dashboard-button:hover {
+
+        background:
+            var(--idmc-maroon-800);
+
+        transform:
+            translateY(-1px);
+
+    }
+
+
+    .dashboard-icon {
+
+        font-size: 15px;
+
+        line-height: 1;
+
+    }
+
+
+    .topbar-time {
+
+        min-width: 112px;
+
+        padding:
+            6px 10px;
+
+        border:
+            1px solid
+            var(--idmc-line);
+
+        background:
+            var(--idmc-parchment);
+
+        text-align: right;
+
+    }
+
+
+    .topbar-time strong {
+
+        display: block;
+
+        color:
+            var(--idmc-maroon-900);
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+    }
+
+
+    .topbar-time span {
+
+        display: block;
+
+        margin-top: 2px;
+
+        color:
+            var(--idmc-text-faint);
+
+        font-size: 8px;
+
+    }
+
+
+    /* =========================================================
+       MAIN
+    ========================================================== */
+
+    .profile-main {
+
+        width: 100%;
+
+        flex: 1;
+
+        padding:
+            34px 20px 45px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+    .page-intro {
+
+        width: 100%;
+
+        max-width: 940px;
+
+        margin-bottom: 18px;
+
+        display: flex;
+
+        align-items: flex-end;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+    }
+
+
+    .page-intro-left span {
+
+        display: block;
+
+        margin-bottom: 5px;
+
+        color:
+            var(--idmc-maroon-600);
+
+        font-size: 9px;
+
+        font-weight: 700;
+
+        letter-spacing: .12em;
+
+    }
+
+
+    .page-intro-left h1 {
+
+        margin: 0;
+
+        color:
+            var(--idmc-maroon-900);
+
+        font-family:
+            var(--idmc-font-display);
+
+        font-size: 25px;
+
+        line-height: 1.15;
+
+        font-weight: 600;
+
+    }
+
+
+    .page-intro-left p {
+
+        margin:
+            7px 0 0;
+
+        color:
+            var(--idmc-text-muted);
+
+        font-size: 11px;
+
+    }
+
+
+    .breadcrumb {
+
+        color:
+            var(--idmc-text-faint);
+
+        font-size: 9px;
+
+        white-space: nowrap;
+
+    }
+
+
+    .breadcrumb strong {
+
+        color:
+            var(--idmc-maroon-700);
+
+    }
+
+
+    /* =========================================================
+       PROFILE CARD
+    ========================================================== */
+
+    .profile-container {
+
+        width: 100%;
+
+        max-width: 940px;
+
+        background:
+            var(--idmc-paper);
+
+        border:
+            1px solid
+            var(--idmc-line);
+
+        box-shadow:
+            0 12px 35px
+            rgba(51,9,20,.08);
+
+    }
+
+
+    /* =========================================================
+       PROFILE HERO
+    ========================================================== */
+
+    .profile-hero {
+
+        padding:
+            25px 28px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--idmc-maroon-950),
+                var(--idmc-maroon-800)
+            );
+
+        color:
+            #FFFFFF;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 20px;
+
+    }
+
+
+    .profile-avatar {
+
+        width: 82px;
+
+        height: 82px;
+
+        flex: 0 0 82px;
+
+        border-radius: 50%;
+
+        border:
+            3px solid
+            rgba(255,255,255,.82);
+
+        background:
+            rgba(255,255,255,.13);
+
+        color:
+            #FFFFFF;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: hidden;
+
+        font-family:
+            var(--idmc-font-display);
+
+        font-size: 23px;
+
+        font-weight: 600;
+
+    }
+
+
+    .profile-avatar img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        display: block;
+
+    }
+
+
+    .profile-hero-content {
+
+        min-width: 0;
+
+        flex: 1;
+
+    }
+
+
+    .profile-hero-label {
+
+        margin-bottom: 5px;
+
+        color:
+            rgba(255,255,255,.62);
+
+        font-size: 8px;
+
+        font-weight: 700;
+
+        letter-spacing: .12em;
+
+    }
+
+
+    .profile-name {
+
+        margin: 0;
+
+        color:
+            #FFFFFF;
+
+        font-family:
+            var(--idmc-font-display);
+
+        font-size: 23px;
+
+        line-height: 1.2;
+
+        font-weight: 600;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    .profile-role {
+
+        margin-top: 5px;
+
+        color:
+            rgba(255,255,255,.76);
+
+        font-size: 11px;
+
+        font-weight: 500;
+
+    }
+
+
+    .profile-status {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        margin-top: 11px;
+
+        padding:
+            5px 9px;
+
+        background:
+            rgba(255,255,255,.10);
+
+        border:
+            1px solid
+            rgba(255,255,255,.18);
+
+        font-size: 8px;
+
+        font-weight: 700;
+
+        letter-spacing: .06em;
+
+    }
+
+
+    .status-dot {
+
+        width: 6px;
+
+        height: 6px;
+
+        border-radius: 50%;
+
+        background:
+            #FFFFFF;
+
+    }
+
+
+    .profile-number-box {
+
+        min-width: 145px;
+
+        padding:
+            12px 14px;
+
+        border-left:
+            1px solid
+            rgba(255,255,255,.20);
+
+    }
+
+
+    .profile-number-box span {
+
+        display: block;
+
+        color:
+            rgba(255,255,255,.52);
+
+        font-size: 8px;
+
+        font-weight: 700;
+
+        letter-spacing: .08em;
+
+    }
+
+
+    .profile-number-box strong {
+
+        display: block;
+
+        margin-top: 5px;
+
+        color:
+            #FFFFFF;
+
+        font-size: 11px;
+
+        font-weight: 600;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    /* =========================================================
+       CARD BODY
+    ========================================================== */
+
+    .profile-body {
+
+        padding:
+            25px 28px 28px;
+
+    }
+
+
+    .section-heading {
+
+        margin-bottom: 17px;
+
+        padding-bottom: 10px;
+
+        border-bottom:
+            1px solid
+            var(--idmc-line);
+
+    }
+
+
+    .section-heading span {
+
+        display: block;
+
+        color:
+            var(--idmc-maroon-600);
+
+        font-size: 8px;
+
+        font-weight: 700;
+
+        letter-spacing: .12em;
+
+    }
+
+
+    .section-heading h2 {
+
+        margin:
+            4px 0 0;
+
+        color:
+            var(--idmc-maroon-900);
+
+        font-family:
+            var(--idmc-font-display);
+
+        font-size: 17px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* =========================================================
+       DETAILS GRID
+    ========================================================== */
+
+    .details-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0,1fr));
+
+        gap:
+            1px;
+
+        background:
+            var(--idmc-line);
+
+        border:
+            1px solid
+            var(--idmc-line);
+
+    }
+
+
+    .field {
+
+        min-width: 0;
+
+        padding:
+            14px 15px;
+
+        background:
+            var(--idmc-paper);
+
+    }
+
+
+    .field label {
+
+        display: block;
+
+        margin-bottom: 5px;
+
+        color:
+            var(--idmc-text-faint);
+
+        font-size: 8px;
+
+        font-weight: 700;
+
+        letter-spacing: .07em;
+
+    }
+
+
+    .field strong {
+
+        display: block;
+
+        color:
+            var(--idmc-ink);
+
+        font-size: 11px;
+
+        line-height: 1.45;
+
+        font-weight: 600;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    /* =========================================================
+       ACCESS SECTIONS
+    ========================================================== */
+
+    .access-section {
+
+        margin-top: 25px;
+
+    }
+
+
+    .access-box {
+
+        padding:
+            15px;
+
+        border:
+            1px solid
+            var(--idmc-line);
+
+        background:
+            var(--idmc-parchment);
+
+    }
+
+
+    .role-list,
+    .permission-list {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 7px;
+
+    }
+
+
+    .role-chip {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        min-height: 27px;
+
+        padding:
+            0 10px;
+
+        background:
+            var(--idmc-maroon-800);
+
+        color:
+            #FFFFFF;
+
+        font-size: 9px;
+
+        font-weight: 600;
+
+    }
+
+
+    .permission-chip {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        min-height: 25px;
+
+        padding:
+            0 8px;
+
+        background:
+            var(--idmc-maroon-tint);
+
+        color:
+            var(--idmc-maroon-800);
+
+        border:
+            1px solid
+            var(--idmc-maroon-tint-strong);
+
+        font-size: 8px;
+
+        font-weight: 600;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    .empty-message {
+
+        color:
+            var(--idmc-text-muted);
+
+        font-size: 10px;
+
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
+
+    .profile-footer {
+
+        width: 100%;
+
+        max-width: 940px;
+
+        margin-top: 18px;
+
+        padding:
+            12px 0;
+
+        color:
+            var(--idmc-text-faint);
+
+        text-align: center;
+
+        font-size: 9px;
+
+    }
+
+
+    .profile-footer strong {
+
+        color:
+            var(--idmc-maroon-700);
+
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================== */
+
+    @media (max-width: 900px) {
+
+        .details-grid {
+
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+
+        }
+
+
+        .page-intro,
+        .profile-container,
+        .profile-footer {
+
+            max-width: 760px;
+
+        }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+        .profile-topbar {
+
+            min-height: 68px;
+
+            padding:
+                0 14px;
+
+        }
+
+
+        .brand-logo {
+
+            width: 38px;
+
+            height: 38px;
+
+            flex-basis: 38px;
+
+            font-size: 13px;
+
+        }
+
+
+        .brand-copy strong {
+
+            font-size: 12px;
+
+        }
+
+
+        .brand-copy span {
+
+            display: none;
+
+        }
+
+
+        .topbar-time {
+
+            display: none;
+
+        }
+
+
+        .dashboard-button {
+
+            min-height: 36px;
+
+            padding:
+                0 11px;
+
+            font-size: 10px;
+
+        }
+
+
+        .profile-main {
+
+            padding:
+                22px 12px 30px;
+
+        }
+
+
+        .page-intro {
+
+            margin-bottom: 13px;
+
+            align-items: flex-start;
+
+        }
+
+
+        .page-intro-left h1 {
+
+            font-size: 22px;
+
+        }
+
+
+        .page-intro-left p {
+
+            font-size: 10px;
+
+        }
+
+
+        .breadcrumb {
+
+            display: none;
+
+        }
+
+
+        .profile-hero {
+
+            padding:
+                21px 18px;
+
+            align-items: flex-start;
+
+        }
+
+
+        .profile-avatar {
+
+            width: 68px;
+
+            height: 68px;
+
+            flex-basis: 68px;
+
+            font-size: 19px;
+
+        }
+
+
+        .profile-name {
+
+            font-size: 19px;
+
+        }
+
+
+        .profile-role {
+
+            font-size: 10px;
+
+        }
+
+
+        .profile-number-box {
+
+            display: none;
+
+        }
+
+
+        .profile-body {
+
+            padding:
+                21px 18px 23px;
+
+        }
+
+
+        .details-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .field {
+
+            padding:
+                12px 13px;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 16px;
+
+        }
+
+    }
+
+
+    @media (max-width: 400px) {
+
+        .profile-topbar {
+
+            padding:
+                0 10px;
+
+        }
+
+
+        .topbar-brand {
+
+            gap: 8px;
+
+        }
+
+
+        .dashboard-button {
+
+            padding:
+                0 9px;
+
+        }
+
+
+        .dashboard-button .dashboard-text {
+
+            display: none;
+
+        }
+
+
+        .profile-hero {
+
+            gap: 13px;
+
+        }
+
+
+        .profile-avatar {
+
+            width: 60px;
+
+            height: 60px;
+
+            flex-basis: 60px;
+
+        }
+
+
+        .profile-name {
+
+            font-size: 17px;
+
+        }
+
+    }
+
+</style>
+
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+    <link rel="stylesheet" href="assets/css/application-integration.css">
+    <link rel="stylesheet" href="assets/css/idmc-deep-ui.css">
+    <link rel="stylesheet" href="assets/css/idmc-current-repair.css">
+</head>
+
+<body>
+
+<div class="profile-page">
+
+
+<!-- =====================================================
+     TOP HEADER
+====================================================== -->
+
+<header class="profile-topbar">
+
+
+    <div class="topbar-brand">
+
+        <div class="brand-logo">
+            IDMC
+        </div>
+
+        <div class="brand-copy">
+
+            <strong>
+                IDMC iMIS
+            </strong>
+
+            <span>
+                Institute of Development and Medical Sciences
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+
+        <div class="topbar-time">
+
+            <strong data-clock>
+                --:--
+            </strong>
+
+            <span data-date>
+                Loading date...
+            </span>
+
+        </div>
+
+
+        <!-- DASHBOARD BUTTON -->
+
+        <a
+            href="dashboard.html"
+            class="dashboard-button"
+            aria-label="Return to Dashboard"
+        >
+
+            <span class="dashboard-icon">
+                â–¦
+            </span>
+
+            <span class="dashboard-text">
+                Dashboard
+            </span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
+
+<main class="profile-main">
+
+
+    <!-- PAGE INTRO -->
+
+    <div class="page-intro">
+
+
+        <div class="page-intro-left">
+
+            <span>
+                IDMC iMIS / ACCOUNT
+            </span>
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Your institutional account information and access details.
+            </p>
+
+        </div>
+
+
+        <div class="breadcrumb">
+
+            IDMC iMIS
+            /
+            <strong>
+                My Profile
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PROFILE CARD
+    ================================================== -->
+
+    <section class="profile-container">
+
+
+        <!-- PROFILE HERO -->
+
+        <div class="profile-hero">
+
+
+            <div
+                class="profile-avatar"
+                data-user-avatar
+            >
+                ID
+            </div>
+
+
+            <div class="profile-hero-content">
+
+
+                <div class="profile-hero-label">
+                    ACCOUNT HOLDER
+                </div>
+
+
+                <h2
+                    class="profile-name"
+                    data-profile-name
+                >
+                    Loading...
+                </h2>
+
+
+                <div
+                    class="profile-role"
+                    data-profile-role
+                >
+                    Loading role...
+                </div>
+
+
+                <div class="profile-status">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        ACTIVE ACCOUNT
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-number-box">
+
+                <span>
+                    USER NUMBER
+                </span>
+
+                <strong
+                    data-user-number
+                >
+                    â€”
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROFILE BODY -->
+
+        <div class="profile-body">
+
+
+            <!-- ACCOUNT INFORMATION -->
+
+            <div class="section-heading">
+
+                <span>
+                    ACCOUNT INFORMATION
+                </span>
+
+                <h2>
+                    Personal &amp; Account Details
+                </h2>
+
+            </div>
+
+
+            <div class="details-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        FULL NAME
+                    </label>
+
+                    <strong
+                        data-profile-name-field
+                    >
+                        â€”
+                    </strong>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        USERNAME
+                    </label>
+
+                    <strong
+                        data-profile-username
+                    >
+                        â€”
+                    </strong>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        EMAIL ADDRESS
+                    </label>
+
+                    <strong
+                        data-profile-email
+                    >
+                        â€”
+                    </strong>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        PHONE NUMBER
+                    </label>
+
+                    <strong
+                        data-profile-phone
+                    >
+                        Not provided
+                    </strong>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        ACCOUNT STATUS
+                    </label>
+
+                    <strong
+                        data-profile-status
+                    >
+                        â€”
+                    </strong>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        EMAIL VERIFICATION
+                    </label>
+
+                    <strong
+                        data-profile-email-status
+                    >
+                        â€”
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ASSIGNED ROLES
+            ================================================== -->
+
+            <div class="access-section">
+
+
+                <div class="section-heading">
+
+                    <span>
+                        ACCESS CONTROL
+                    </span>
+
+                    <h2>
+                        Assigned Roles
+                    </h2>
+
+                </div>
+
+
+                <div class="access-box">
+
+                    <div
+                        class="role-list"
+                        data-role-list
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ASSIGNED PERMISSIONS
+            ================================================== -->
+
+            <div class="access-section">
+
+
+                <div class="section-heading">
+
+                    <span>
+                        SECURITY &amp; ACCESS
+                    </span>
+
+                    <h2>
+                        Assigned Permissions
+                    </h2>
+
+                </div>
+
+
+                <div class="access-box">
+
+                    <div
+                        class="permission-list"
+                        data-permission-list
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="profile-footer">
+
+        <strong>
+            IDMC iMIS
+        </strong>
+
+        &nbsp;â€¢&nbsp;
+
+        Integrated Management Information System
+
+        &nbsp;â€¢&nbsp;
+
+        Version 1.0
+
+    </div>
+
+
+</main>
+
+
+</div>
+
+<!-- =========================================================
+     CORE SCRIPTS
+========================================================== -->
+
+<script src="assets/js/idmc-session.js"></script>
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+
+<script src="assets/js/rbac.js"></script>
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /* =========================================================
+       GET STORED ACCOUNT
+    ========================================================== */
+
+    function getAccount() {
+
+        try {
+
+            const raw =
+                sessionStorage.getItem(
+                    "idmc_user"
+                );
+
+            if (!raw) {
+
+                return null;
+
+            }
+
+            return JSON.parse(raw);
+
+        } catch (error) {
+
+            console.error(
+                "Failed to read IDMC account:",
+                error
+            );
+
+            return null;
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       USER NAME
+    ========================================================== */
+
+    function getUserName(user) {
+
+        if (!user) {
+
+            return "IDMC User";
+
+        }
+
+
+        return (
+
+            user.display_name ||
+
+            user.displayName ||
+
+            user.full_name ||
+
+            user.fullName ||
+
+            [
+                user.first_name,
+                user.middle_name,
+                user.last_name
+            ]
+                .filter(Boolean)
+                .join(" ") ||
+
+            user.username ||
+
+            user.email ||
+
+            "IDMC User"
+
+        );
+
+    }
+
+
+
+    /* =========================================================
+       USER NUMBER
+    ========================================================== */
+
+    function getUserNumber(user) {
+
+        if (!user) {
+
+            return "â€”";
+
+        }
+
+
+        return (
+
+            user.user_number ||
+
+            user.userNumber ||
+
+            user.user_no ||
+
+            user.userNo ||
+
+            user.employee_number ||
+
+            user.employeeNumber ||
+
+            "â€”"
+
+        );
+
+    }
+
+
+
+    /* =========================================================
+       USER EMAIL
+    ========================================================== */
+
+    function getUserEmail(user) {
+
+        if (!user) {
+
+            return "â€”";
+
+        }
+
+
+        return (
+
+            user.email ||
+
+            user.email_address ||
+
+            user.emailAddress ||
+
+            "â€”"
+
+        );
+
+    }
+
+
+
+    /* =========================================================
+       USER ROLE
+    ========================================================== */
+
+    function getRoleName(role) {
+
+        if (!role) {
+
+            return "";
+
+        }
+
+
+        if (typeof role === "string") {
+
+            return role;
+
+        }
+
+
+        return (
+
+            role.roleName ||
+
+            role.role_name ||
+
+            role.name ||
+
+            role.roleCode ||
+
+            role.role_code ||
+
+            "Role"
+
+        );
+
+    }
+
+
+
+    /* =========================================================
+       PRIMARY ROLE
+    ========================================================== */
+
+    function getPrimaryRole(roles) {
+
+        if (!Array.isArray(roles)) {
+
+            return "User";
+
+        }
+
+
+        const names =
+            roles
+                .map(getRoleName)
+                .filter(Boolean);
+
+
+        return names.length
+            ? names[0]
+            : "User";
+
+    }
+
+
+
+    /* =========================================================
+       INITIALS
+    ========================================================== */
+
+    function getInitials(name) {
+
+        const parts =
+            String(name || "IDMC")
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+
+
+        if (!parts.length) {
+
+            return "ID";
+
+        }
+
+
+        if (parts.length === 1) {
+
+            return parts[0]
+                .substring(0, 2)
+                .toUpperCase();
+
+        }
+
+
+        return (
+
+            parts[0].charAt(0) +
+
+            parts[
+                parts.length - 1
+            ].charAt(0)
+
+        ).toUpperCase();
+
+    }
+
+
+
+    /* =========================================================
+       PERMISSION CODE
+    ========================================================== */
+
+    function getPermissionCode(permission) {
+
+        if (
+            typeof permission ===
+            "string"
+        ) {
+
+            return permission;
+
+        }
+
+
+        if (!permission) {
+
+            return "";
+
+        }
+
+
+        return (
+
+            permission.permissionCode ||
+
+            permission.permission_code ||
+
+            permission.code ||
+
+            permission.name ||
+
+            ""
+
+        );
+
+    }
+
+
+
+    /* =========================================================
+       RENDER PROFILE
+    ========================================================== */
+
+    function renderProfile(account) {
+
+        if (!account) {
+
+            return;
+
+        }
+
+
+        const user =
+            account.user || {};
+
+
+        const name =
+            getUserName(user);
+
+
+        const username =
+            user.username ||
+            "â€”";
+
+
+        const email =
+            getUserEmail(user);
+
+
+        const phone =
+            user.phone ||
+            user.phoneNumber ||
+            user.phone_number ||
+            "Not provided";
+
+
+        const status =
+            user.status ||
+            "ACTIVE";
+
+
+        const verified =
+            user.emailVerifiedAt ||
+            user.email_verified_at ||
+            user.email_confirmed_at ||
+            user.emailConfirmedAt;
+
+
+        const emailVerification =
+            verified
+                ? "Verified"
+                : "Not verified";
+
+
+        const userNumber =
+            getUserNumber(user);
+
+
+        const roles =
+            Array.isArray(account.roles)
+                ? account.roles
+                : [];
+
+
+        const permissions =
+            Array.isArray(account.permissions)
+                ? account.permissions
+                : [];
+
+
+        const primaryRole =
+            getPrimaryRole(roles);
+
+
+
+        /* =====================================================
+           PROFILE NAME
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-profile-name]"
+            )
+            .forEach(element => {
+
+                element.textContent =
+                    name;
+
+            });
+
+
+        document
+            .querySelectorAll(
+                "[data-profile-name-field]"
+            )
+            .forEach(element => {
+
+                element.textContent =
+                    name;
+
+            });
+
+
+
+        /* =====================================================
+           ROLE
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-profile-role]"
+            )
+            .forEach(element => {
+
+                element.textContent =
+                    primaryRole;
+
+                element.title =
+                    primaryRole;
+
+            });
+
+
+
+        /* =====================================================
+           AVATAR
+        ====================================================== */
+
+        const avatar =
+            document.querySelector(
+                "[data-user-avatar]"
+            );
+
+
+        if (avatar) {
+
+
+            const photo =
+                user.profilePhotoUrl ||
+
+                user.profile_photo_url ||
+
+                user.avatarUrl ||
+
+                user.avatar_url ||
+
+                user.photo_url ||
+
+                user.photoUrl;
+
+
+            if (photo) {
+
+                avatar.innerHTML =
+                    "";
+
+
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                image.src =
+                    photo;
+
+
+                image.alt =
+                    name;
+
+
+                image.onerror =
+                    function () {
+
+                        avatar.textContent =
+                            getInitials(name);
+
+                    };
+
+
+                avatar.appendChild(
+                    image
+                );
+
+            } else {
+
+                avatar.textContent =
+                    getInitials(name);
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           USER NUMBER
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-user-number]"
+            )
+            .forEach(element => {
+
+                element.textContent =
+                    userNumber;
+
+                element.title =
+                    userNumber;
+
+            });
+
+
+
+        /* =====================================================
+           USERNAME
+        ====================================================== */
+
+        const usernameElement =
+            document.querySelector(
+                "[data-profile-username]"
+            );
+
+
+        if (usernameElement) {
+
+            usernameElement.textContent =
+                username;
+
+            usernameElement.title =
+                username;
+
+        }
+
+
+
+        /* =====================================================
+           EMAIL
+        ====================================================== */
+
+        const emailElement =
+            document.querySelector(
+                "[data-profile-email]"
+            );
+
+
+        if (emailElement) {
+
+            emailElement.textContent =
+                email;
+
+            emailElement.title =
+                email;
+
+        }
+
+
+
+        /* =====================================================
+           PHONE
+        ====================================================== */
+
+        const phoneElement =
+            document.querySelector(
+                "[data-profile-phone]"
+            );
+
+
+        if (phoneElement) {
+
+            phoneElement.textContent =
+                phone;
+
+        }
+
+
+
+        /* =====================================================
+           ACCOUNT STATUS
+        ====================================================== */
+
+        const statusElement =
+            document.querySelector(
+                "[data-profile-status]"
+            );
+
+
+        if (statusElement) {
+
+            statusElement.textContent =
+                String(status)
+                    .replace(
+                        /_/g,
+                        " "
+                    )
+                    .toUpperCase();
+
+        }
+
+
+
+        /* =====================================================
+           EMAIL VERIFICATION
+        ====================================================== */
+
+        const emailStatusElement =
+            document.querySelector(
+                "[data-profile-email-status]"
+            );
+
+
+        if (emailStatusElement) {
+
+            emailStatusElement.textContent =
+                emailVerification;
+
+        }
+
+
+
+        /* =====================================================
+           ROLES
+        ====================================================== */
+
+        const roleList =
+            document.querySelector(
+                "[data-role-list]"
+            );
+
+
+        if (roleList) {
+
+
+            if (!roles.length) {
+
+                roleList.innerHTML =
+                    '<span class="empty-message">No roles assigned.</span>';
+
+            } else {
+
+                roleList.innerHTML =
+                    roles
+                        .map(role => {
+
+                            const label =
+                                getRoleName(
+                                    role
+                                );
+
+
+                            return (
+                                '<span class="role-chip">' +
+                                escapeHtml(label) +
+                                '</span>'
+                            );
+
+                        })
+                        .join("");
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           PERMISSIONS
+        ====================================================== */
+
+        const permissionList =
+            document.querySelector(
+                "[data-permission-list]"
+            );
+
+
+        if (permissionList) {
+
+
+            if (!permissions.length) {
+
+                permissionList.innerHTML =
+                    '<span class="empty-message">No permissions assigned.</span>';
+
+            } else {
+
+                permissionList.innerHTML =
+                    permissions
+                        .map(permission => {
+
+                            const code =
+                                getPermissionCode(
+                                    permission
+                                );
+
+
+                            return (
+                                '<span class="permission-chip">' +
+                                escapeHtml(code) +
+                                '</span>'
+                            );
+
+                        })
+                        .join("");
+
+            }
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       SAFE HTML
+    ========================================================== */
+
+    function escapeHtml(value) {
+
+        return String(value || "")
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+
+    /* =========================================================
+       CLOCK
+    ========================================================== */
+
+    function setupClock() {
+
+        const clock =
+            document.querySelector(
+                "[data-clock]"
+            );
+
+
+        const date =
+            document.querySelector(
+                "[data-date]"
+            );
+
+
+        function update() {
+
+            const now =
+                new Date();
+
+
+            if (clock) {
+
+                clock.textContent =
+                    now.toLocaleTimeString(
+                        [],
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    );
+
+            }
+
+
+            if (date) {
+
+                date.textContent =
+                    now.toLocaleDateString(
+                        [],
+                        {
+                            weekday: "short",
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric"
+                        }
+                    );
+
+            }
+
+        }
+
+
+        update();
+
+
+        setInterval(
+            update,
+            1000
+        );
+
+    }
+
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================== */
+
+    async function initialize() {
+
+        try {
+
+
+            /*
+             * Preserve existing authentication.
+             */
+
+            if (
+                window.IDMCAuth &&
+                typeof window.IDMCAuth
+                    .requireAuth ===
+                    "function"
+            ) {
+
+                const authenticatedUser =
+                    await window.IDMCAuth
+                        .requireAuth();
+
+
+                if (!authenticatedUser) {
+
+                    return;
+
+                }
+
+            }
+
+
+
+            /*
+             * Preserve existing RBAC loading.
+             */
+
+            if (
+                window.IDMC_RBAC_API &&
+                typeof window.IDMC_RBAC_API
+                    .loadCurrentUserRBAC ===
+                    "function"
+            ) {
+
+                try {
+
+                    await window.IDMC_RBAC_API
+                        .loadCurrentUserRBAC();
+
+                } catch (error) {
+
+                    console.warn(
+                        "RBAC profile loading failed:",
+                        error
+                    );
+
+                }
+
+            }
+
+
+
+            /*
+             * Read the same account already
+             * used by the dashboard.
+             */
+
+            const account =
+                getAccount();
+
+
+            if (account) {
+
+                renderProfile(
+                    account
+                );
+
+            } else {
+
+                console.warn(
+                    "No idmc_user account found."
+                );
+
+            }
+
+
+            setupClock();
+
+
+        } catch (error) {
+
+            console.error(
+                "Profile initialization failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       START
+    ========================================================== */
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialize
+        );
+
+    } else {
+
+        initialize();
+
+    }
+
+})();
+
+</script>
+
+    <script src="assets/js/app-workflow.js"></script>
+    <script src="assets/js/application-integration.js"></script>
+    <script src="assets/js/idmc-deep-ui.js"></script>
+    <script src="assets/js/idmc-current-repair.js"></script>
+</body>
+
+</html>
+
+

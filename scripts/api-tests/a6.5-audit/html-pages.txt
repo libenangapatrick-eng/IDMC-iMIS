@@ -1,0 +1,14 @@
+﻿C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\academics\academics.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\dashboard.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\login.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\profile.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\set-password.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-portal.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-profile.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\users.html

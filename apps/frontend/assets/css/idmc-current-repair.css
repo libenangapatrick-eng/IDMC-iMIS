@@ -1,0 +1,49 @@
+:root{
+  --idmc-maroon:#631226;
+  --idmc-maroon-dark:#4a0d1c;
+  --idmc-maroon-deep:#330914;
+  --idmc-maroon-light:#932039;
+  --idmc-white:#fff;
+  --idmc-bg:#faf7f8;
+  --idmc-line:#e7dadd;
+  --idmc-text:#2b151a;
+  --idmc-muted:#765f64;
+}
+html,body{background:var(--idmc-bg);color:var(--idmc-text)}
+a{color:var(--idmc-maroon)}
+a:hover{color:var(--idmc-maroon-light)}
+button,.btn,[role="button"]{border-radius:8px}
+.btn-primary,button[type="submit"],.idmc-primary{
+  background:var(--idmc-maroon)!important;
+  border-color:var(--idmc-maroon)!important;
+  color:#fff!important
+}
+.btn-primary:hover,button[type="submit"]:hover,.idmc-primary:hover{
+  background:var(--idmc-maroon-dark)!important
+}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{
+  outline:3px solid rgba(99,18,38,.18);
+  outline-offset:2px
+}
+input,select,textarea{
+  max-width:100%;
+}
+table{max-width:100%}
+.idmc-form-host:empty::before,
+#module-crud:empty::before{
+  content:"Loading form and records...";
+  display:block;
+  padding:18px;
+  color:var(--idmc-muted);
+  background:#fff;
+  border:1px dashed var(--idmc-line);
+  border-radius:10px
+}
+.idmc-runtime-error{
+  padding:14px 16px;
+  margin:12px 0;
+  border-left:4px solid var(--idmc-maroon);
+  background:#fff;
+  color:var(--idmc-text)
+}
+::selection{background:var(--idmc-maroon);color:#fff}

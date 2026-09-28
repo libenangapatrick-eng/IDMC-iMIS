@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit Logs | IDMC iMIS</title>
+<link rel="stylesheet" href="assets/css/idmc-deep-ui.css">
+<link rel="stylesheet" href="assets/css/idmc-current-repair.css">
+</head>
+<body>
+<main class="idmc-deep-shell">
+  <div class="idmc-deep-head">
+    <div>
+      <h1>Audit Logs</h1>
+      <div id="auditStatus" class="idmc-deep-status">Loading...</div>
+    </div>
+    <div>
+      <button id="auditRefresh" type="button">Refresh</button>
+      <a class="idmc-portal-link" href="dashboard.html">Dashboard</a>
+    </div>
+  </div>
+  <div class="idmc-deep-card">
+    <div class="idmc-deep-toolbar">
+      <input id="auditSearch" type="search" placeholder="Search audit logs">
+    </div>
+    <div id="auditTable" class="idmc-deep-table-wrap"></div>
+  </div>
+</main>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+<script>
+(function(){
+"use strict";
+var data=[];
+var status=document.getElementById("auditStatus");
+var host=document.getElementById("auditTable");
+var search=document.getElementById("auditSearch");
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]})}
+function rows(v){v=v&&v.data!==undefined?v.data:v;return Array.isArray(v)?v:[]}
+function render(){
+ var q=search.value.trim().toLowerCase();
+ var rr=data.filter(function(x){return !q||JSON.stringify(x).toLowerCase().indexOf(q)>=0});
+ var keys=["created_at","action_code","module_code","entity_type","entity_id","user_id","ip_address","request_id"];
+ host.innerHTML=rr.length?'<table class="idmc-deep-table"><thead><tr>'+keys.map(function(k){return"<th>"+esc(k.replace(/_/g," "))+"</th>"}).join("")+'</tr></thead><tbody>'+rr.map(function(r){return"<tr>"+keys.map(function(k){return"<td>"+esc(r[k])+"</td>"}).join("")+"</tr>"}).join("")+"</tbody></table>":'<div class="idmc-deep-status">No audit records found.</div>';
+}
+async function load(){
+ status.textContent="Loading...";
+ try{
+   var r=await IDMCAPI.request("/audit-logs");
+   data=rows(r); render();
+   status.textContent=data.length+" audit record(s) loaded";
+   status.dataset.state="ok";
+ }catch(e){
+   data=[];render();status.textContent=e.message||"Unable to load audit logs";status.dataset.state="error";
+ }
+}
+search.addEventListener("input",render);
+document.getElementById("auditRefresh").addEventListener("click",load);
+load();
+})();
+</script>
+<script src="assets/js/idmc-current-repair.js"></script>
+</body>
+</html>

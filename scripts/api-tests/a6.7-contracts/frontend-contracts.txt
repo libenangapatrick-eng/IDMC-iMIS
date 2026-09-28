@@ -1,0 +1,12 @@
+
+Resource    Page             Exists AuthJS ApiJS IDMCAPI LegacyRBAC DirectFetch  POST PATCH
+--------    ----             ------ ------ ----- ------- ---------- -----------  ---- -----
+Campuses    campuses.html      True   True  True    True       True       False  True  True
+Departments departments.html   True   True  True   False       True       False  True  True
+Schools     schools.html       True   True  True    True       True       False  True  True
+Students    students.html      True   True  True    True       True       False False False
+Users       users.html         True   True  True   False       True       False False False
+Roles       roles.html         True   True  True   False       True       False False False
+
+
+

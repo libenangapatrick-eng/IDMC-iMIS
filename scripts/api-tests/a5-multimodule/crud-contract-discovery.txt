@@ -1,0 +1,706 @@
+
+====================================================
+ 1. RESOURCE ROUTE CONTRACTS
+====================================================
+
+----- SEARCH: asset_categories -----
+
+  apps\backend\src\modules\operations\operations.routes.ts:53:  fields: { inventoryItemId: "inventory_item_id", transactionType: "transaction_type", transactionNumber: "transaction_number", quantity: "quantity", unitCost: "unit_cost", referenceType: "reference_type", referenceId: "reference_id", transactionDate: "transaction_date", balanceBefore: "balance_before", balanceAfter: "balance_after", performedBy: "performed_by", remarks: "remarks" }
+  apps\backend\src\modules\operations\operations.routes.ts:54:}, "/inventory/transactions");
+  apps\backend\src\modules\operations\operations.routes.ts:55:
+  apps\backend\src\modules\operations\operations.routes.ts:56:registerCrudResource(router, {
+> apps\backend\src\modules\operations\operations.routes.ts:57:  moduleCode: "OPERATIONS", entityType: "asset_categories", table: "asset_categories", permissionView: "assets.view", permissionManage: "assets.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:58:  searchFields: ["category_code", "category_name", "description"], filterFields: ["institution_id", "status"],
+  apps\backend\src\modules\operations\operations.routes.ts:59:  fields: { institutionId: "institution_id", categoryCode: "category_code", categoryName: "category_name", depreciationMethod: "depreciation_method", defaultUsefulLifeYears: "default_useful_life_years", description: "description", status: "status" }
+  apps\backend\src\modules\operations\operations.routes.ts:60:}, "/assets/categories");
+  apps\backend\src\modules\operations\operations.routes.ts:61:
+  apps\backend\src\modules\operations\operations.routes.ts:62:registerCrudResource(router, {
+  apps\backend\src\modules\operations\operations.routes.ts:63:  moduleCode: "OPERATIONS", entityType: "assets", table: "assets", permissionView: "assets.view", permissionManage: "assets.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:64:  searchFields: ["asset_tag", "asset_name", "serial_number", "manufacturer", "model", "location"], filterFields: ["institution_id", "category_id", "department_id", "asset_status", "condition_status"],
+  apps\backend\src\modules\operations\operations.routes.ts:65:  fields: { institutionId: "institution_id", categoryId: "category_id", departmentId: "department_id", assetTag: "asset_tag", assetName: "asset_name", description: "description", serialNumber: "serial_number", manufacturer: "manufacturer", model: "model", acquisitionDate: "acquisition_date", acquisitionCost: "acquisition_cost", currentValue: "current_value", usefulLifeYears: "useful_life_years", location: "location", conditionStatus: 
+"condition_status", assetStatus: "asset_status", warrantyExpiryDate: "warranty_expiry_date", notes: "notes" }
+
+
+
+
+----- SEARCH: asset categories -----
+NOT FOUND
+
+----- SEARCH: /assets/categories -----
+
+  apps\backend\src\modules\operations\operations.routes.ts:56:registerCrudResource(router, {
+  apps\backend\src\modules\operations\operations.routes.ts:57:  moduleCode: "OPERATIONS", entityType: "asset_categories", table: "asset_categories", permissionView: "assets.view", permissionManage: "assets.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:58:  searchFields: ["category_code", "category_name", "description"], filterFields: ["institution_id", "status"],
+  apps\backend\src\modules\operations\operations.routes.ts:59:  fields: { institutionId: "institution_id", categoryCode: "category_code", categoryName: "category_name", depreciationMethod: "depreciation_method", defaultUsefulLifeYears: "default_useful_life_years", description: "description", status: "status" }
+> apps\backend\src\modules\operations\operations.routes.ts:60:}, "/assets/categories");
+  apps\backend\src\modules\operations\operations.routes.ts:61:
+  apps\backend\src\modules\operations\operations.routes.ts:62:registerCrudResource(router, {
+  apps\backend\src\modules\operations\operations.routes.ts:63:  moduleCode: "OPERATIONS", entityType: "assets", table: "assets", permissionView: "assets.view", permissionManage: "assets.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:64:  searchFields: ["asset_tag", "asset_name", "serial_number", "manufacturer", "model", "location"], filterFields: ["institution_id", "category_id", "department_id", "asset_status", "condition_status"],
+  apps\backend\src\modules\operations\operations.routes.ts:65:  fields: { institutionId: "institution_id", categoryId: "category_id", departmentId: "department_id", assetTag: "asset_tag", assetName: "asset_name", description: "description", serialNumber: "serial_number", manufacturer: "manufacturer", model: "model", acquisitionDate: "acquisition_date", acquisitionCost: "acquisition_cost", currentValue: "current_value", usefulLifeYears: "useful_life_years", location: "location", conditionStatus: 
+"condition_status", assetStatus: "asset_status", warrantyExpiryDate: "warranty_expiry_date", notes: "notes" }
+  apps\backend\src\modules\operations\operations.routes.ts:66:}, "/assets");
+  apps\backend\src\modules\operations\operations.routes.ts:67:
+  apps\backend\src\modules\operations\operations.routes.ts:68:registerCrudResource(router, {
+
+
+
+
+----- SEARCH: suppliers -----
+
+  apps\backend\src\modules\operations\operations.routes.ts:5:const router = Router();
+  apps\backend\src\modules\operations\operations.routes.ts:6:router.use(authenticate);
+  apps\backend\src\modules\operations\operations.routes.ts:7:
+  apps\backend\src\modules\operations\operations.routes.ts:8:registerCrudResource(router, {
+> apps\backend\src\modules\operations\operations.routes.ts:9:  moduleCode: "OPERATIONS", entityType: "suppliers", table: "suppliers", permissionView: "procurement.view", permissionManage: "procurement.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:10:  searchFields: ["supplier_code", "supplier_name", "contact_person", "phone", "email"], filterFields: ["institution_id", "status"],
+  apps\backend\src\modules\operations\operations.routes.ts:11:  fields: { institutionId: "institution_id", supplierCode: "supplier_code", supplierName: "supplier_name", supplierType: "supplier_type", registrationNumber: "registration_number", taxIdentificationNumber: "tax_identification_number", contactPerson: "contact_person", phone: "phone", email: "email", physicalAddress: "physical_address", postalAddress: "postal_address", bankName: "bank_name", bankAccountName: "bank_account_name", 
+bankAccountNumber: "bank_account_number", status: "status", notes: "notes" }
+> apps\backend\src\modules\operations\operations.routes.ts:12:}, "/suppliers");
+  apps\backend\src\modules\operations\operations.routes.ts:13:
+  apps\backend\src\modules\operations\operations.routes.ts:14:registerCrudResource(router, {
+  apps\backend\src\modules\operations\operations.routes.ts:15:  moduleCode: "OPERATIONS", entityType: "procurement_requests", table: "procurement_requests", permissionView: "procurement.view", permissionManage: "procurement.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:16:  searchFields: ["request_number", "purpose", "justification"], filterFields: ["institution_id", "department_id", "request_status", "priority"], defaultOrderField: "request_date",
+  apps\backend\src\modules\operations\operations.routes.ts:17:  fields: { institutionId: "institution_id", requestNumber: "request_number", requestedBy: "requested_by", departmentId: "department_id", requestDate: "request_date", requiredDate: "required_date", priority: "priority", requestStatus: "request_status", purpose: "purpose", estimatedTotal: "estimated_total", justification: "justification", approvedBy: "approved_by", approvedAt: "approved_at", rejectionReason: "rejection_reason" }
+  apps\backend\src\modules\operations\operations.routes.ts:18:}, "/procurement/requests");
+  apps\backend\src\modules\operations\operations.routes.ts:19:
+  apps\backend\src\modules\operations\operations.routes.ts:20:registerCrudResource(router, {
+
+
+
+
+----- SEARCH: /suppliers -----
+
+  apps\backend\src\modules\operations\operations.routes.ts:8:registerCrudResource(router, {
+  apps\backend\src\modules\operations\operations.routes.ts:9:  moduleCode: "OPERATIONS", entityType: "suppliers", table: "suppliers", permissionView: "procurement.view", permissionManage: "procurement.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:10:  searchFields: ["supplier_code", "supplier_name", "contact_person", "phone", "email"], filterFields: ["institution_id", "status"],
+  apps\backend\src\modules\operations\operations.routes.ts:11:  fields: { institutionId: "institution_id", supplierCode: "supplier_code", supplierName: "supplier_name", supplierType: "supplier_type", registrationNumber: "registration_number", taxIdentificationNumber: "tax_identification_number", contactPerson: "contact_person", phone: "phone", email: "email", physicalAddress: "physical_address", postalAddress: "postal_address", bankName: "bank_name", bankAccountName: "bank_account_name", 
+bankAccountNumber: "bank_account_number", status: "status", notes: "notes" }
+> apps\backend\src\modules\operations\operations.routes.ts:12:}, "/suppliers");
+  apps\backend\src\modules\operations\operations.routes.ts:13:
+  apps\backend\src\modules\operations\operations.routes.ts:14:registerCrudResource(router, {
+  apps\backend\src\modules\operations\operations.routes.ts:15:  moduleCode: "OPERATIONS", entityType: "procurement_requests", table: "procurement_requests", permissionView: "procurement.view", permissionManage: "procurement.manage",
+  apps\backend\src\modules\operations\operations.routes.ts:16:  searchFields: ["request_number", "purpose", "justification"], filterFields: ["institution_id", "department_id", "request_status", "priority"], defaultOrderField: "request_date",
+  apps\backend\src\modules\operations\operations.routes.ts:17:  fields: { institutionId: "institution_id", requestNumber: "request_number", requestedBy: "requested_by", departmentId: "department_id", requestDate: "request_date", requiredDate: "required_date", priority: "priority", requestStatus: "request_status", purpose: "purpose", estimatedTotal: "estimated_total", justification: "justification", approvedBy: "approved_by", approvedAt: "approved_at", rejectionReason: "rejection_reason" }
+  apps\backend\src\modules\operations\operations.routes.ts:18:}, "/procurement/requests");
+  apps\backend\src\modules\operations\operations.routes.ts:19:
+  apps\backend\src\modules\operations\operations.routes.ts:20:registerCrudResource(router, {
+
+
+
+
+----- SEARCH: leave_types -----
+
+  apps\backend\src\modules\hr\hr.routes.ts:49:  fields: { staffId: "staff_id", documentType: "document_type", documentName: "document_name", documentUrl: "document_url", storagePath: "storage_path", documentNumber: "document_number", issueDate: "issue_date", expiryDate: "expiry_date", verificationStatus: "verification_status", verificationNotes: "verification_notes" }
+  apps\backend\src\modules\hr\hr.routes.ts:50:}, "/documents");
+  apps\backend\src\modules\hr\hr.routes.ts:51:
+  apps\backend\src\modules\hr\hr.routes.ts:52:registerCrudResource(router, {
+> apps\backend\src\modules\hr\hr.routes.ts:53:  moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_types", table: "staff_leave_types",
+  apps\backend\src\modules\hr\hr.routes.ts:54:  permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["leave_code", "leave_name"], filterFields: ["institution_id", "status"],
+  apps\backend\src\modules\hr\hr.routes.ts:55:  fields: { institutionId: "institution_id", leaveCode: "leave_code", leaveName: "leave_name", annualEntitlement: "annual_entitlement", requiresDocument: "requires_document", requiresApproval: "requires_approval", paidLeave: "paid_leave", carryForwardAllowed: "carry_forward_allowed", maxCarryForwardDays: "max_carry_forward_days", status: "status", description: "description" }
+  apps\backend\src\modules\hr\hr.routes.ts:56:}, "/leave/types");
+  apps\backend\src\modules\hr\hr.routes.ts:57:
+  apps\backend\src\modules\hr\hr.routes.ts:58:registerCrudResource(router, {
+  apps\backend\src\modules\hr\hr.routes.ts:59:  moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_balances", table: "staff_leave_balances",
+  apps\backend\src\modules\hr\hr.routes.ts:60:  permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["notes"], filterFields: ["staff_id", "leave_type_id", "leave_year"],
+  apps\backend\src\modules\hr\hr.routes.ts:61:  fields: { staffId: "staff_id", leaveTypeId: "leave_type_id", leaveYear: "leave_year", openingBalance: "opening_balance", accruedDays: "accrued_days", carriedForwardDays: "carried_forward_days", usedDays: "used_days", pendingDays: "pending_days", closingAdjustment: "closing_adjustment", notes: "notes" }
+
+
+
+
+----- SEARCH: leave types -----
+NOT FOUND
+
+----- SEARCH: /leave/types -----
+
+  apps\backend\src\modules\hr\hr.routes.ts:52:registerCrudResource(router, {
+  apps\backend\src\modules\hr\hr.routes.ts:53:  moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_types", table: "staff_leave_types",
+  apps\backend\src\modules\hr\hr.routes.ts:54:  permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["leave_code", "leave_name"], filterFields: ["institution_id", "status"],
+  apps\backend\src\modules\hr\hr.routes.ts:55:  fields: { institutionId: "institution_id", leaveCode: "leave_code", leaveName: "leave_name", annualEntitlement: "annual_entitlement", requiresDocument: "requires_document", requiresApproval: "requires_approval", paidLeave: "paid_leave", carryForwardAllowed: "carry_forward_allowed", maxCarryForwardDays: "max_carry_forward_days", status: "status", description: "description" }
+> apps\backend\src\modules\hr\hr.routes.ts:56:}, "/leave/types");
+  apps\backend\src\modules\hr\hr.routes.ts:57:
+  apps\backend\src\modules\hr\hr.routes.ts:58:registerCrudResource(router, {
+  apps\backend\src\modules\hr\hr.routes.ts:59:  moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_balances", table: "staff_leave_balances",
+  apps\backend\src\modules\hr\hr.routes.ts:60:  permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["notes"], filterFields: ["staff_id", "leave_type_id", "leave_year"],
+  apps\backend\src\modules\hr\hr.routes.ts:61:  fields: { staffId: "staff_id", leaveTypeId: "leave_type_id", leaveYear: "leave_year", openingBalance: "opening_balance", accruedDays: "accrued_days", carriedForwardDays: "carried_forward_days", usedDays: "used_days", pendingDays: "pending_days", closingAdjustment: "closing_adjustment", notes: "notes" }
+  apps\backend\src\modules\hr\hr.routes.ts:62:}, "/leave/balances");
+  apps\backend\src\modules\hr\hr.routes.ts:63:
+  apps\backend\src\modules\hr\hr.routes.ts:64:registerCrudResource(router, {
+
+
+
+
+====================================================
+ 2. CRUD REGISTRATION BLOCKS
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\hr\hr.routes.ts
+   45: registerCrudResource(router, {
+   46:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_documents", table: "staff_documents",
+   47:   permissionView: "staff.view", permissionManage: "staff.manage", searchFields: ["document_type", "document_name", "document_number"],
+   48:   filterFields: ["staff_id", "verification_status"],
+   49:   fields: { staffId: "staff_id", documentType: "document_type", documentName: "document_name", documentUrl: "document_url", storagePath: "storage_path", documentNumber: "document_number", issueDate: "issue_date", expiryDate: "expiry_date", verificationStatus: "verification_status", verificationNotes: "verification_notes" }
+   50: }, "/documents");
+   51: 
+   52: registerCrudResource(router, {
+   53:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_types", table: "staff_leave_types",
+   54:   permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["leave_code", "leave_name"], filterFields: ["institution_id", "status"],
+   55:   fields: { institutionId: "institution_id", leaveCode: "leave_code", leaveName: "leave_name", annualEntitlement: "annual_entitlement", requiresDocument: "requires_document", requiresApproval: "requires_approval", paidLeave: "paid_leave", carryForwardAllowed: "carry_forward_allowed", maxCarryForwardDays: "max_carry_forward_days", status: "status", description: "description" }
+   56: }, "/leave/types");
+   57: 
+   58: registerCrudResource(router, {
+   59:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_balances", table: "staff_leave_balances",
+   60:   permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["notes"], filterFields: ["staff_id", "leave_type_id", "leave_year"],
+   61:   fields: { staffId: "staff_id", leaveTypeId: "leave_type_id", leaveYear: "leave_year", openingBalance: "opening_balance", accruedDays: "accrued_days", carriedForwardDays: "carried_forward_days", usedDays: "used_days", pendingDays: "pending_days", closingAdjustment: "closing_adjustment", notes: "notes" }
+   62: }, "/leave/balances");
+   63: 
+   64: registerCrudResource(router, {
+   65:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_requests", table: "staff_leave_requests",
+   66:   permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["request_number", "reason"], filterFields: ["staff_id", "leave_type_id", "leave_year", "request_status"], defaultOrderField: "submitted_at",
+   67:   fields: { staffId: "staff_id", leaveTypeId: "leave_type_id", leaveYear: "leave_year", requestNumber: "request_number", startDate: "start_date", endDate: "end_date", daysRequested: "days_requested", reason: "reason", attachmentUrl: "attachment_url", requestStatus: "request_status", submittedAt: "submitted_at", approvedDays: "approved_days", rejectionReason: "rejection_reason", currentApproverUserId: "current_approver_user_id", finalApprovedBy: "final_approved_by", finalApprovedAt: "final_approved_at" }
+   68: }, "/leave/requests");
+----------------------------------------------------
+   48:   filterFields: ["staff_id", "verification_status"],
+   49:   fields: { staffId: "staff_id", documentType: "document_type", documentName: "document_name", documentUrl: "document_url", storagePath: "storage_path", documentNumber: "document_number", issueDate: "issue_date", expiryDate: "expiry_date", verificationStatus: "verification_status", verificationNotes: "verification_notes" }
+   50: }, "/documents");
+   51: 
+   52: registerCrudResource(router, {
+   53:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_types", table: "staff_leave_types",
+   54:   permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["leave_code", "leave_name"], filterFields: ["institution_id", "status"],
+   55:   fields: { institutionId: "institution_id", leaveCode: "leave_code", leaveName: "leave_name", annualEntitlement: "annual_entitlement", requiresDocument: "requires_document", requiresApproval: "requires_approval", paidLeave: "paid_leave", carryForwardAllowed: "carry_forward_allowed", maxCarryForwardDays: "max_carry_forward_days", status: "status", description: "description" }
+   56: }, "/leave/types");
+   57: 
+   58: registerCrudResource(router, {
+   59:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_balances", table: "staff_leave_balances",
+   60:   permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["notes"], filterFields: ["staff_id", "leave_type_id", "leave_year"],
+   61:   fields: { staffId: "staff_id", leaveTypeId: "leave_type_id", leaveYear: "leave_year", openingBalance: "opening_balance", accruedDays: "accrued_days", carriedForwardDays: "carried_forward_days", usedDays: "used_days", pendingDays: "pending_days", closingAdjustment: "closing_adjustment", notes: "notes" }
+   62: }, "/leave/balances");
+   63: 
+   64: registerCrudResource(router, {
+   65:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_requests", table: "staff_leave_requests",
+   66:   permissionView: "leave.view", permissionManage: "leave.manage", searchFields: ["request_number", "reason"], filterFields: ["staff_id", "leave_type_id", "leave_year", "request_status"], defaultOrderField: "submitted_at",
+   67:   fields: { staffId: "staff_id", leaveTypeId: "leave_type_id", leaveYear: "leave_year", requestNumber: "request_number", startDate: "start_date", endDate: "end_date", daysRequested: "days_requested", reason: "reason", attachmentUrl: "attachment_url", requestStatus: "request_status", submittedAt: "submitted_at", approvedDays: "approved_days", rejectionReason: "rejection_reason", currentApproverUserId: "current_approver_user_id", finalApprovedBy: "final_approved_by", finalApprovedAt: "final_approved_at" }
+   68: }, "/leave/requests");
+   69: 
+   70: registerCrudResource(router, {
+   71:   moduleCode: "HUMAN_RESOURCES", entityType: "staff_leave_approvals", table: "staff_leave_approvals",
+----------------------------------------------------
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\operations\operations.routes.ts
+    1: import { Router } from "express";
+    2: import { authenticate } from "../../middleware/auth.js";
+    3: import { registerCrudResource } from "../../utils/resourceCrud.js";
+    4: 
+    5: const router = Router();
+    6: router.use(authenticate);
+    7: 
+    8: registerCrudResource(router, {
+    9:   moduleCode: "OPERATIONS", entityType: "suppliers", table: "suppliers", permissionView: "procurement.view", permissionManage: "procurement.manage",
+   10:   searchFields: ["supplier_code", "supplier_name", "contact_person", "phone", "email"], filterFields: ["institution_id", "status"],
+   11:   fields: { institutionId: "institution_id", supplierCode: "supplier_code", supplierName: "supplier_name", supplierType: "supplier_type", registrationNumber: "registration_number", taxIdentificationNumber: "tax_identification_number", contactPerson: "contact_person", phone: "phone", email: "email", physicalAddress: "physical_address", postalAddress: "postal_address", bankName: "bank_name", bankAccountName: "bank_account_name", bankAccountNumber: "bank_account_number", status: "status", notes: "notes" }
+   12: }, "/suppliers");
+   13: 
+   14: registerCrudResource(router, {
+   15:   moduleCode: "OPERATIONS", entityType: "procurement_requests", table: "procurement_requests", permissionView: "procurement.view", permissionManage: "procurement.manage",
+   16:   searchFields: ["request_number", "purpose", "justification"], filterFields: ["institution_id", "department_id", "request_status", "priority"], defaultOrderField: "request_date",
+   17:   fields: { institutionId: "institution_id", requestNumber: "request_number", requestedBy: "requested_by", departmentId: "department_id", requestDate: "request_date", requiredDate: "required_date", priority: "priority", requestStatus: "request_status", purpose: "purpose", estimatedTotal: "estimated_total", justification: "justification", approvedBy: "approved_by", approvedAt: "approved_at", rejectionReason: "rejection_reason" }
+   18: }, "/procurement/requests");
+   19: 
+   20: registerCrudResource(router, {
+   21:   moduleCode: "OPERATIONS", entityType: "procurement_request_items", table: "procurement_request_items", permissionView: "procurement.view", permissionManage: "procurement.manage",
+   22:   searchFields: ["item_description", "specifications"], filterFields: ["procurement_request_id"],
+   23:   fields: { procurementRequestId: "procurement_request_id", itemDescription: "item_description", quantity: "quantity", unitOfMeasure: "unit_of_measure", estimatedUnitPrice: "estimated_unit_price", specifications: "specifications" }
+   24: }, "/procurement/request-items");
+----------------------------------------------------
+    4: 
+    5: const router = Router();
+    6: router.use(authenticate);
+    7: 
+    8: registerCrudResource(router, {
+    9:   moduleCode: "OPERATIONS", entityType: "suppliers", table: "suppliers", permissionView: "procurement.view", permissionManage: "procurement.manage",
+   10:   searchFields: ["supplier_code", "supplier_name", "contact_person", "phone", "email"], filterFields: ["institution_id", "status"],
+   11:   fields: { institutionId: "institution_id", supplierCode: "supplier_code", supplierName: "supplier_name", supplierType: "supplier_type", registrationNumber: "registration_number", taxIdentificationNumber: "tax_identification_number", contactPerson: "contact_person", phone: "phone", email: "email", physicalAddress: "physical_address", postalAddress: "postal_address", bankName: "bank_name", bankAccountName: "bank_account_name", bankAccountNumber: "bank_account_number", status: "status", notes: "notes" }
+   12: }, "/suppliers");
+   13: 
+   14: registerCrudResource(router, {
+   15:   moduleCode: "OPERATIONS", entityType: "procurement_requests", table: "procurement_requests", permissionView: "procurement.view", permissionManage: "procurement.manage",
+   16:   searchFields: ["request_number", "purpose", "justification"], filterFields: ["institution_id", "department_id", "request_status", "priority"], defaultOrderField: "request_date",
+   17:   fields: { institutionId: "institution_id", requestNumber: "request_number", requestedBy: "requested_by", departmentId: "department_id", requestDate: "request_date", requiredDate: "required_date", priority: "priority", requestStatus: "request_status", purpose: "purpose", estimatedTotal: "estimated_total", justification: "justification", approvedBy: "approved_by", approvedAt: "approved_at", rejectionReason: "rejection_reason" }
+   18: }, "/procurement/requests");
+   19: 
+   20: registerCrudResource(router, {
+   21:   moduleCode: "OPERATIONS", entityType: "procurement_request_items", table: "procurement_request_items", permissionView: "procurement.view", permissionManage: "procurement.manage",
+   22:   searchFields: ["item_description", "specifications"], filterFields: ["procurement_request_id"],
+   23:   fields: { procurementRequestId: "procurement_request_id", itemDescription: "item_description", quantity: "quantity", unitOfMeasure: "unit_of_measure", estimatedUnitPrice: "estimated_unit_price", specifications: "specifications" }
+   24: }, "/procurement/request-items");
+   25: 
+   26: registerCrudResource(router, {
+   27:   moduleCode: "OPERATIONS", entityType: "purchase_orders", table: "purchase_orders", permissionView: "procurement.view", permissionManage: "procurement.manage",
+----------------------------------------------------
+   49: 
+   50: registerCrudResource(router, {
+   51:   moduleCode: "OPERATIONS", entityType: "inventory_transactions", table: "inventory_transactions", permissionView: "inventory.view", permissionManage: "inventory.manage",
+   52:   searchFields: ["transaction_number", "reference_type", "remarks"], filterFields: ["inventory_item_id", "transaction_type"], defaultOrderField: "transaction_date",
+   53:   fields: { inventoryItemId: "inventory_item_id", transactionType: "transaction_type", transactionNumber: "transaction_number", quantity: "quantity", unitCost: "unit_cost", referenceType: "reference_type", referenceId: "reference_id", transactionDate: "transaction_date", balanceBefore: "balance_before", balanceAfter: "balance_after", performedBy: "performed_by", remarks: "remarks" }
+   54: }, "/inventory/transactions");
+   55: 
+   56: registerCrudResource(router, {
+   57:   moduleCode: "OPERATIONS", entityType: "asset_categories", table: "asset_categories", permissionView: "assets.view", permissionManage: "assets.manage",
+   58:   searchFields: ["category_code", "category_name", "description"], filterFields: ["institution_id", "status"],
+   59:   fields: { institutionId: "institution_id", categoryCode: "category_code", categoryName: "category_name", depreciationMethod: "depreciation_method", defaultUsefulLifeYears: "default_useful_life_years", description: "description", status: "status" }
+   60: }, "/assets/categories");
+   61: 
+   62: registerCrudResource(router, {
+   63:   moduleCode: "OPERATIONS", entityType: "assets", table: "assets", permissionView: "assets.view", permissionManage: "assets.manage",
+   64:   searchFields: ["asset_tag", "asset_name", "serial_number", "manufacturer", "model", "location"], filterFields: ["institution_id", "category_id", "department_id", "asset_status", "condition_status"],
+   65:   fields: { institutionId: "institution_id", categoryId: "category_id", departmentId: "department_id", assetTag: "asset_tag", assetName: "asset_name", description: "description", serialNumber: "serial_number", manufacturer: "manufacturer", model: "model", acquisitionDate: "acquisition_date", acquisitionCost: "acquisition_cost", currentValue: "current_value", usefulLifeYears: "useful_life_years", location: "location", conditionStatus: "condition_status", assetStatus: "asset_status", warrantyExpiryDate: "warranty_expiry_date", notes: "notes" }
+   66: }, "/assets");
+   67: 
+   68: registerCrudResource(router, {
+   69:   moduleCode: "OPERATIONS", entityType: "asset_assignments", table: "asset_assignments", permissionView: "assets.view", permissionManage: "assets.assign",
+   70:   searchFields: ["assignment_status", "notes"], filterFields: ["asset_id", "staff_id", "department_id", "assignment_status"],
+   71:   fields: { assetId: "asset_id", staffId: "staff_id", departmentId: "department_id", assignedDate: "assigned_date", returnedDate: "returned_date", assignmentStatus: "assignment_status", assignedBy: "assigned_by", receivedBy: "received_by", returnCondition: "return_condition", notes: "notes" }
+   72: }, "/assets/assignments");
+----------------------------------------------------
+   52:   searchFields: ["transaction_number", "reference_type", "remarks"], filterFields: ["inventory_item_id", "transaction_type"], defaultOrderField: "transaction_date",
+   53:   fields: { inventoryItemId: "inventory_item_id", transactionType: "transaction_type", transactionNumber: "transaction_number", quantity: "quantity", unitCost: "unit_cost", referenceType: "reference_type", referenceId: "reference_id", transactionDate: "transaction_date", balanceBefore: "balance_before", balanceAfter: "balance_after", performedBy: "performed_by", remarks: "remarks" }
+   54: }, "/inventory/transactions");
+   55: 
+   56: registerCrudResource(router, {
+   57:   moduleCode: "OPERATIONS", entityType: "asset_categories", table: "asset_categories", permissionView: "assets.view", permissionManage: "assets.manage",
+   58:   searchFields: ["category_code", "category_name", "description"], filterFields: ["institution_id", "status"],
+   59:   fields: { institutionId: "institution_id", categoryCode: "category_code", categoryName: "category_name", depreciationMethod: "depreciation_method", defaultUsefulLifeYears: "default_useful_life_years", description: "description", status: "status" }
+   60: }, "/assets/categories");
+   61: 
+   62: registerCrudResource(router, {
+   63:   moduleCode: "OPERATIONS", entityType: "assets", table: "assets", permissionView: "assets.view", permissionManage: "assets.manage",
+   64:   searchFields: ["asset_tag", "asset_name", "serial_number", "manufacturer", "model", "location"], filterFields: ["institution_id", "category_id", "department_id", "asset_status", "condition_status"],
+   65:   fields: { institutionId: "institution_id", categoryId: "category_id", departmentId: "department_id", assetTag: "asset_tag", assetName: "asset_name", description: "description", serialNumber: "serial_number", manufacturer: "manufacturer", model: "model", acquisitionDate: "acquisition_date", acquisitionCost: "acquisition_cost", currentValue: "current_value", usefulLifeYears: "useful_life_years", location: "location", conditionStatus: "condition_status", assetStatus: "asset_status", warrantyExpiryDate: "warranty_expiry_date", notes: "notes" }
+   66: }, "/assets");
+   67: 
+   68: registerCrudResource(router, {
+   69:   moduleCode: "OPERATIONS", entityType: "asset_assignments", table: "asset_assignments", permissionView: "assets.view", permissionManage: "assets.assign",
+   70:   searchFields: ["assignment_status", "notes"], filterFields: ["asset_id", "staff_id", "department_id", "assignment_status"],
+   71:   fields: { assetId: "asset_id", staffId: "staff_id", departmentId: "department_id", assignedDate: "assigned_date", returnedDate: "returned_date", assignmentStatus: "assignment_status", assignedBy: "assigned_by", receivedBy: "received_by", returnCondition: "return_condition", notes: "notes" }
+   72: }, "/assets/assignments");
+   73: 
+   74: registerCrudResource(router, {
+   75:   moduleCode: "OPERATIONS", entityType: "asset_maintenance", table: "asset_maintenance", permissionView: "assets.view", permissionManage: "assets.manage",
+----------------------------------------------------
+
+====================================================
+ 3. DATABASE TABLE DEFINITIONS
+====================================================
+
+===== TABLE: asset_categories =====
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql
+LINE: 470
+   470: CREATE TABLE IF NOT EXISTS public.asset_categories (
+   471:     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+   472: 
+   473:     institution_id uuid NOT NULL
+   474:         REFERENCES public.institutions(id)
+   475:         ON DELETE RESTRICT,
+   476: 
+   477:     category_code varchar(60) NOT NULL,
+   478:     category_name varchar(150) NOT NULL,
+   479: 
+   480:     depreciation_method varchar(40)
+   481:         CHECK (
+   482:             depreciation_method IS NULL
+   483:             OR depreciation_method IN (
+   484:                 'STRAIGHT_LINE',
+   485:                 'DECLINING_BALANCE',
+   486:                 'NONE'
+   487:             )
+   488:         ),
+   489: 
+   490:     default_useful_life_years integer
+   491:         CHECK (
+   492:             default_useful_life_years IS NULL
+   493:             OR default_useful_life_years > 0
+   494:         ),
+   495: 
+   496:     description text,
+   497: 
+   498:     status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+   499:         CHECK (
+   500:             status IN (
+   501:                 'ACTIVE',
+   502:                 'INACTIVE'
+   503:             )
+   504:         ),
+   505: 
+   506:     created_at timestamptz NOT NULL DEFAULT now(),
+   507:     updated_at timestamptz NOT NULL DEFAULT now(),
+   508: 
+   509:     CONSTRAINT uq_asset_category
+   510:         UNIQUE (institution_id, category_code)
+   511: );
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\schema-snapshots\public_schema_remote.sql
+LINE: 7861
+  7861: CREATE TABLE IF NOT EXISTS "public"."asset_categories" (
+  7862:     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+  7863:     "institution_id" "uuid" NOT NULL,
+  7864:     "category_code" character varying(60) NOT NULL,
+  7865:     "category_name" character varying(150) NOT NULL,
+  7866:     "depreciation_method" character varying(40),
+  7867:     "default_useful_life_years" integer,
+  7868:     "description" "text",
+  7869:     "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+  7870:     "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+  7871:     "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+  7872:     CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+  7873:     CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+  7874:     CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+  7875: );
+
+===== TABLE: suppliers =====
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql
+LINE: 15
+    15: CREATE TABLE IF NOT EXISTS public.suppliers (
+    16:     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    17: 
+    18:     institution_id uuid NOT NULL
+    19:         REFERENCES public.institutions(id)
+    20:         ON DELETE RESTRICT,
+    21: 
+    22:     supplier_code varchar(60) NOT NULL,
+    23:     supplier_name varchar(255) NOT NULL,
+    24: 
+    25:     supplier_type varchar(40) NOT NULL DEFAULT 'COMPANY'
+    26:         CHECK (
+    27:             supplier_type IN (
+    28:                 'COMPANY',
+    29:                 'INDIVIDUAL',
+    30:                 'GOVERNMENT',
+    31:                 'NGO',
+    32:                 'OTHER'
+    33:             )
+    34:         ),
+    35: 
+    36:     registration_number varchar(100),
+    37:     tax_identification_number varchar(100),
+    38: 
+    39:     contact_person varchar(200),
+    40:     phone varchar(50),
+    41:     email varchar(255),
+    42: 
+    43:     physical_address text,
+    44:     postal_address text,
+    45: 
+    46:     bank_name varchar(255),
+    47:     bank_account_name varchar(255),
+    48:     bank_account_number varchar(100),
+    49: 
+    50:     status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+    51:         CHECK (
+    52:             status IN (
+    53:                 'ACTIVE',
+    54:                 'INACTIVE',
+    55:                 'SUSPENDED'
+    56:             )
+    57:         ),
+    58: 
+    59:     notes text,
+    60: 
+    61:     created_by uuid NULL
+    62:         REFERENCES public.users(id)
+    63:         ON DELETE SET NULL,
+    64: 
+    65:     updated_by uuid NULL
+    66:         REFERENCES public.users(id)
+    67:         ON DELETE SET NULL,
+    68: 
+    69:     created_at timestamptz NOT NULL DEFAULT now(),
+    70:     updated_at timestamptz NOT NULL DEFAULT now(),
+    71: 
+    72:     CONSTRAINT uq_supplier_code
+    73:         UNIQUE (institution_id, supplier_code)
+    74: );
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\schema-snapshots\public_schema_remote.sql
+LINE: 11119
+ 11119: CREATE TABLE IF NOT EXISTS "public"."suppliers" (
+ 11120:     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+ 11121:     "institution_id" "uuid" NOT NULL,
+ 11122:     "supplier_code" character varying(60) NOT NULL,
+ 11123:     "supplier_name" character varying(255) NOT NULL,
+ 11124:     "supplier_type" character varying(40) DEFAULT 'COMPANY'::character varying NOT NULL,
+ 11125:     "registration_number" character varying(100),
+ 11126:     "tax_identification_number" character varying(100),
+ 11127:     "contact_person" character varying(200),
+ 11128:     "phone" character varying(50),
+ 11129:     "email" character varying(255),
+ 11130:     "physical_address" "text",
+ 11131:     "postal_address" "text",
+ 11132:     "bank_name" character varying(255),
+ 11133:     "bank_account_name" character varying(255),
+ 11134:     "bank_account_number" character varying(100),
+ 11135:     "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+ 11136:     "notes" "text",
+ 11137:     "created_by" "uuid",
+ 11138:     "updated_by" "uuid",
+ 11139:     "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+ 11140:     "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+ 11141:     CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+ 11142:     CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+ 11143: );
+
+===== TABLE: leave_types =====
+TABLE DEFINITION NOT FOUND
+
+====================================================
+ 4. TABLE CONSTRAINTS
+====================================================
+
+===== CONSTRAINTS: asset_categories =====
+
+supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql:526:        REFERENCES public.asset_categories(id)
+supabase\schema-snapshots\public_schema_remote.sql:7872:    CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+supabase\schema-snapshots\public_schema_remote.sql:7873:    CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+supabase\schema-snapshots\public_schema_remote.sql:7874:    CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+supabase\schema-snapshots\public_schema_remote.sql:11589:    ADD CONSTRAINT "asset_categories_pkey" PRIMARY KEY ("id");
+supabase\schema-snapshots\public_schema_remote.sql:15608:    ADD CONSTRAINT "asset_categories_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+supabase\schema-snapshots\public_schema_remote.sql:15623:    ADD CONSTRAINT "assets_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."asset_categories"("id") ON DELETE SET NULL;
+
+
+
+
+===== CONSTRAINTS: suppliers =====
+
+supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql:214:        REFERENCES public.suppliers(id)
+supabase\schema-snapshots\public_schema_remote.sql:11141:    CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+supabase\schema-snapshots\public_schema_remote.sql:11142:    CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+supabase\schema-snapshots\public_schema_remote.sql:12414:    ADD CONSTRAINT "suppliers_pkey" PRIMARY KEY ("id");
+supabase\schema-snapshots\public_schema_remote.sql:16758:    ADD CONSTRAINT "purchase_orders_supplier_id_fkey" FOREIGN KEY ("supplier_id") REFERENCES "public"."suppliers"("id") ON DELETE RESTRICT;
+supabase\schema-snapshots\public_schema_remote.sql:17313:    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+supabase\schema-snapshots\public_schema_remote.sql:17318:    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+supabase\schema-snapshots\public_schema_remote.sql:17323:    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+
+===== CONSTRAINTS: leave_types =====
+
+supabase\migrations\20260917180000_hr_lifecycle_leave_attendance.sql:76:        REFERENCES public.staff_leave_types(id)
+supabase\migrations\20260917180000_hr_lifecycle_leave_attendance.sql:130:        REFERENCES public.staff_leave_types(id)
+supabase\schema-snapshots\public_schema_remote.sql:10461:    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+supabase\schema-snapshots\public_schema_remote.sql:10462:    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+supabase\schema-snapshots\public_schema_remote.sql:10463:    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+supabase\schema-snapshots\public_schema_remote.sql:12249:    ADD CONSTRAINT "staff_leave_types_pkey" PRIMARY KEY ("id");
+supabase\schema-snapshots\public_schema_remote.sql:16893:    ADD CONSTRAINT "staff_leave_balances_leave_type_id_fkey" FOREIGN KEY ("leave_type_id") REFERENCES "public"."staff_leave_types"("id") ON DELETE RESTRICT;
+supabase\schema-snapshots\public_schema_remote.sql:16918:    ADD CONSTRAINT "staff_leave_requests_leave_type_id_fkey" FOREIGN KEY ("leave_type_id") REFERENCES "public"."staff_leave_types"("id") ON DELETE RESTRICT;
+supabase\schema-snapshots\public_schema_remote.sql:16933:    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+supabase\schema-snapshots\public_schema_remote.sql:16938:    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+supabase\schema-snapshots\public_schema_remote.sql:16943:    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+
+====================================================
+ 5. GENERIC CRUD ENGINE
+====================================================
+
+----- const create -----
+
+  apps\backend\src\utils\resourceCrud.ts:142:    }
+  apps\backend\src\utils\resourceCrud.ts:143:  };
+  apps\backend\src\utils\resourceCrud.ts:144:
+> apps\backend\src\utils\resourceCrud.ts:145:  const create = async (req: Request, res: Response, next: NextFunction) => {
+  apps\backend\src\utils\resourceCrud.ts:146:    try {
+  apps\backend\src\utils\resourceCrud.ts:147:      const payload = mapBody(req.body, config.fields);
+  apps\backend\src\utils\resourceCrud.ts:148:      if (!Object.keys(payload).length) {
+  apps\backend\src\utils\resourceCrud.ts:149:        const error = new Error("No allowed fields supplied") as Error & { statusCode?: number };
+  apps\backend\src\utils\resourceCrud.ts:150:        error.statusCode = 400;
+  apps\backend\src\utils\resourceCrud.ts:151:        throw error;
+  apps\backend\src\utils\resourceCrud.ts:152:      }
+  apps\backend\src\utils\resourceCrud.ts:153:
+  apps\backend\src\utils\resourceCrud.ts:154:      const { data, error } = await getSupabase()
+  apps\backend\src\utils\resourceCrud.ts:155:        .from(config.table)
+  apps\backend\src\utils\resourceCrud.ts:156:        .insert(payload)
+  apps\backend\src\utils\resourceCrud.ts:157:        .select("*")
+  apps\backend\src\utils\resourceCrud.ts:158:        .single();
+  apps\backend\src\utils\resourceCrud.ts:159:
+  apps\backend\src\utils\resourceCrud.ts:160:      if (error) throw error;
+  apps\backend\src\utils\resourceCrud.ts:161:
+  apps\backend\src\utils\resourceCrud.ts:162:      await audit(req, config, `${config.entityType.toUpperCase()}_CREATE`, data.id ?? null, null, data);
+  apps\backend\src\utils\resourceCrud.ts:163:      return res.status(201).json({ success: true, data });
+
+
+
+
+----- const update -----
+
+  apps\backend\src\utils\resourceCrud.ts:166:    }
+  apps\backend\src\utils\resourceCrud.ts:167:  };
+  apps\backend\src\utils\resourceCrud.ts:168:
+> apps\backend\src\utils\resourceCrud.ts:169:  const update = async (req: Request, res: Response, next: NextFunction) => {
+  apps\backend\src\utils\resourceCrud.ts:170:    try {
+  apps\backend\src\utils\resourceCrud.ts:171:      const id = requireId(req);
+  apps\backend\src\utils\resourceCrud.ts:172:      const payload = mapBody(req.body, config.fields);
+  apps\backend\src\utils\resourceCrud.ts:173:      if (!Object.keys(payload).length) {
+  apps\backend\src\utils\resourceCrud.ts:174:        const error = new Error("No allowed fields supplied") as Error & { statusCode?: number };
+  apps\backend\src\utils\resourceCrud.ts:175:        error.statusCode = 400;
+  apps\backend\src\utils\resourceCrud.ts:176:        throw error;
+  apps\backend\src\utils\resourceCrud.ts:177:      }
+  apps\backend\src\utils\resourceCrud.ts:178:
+  apps\backend\src\utils\resourceCrud.ts:179:      const supabase = getSupabase();
+  apps\backend\src\utils\resourceCrud.ts:180:      const currentResult = await supabase
+  apps\backend\src\utils\resourceCrud.ts:181:        .from(config.table)
+  apps\backend\src\utils\resourceCrud.ts:182:        .select("*")
+  apps\backend\src\utils\resourceCrud.ts:183:        .eq("id", id)
+  apps\backend\src\utils\resourceCrud.ts:184:        .maybeSingle();
+  apps\backend\src\utils\resourceCrud.ts:185:
+  apps\backend\src\utils\resourceCrud.ts:186:      if (currentResult.error) throw currentResult.error;
+  apps\backend\src\utils\resourceCrud.ts:187:      if (!currentResult.data) {
+
+
+
+
+----- const remove -----
+
+  apps\backend\src\utils\resourceCrud.ts:204:    }
+  apps\backend\src\utils\resourceCrud.ts:205:  };
+  apps\backend\src\utils\resourceCrud.ts:206:
+> apps\backend\src\utils\resourceCrud.ts:207:  const remove = async (req: Request, res: Response, next: NextFunction) => {
+  apps\backend\src\utils\resourceCrud.ts:208:    try {
+  apps\backend\src\utils\resourceCrud.ts:209:      const id = requireId(req);
+  apps\backend\src\utils\resourceCrud.ts:210:      const supabase = getSupabase();
+  apps\backend\src\utils\resourceCrud.ts:211:
+  apps\backend\src\utils\resourceCrud.ts:212:      const currentResult = await supabase
+  apps\backend\src\utils\resourceCrud.ts:213:        .from(config.table)
+  apps\backend\src\utils\resourceCrud.ts:214:        .select("*")
+  apps\backend\src\utils\resourceCrud.ts:215:        .eq("id", id)
+  apps\backend\src\utils\resourceCrud.ts:216:        .maybeSingle();
+  apps\backend\src\utils\resourceCrud.ts:217:
+  apps\backend\src\utils\resourceCrud.ts:218:      if (currentResult.error) throw currentResult.error;
+  apps\backend\src\utils\resourceCrud.ts:219:      if (!currentResult.data) {
+  apps\backend\src\utils\resourceCrud.ts:220:        return res.status(404).json({ success: false, message: `${config.entityType} not found` });
+  apps\backend\src\utils\resourceCrud.ts:221:      }
+  apps\backend\src\utils\resourceCrud.ts:222:
+  apps\backend\src\utils\resourceCrud.ts:223:      const { error } = await supabase
+  apps\backend\src\utils\resourceCrud.ts:224:        .from(config.table)
+  apps\backend\src\utils\resourceCrud.ts:225:        .delete()
+
+
+
+
+----- router.get -----
+
+  apps\backend\src\utils\resourceCrud.ts:243:  path: string
+  apps\backend\src\utils\resourceCrud.ts:244:) {
+  apps\backend\src\utils\resourceCrud.ts:245:  const handlers = createCrudHandlers(config);
+> apps\backend\src\utils\resourceCrud.ts:246:  router.get(path, requirePermission(config.permissionView), handlers.list);
+> apps\backend\src\utils\resourceCrud.ts:247:  router.get(`${path}/:id`, requirePermission(config.permissionView), handlers.getById);
+  apps\backend\src\utils\resourceCrud.ts:248:  router.post(path, requirePermission(config.permissionManage), handlers.create);
+  apps\backend\src\utils\resourceCrud.ts:249:  router.patch(`${path}/:id`, requirePermission(config.permissionManage), handlers.update);
+  apps\backend\src\utils\resourceCrud.ts:250:  router.delete(`${path}/:id`, requirePermission(config.permissionManage), handlers.remove);
+  apps\backend\src\utils\resourceCrud.ts:251:}
+  apps\backend\src\utils\resourceCrud.ts:252:
+
+
+
+
+----- router.post -----
+
+  apps\backend\src\utils\resourceCrud.ts:245:  const handlers = createCrudHandlers(config);
+  apps\backend\src\utils\resourceCrud.ts:246:  router.get(path, requirePermission(config.permissionView), handlers.list);
+  apps\backend\src\utils\resourceCrud.ts:247:  router.get(`${path}/:id`, requirePermission(config.permissionView), handlers.getById);
+> apps\backend\src\utils\resourceCrud.ts:248:  router.post(path, requirePermission(config.permissionManage), handlers.create);
+  apps\backend\src\utils\resourceCrud.ts:249:  router.patch(`${path}/:id`, requirePermission(config.permissionManage), handlers.update);
+  apps\backend\src\utils\resourceCrud.ts:250:  router.delete(`${path}/:id`, requirePermission(config.permissionManage), handlers.remove);
+  apps\backend\src\utils\resourceCrud.ts:251:}
+  apps\backend\src\utils\resourceCrud.ts:252:
+
+
+
+
+----- router.patch -----
+
+  apps\backend\src\utils\resourceCrud.ts:246:  router.get(path, requirePermission(config.permissionView), handlers.list);
+  apps\backend\src\utils\resourceCrud.ts:247:  router.get(`${path}/:id`, requirePermission(config.permissionView), handlers.getById);
+  apps\backend\src\utils\resourceCrud.ts:248:  router.post(path, requirePermission(config.permissionManage), handlers.create);
+> apps\backend\src\utils\resourceCrud.ts:249:  router.patch(`${path}/:id`, requirePermission(config.permissionManage), handlers.update);
+  apps\backend\src\utils\resourceCrud.ts:250:  router.delete(`${path}/:id`, requirePermission(config.permissionManage), handlers.remove);
+  apps\backend\src\utils\resourceCrud.ts:251:}
+  apps\backend\src\utils\resourceCrud.ts:252:
+
+
+
+
+----- router.delete -----
+
+  apps\backend\src\utils\resourceCrud.ts:247:  router.get(`${path}/:id`, requirePermission(config.permissionView), handlers.getById);
+  apps\backend\src\utils\resourceCrud.ts:248:  router.post(path, requirePermission(config.permissionManage), handlers.create);
+  apps\backend\src\utils\resourceCrud.ts:249:  router.patch(`${path}/:id`, requirePermission(config.permissionManage), handlers.update);
+> apps\backend\src\utils\resourceCrud.ts:250:  router.delete(`${path}/:id`, requirePermission(config.permissionManage), handlers.remove);
+  apps\backend\src\utils\resourceCrud.ts:251:}
+  apps\backend\src\utils\resourceCrud.ts:252:
+
+
+
+
+====================================================
+ 6. LIVE READ-ONLY API CHECK
+====================================================
+
+RESOURCE: Asset Categories
+URL: http://127.0.0.1:4000/api/v1/operations/assets/categories
+HTTP: 200
+BODY:
+{"success":true,"data":[],"meta":{"page":1,"limit":25,"total":0}}
+
+RESOURCE: Suppliers
+URL: http://127.0.0.1:4000/api/v1/operations/suppliers
+HTTP: 200
+BODY:
+{"success":true,"data":[],"meta":{"page":1,"limit":25,"total":0}}
+
+RESOURCE: Leave Types
+URL: http://127.0.0.1:4000/api/v1/hr/leave/types
+HTTP: 200
+BODY:
+{"success":true,"data":[],"meta":{"page":1,"limit":25,"total":0}}
+
+====================================================
+ 7. NOT NULL / DEFAULT FIELD DISCOVERY
+====================================================
+
+===== FIELD CONTRACT: asset_categories =====
+   471:     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+   473:     institution_id uuid NOT NULL
+   474:         REFERENCES public.institutions(id)
+   477:     category_code varchar(60) NOT NULL,
+   478:     category_name varchar(150) NOT NULL,
+   481:         CHECK (
+   490:     default_useful_life_years integer
+   491:         CHECK (
+   492:             default_useful_life_years IS NULL
+   493:             OR default_useful_life_years > 0
+   498:     status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+   499:         CHECK (
+   506:     created_at timestamptz NOT NULL DEFAULT now(),
+   507:     updated_at timestamptz NOT NULL DEFAULT now(),
+
+===== FIELD CONTRACT: suppliers =====
+    16:     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    18:     institution_id uuid NOT NULL
+    19:         REFERENCES public.institutions(id)
+    22:     supplier_code varchar(60) NOT NULL,
+    23:     supplier_name varchar(255) NOT NULL,
+    25:     supplier_type varchar(40) NOT NULL DEFAULT 'COMPANY'
+    26:         CHECK (
+    50:     status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+    51:         CHECK (
+    62:         REFERENCES public.users(id)
+    66:         REFERENCES public.users(id)
+    69:     created_at timestamptz NOT NULL DEFAULT now(),
+    70:     updated_at timestamptz NOT NULL DEFAULT now(),
+
+===== FIELD CONTRACT: leave_types =====
+
+====================================================
+ 8. BACKEND TYPECHECK + BUILD
+====================================================
+TYPECHECK PASSED
+BUILD PASSED

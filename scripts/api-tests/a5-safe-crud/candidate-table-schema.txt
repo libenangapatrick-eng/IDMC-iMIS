@@ -1,0 +1,5015 @@
+
+====================================================
+TABLE: inventory_categories
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql
+    specifications text,
+
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+
+-- ============================================================
+-- 6. INVENTORY CATEGORIES
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.inventory_categories (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    category_code varchar(60) NOT NULL,
+    category_name varchar(150) NOT NULL,
+
+    description text,
+
+    status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+        CHECK (
+            status IN (
+                'ACTIVE',
+                'INACTIVE'
+            )
+        ),
+
+    created_at timestamptz NOT NULL DEFAULT now(),
+    updated_at timestamptz NOT NULL DEFAULT now(),
+
+    CONSTRAINT uq_inventory_category
+        UNIQUE (institution_id, category_code)
+);
+
+
+-- ============================================================
+-- 7. INVENTORY ITEMS
+-- ============================================================
+------------------------------
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.inventory_items (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    category_id uuid NULL
+        REFERENCES public.inventory_categories(id)
+        ON DELETE SET NULL,
+
+    item_code varchar(80) NOT NULL,
+    item_name varchar(255) NOT NULL,
+
+    description text,
+
+    unit_of_measure varchar(50) NOT NULL DEFAULT 'UNIT',
+
+    minimum_stock_level numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (minimum_stock_level >= 0),
+
+    maximum_stock_level numeric(14,2)
+        CHECK (
+            maximum_stock_level IS NULL
+            OR maximum_stock_level >= minimum_stock_level
+        ),
+
+    reorder_level numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (reorder_level >= 0),
+
+    current_quantity numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (current_quantity >= 0),
+
+    unit_cost numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (unit_cost >= 0),
+
+    storage_location varchar(255),
+
+    status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+------------------------------
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_supplier
+    ON public.purchase_orders(supplier_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_status
+    ON public.purchase_orders(order_status);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_order_items_order
+    ON public.purchase_order_items(purchase_order_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_categories_institution
+    ON public.inventory_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_category
+    ON public.inventory_items(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_status
+    ON public.inventory_items(status);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_item
+    ON public.inventory_transactions(inventory_item_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_date
+    ON public.inventory_transactions(transaction_date);
+
+CREATE INDEX IF NOT EXISTS idx_asset_categories_institution
+    ON public.asset_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_category
+    ON public.assets(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_department
+    ON public.assets(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_status
+    ON public.assets(asset_status);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_asset
+    ON public.asset_assignments(asset_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_staff
+------------------------------
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_supplier
+    ON public.purchase_orders(supplier_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_status
+    ON public.purchase_orders(order_status);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_order_items_order
+    ON public.purchase_order_items(purchase_order_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_categories_institution
+    ON public.inventory_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_category
+    ON public.inventory_items(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_status
+    ON public.inventory_items(status);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_item
+    ON public.inventory_transactions(inventory_item_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_date
+    ON public.inventory_transactions(transaction_date);
+
+CREATE INDEX IF NOT EXISTS idx_asset_categories_institution
+    ON public.asset_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_category
+    ON public.assets(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_department
+    ON public.assets(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_status
+    ON public.assets(asset_status);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_asset
+    ON public.asset_assignments(asset_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_staff
+    ON public.asset_assignments(staff_id);
+------------------------------
+
+DROP TRIGGER IF EXISTS trg_purchase_orders_updated_at
+ON public.purchase_orders;
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_items_updated_at
+ON public.inventory_items;
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+------------------------------
+DROP TRIGGER IF EXISTS trg_purchase_orders_updated_at
+ON public.purchase_orders;
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_items_updated_at
+ON public.inventory_items;
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+------------------------------
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_items_updated_at
+ON public.inventory_items;
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+------------------------------
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_items_updated_at
+ON public.inventory_items;
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+------------------------------
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\schema-snapshots\public_schema_remote.sql
+    "logo_url" "text",
+    "status" character varying(30) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL
+);
+
+
+ALTER TABLE "public"."institutions" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."inventory_categories" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "inventory_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."inventory_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."inventory_items" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_id" "uuid",
+    "item_code" character varying(80) NOT NULL,
+    "item_name" character varying(255) NOT NULL,
+    "description" "text",
+    "unit_of_measure" character varying(50) DEFAULT 'UNIT'::character varying NOT NULL,
+    "minimum_stock_level" numeric(14,2) DEFAULT 0 NOT NULL,
+    "maximum_stock_level" numeric(14,2),
+    "reorder_level" numeric(14,2) DEFAULT 0 NOT NULL,
+    "current_quantity" numeric(14,2) DEFAULT 0 NOT NULL,
+    "unit_cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "storage_location" character varying(255),
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+------------------------------
+
+CREATE TABLE IF NOT EXISTS "public"."inventory_categories" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "inventory_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."inventory_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."inventory_items" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_id" "uuid",
+    "item_code" character varying(80) NOT NULL,
+    "item_name" character varying(255) NOT NULL,
+    "description" "text",
+    "unit_of_measure" character varying(50) DEFAULT 'UNIT'::character varying NOT NULL,
+    "minimum_stock_level" numeric(14,2) DEFAULT 0 NOT NULL,
+    "maximum_stock_level" numeric(14,2),
+    "reorder_level" numeric(14,2) DEFAULT 0 NOT NULL,
+    "current_quantity" numeric(14,2) DEFAULT 0 NOT NULL,
+    "unit_cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "storage_location" character varying(255),
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "inventory_items_check" CHECK ((("maximum_stock_level" IS NULL) OR ("maximum_stock_level" >= "minimum_stock_level"))),
+    CONSTRAINT "inventory_items_current_quantity_check" CHECK (("current_quantity" >= (0)::numeric)),
+    CONSTRAINT "inventory_items_minimum_stock_level_check" CHECK (("minimum_stock_level" >= (0)::numeric)),
+    CONSTRAINT "inventory_items_reorder_level_check" CHECK (("reorder_level" >= (0)::numeric)),
+    CONSTRAINT "inventory_items_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'DISCONTINUED'::character varying])::"text"[]))),
+------------------------------
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "inventory_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."inventory_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."inventory_items" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_id" "uuid",
+    "item_code" character varying(80) NOT NULL,
+    "item_name" character varying(255) NOT NULL,
+    "description" "text",
+    "unit_of_measure" character varying(50) DEFAULT 'UNIT'::character varying NOT NULL,
+    "minimum_stock_level" numeric(14,2) DEFAULT 0 NOT NULL,
+    "maximum_stock_level" numeric(14,2),
+    "reorder_level" numeric(14,2) DEFAULT 0 NOT NULL,
+    "current_quantity" numeric(14,2) DEFAULT 0 NOT NULL,
+    "unit_cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "storage_location" character varying(255),
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "inventory_items_check" CHECK ((("maximum_stock_level" IS NULL) OR ("maximum_stock_level" >= "minimum_stock_level"))),
+    CONSTRAINT "inventory_items_current_quantity_check" CHECK (("current_quantity" >= (0)::numeric)),
+    CONSTRAINT "inventory_items_minimum_stock_level_check" CHECK (("minimum_stock_level" >= (0)::numeric)),
+    CONSTRAINT "inventory_items_reorder_level_check" CHECK (("reorder_level" >= (0)::numeric)),
+    CONSTRAINT "inventory_items_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'DISCONTINUED'::character varying])::"text"[]))),
+    CONSTRAINT "inventory_items_unit_cost_check" CHECK (("unit_cost" >= (0)::numeric))
+);
+
+
+------------------------------
+ALTER TABLE ONLY "public"."institutions"
+    ADD CONSTRAINT "institutions_institution_code_key" UNIQUE ("institution_code");
+
+
+
+ALTER TABLE ONLY "public"."institutions"
+    ADD CONSTRAINT "institutions_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_categories"
+    ADD CONSTRAINT "inventory_categories_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_transaction_number_key" UNIQUE ("transaction_number");
+
+
+
+ALTER TABLE ONLY "public"."invoice_items"
+    ADD CONSTRAINT "invoice_items_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."invoices"
+    ADD CONSTRAINT "invoices_invoice_number_key" UNIQUE ("invoice_number");
+
+
+
+ALTER TABLE ONLY "public"."invoices"
+------------------------------
+    ADD CONSTRAINT "institutions_institution_code_key" UNIQUE ("institution_code");
+
+
+
+ALTER TABLE ONLY "public"."institutions"
+    ADD CONSTRAINT "institutions_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_categories"
+    ADD CONSTRAINT "inventory_categories_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_transaction_number_key" UNIQUE ("transaction_number");
+
+
+
+ALTER TABLE ONLY "public"."invoice_items"
+    ADD CONSTRAINT "invoice_items_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."invoices"
+    ADD CONSTRAINT "invoices_invoice_number_key" UNIQUE ("invoice_number");
+
+
+
+ALTER TABLE ONLY "public"."invoices"
+    ADD CONSTRAINT "invoices_pkey" PRIMARY KEY ("id");
+------------------------------
+ALTER TABLE ONLY "public"."hostels"
+    ADD CONSTRAINT "uq_hostel_code" UNIQUE ("institution_id", "hostel_code");
+
+
+
+ALTER TABLE ONLY "public"."hostel_rooms"
+    ADD CONSTRAINT "uq_hostel_room" UNIQUE ("hostel_id", "room_number");
+
+
+
+ALTER TABLE ONLY "public"."inventory_categories"
+    ADD CONSTRAINT "uq_inventory_category" UNIQUE ("institution_id", "category_code");
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "uq_inventory_item" UNIQUE ("institution_id", "item_code");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_approvals"
+    ADD CONSTRAINT "uq_leave_approval_level" UNIQUE ("leave_request_id", "approval_level");
+
+
+
+ALTER TABLE ONLY "public"."payments"
+    ADD CONSTRAINT "uq_payment_external_reference" UNIQUE ("provider", "external_reference");
+
+
+
+ALTER TABLE ONLY "public"."permissions"
+    ADD CONSTRAINT "uq_permission_module_action" UNIQUE ("module_code", "action_code");
+
+
+
+ALTER TABLE ONLY "public"."programmes"
+    ADD CONSTRAINT "uq_programme_institution_code" UNIQUE ("institution_id", "programme_code");
+
+
+
+ALTER TABLE ONLY "public"."programme_versions"
+------------------------------
+
+
+CREATE INDEX "idx_hostels_institution" ON "public"."hostels" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_hostels_status" ON "public"."hostels" USING "btree" ("status");
+
+
+
+CREATE INDEX "idx_inventory_categories_institution" ON "public"."inventory_categories" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_inventory_items_category" ON "public"."inventory_items" USING "btree" ("category_id");
+
+
+
+CREATE INDEX "idx_inventory_items_status" ON "public"."inventory_items" USING "btree" ("status");
+
+
+
+CREATE INDEX "idx_inventory_transactions_date" ON "public"."inventory_transactions" USING "btree" ("transaction_date");
+
+
+
+CREATE INDEX "idx_inventory_transactions_item" ON "public"."inventory_transactions" USING "btree" ("inventory_item_id");
+
+
+
+CREATE INDEX "idx_invoice_items_invoice" ON "public"."invoice_items" USING "btree" ("invoice_id");
+
+
+
+CREATE INDEX "idx_invoices_due_date" ON "public"."invoices" USING "btree" ("due_date");
+
+
+
+CREATE INDEX "idx_invoices_status" ON "public"."invoices" USING "btree" ("status");
+
+
+------------------------------
+
+
+CREATE OR REPLACE TRIGGER "trg_hostels_updated_at" BEFORE UPDATE ON "public"."hostels" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_institutions_updated_at" BEFORE UPDATE ON "public"."institutions" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_inventory_categories_updated_at" BEFORE UPDATE ON "public"."inventory_categories" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_inventory_items_updated_at" BEFORE UPDATE ON "public"."inventory_items" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_invoice_item_refresh" AFTER INSERT OR DELETE OR UPDATE ON "public"."invoice_items" FOR EACH ROW EXECUTE FUNCTION "public"."trg_refresh_invoice_after_item"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_invoices_updated_at" BEFORE UPDATE ON "public"."invoices" FOR EACH ROW EXECUTE FUNCTION "public"."touch_finance_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_joining_instructions_updated_at" BEFORE UPDATE ON "public"."joining_instructions" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_lecturer_assignments_updated_at" BEFORE UPDATE ON "public"."lecturer_assignments" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_library_fines_updated_at" BEFORE UPDATE ON "public"."library_fines" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_library_items_updated_at" BEFORE UPDATE ON "public"."library_items" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+------------------------------
+ALTER TABLE ONLY "public"."hostels"
+    ADD CONSTRAINT "hostels_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."hostels"
+    ADD CONSTRAINT "hostels_warden_user_id_fkey" FOREIGN KEY ("warden_user_id") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_categories"
+    ADD CONSTRAINT "inventory_categories_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."inventory_categories"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_inventory_item_id_fkey" FOREIGN KEY ("inventory_item_id") REFERENCES "public"."inventory_items"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+------------------------------
+    ADD CONSTRAINT "hostels_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."hostels"
+    ADD CONSTRAINT "hostels_warden_user_id_fkey" FOREIGN KEY ("warden_user_id") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_categories"
+    ADD CONSTRAINT "inventory_categories_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."inventory_categories"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_inventory_item_id_fkey" FOREIGN KEY ("inventory_item_id") REFERENCES "public"."inventory_items"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_performed_by_fkey" FOREIGN KEY ("performed_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+------------------------------
+    ADD CONSTRAINT "hostels_warden_user_id_fkey" FOREIGN KEY ("warden_user_id") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_categories"
+    ADD CONSTRAINT "inventory_categories_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."inventory_categories"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_items"
+    ADD CONSTRAINT "inventory_items_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_inventory_item_id_fkey" FOREIGN KEY ("inventory_item_id") REFERENCES "public"."inventory_items"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."inventory_transactions"
+    ADD CONSTRAINT "inventory_transactions_performed_by_fkey" FOREIGN KEY ("performed_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."invoice_items"
+    ADD CONSTRAINT "invoice_items_invoice_id_fkey" FOREIGN KEY ("invoice_id") REFERENCES "public"."invoices"("id") ON DELETE CASCADE;
+------------------------------
+GRANT ALL ON TABLE "public"."hostel_occupancy_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."institutions" TO "anon";
+GRANT ALL ON TABLE "public"."institutions" TO "authenticated";
+GRANT ALL ON TABLE "public"."institutions" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_categories" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_categories" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_items" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_items" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_items" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."invoice_items" TO "anon";
+GRANT ALL ON TABLE "public"."invoice_items" TO "authenticated";
+GRANT ALL ON TABLE "public"."invoice_items" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."invoices" TO "anon";
+------------------------------
+
+
+
+GRANT ALL ON TABLE "public"."institutions" TO "anon";
+GRANT ALL ON TABLE "public"."institutions" TO "authenticated";
+GRANT ALL ON TABLE "public"."institutions" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_categories" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_categories" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_items" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_items" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_items" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."invoice_items" TO "anon";
+GRANT ALL ON TABLE "public"."invoice_items" TO "authenticated";
+GRANT ALL ON TABLE "public"."invoice_items" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."invoices" TO "anon";
+GRANT ALL ON TABLE "public"."invoices" TO "authenticated";
+------------------------------
+
+
+GRANT ALL ON TABLE "public"."institutions" TO "anon";
+GRANT ALL ON TABLE "public"."institutions" TO "authenticated";
+GRANT ALL ON TABLE "public"."institutions" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_categories" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_categories" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_items" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_items" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_items" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_stock_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "anon";
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "authenticated";
+GRANT ALL ON TABLE "public"."inventory_transactions" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."invoice_items" TO "anon";
+GRANT ALL ON TABLE "public"."invoice_items" TO "authenticated";
+GRANT ALL ON TABLE "public"."invoice_items" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."invoices" TO "anon";
+GRANT ALL ON TABLE "public"."invoices" TO "authenticated";
+GRANT ALL ON TABLE "public"."invoices" TO "service_role";
+------------------------------
+
+====================================================
+TABLE: asset_categories
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql
+    remarks text,
+
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+
+-- ============================================================
+-- 9. ASSET CATEGORIES
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.asset_categories (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    category_code varchar(60) NOT NULL,
+    category_name varchar(150) NOT NULL,
+
+    depreciation_method varchar(40)
+        CHECK (
+            depreciation_method IS NULL
+            OR depreciation_method IN (
+                'STRAIGHT_LINE',
+                'DECLINING_BALANCE',
+                'NONE'
+            )
+        ),
+
+    default_useful_life_years integer
+        CHECK (
+            default_useful_life_years IS NULL
+            OR default_useful_life_years > 0
+        ),
+
+    description text,
+
+    status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+        CHECK (
+            status IN (
+------------------------------
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.assets (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    category_id uuid NULL
+        REFERENCES public.asset_categories(id)
+        ON DELETE SET NULL,
+
+    department_id uuid NULL
+        REFERENCES public.departments(id)
+        ON DELETE SET NULL,
+
+    asset_tag varchar(80) NOT NULL UNIQUE,
+
+    asset_name varchar(255) NOT NULL,
+
+    description text,
+
+    serial_number varchar(150),
+
+    manufacturer varchar(150),
+    model varchar(150),
+
+    acquisition_date date,
+    acquisition_cost numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (acquisition_cost >= 0),
+
+    current_value numeric(14,2)
+        CHECK (
+            current_value IS NULL
+            OR current_value >= 0
+        ),
+
+    useful_life_years integer
+        CHECK (
+            useful_life_years IS NULL
+------------------------------
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_status
+    ON public.inventory_items(status);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_item
+    ON public.inventory_transactions(inventory_item_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_date
+    ON public.inventory_transactions(transaction_date);
+
+CREATE INDEX IF NOT EXISTS idx_asset_categories_institution
+    ON public.asset_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_category
+    ON public.assets(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_department
+    ON public.assets(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_status
+    ON public.assets(asset_status);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_asset
+    ON public.asset_assignments(asset_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_staff
+    ON public.asset_assignments(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_department
+    ON public.asset_assignments(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_maintenance_asset
+    ON public.asset_maintenance(asset_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_maintenance_date
+    ON public.asset_maintenance(maintenance_date);
+
+
+-- ============================================================
+-- 14. UPDATED_AT TRIGGERS
+-- ============================================================
+------------------------------
+CREATE INDEX IF NOT EXISTS idx_inventory_items_status
+    ON public.inventory_items(status);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_item
+    ON public.inventory_transactions(inventory_item_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_transactions_date
+    ON public.inventory_transactions(transaction_date);
+
+CREATE INDEX IF NOT EXISTS idx_asset_categories_institution
+    ON public.asset_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_category
+    ON public.assets(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_department
+    ON public.assets(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_assets_status
+    ON public.assets(asset_status);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_asset
+    ON public.asset_assignments(asset_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_staff
+    ON public.asset_assignments(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_assignments_department
+    ON public.asset_assignments(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_maintenance_asset
+    ON public.asset_maintenance(asset_id);
+
+CREATE INDEX IF NOT EXISTS idx_asset_maintenance_date
+    ON public.asset_maintenance(maintenance_date);
+
+
+-- ============================================================
+-- 14. UPDATED_AT TRIGGERS
+-- ============================================================
+
+------------------------------
+
+DROP TRIGGER IF EXISTS trg_inventory_items_updated_at
+ON public.inventory_items;
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+-- ============================================================
+-- 15. PROCUREMENT REQUEST NUMBER
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION public.generate_procurement_request_number()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    next_number bigint;
+BEGIN
+
+    IF NEW.request_number IS NULL
+------------------------------
+DROP TRIGGER IF EXISTS trg_inventory_items_updated_at
+ON public.inventory_items;
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+-- ============================================================
+-- 15. PROCUREMENT REQUEST NUMBER
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION public.generate_procurement_request_number()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    next_number bigint;
+BEGIN
+
+    IF NEW.request_number IS NULL
+       OR btrim(NEW.request_number) = '' THEN
+------------------------------
+
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+-- ============================================================
+-- 15. PROCUREMENT REQUEST NUMBER
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION public.generate_procurement_request_number()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    next_number bigint;
+BEGIN
+
+    IF NEW.request_number IS NULL
+       OR btrim(NEW.request_number) = '' THEN
+
+        next_number := nextval(
+------------------------------
+CREATE TRIGGER trg_inventory_items_updated_at
+BEFORE UPDATE ON public.inventory_items
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_asset_categories_updated_at
+ON public.asset_categories;
+
+CREATE TRIGGER trg_asset_categories_updated_at
+BEFORE UPDATE ON public.asset_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_assets_updated_at
+ON public.assets;
+
+CREATE TRIGGER trg_assets_updated_at
+BEFORE UPDATE ON public.assets
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+-- ============================================================
+-- 15. PROCUREMENT REQUEST NUMBER
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION public.generate_procurement_request_number()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    next_number bigint;
+BEGIN
+
+    IF NEW.request_number IS NULL
+       OR btrim(NEW.request_number) = '' THEN
+
+        next_number := nextval(
+            'public.procurement_request_number_seq'
+------------------------------
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\schema-snapshots\public_schema_remote.sql
+);
+
+
+ALTER TABLE "public"."asset_assignments" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."asset_assignments" IS 'Assignment and custody records for institutional assets.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."asset_categories" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "depreciation_method" character varying(40),
+    "default_useful_life_years" integer,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+    CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+    CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."asset_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."asset_maintenance" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "asset_id" "uuid" NOT NULL,
+    "maintenance_type" character varying(30) NOT NULL,
+    "maintenance_date" "date" NOT NULL,
+    "service_provider" character varying(255),
+    "description" "text" NOT NULL,
+    "cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "next_maintenance_date" "date",
+    "maintenance_status" character varying(20) DEFAULT 'COMPLETED'::character varying NOT NULL,
+    "performed_by" "uuid",
+------------------------------
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "depreciation_method" character varying(40),
+    "default_useful_life_years" integer,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+    CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+    CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."asset_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."asset_maintenance" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "asset_id" "uuid" NOT NULL,
+    "maintenance_type" character varying(30) NOT NULL,
+    "maintenance_date" "date" NOT NULL,
+    "service_provider" character varying(255),
+    "description" "text" NOT NULL,
+    "cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "next_maintenance_date" "date",
+    "maintenance_status" character varying(20) DEFAULT 'COMPLETED'::character varying NOT NULL,
+    "performed_by" "uuid",
+    "notes" "text",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_maintenance_cost_check" CHECK (("cost" >= (0)::numeric)),
+    CONSTRAINT "asset_maintenance_maintenance_status_check" CHECK ((("maintenance_status")::"text" = ANY ((ARRAY['SCHEDULED'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "asset_maintenance_maintenance_type_check" CHECK ((("maintenance_type")::"text" = ANY ((ARRAY['PREVENTIVE'::character varying, 'CORRECTIVE'::character varying, 'INSPECTION'::character varying, 'CALIBRATION'::character varying, 'OTHER'::character varying])::"text"[]))),
+    CONSTRAINT "chk_asset_maintenance_dates" CHECK ((("next_maintenance_date" IS NULL) OR ("next_maintenance_date" >= "maintenance_date")))
+);
+
+
+ALTER TABLE "public"."asset_maintenance" OWNER TO "postgres";
+
+------------------------------
+    "institution_id" "uuid" NOT NULL,
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "depreciation_method" character varying(40),
+    "default_useful_life_years" integer,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+    CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+    CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."asset_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."asset_maintenance" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "asset_id" "uuid" NOT NULL,
+    "maintenance_type" character varying(30) NOT NULL,
+    "maintenance_date" "date" NOT NULL,
+    "service_provider" character varying(255),
+    "description" "text" NOT NULL,
+    "cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "next_maintenance_date" "date",
+    "maintenance_status" character varying(20) DEFAULT 'COMPLETED'::character varying NOT NULL,
+    "performed_by" "uuid",
+    "notes" "text",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_maintenance_cost_check" CHECK (("cost" >= (0)::numeric)),
+    CONSTRAINT "asset_maintenance_maintenance_status_check" CHECK ((("maintenance_status")::"text" = ANY ((ARRAY['SCHEDULED'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "asset_maintenance_maintenance_type_check" CHECK ((("maintenance_type")::"text" = ANY ((ARRAY['PREVENTIVE'::character varying, 'CORRECTIVE'::character varying, 'INSPECTION'::character varying, 'CALIBRATION'::character varying, 'OTHER'::character varying])::"text"[]))),
+    CONSTRAINT "chk_asset_maintenance_dates" CHECK ((("next_maintenance_date" IS NULL) OR ("next_maintenance_date" >= "maintenance_date")))
+);
+
+
+ALTER TABLE "public"."asset_maintenance" OWNER TO "postgres";
+
+
+------------------------------
+    "category_code" character varying(60) NOT NULL,
+    "category_name" character varying(150) NOT NULL,
+    "depreciation_method" character varying(40),
+    "default_useful_life_years" integer,
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+    CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+    CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."asset_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."asset_maintenance" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "asset_id" "uuid" NOT NULL,
+    "maintenance_type" character varying(30) NOT NULL,
+    "maintenance_date" "date" NOT NULL,
+    "service_provider" character varying(255),
+    "description" "text" NOT NULL,
+    "cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "next_maintenance_date" "date",
+    "maintenance_status" character varying(20) DEFAULT 'COMPLETED'::character varying NOT NULL,
+    "performed_by" "uuid",
+    "notes" "text",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_maintenance_cost_check" CHECK (("cost" >= (0)::numeric)),
+    CONSTRAINT "asset_maintenance_maintenance_status_check" CHECK ((("maintenance_status")::"text" = ANY ((ARRAY['SCHEDULED'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "asset_maintenance_maintenance_type_check" CHECK ((("maintenance_type")::"text" = ANY ((ARRAY['PREVENTIVE'::character varying, 'CORRECTIVE'::character varying, 'INSPECTION'::character varying, 'CALIBRATION'::character varying, 'OTHER'::character varying])::"text"[]))),
+    CONSTRAINT "chk_asset_maintenance_dates" CHECK ((("next_maintenance_date" IS NULL) OR ("next_maintenance_date" >= "maintenance_date")))
+);
+
+
+ALTER TABLE "public"."asset_maintenance" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."asset_maintenance" IS 'Maintenance and service history for institutional assets.';
+------------------------------
+    "description" "text",
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_categories_default_useful_life_years_check" CHECK ((("default_useful_life_years" IS NULL) OR ("default_useful_life_years" > 0))),
+    CONSTRAINT "asset_categories_depreciation_method_check" CHECK ((("depreciation_method" IS NULL) OR (("depreciation_method")::"text" = ANY ((ARRAY['STRAIGHT_LINE'::character varying, 'DECLINING_BALANCE'::character varying, 'NONE'::character varying])::"text"[])))),
+    CONSTRAINT "asset_categories_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."asset_categories" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."asset_maintenance" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "asset_id" "uuid" NOT NULL,
+    "maintenance_type" character varying(30) NOT NULL,
+    "maintenance_date" "date" NOT NULL,
+    "service_provider" character varying(255),
+    "description" "text" NOT NULL,
+    "cost" numeric(14,2) DEFAULT 0 NOT NULL,
+    "next_maintenance_date" "date",
+    "maintenance_status" character varying(20) DEFAULT 'COMPLETED'::character varying NOT NULL,
+    "performed_by" "uuid",
+    "notes" "text",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "asset_maintenance_cost_check" CHECK (("cost" >= (0)::numeric)),
+    CONSTRAINT "asset_maintenance_maintenance_status_check" CHECK ((("maintenance_status")::"text" = ANY ((ARRAY['SCHEDULED'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "asset_maintenance_maintenance_type_check" CHECK ((("maintenance_type")::"text" = ANY ((ARRAY['PREVENTIVE'::character varying, 'CORRECTIVE'::character varying, 'INSPECTION'::character varying, 'CALIBRATION'::character varying, 'OTHER'::character varying])::"text"[]))),
+    CONSTRAINT "chk_asset_maintenance_dates" CHECK ((("next_maintenance_date" IS NULL) OR ("next_maintenance_date" >= "maintenance_date")))
+);
+
+
+ALTER TABLE "public"."asset_maintenance" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."asset_maintenance" IS 'Maintenance and service history for institutional assets.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."assets" (
+------------------------------
+ALTER TABLE ONLY "public"."assessments"
+    ADD CONSTRAINT "assessments_unique_code" UNIQUE ("course_offering_id", "assessment_code");
+
+
+
+ALTER TABLE ONLY "public"."asset_assignments"
+    ADD CONSTRAINT "asset_assignments_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."asset_categories"
+    ADD CONSTRAINT "asset_categories_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_asset_tag_key" UNIQUE ("asset_tag");
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."attendance_corrections"
+    ADD CONSTRAINT "attendance_corrections_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."attendance_records"
+    ADD CONSTRAINT "attendance_records_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."attendance_records"
+------------------------------
+    ADD CONSTRAINT "assessments_unique_code" UNIQUE ("course_offering_id", "assessment_code");
+
+
+
+ALTER TABLE ONLY "public"."asset_assignments"
+    ADD CONSTRAINT "asset_assignments_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."asset_categories"
+    ADD CONSTRAINT "asset_categories_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_asset_tag_key" UNIQUE ("asset_tag");
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."attendance_corrections"
+    ADD CONSTRAINT "attendance_corrections_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."attendance_records"
+    ADD CONSTRAINT "attendance_records_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."attendance_records"
+    ADD CONSTRAINT "attendance_records_unique_student_session" UNIQUE ("attendance_session_id", "student_id");
+------------------------------
+ALTER TABLE ONLY "public"."application_choices"
+    ADD CONSTRAINT "uq_application_choice_number" UNIQUE ("application_id", "choice_number");
+
+
+
+ALTER TABLE ONLY "public"."application_choices"
+    ADD CONSTRAINT "uq_application_programme" UNIQUE ("application_id", "programme_id");
+
+
+
+ALTER TABLE ONLY "public"."asset_categories"
+    ADD CONSTRAINT "uq_asset_category" UNIQUE ("institution_id", "category_code");
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "uq_asset_serial" UNIQUE ("serial_number");
+
+
+
+ALTER TABLE ONLY "public"."campuses"
+    ADD CONSTRAINT "uq_campus_code_per_institution" UNIQUE ("institution_id", "campus_code");
+
+
+
+ALTER TABLE ONLY "public"."classes"
+    ADD CONSTRAINT "uq_class_code" UNIQUE ("class_code");
+
+
+
+ALTER TABLE ONLY "public"."class_students"
+    ADD CONSTRAINT "uq_class_student" UNIQUE ("class_id", "student_id");
+
+
+
+ALTER TABLE ONLY "public"."courses"
+    ADD CONSTRAINT "uq_course_institution_code" UNIQUE ("institution_id", "course_code");
+
+
+
+ALTER TABLE ONLY "public"."course_offerings"
+------------------------------
+
+
+CREATE INDEX "idx_asset_assignments_department" ON "public"."asset_assignments" USING "btree" ("department_id");
+
+
+
+CREATE INDEX "idx_asset_assignments_staff" ON "public"."asset_assignments" USING "btree" ("staff_id");
+
+
+
+CREATE INDEX "idx_asset_categories_institution" ON "public"."asset_categories" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_asset_maintenance_asset" ON "public"."asset_maintenance" USING "btree" ("asset_id");
+
+
+
+CREATE INDEX "idx_asset_maintenance_date" ON "public"."asset_maintenance" USING "btree" ("maintenance_date");
+
+
+
+CREATE INDEX "idx_assets_category" ON "public"."assets" USING "btree" ("category_id");
+
+
+
+CREATE INDEX "idx_assets_department" ON "public"."assets" USING "btree" ("department_id");
+
+
+
+CREATE INDEX "idx_assets_status" ON "public"."assets" USING "btree" ("asset_status");
+
+
+
+CREATE INDEX "idx_attendance_corrections_record" ON "public"."attendance_corrections" USING "btree" ("attendance_record_id");
+
+
+
+CREATE INDEX "idx_attendance_corrections_status" ON "public"."attendance_corrections" USING "btree" ("status");
+
+
+------------------------------
+
+
+CREATE OR REPLACE TRIGGER "trg_assessment_submissions_updated_at" BEFORE UPDATE ON "public"."assessment_submissions" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_assessments_updated_at" BEFORE UPDATE ON "public"."assessments" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_asset_categories_updated_at" BEFORE UPDATE ON "public"."asset_categories" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_assets_updated_at" BEFORE UPDATE ON "public"."assets" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_attendance_corrections_updated_at" BEFORE UPDATE ON "public"."attendance_corrections" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_attendance_records_updated_at" BEFORE UPDATE ON "public"."attendance_records" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_attendance_sessions_updated_at" BEFORE UPDATE ON "public"."attendance_sessions" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_campuses_updated_at" BEFORE UPDATE ON "public"."campuses" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_certificates_updated_at" BEFORE UPDATE ON "public"."certificates" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_class_students_updated_at" BEFORE UPDATE ON "public"."class_students" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+------------------------------
+ALTER TABLE ONLY "public"."asset_assignments"
+    ADD CONSTRAINT "asset_assignments_received_by_fkey" FOREIGN KEY ("received_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."asset_assignments"
+    ADD CONSTRAINT "asset_assignments_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."asset_categories"
+    ADD CONSTRAINT "asset_categories_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_asset_id_fkey" FOREIGN KEY ("asset_id") REFERENCES "public"."assets"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_performed_by_fkey" FOREIGN KEY ("performed_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."asset_categories"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_department_id_fkey" FOREIGN KEY ("department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+------------------------------
+    ADD CONSTRAINT "asset_assignments_received_by_fkey" FOREIGN KEY ("received_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."asset_assignments"
+    ADD CONSTRAINT "asset_assignments_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."asset_categories"
+    ADD CONSTRAINT "asset_categories_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_asset_id_fkey" FOREIGN KEY ("asset_id") REFERENCES "public"."assets"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_performed_by_fkey" FOREIGN KEY ("performed_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."asset_categories"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_department_id_fkey" FOREIGN KEY ("department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+------------------------------
+    ADD CONSTRAINT "asset_maintenance_asset_id_fkey" FOREIGN KEY ("asset_id") REFERENCES "public"."assets"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."asset_maintenance"
+    ADD CONSTRAINT "asset_maintenance_performed_by_fkey" FOREIGN KEY ("performed_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."asset_categories"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_department_id_fkey" FOREIGN KEY ("department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."assets"
+    ADD CONSTRAINT "assets_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."attendance_corrections"
+    ADD CONSTRAINT "attendance_corrections_attendance_record_id_fkey" FOREIGN KEY ("attendance_record_id") REFERENCES "public"."attendance_records"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."attendance_corrections"
+    ADD CONSTRAINT "attendance_corrections_requested_by_fkey" FOREIGN KEY ("requested_by") REFERENCES "public"."users"("id");
+------------------------------
+GRANT ALL ON TABLE "public"."assessments" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_assignments" TO "anon";
+GRANT ALL ON TABLE "public"."asset_assignments" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_assignments" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_categories" TO "anon";
+GRANT ALL ON TABLE "public"."asset_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_categories" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "anon";
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."assets" TO "anon";
+GRANT ALL ON TABLE "public"."assets" TO "authenticated";
+GRANT ALL ON TABLE "public"."assets" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_summary" TO "anon";
+GRANT ALL ON TABLE "public"."asset_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "anon";
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "authenticated";
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."attendance_records" TO "anon";
+------------------------------
+
+
+
+GRANT ALL ON TABLE "public"."asset_assignments" TO "anon";
+GRANT ALL ON TABLE "public"."asset_assignments" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_assignments" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_categories" TO "anon";
+GRANT ALL ON TABLE "public"."asset_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_categories" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "anon";
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."assets" TO "anon";
+GRANT ALL ON TABLE "public"."assets" TO "authenticated";
+GRANT ALL ON TABLE "public"."assets" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_summary" TO "anon";
+GRANT ALL ON TABLE "public"."asset_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "anon";
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "authenticated";
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."attendance_records" TO "anon";
+GRANT ALL ON TABLE "public"."attendance_records" TO "authenticated";
+------------------------------
+
+
+GRANT ALL ON TABLE "public"."asset_assignments" TO "anon";
+GRANT ALL ON TABLE "public"."asset_assignments" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_assignments" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_categories" TO "anon";
+GRANT ALL ON TABLE "public"."asset_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_categories" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "anon";
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_maintenance" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."assets" TO "anon";
+GRANT ALL ON TABLE "public"."assets" TO "authenticated";
+GRANT ALL ON TABLE "public"."assets" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."asset_summary" TO "anon";
+GRANT ALL ON TABLE "public"."asset_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."asset_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "anon";
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "authenticated";
+GRANT ALL ON TABLE "public"."attendance_corrections" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."attendance_records" TO "anon";
+GRANT ALL ON TABLE "public"."attendance_records" TO "authenticated";
+GRANT ALL ON TABLE "public"."attendance_records" TO "service_role";
+------------------------------
+
+====================================================
+TABLE: suppliers
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\migrations\20260917190000_operations_procurement_inventory_assets.sql
+-- IDMC iMIS
+-- Migration 029
+-- Operations Core
+-- Procurement, Inventory & Assets
+-- Version: 20260917190000
+-- ============================================================
+
+BEGIN;
+
+-- ============================================================
+-- 1. SUPPLIERS
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.suppliers (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    supplier_code varchar(60) NOT NULL,
+    supplier_name varchar(255) NOT NULL,
+
+    supplier_type varchar(40) NOT NULL DEFAULT 'COMPANY'
+        CHECK (
+            supplier_type IN (
+                'COMPANY',
+                'INDIVIDUAL',
+                'GOVERNMENT',
+                'NGO',
+                'OTHER'
+            )
+        ),
+
+    registration_number varchar(100),
+    tax_identification_number varchar(100),
+
+    contact_person varchar(200),
+    phone varchar(50),
+    email varchar(255),
+
+------------------------------
+-- Procurement, Inventory & Assets
+-- Version: 20260917190000
+-- ============================================================
+
+BEGIN;
+
+-- ============================================================
+-- 1. SUPPLIERS
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.suppliers (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    supplier_code varchar(60) NOT NULL,
+    supplier_name varchar(255) NOT NULL,
+
+    supplier_type varchar(40) NOT NULL DEFAULT 'COMPANY'
+        CHECK (
+            supplier_type IN (
+                'COMPANY',
+                'INDIVIDUAL',
+                'GOVERNMENT',
+                'NGO',
+                'OTHER'
+            )
+        ),
+
+    registration_number varchar(100),
+    tax_identification_number varchar(100),
+
+    contact_person varchar(200),
+    phone varchar(50),
+    email varchar(255),
+
+    physical_address text,
+    postal_address text,
+
+------------------------------
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    procurement_request_id uuid NULL
+        REFERENCES public.procurement_requests(id)
+        ON DELETE SET NULL,
+
+    supplier_id uuid NOT NULL
+        REFERENCES public.suppliers(id)
+        ON DELETE RESTRICT,
+
+    purchase_order_number varchar(60) NOT NULL UNIQUE,
+
+    order_date date NOT NULL DEFAULT current_date,
+
+    expected_delivery_date date,
+
+    currency varchar(10) NOT NULL DEFAULT 'TZS',
+
+    subtotal numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (subtotal >= 0),
+
+    tax_amount numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (tax_amount >= 0),
+
+    discount_amount numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (discount_amount >= 0),
+
+    total_amount numeric(14,2) NOT NULL DEFAULT 0
+        CHECK (total_amount >= 0),
+
+    order_status varchar(30) NOT NULL DEFAULT 'DRAFT'
+        CHECK (
+            order_status IN (
+                'DRAFT',
+                'PENDING_APPROVAL',
+                'APPROVED',
+                'SENT',
+                'PARTIALLY_RECEIVED',
+------------------------------
+            next_maintenance_date IS NULL
+            OR next_maintenance_date >= maintenance_date
+        )
+);
+
+
+-- ============================================================
+-- 13. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_institution
+    ON public.suppliers(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_status
+    ON public.suppliers(status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_institution
+    ON public.procurement_requests(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_department
+    ON public.procurement_requests(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_status
+    ON public.procurement_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_request_items_request
+    ON public.procurement_request_items(procurement_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_supplier
+    ON public.purchase_orders(supplier_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_status
+    ON public.purchase_orders(order_status);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_order_items_order
+    ON public.purchase_order_items(purchase_order_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_categories_institution
+    ON public.inventory_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_category
+------------------------------
+            OR next_maintenance_date >= maintenance_date
+        )
+);
+
+
+-- ============================================================
+-- 13. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_institution
+    ON public.suppliers(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_status
+    ON public.suppliers(status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_institution
+    ON public.procurement_requests(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_department
+    ON public.procurement_requests(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_status
+    ON public.procurement_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_request_items_request
+    ON public.procurement_request_items(procurement_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_supplier
+    ON public.purchase_orders(supplier_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_status
+    ON public.purchase_orders(order_status);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_order_items_order
+    ON public.purchase_order_items(purchase_order_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_categories_institution
+    ON public.inventory_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_category
+    ON public.inventory_items(category_id);
+------------------------------
+);
+
+
+-- ============================================================
+-- 13. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_institution
+    ON public.suppliers(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_status
+    ON public.suppliers(status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_institution
+    ON public.procurement_requests(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_department
+    ON public.procurement_requests(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_status
+    ON public.procurement_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_request_items_request
+    ON public.procurement_request_items(procurement_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_supplier
+    ON public.purchase_orders(supplier_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_status
+    ON public.purchase_orders(order_status);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_order_items_order
+    ON public.purchase_order_items(purchase_order_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_categories_institution
+    ON public.inventory_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_category
+    ON public.inventory_items(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_status
+------------------------------
+
+
+-- ============================================================
+-- 13. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_institution
+    ON public.suppliers(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_suppliers_status
+    ON public.suppliers(status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_institution
+    ON public.procurement_requests(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_department
+    ON public.procurement_requests(department_id);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_requests_status
+    ON public.procurement_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_procurement_request_items_request
+    ON public.procurement_request_items(procurement_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_supplier
+    ON public.purchase_orders(supplier_id);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_orders_status
+    ON public.purchase_orders(order_status);
+
+CREATE INDEX IF NOT EXISTS idx_purchase_order_items_order
+    ON public.purchase_order_items(purchase_order_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_categories_institution
+    ON public.inventory_categories(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_category
+    ON public.inventory_items(category_id);
+
+CREATE INDEX IF NOT EXISTS idx_inventory_items_status
+    ON public.inventory_items(status);
+------------------------------
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_suppliers_updated_at
+ON public.suppliers;
+
+CREATE TRIGGER trg_suppliers_updated_at
+BEFORE UPDATE ON public.suppliers
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_procurement_requests_updated_at
+ON public.procurement_requests;
+
+CREATE TRIGGER trg_procurement_requests_updated_at
+BEFORE UPDATE ON public.procurement_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_purchase_orders_updated_at
+ON public.purchase_orders;
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+------------------------------
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_suppliers_updated_at
+ON public.suppliers;
+
+CREATE TRIGGER trg_suppliers_updated_at
+BEFORE UPDATE ON public.suppliers
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_procurement_requests_updated_at
+ON public.procurement_requests;
+
+CREATE TRIGGER trg_procurement_requests_updated_at
+BEFORE UPDATE ON public.procurement_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_purchase_orders_updated_at
+ON public.purchase_orders;
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+------------------------------
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_suppliers_updated_at
+ON public.suppliers;
+
+CREATE TRIGGER trg_suppliers_updated_at
+BEFORE UPDATE ON public.suppliers
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_procurement_requests_updated_at
+ON public.procurement_requests;
+
+CREATE TRIGGER trg_procurement_requests_updated_at
+BEFORE UPDATE ON public.procurement_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_purchase_orders_updated_at
+ON public.purchase_orders;
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+------------------------------
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_suppliers_updated_at
+ON public.suppliers;
+
+CREATE TRIGGER trg_suppliers_updated_at
+BEFORE UPDATE ON public.suppliers
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_procurement_requests_updated_at
+ON public.procurement_requests;
+
+CREATE TRIGGER trg_procurement_requests_updated_at
+BEFORE UPDATE ON public.procurement_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_purchase_orders_updated_at
+ON public.purchase_orders;
+
+CREATE TRIGGER trg_purchase_orders_updated_at
+BEFORE UPDATE ON public.purchase_orders
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_inventory_categories_updated_at
+ON public.inventory_categories;
+
+CREATE TRIGGER trg_inventory_categories_updated_at
+BEFORE UPDATE ON public.inventory_categories
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+------------------------------
+    a.warranty_expiry_date,
+    a.created_at,
+    a.updated_at
+FROM public.assets a;
+
+
+-- ============================================================
+-- 23. COMMENTS
+-- ============================================================
+
+COMMENT ON TABLE public.suppliers IS
+'Approved suppliers and vendors used by the institution.';
+
+COMMENT ON TABLE public.procurement_requests IS
+'Internal procurement requests raised by institutional users.';
+
+COMMENT ON TABLE public.purchase_orders IS
+'Purchase orders issued to approved suppliers.';
+
+COMMENT ON TABLE public.inventory_items IS
+'Consumable and stock-controlled institutional items.';
+
+COMMENT ON TABLE public.inventory_transactions IS
+'Inventory receipt, issue, return and adjustment transactions.';
+
+COMMENT ON TABLE public.assets IS
+'Institutional fixed assets and equipment.';
+
+COMMENT ON TABLE public.asset_assignments IS
+'Assignment and custody records for institutional assets.';
+
+COMMENT ON TABLE public.asset_maintenance IS
+'Maintenance and service history for institutional assets.';
+
+
+COMMIT;
+
+-- ============================================================
+-- END MIGRATION 029
+-- ============================================================
+------------------------------
+    a.created_at,
+    a.updated_at
+FROM public.assets a;
+
+
+-- ============================================================
+-- 23. COMMENTS
+-- ============================================================
+
+COMMENT ON TABLE public.suppliers IS
+'Approved suppliers and vendors used by the institution.';
+
+COMMENT ON TABLE public.procurement_requests IS
+'Internal procurement requests raised by institutional users.';
+
+COMMENT ON TABLE public.purchase_orders IS
+'Purchase orders issued to approved suppliers.';
+
+COMMENT ON TABLE public.inventory_items IS
+'Consumable and stock-controlled institutional items.';
+
+COMMENT ON TABLE public.inventory_transactions IS
+'Inventory receipt, issue, return and adjustment transactions.';
+
+COMMENT ON TABLE public.assets IS
+'Institutional fixed assets and equipment.';
+
+COMMENT ON TABLE public.asset_assignments IS
+'Assignment and custody records for institutional assets.';
+
+COMMENT ON TABLE public.asset_maintenance IS
+'Maintenance and service history for institutional assets.';
+
+
+COMMIT;
+
+-- ============================================================
+-- END MIGRATION 029
+-- ============================================================
+------------------------------
+-- 23. COMMENTS
+-- ============================================================
+
+COMMENT ON TABLE public.suppliers IS
+'Approved suppliers and vendors used by the institution.';
+
+COMMENT ON TABLE public.procurement_requests IS
+'Internal procurement requests raised by institutional users.';
+
+COMMENT ON TABLE public.purchase_orders IS
+'Purchase orders issued to approved suppliers.';
+
+COMMENT ON TABLE public.inventory_items IS
+'Consumable and stock-controlled institutional items.';
+
+COMMENT ON TABLE public.inventory_transactions IS
+'Inventory receipt, issue, return and adjustment transactions.';
+
+COMMENT ON TABLE public.assets IS
+'Institutional fixed assets and equipment.';
+
+COMMENT ON TABLE public.asset_assignments IS
+'Assignment and custody records for institutional assets.';
+
+COMMENT ON TABLE public.asset_maintenance IS
+'Maintenance and service history for institutional assets.';
+
+
+COMMIT;
+
+-- ============================================================
+-- END MIGRATION 029
+-- ============================================================
+------------------------------
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\schema-snapshots\public_schema_remote.sql
+    CONSTRAINT "purchase_orders_order_status_check" CHECK ((("order_status")::"text" = ANY ((ARRAY['DRAFT'::character varying, 'PENDING_APPROVAL'::character varying, 'APPROVED'::character varying, 'SENT'::character varying, 'PARTIALLY_RECEIVED'::character varying, 'RECEIVED'::character varying, 'CANCELLED'::character varying, 'CLOSED'::character varying])::"text"[]))),
+    CONSTRAINT "purchase_orders_subtotal_check" CHECK (("subtotal" >= (0)::numeric)),
+    CONSTRAINT "purchase_orders_tax_amount_check" CHECK (("tax_amount" >= (0)::numeric)),
+    CONSTRAINT "purchase_orders_total_amount_check" CHECK (("total_amount" >= (0)::numeric))
+);
+
+
+ALTER TABLE "public"."purchase_orders" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."purchase_orders" IS 'Purchase orders issued to approved suppliers.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."refunds" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "payment_id" "uuid" NOT NULL,
+    "student_id" "uuid" NOT NULL,
+    "refund_number" character varying(100) NOT NULL,
+    "amount" numeric(18,2) NOT NULL,
+    "reason" "text" NOT NULL,
+    "refund_method" character varying(50),
+    "status" character varying(30) DEFAULT 'REQUESTED'::character varying NOT NULL,
+    "requested_by" "uuid",
+    "approved_by" "uuid",
+    "processed_by" "uuid",
+    "requested_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "approved_at" timestamp with time zone,
+    "processed_at" timestamp with time zone,
+    "external_reference" character varying(150),
+    "metadata" "jsonb" DEFAULT '{}'::"jsonb" NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "refunds_amount_check" CHECK (("amount" > (0)::numeric)),
+    CONSTRAINT "refunds_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['REQUESTED'::character varying, 'APPROVED'::character varying, 'PROCESSING'::character varying, 'PAID'::character varying, 'REJECTED'::character varying, 'CANCELLED'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."refunds" OWNER TO "postgres";
+
+
+------------------------------
+
+
+COMMENT ON COLUMN "public"."students"."source_application_id" IS 'Original admission application. UNIQUE prevents duplicate applicant-to-student conversion.';
+
+
+
+COMMENT ON COLUMN "public"."students"."student_status" IS 'Student lifecycle state: PENDING_ACTIVATION, ACTIVE, DEFERRED, SUSPENDED, WITHDRAWN, COMPLETED, GRADUATED, EXPELLED, DECEASED or INACTIVE.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."suppliers" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "supplier_code" character varying(60) NOT NULL,
+    "supplier_name" character varying(255) NOT NULL,
+    "supplier_type" character varying(40) DEFAULT 'COMPANY'::character varying NOT NULL,
+    "registration_number" character varying(100),
+    "tax_identification_number" character varying(100),
+    "contact_person" character varying(200),
+    "phone" character varying(50),
+    "email" character varying(255),
+    "physical_address" "text",
+    "postal_address" "text",
+    "bank_name" character varying(255),
+    "bank_account_name" character varying(255),
+    "bank_account_number" character varying(100),
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+    CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."suppliers" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."suppliers" IS 'Approved suppliers and vendors used by the institution.';
+------------------------------
+    "postal_address" "text",
+    "bank_name" character varying(255),
+    "bank_account_name" character varying(255),
+    "bank_account_number" character varying(100),
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+    CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."suppliers" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."suppliers" IS 'Approved suppliers and vendors used by the institution.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."timetable_entries" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "timetable_id" "uuid" NOT NULL,
+    "class_id" "uuid" NOT NULL,
+    "course_offering_id" "uuid" NOT NULL,
+    "lecturer_assignment_id" "uuid",
+    "room_id" "uuid" NOT NULL,
+    "timetable_slot_id" "uuid" NOT NULL,
+    "entry_date" "date",
+    "entry_type" character varying(30) DEFAULT 'REGULAR'::character varying NOT NULL,
+    "status" character varying(30) DEFAULT 'DRAFT'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "chk_timetable_entry_status" CHECK ((("status")::"text" = ANY ((ARRAY['DRAFT'::character varying, 'CONFIRMED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "chk_timetable_entry_type" CHECK ((("entry_type")::"text" = ANY ((ARRAY['REGULAR'::character varying, 'MAKE_UP'::character varying, 'SPECIAL'::character varying, 'EXAM'::character varying, 'PRACTICAL'::character varying, 'CLINICAL'::character varying])::"text"[])))
+);
+------------------------------
+    "bank_name" character varying(255),
+    "bank_account_name" character varying(255),
+    "bank_account_number" character varying(100),
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+    CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."suppliers" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."suppliers" IS 'Approved suppliers and vendors used by the institution.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."timetable_entries" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "timetable_id" "uuid" NOT NULL,
+    "class_id" "uuid" NOT NULL,
+    "course_offering_id" "uuid" NOT NULL,
+    "lecturer_assignment_id" "uuid",
+    "room_id" "uuid" NOT NULL,
+    "timetable_slot_id" "uuid" NOT NULL,
+    "entry_date" "date",
+    "entry_type" character varying(30) DEFAULT 'REGULAR'::character varying NOT NULL,
+    "status" character varying(30) DEFAULT 'DRAFT'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "chk_timetable_entry_status" CHECK ((("status")::"text" = ANY ((ARRAY['DRAFT'::character varying, 'CONFIRMED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "chk_timetable_entry_type" CHECK ((("entry_type")::"text" = ANY ((ARRAY['REGULAR'::character varying, 'MAKE_UP'::character varying, 'SPECIAL'::character varying, 'EXAM'::character varying, 'PRACTICAL'::character varying, 'CLINICAL'::character varying])::"text"[])))
+);
+
+------------------------------
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+    CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."suppliers" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."suppliers" IS 'Approved suppliers and vendors used by the institution.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."timetable_entries" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "timetable_id" "uuid" NOT NULL,
+    "class_id" "uuid" NOT NULL,
+    "course_offering_id" "uuid" NOT NULL,
+    "lecturer_assignment_id" "uuid",
+    "room_id" "uuid" NOT NULL,
+    "timetable_slot_id" "uuid" NOT NULL,
+    "entry_date" "date",
+    "entry_type" character varying(30) DEFAULT 'REGULAR'::character varying NOT NULL,
+    "status" character varying(30) DEFAULT 'DRAFT'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "chk_timetable_entry_status" CHECK ((("status")::"text" = ANY ((ARRAY['DRAFT'::character varying, 'CONFIRMED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "chk_timetable_entry_type" CHECK ((("entry_type")::"text" = ANY ((ARRAY['REGULAR'::character varying, 'MAKE_UP'::character varying, 'SPECIAL'::character varying, 'EXAM'::character varying, 'PRACTICAL'::character varying, 'CLINICAL'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."timetable_entries" OWNER TO "postgres";
+
+
+------------------------------
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "suppliers_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'SUSPENDED'::character varying])::"text"[]))),
+    CONSTRAINT "suppliers_supplier_type_check" CHECK ((("supplier_type")::"text" = ANY ((ARRAY['COMPANY'::character varying, 'INDIVIDUAL'::character varying, 'GOVERNMENT'::character varying, 'NGO'::character varying, 'OTHER'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."suppliers" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."suppliers" IS 'Approved suppliers and vendors used by the institution.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."timetable_entries" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "timetable_id" "uuid" NOT NULL,
+    "class_id" "uuid" NOT NULL,
+    "course_offering_id" "uuid" NOT NULL,
+    "lecturer_assignment_id" "uuid",
+    "room_id" "uuid" NOT NULL,
+    "timetable_slot_id" "uuid" NOT NULL,
+    "entry_date" "date",
+    "entry_type" character varying(30) DEFAULT 'REGULAR'::character varying NOT NULL,
+    "status" character varying(30) DEFAULT 'DRAFT'::character varying NOT NULL,
+    "notes" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "chk_timetable_entry_status" CHECK ((("status")::"text" = ANY ((ARRAY['DRAFT'::character varying, 'CONFIRMED'::character varying, 'CANCELLED'::character varying])::"text"[]))),
+    CONSTRAINT "chk_timetable_entry_type" CHECK ((("entry_type")::"text" = ANY ((ARRAY['REGULAR'::character varying, 'MAKE_UP'::character varying, 'SPECIAL'::character varying, 'EXAM'::character varying, 'PRACTICAL'::character varying, 'CLINICAL'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."timetable_entries" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."timetable_entries" IS 'Individual class timetable entries with room, lecturer and time allocation.';
+
+
+------------------------------
+ALTER TABLE ONLY "public"."student_transcripts"
+    ADD CONSTRAINT "student_transcripts_verification_code_key" UNIQUE ("verification_code");
+
+
+
+ALTER TABLE ONLY "public"."students"
+    ADD CONSTRAINT "students_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetable_slots"
+    ADD CONSTRAINT "timetable_slots_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetable_slots"
+    ADD CONSTRAINT "timetable_slots_slot_code_key" UNIQUE ("slot_code");
+
+
+
+ALTER TABLE ONLY "public"."timetables"
+    ADD CONSTRAINT "timetables_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetables"
+    ADD CONSTRAINT "timetables_timetable_code_key" UNIQUE ("timetable_code");
+
+
+
+ALTER TABLE ONLY "public"."application_choices"
+------------------------------
+    ADD CONSTRAINT "student_transcripts_verification_code_key" UNIQUE ("verification_code");
+
+
+
+ALTER TABLE ONLY "public"."students"
+    ADD CONSTRAINT "students_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetable_slots"
+    ADD CONSTRAINT "timetable_slots_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetable_slots"
+    ADD CONSTRAINT "timetable_slots_slot_code_key" UNIQUE ("slot_code");
+
+
+
+ALTER TABLE ONLY "public"."timetables"
+    ADD CONSTRAINT "timetables_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."timetables"
+    ADD CONSTRAINT "timetables_timetable_code_key" UNIQUE ("timetable_code");
+
+
+
+ALTER TABLE ONLY "public"."application_choices"
+    ADD CONSTRAINT "uq_application_choice_number" UNIQUE ("application_id", "choice_number");
+------------------------------
+ALTER TABLE ONLY "public"."students"
+    ADD CONSTRAINT "uq_students_source_application" UNIQUE ("source_application_id");
+
+
+
+ALTER TABLE ONLY "public"."students"
+    ADD CONSTRAINT "uq_students_student_number" UNIQUE ("student_number");
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "uq_supplier_code" UNIQUE ("institution_id", "supplier_code");
+
+
+
+ALTER TABLE ONLY "public"."user_preferences"
+    ADD CONSTRAINT "uq_user_preferences_user" UNIQUE ("user_id");
+
+
+
+ALTER TABLE ONLY "public"."user_profiles"
+    ADD CONSTRAINT "uq_user_profiles_user" UNIQUE ("user_id");
+
+
+
+ALTER TABLE ONLY "public"."user_roles"
+    ADD CONSTRAINT "uq_user_role" UNIQUE ("user_id", "role_id");
+
+
+
+ALTER TABLE ONLY "public"."user_addresses"
+    ADD CONSTRAINT "user_addresses_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."user_preferences"
+    ADD CONSTRAINT "user_preferences_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."user_profiles"
+------------------------------
+
+
+CREATE INDEX "idx_students_student_number" ON "public"."students" USING "btree" ("student_number");
+
+
+
+CREATE INDEX "idx_students_user_id" ON "public"."students" USING "btree" ("user_id");
+
+
+
+CREATE INDEX "idx_suppliers_institution" ON "public"."suppliers" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_suppliers_status" ON "public"."suppliers" USING "btree" ("status");
+
+
+
+CREATE INDEX "idx_timetable_entries_class" ON "public"."timetable_entries" USING "btree" ("class_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_course_offering" ON "public"."timetable_entries" USING "btree" ("course_offering_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_lecturer" ON "public"."timetable_entries" USING "btree" ("lecturer_assignment_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_room" ON "public"."timetable_entries" USING "btree" ("room_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_slot" ON "public"."timetable_entries" USING "btree" ("timetable_slot_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_timetable" ON "public"."timetable_entries" USING "btree" ("timetable_id");
+
+
+------------------------------
+
+
+CREATE INDEX "idx_students_user_id" ON "public"."students" USING "btree" ("user_id");
+
+
+
+CREATE INDEX "idx_suppliers_institution" ON "public"."suppliers" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_suppliers_status" ON "public"."suppliers" USING "btree" ("status");
+
+
+
+CREATE INDEX "idx_timetable_entries_class" ON "public"."timetable_entries" USING "btree" ("class_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_course_offering" ON "public"."timetable_entries" USING "btree" ("course_offering_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_lecturer" ON "public"."timetable_entries" USING "btree" ("lecturer_assignment_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_room" ON "public"."timetable_entries" USING "btree" ("room_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_slot" ON "public"."timetable_entries" USING "btree" ("timetable_slot_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_timetable" ON "public"."timetable_entries" USING "btree" ("timetable_id");
+
+
+
+CREATE INDEX "idx_timetable_entries_timetable_class" ON "public"."timetable_entries" USING "btree" ("timetable_id", "class_id", "timetable_slot_id");
+
+
+------------------------------
+
+
+CREATE OR REPLACE TRIGGER "trg_student_transcripts_updated_at" BEFORE UPDATE ON "public"."student_transcripts" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_students_updated_at" BEFORE UPDATE ON "public"."students" FOR EACH ROW EXECUTE FUNCTION "public"."set_students_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_suppliers_updated_at" BEFORE UPDATE ON "public"."suppliers" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_sync_admission_offer_after_acceptance" AFTER INSERT OR UPDATE ON "public"."admission_acceptances" FOR EACH ROW EXECUTE FUNCTION "public"."sync_admission_offer_after_acceptance"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_sync_application_after_admission_acceptance" AFTER INSERT OR UPDATE ON "public"."admission_acceptances" FOR EACH ROW EXECUTE FUNCTION "public"."sync_application_after_admission_acceptance"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_sync_attendance_session_timestamps" BEFORE UPDATE OF "status" ON "public"."attendance_sessions" FOR EACH ROW EXECUTE FUNCTION "public"."sync_attendance_session_timestamps"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_timetable_entries_updated_at" BEFORE UPDATE ON "public"."timetable_entries" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_timetable_slots_updated_at" BEFORE UPDATE ON "public"."timetable_slots" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_timetables_updated_at" BEFORE UPDATE ON "public"."timetables" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_touch_alumni_updated_at" BEFORE UPDATE ON "public"."alumni_records" FOR EACH ROW EXECUTE FUNCTION "public"."touch_alumni_updated_at"();
+
+
+------------------------------
+    ADD CONSTRAINT "purchase_orders_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."purchase_orders"
+    ADD CONSTRAINT "purchase_orders_procurement_request_id_fkey" FOREIGN KEY ("procurement_request_id") REFERENCES "public"."procurement_requests"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."purchase_orders"
+    ADD CONSTRAINT "purchase_orders_supplier_id_fkey" FOREIGN KEY ("supplier_id") REFERENCES "public"."suppliers"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."refunds"
+    ADD CONSTRAINT "refunds_payment_id_fkey" FOREIGN KEY ("payment_id") REFERENCES "public"."payments"("id");
+
+
+
+ALTER TABLE ONLY "public"."refunds"
+    ADD CONSTRAINT "refunds_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "public"."students"("id");
+
+
+
+ALTER TABLE ONLY "public"."registration_approvals"
+    ADD CONSTRAINT "registration_approvals_approved_by_fkey" FOREIGN KEY ("approved_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."registration_approvals"
+    ADD CONSTRAINT "registration_approvals_student_registration_id_fkey" FOREIGN KEY ("student_registration_id") REFERENCES "public"."student_registrations"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."role_permissions"
+    ADD CONSTRAINT "role_permissions_permission_id_fkey" FOREIGN KEY ("permission_id") REFERENCES "public"."permissions"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."role_permissions"
+    ADD CONSTRAINT "role_permissions_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "public"."roles"("id") ON DELETE CASCADE;
+------------------------------
+ALTER TABLE ONLY "public"."student_transcripts"
+    ADD CONSTRAINT "student_transcripts_revoked_by_fkey" FOREIGN KEY ("revoked_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."student_transcripts"
+    ADD CONSTRAINT "student_transcripts_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "public"."students"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "public"."classes"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_course_offering_id_fkey" FOREIGN KEY ("course_offering_id") REFERENCES "public"."course_offerings"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+------------------------------
+    ADD CONSTRAINT "student_transcripts_revoked_by_fkey" FOREIGN KEY ("revoked_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."student_transcripts"
+    ADD CONSTRAINT "student_transcripts_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "public"."students"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "public"."classes"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_course_offering_id_fkey" FOREIGN KEY ("course_offering_id") REFERENCES "public"."course_offerings"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_lecturer_assignment_id_fkey" FOREIGN KEY ("lecturer_assignment_id") REFERENCES "public"."lecturer_assignments"("id") ON DELETE RESTRICT;
+------------------------------
+ALTER TABLE ONLY "public"."student_transcripts"
+    ADD CONSTRAINT "student_transcripts_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "public"."students"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "public"."classes"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_course_offering_id_fkey" FOREIGN KEY ("course_offering_id") REFERENCES "public"."course_offerings"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_lecturer_assignment_id_fkey" FOREIGN KEY ("lecturer_assignment_id") REFERENCES "public"."lecturer_assignments"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+------------------------------
+    ADD CONSTRAINT "student_transcripts_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "public"."students"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "public"."classes"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_course_offering_id_fkey" FOREIGN KEY ("course_offering_id") REFERENCES "public"."course_offerings"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_lecturer_assignment_id_fkey" FOREIGN KEY ("lecturer_assignment_id") REFERENCES "public"."lecturer_assignments"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_room_id_fkey" FOREIGN KEY ("room_id") REFERENCES "public"."rooms"("id") ON DELETE RESTRICT;
+------------------------------
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "public"."classes"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_course_offering_id_fkey" FOREIGN KEY ("course_offering_id") REFERENCES "public"."course_offerings"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_lecturer_assignment_id_fkey" FOREIGN KEY ("lecturer_assignment_id") REFERENCES "public"."lecturer_assignments"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_room_id_fkey" FOREIGN KEY ("room_id") REFERENCES "public"."rooms"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+------------------------------
+    ADD CONSTRAINT "suppliers_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."suppliers"
+    ADD CONSTRAINT "suppliers_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "public"."classes"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_course_offering_id_fkey" FOREIGN KEY ("course_offering_id") REFERENCES "public"."course_offerings"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_lecturer_assignment_id_fkey" FOREIGN KEY ("lecturer_assignment_id") REFERENCES "public"."lecturer_assignments"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_room_id_fkey" FOREIGN KEY ("room_id") REFERENCES "public"."rooms"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."timetable_entries"
+    ADD CONSTRAINT "timetable_entries_timetable_id_fkey" FOREIGN KEY ("timetable_id") REFERENCES "public"."timetables"("id") ON DELETE CASCADE;
+------------------------------
+GRANT ALL ON TABLE "public"."student_transcripts" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."students" TO "anon";
+GRANT ALL ON TABLE "public"."students" TO "authenticated";
+GRANT ALL ON TABLE "public"."students" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."suppliers" TO "anon";
+GRANT ALL ON TABLE "public"."suppliers" TO "authenticated";
+GRANT ALL ON TABLE "public"."suppliers" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetable_entries" TO "anon";
+GRANT ALL ON TABLE "public"."timetable_entries" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetable_entries" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetable_slots" TO "anon";
+GRANT ALL ON TABLE "public"."timetable_slots" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetable_slots" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetables" TO "anon";
+GRANT ALL ON TABLE "public"."timetables" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetables" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_addresses" TO "anon";
+GRANT ALL ON TABLE "public"."user_addresses" TO "authenticated";
+GRANT ALL ON TABLE "public"."user_addresses" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_preferences" TO "anon";
+------------------------------
+
+
+
+GRANT ALL ON TABLE "public"."students" TO "anon";
+GRANT ALL ON TABLE "public"."students" TO "authenticated";
+GRANT ALL ON TABLE "public"."students" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."suppliers" TO "anon";
+GRANT ALL ON TABLE "public"."suppliers" TO "authenticated";
+GRANT ALL ON TABLE "public"."suppliers" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetable_entries" TO "anon";
+GRANT ALL ON TABLE "public"."timetable_entries" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetable_entries" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetable_slots" TO "anon";
+GRANT ALL ON TABLE "public"."timetable_slots" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetable_slots" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetables" TO "anon";
+GRANT ALL ON TABLE "public"."timetables" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetables" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_addresses" TO "anon";
+GRANT ALL ON TABLE "public"."user_addresses" TO "authenticated";
+GRANT ALL ON TABLE "public"."user_addresses" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_preferences" TO "anon";
+GRANT ALL ON TABLE "public"."user_preferences" TO "authenticated";
+------------------------------
+
+
+GRANT ALL ON TABLE "public"."students" TO "anon";
+GRANT ALL ON TABLE "public"."students" TO "authenticated";
+GRANT ALL ON TABLE "public"."students" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."suppliers" TO "anon";
+GRANT ALL ON TABLE "public"."suppliers" TO "authenticated";
+GRANT ALL ON TABLE "public"."suppliers" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetable_entries" TO "anon";
+GRANT ALL ON TABLE "public"."timetable_entries" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetable_entries" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetable_slots" TO "anon";
+GRANT ALL ON TABLE "public"."timetable_slots" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetable_slots" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."timetables" TO "anon";
+GRANT ALL ON TABLE "public"."timetables" TO "authenticated";
+GRANT ALL ON TABLE "public"."timetables" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_addresses" TO "anon";
+GRANT ALL ON TABLE "public"."user_addresses" TO "authenticated";
+GRANT ALL ON TABLE "public"."user_addresses" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_preferences" TO "anon";
+GRANT ALL ON TABLE "public"."user_preferences" TO "authenticated";
+GRANT ALL ON TABLE "public"."user_preferences" TO "service_role";
+------------------------------
+
+====================================================
+TABLE: staff_leave_types
+====================================================
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\migrations\20260917180000_hr_lifecycle_leave_attendance.sql
+-- HR Lifecycle, Leave Management & Staff Attendance
+-- Version: 20260917180000
+-- ============================================================
+
+BEGIN;
+
+-- ============================================================
+-- 1. LEAVE TYPES
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.staff_leave_types (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    institution_id uuid NOT NULL
+        REFERENCES public.institutions(id)
+        ON DELETE RESTRICT,
+
+    leave_code varchar(50) NOT NULL,
+    leave_name varchar(150) NOT NULL,
+
+    annual_entitlement numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (annual_entitlement >= 0),
+
+    requires_document boolean NOT NULL DEFAULT FALSE,
+
+    requires_approval boolean NOT NULL DEFAULT TRUE,
+
+    paid_leave boolean NOT NULL DEFAULT TRUE,
+
+    carry_forward_allowed boolean NOT NULL DEFAULT FALSE,
+
+    max_carry_forward_days numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (max_carry_forward_days >= 0),
+
+    status varchar(20) NOT NULL DEFAULT 'ACTIVE'
+        CHECK (
+            status IN (
+                'ACTIVE',
+                'INACTIVE'
+            )
+        ),
+------------------------------
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.staff_leave_balances (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    staff_id uuid NOT NULL
+        REFERENCES public.staff(id)
+        ON DELETE CASCADE,
+
+    leave_type_id uuid NOT NULL
+        REFERENCES public.staff_leave_types(id)
+        ON DELETE RESTRICT,
+
+    leave_year integer NOT NULL,
+
+    opening_balance numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (opening_balance >= 0),
+
+    accrued_days numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (accrued_days >= 0),
+
+    carried_forward_days numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (carried_forward_days >= 0),
+
+    used_days numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (used_days >= 0),
+
+    pending_days numeric(6,2) NOT NULL DEFAULT 0
+        CHECK (pending_days >= 0),
+
+    closing_adjustment numeric(6,2) NOT NULL DEFAULT 0,
+
+    available_balance numeric(6,2)
+        GENERATED ALWAYS AS (
+            opening_balance
+            + accrued_days
+            + carried_forward_days
+            + closing_adjustment
+            - used_days
+            - pending_days
+        ) STORED,
+------------------------------
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS public.staff_leave_requests (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    staff_id uuid NOT NULL
+        REFERENCES public.staff(id)
+        ON DELETE RESTRICT,
+
+    leave_type_id uuid NOT NULL
+        REFERENCES public.staff_leave_types(id)
+        ON DELETE RESTRICT,
+
+    leave_year integer NOT NULL,
+
+    request_number varchar(60) NOT NULL UNIQUE,
+
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+
+    days_requested numeric(6,2) NOT NULL
+        CHECK (days_requested > 0),
+
+    reason text NOT NULL,
+
+    attachment_url text,
+
+    request_status varchar(30) NOT NULL DEFAULT 'PENDING'
+        CHECK (
+            request_status IN (
+                'DRAFT',
+                'PENDING',
+                'APPROVED',
+                'PARTIALLY_APPROVED',
+                'REJECTED',
+                'CANCELLED',
+                'WITHDRAWN'
+            )
+        ),
+
+    submitted_at timestamptz,
+------------------------------
+        ON DELETE SET NULL,
+
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+
+-- ============================================================
+-- 8. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_institution
+    ON public.staff_leave_types(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_status
+    ON public.staff_leave_types(status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_staff
+    ON public.staff_leave_balances(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_year
+    ON public.staff_leave_balances(leave_year);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_staff
+    ON public.staff_leave_requests(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_status
+    ON public.staff_leave_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_dates
+    ON public.staff_leave_requests(start_date, end_date);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_request
+    ON public.staff_leave_approvals(leave_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_approver
+    ON public.staff_leave_approvals(approver_user_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_staff
+    ON public.staff_attendance(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_date
+------------------------------
+
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+
+
+-- ============================================================
+-- 8. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_institution
+    ON public.staff_leave_types(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_status
+    ON public.staff_leave_types(status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_staff
+    ON public.staff_leave_balances(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_year
+    ON public.staff_leave_balances(leave_year);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_staff
+    ON public.staff_leave_requests(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_status
+    ON public.staff_leave_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_dates
+    ON public.staff_leave_requests(start_date, end_date);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_request
+    ON public.staff_leave_approvals(leave_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_approver
+    ON public.staff_leave_approvals(approver_user_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_staff
+    ON public.staff_attendance(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_date
+    ON public.staff_attendance(attendance_date);
+------------------------------
+);
+
+
+-- ============================================================
+-- 8. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_institution
+    ON public.staff_leave_types(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_status
+    ON public.staff_leave_types(status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_staff
+    ON public.staff_leave_balances(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_year
+    ON public.staff_leave_balances(leave_year);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_staff
+    ON public.staff_leave_requests(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_status
+    ON public.staff_leave_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_dates
+    ON public.staff_leave_requests(start_date, end_date);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_request
+    ON public.staff_leave_approvals(leave_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_approver
+    ON public.staff_leave_approvals(approver_user_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_staff
+    ON public.staff_attendance(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_date
+    ON public.staff_attendance(attendance_date);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_status
+------------------------------
+
+
+-- ============================================================
+-- 8. INDEXES
+-- ============================================================
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_institution
+    ON public.staff_leave_types(institution_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_types_status
+    ON public.staff_leave_types(status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_staff
+    ON public.staff_leave_balances(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_balances_year
+    ON public.staff_leave_balances(leave_year);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_staff
+    ON public.staff_leave_requests(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_status
+    ON public.staff_leave_requests(request_status);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_requests_dates
+    ON public.staff_leave_requests(start_date, end_date);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_request
+    ON public.staff_leave_approvals(leave_request_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_leave_approvals_approver
+    ON public.staff_leave_approvals(approver_user_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_staff
+    ON public.staff_attendance(staff_id);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_date
+    ON public.staff_attendance(attendance_date);
+
+CREATE INDEX IF NOT EXISTS idx_staff_attendance_status
+    ON public.staff_attendance(attendance_status);
+------------------------------
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_types_updated_at
+ON public.staff_leave_types;
+
+CREATE TRIGGER trg_staff_leave_types_updated_at
+BEFORE UPDATE ON public.staff_leave_types
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_balances_updated_at
+ON public.staff_leave_balances;
+
+CREATE TRIGGER trg_staff_leave_balances_updated_at
+BEFORE UPDATE ON public.staff_leave_balances
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_requests_updated_at
+ON public.staff_leave_requests;
+
+CREATE TRIGGER trg_staff_leave_requests_updated_at
+BEFORE UPDATE ON public.staff_leave_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_attendance_updated_at
+ON public.staff_attendance;
+
+CREATE TRIGGER trg_staff_attendance_updated_at
+------------------------------
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_types_updated_at
+ON public.staff_leave_types;
+
+CREATE TRIGGER trg_staff_leave_types_updated_at
+BEFORE UPDATE ON public.staff_leave_types
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_balances_updated_at
+ON public.staff_leave_balances;
+
+CREATE TRIGGER trg_staff_leave_balances_updated_at
+BEFORE UPDATE ON public.staff_leave_balances
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_requests_updated_at
+ON public.staff_leave_requests;
+
+CREATE TRIGGER trg_staff_leave_requests_updated_at
+BEFORE UPDATE ON public.staff_leave_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_attendance_updated_at
+ON public.staff_attendance;
+
+CREATE TRIGGER trg_staff_attendance_updated_at
+BEFORE UPDATE ON public.staff_attendance
+------------------------------
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_types_updated_at
+ON public.staff_leave_types;
+
+CREATE TRIGGER trg_staff_leave_types_updated_at
+BEFORE UPDATE ON public.staff_leave_types
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_balances_updated_at
+ON public.staff_leave_balances;
+
+CREATE TRIGGER trg_staff_leave_balances_updated_at
+BEFORE UPDATE ON public.staff_leave_balances
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_requests_updated_at
+ON public.staff_leave_requests;
+
+CREATE TRIGGER trg_staff_leave_requests_updated_at
+BEFORE UPDATE ON public.staff_leave_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_attendance_updated_at
+ON public.staff_attendance;
+
+CREATE TRIGGER trg_staff_attendance_updated_at
+BEFORE UPDATE ON public.staff_attendance
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+------------------------------
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_types_updated_at
+ON public.staff_leave_types;
+
+CREATE TRIGGER trg_staff_leave_types_updated_at
+BEFORE UPDATE ON public.staff_leave_types
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_balances_updated_at
+ON public.staff_leave_balances;
+
+CREATE TRIGGER trg_staff_leave_balances_updated_at
+BEFORE UPDATE ON public.staff_leave_balances
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_leave_requests_updated_at
+ON public.staff_leave_requests;
+
+CREATE TRIGGER trg_staff_leave_requests_updated_at
+BEFORE UPDATE ON public.staff_leave_requests
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+
+DROP TRIGGER IF EXISTS trg_staff_attendance_updated_at
+ON public.staff_attendance;
+
+CREATE TRIGGER trg_staff_attendance_updated_at
+BEFORE UPDATE ON public.staff_attendance
+FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at();
+
+------------------------------
+    lr.final_approved_at,
+
+    lr.created_at,
+    lr.updated_at
+
+FROM public.staff_leave_requests lr
+
+INNER JOIN public.staff s
+    ON s.id = lr.staff_id
+
+INNER JOIN public.staff_leave_types lt
+    ON lt.id = lr.leave_type_id;
+
+
+-- ============================================================
+-- 16. STAFF ATTENDANCE SUMMARY VIEW
+-- ============================================================
+
+CREATE OR REPLACE VIEW public.staff_attendance_summary
+AS
+SELECT
+    sa.id,
+    sa.staff_id,
+
+    s.employee_number,
+
+    trim(
+        concat_ws(
+            ' ',
+            s.first_name,
+            s.middle_name,
+            s.last_name
+        )
+    ) AS staff_name,
+
+    s.department_id,
+
+    sa.attendance_date,
+    sa.attendance_status,
+    sa.check_in,
+    sa.check_out,
+------------------------------
+FROM public.staff_attendance sa
+
+INNER JOIN public.staff s
+    ON s.id = sa.staff_id;
+
+
+-- ============================================================
+-- 17. COMMENTS
+-- ============================================================
+
+COMMENT ON TABLE public.staff_leave_types IS
+'Institutional staff leave categories and entitlement rules.';
+
+COMMENT ON TABLE public.staff_leave_balances IS
+'Annual staff leave balances by leave type.';
+
+COMMENT ON TABLE public.staff_leave_requests IS
+'Staff leave requests and approval state.';
+
+COMMENT ON TABLE public.staff_leave_approvals IS
+'Approval workflow for staff leave requests.';
+
+COMMENT ON TABLE public.staff_attendance IS
+'Daily attendance records for institutional staff.';
+
+COMMENT ON TABLE public.staff_attendance_adjustments IS
+'Controlled corrections to staff attendance records.';
+
+COMMENT ON TABLE public.staff_lifecycle_events IS
+'Chronological employment lifecycle events for staff.';
+
+
+COMMIT;
+
+-- ============================================================
+-- END MIGRATION 028
+-- ============================================================
+------------------------------
+
+FILE: C:\Users\liben\Documents\IDMC_iMIS\supabase\schema-snapshots\public_schema_remote.sql
+);
+
+
+ALTER TABLE "public"."staff_leave_requests" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_requests" IS 'Staff leave requests and approval state.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."staff_leave_types" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "institution_id" "uuid" NOT NULL,
+    "leave_code" character varying(50) NOT NULL,
+    "leave_name" character varying(150) NOT NULL,
+    "annual_entitlement" numeric(6,2) DEFAULT 0 NOT NULL,
+    "requires_document" boolean DEFAULT false NOT NULL,
+    "requires_approval" boolean DEFAULT true NOT NULL,
+    "paid_leave" boolean DEFAULT true NOT NULL,
+    "carry_forward_allowed" boolean DEFAULT false NOT NULL,
+    "max_carry_forward_days" numeric(6,2) DEFAULT 0 NOT NULL,
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "description" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_leave_types" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_types" IS 'Institutional staff leave categories and entitlement rules.';
+
+
+
+CREATE OR REPLACE VIEW "public"."staff_leave_summary" AS
+------------------------------
+    "requires_approval" boolean DEFAULT true NOT NULL,
+    "paid_leave" boolean DEFAULT true NOT NULL,
+    "carry_forward_allowed" boolean DEFAULT false NOT NULL,
+    "max_carry_forward_days" numeric(6,2) DEFAULT 0 NOT NULL,
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "description" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_leave_types" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_types" IS 'Institutional staff leave categories and entitlement rules.';
+
+
+
+CREATE OR REPLACE VIEW "public"."staff_leave_summary" AS
+ SELECT "lr"."id",
+    "lr"."request_number",
+    "lr"."staff_id",
+    TRIM(BOTH FROM "concat_ws"(' '::"text", "s"."first_name", "s"."middle_name", "s"."last_name")) AS "staff_name",
+    "s"."employee_number",
+    "lr"."leave_type_id",
+    "lt"."leave_code",
+    "lt"."leave_name",
+    "lr"."leave_year",
+    "lr"."start_date",
+    "lr"."end_date",
+    "lr"."days_requested",
+    "lr"."approved_days",
+    "lr"."request_status",
+    "lr"."submitted_at",
+    "lr"."final_approved_at",
+    "lr"."created_at",
+------------------------------
+    "paid_leave" boolean DEFAULT true NOT NULL,
+    "carry_forward_allowed" boolean DEFAULT false NOT NULL,
+    "max_carry_forward_days" numeric(6,2) DEFAULT 0 NOT NULL,
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "description" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_leave_types" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_types" IS 'Institutional staff leave categories and entitlement rules.';
+
+
+
+CREATE OR REPLACE VIEW "public"."staff_leave_summary" AS
+ SELECT "lr"."id",
+    "lr"."request_number",
+    "lr"."staff_id",
+    TRIM(BOTH FROM "concat_ws"(' '::"text", "s"."first_name", "s"."middle_name", "s"."last_name")) AS "staff_name",
+    "s"."employee_number",
+    "lr"."leave_type_id",
+    "lt"."leave_code",
+    "lt"."leave_name",
+    "lr"."leave_year",
+    "lr"."start_date",
+    "lr"."end_date",
+    "lr"."days_requested",
+    "lr"."approved_days",
+    "lr"."request_status",
+    "lr"."submitted_at",
+    "lr"."final_approved_at",
+    "lr"."created_at",
+    "lr"."updated_at"
+------------------------------
+    "carry_forward_allowed" boolean DEFAULT false NOT NULL,
+    "max_carry_forward_days" numeric(6,2) DEFAULT 0 NOT NULL,
+    "status" character varying(20) DEFAULT 'ACTIVE'::character varying NOT NULL,
+    "description" "text",
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_leave_types" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_types" IS 'Institutional staff leave categories and entitlement rules.';
+
+
+
+CREATE OR REPLACE VIEW "public"."staff_leave_summary" AS
+ SELECT "lr"."id",
+    "lr"."request_number",
+    "lr"."staff_id",
+    TRIM(BOTH FROM "concat_ws"(' '::"text", "s"."first_name", "s"."middle_name", "s"."last_name")) AS "staff_name",
+    "s"."employee_number",
+    "lr"."leave_type_id",
+    "lt"."leave_code",
+    "lt"."leave_name",
+    "lr"."leave_year",
+    "lr"."start_date",
+    "lr"."end_date",
+    "lr"."days_requested",
+    "lr"."approved_days",
+    "lr"."request_status",
+    "lr"."submitted_at",
+    "lr"."final_approved_at",
+    "lr"."created_at",
+    "lr"."updated_at"
+   FROM (("public"."staff_leave_requests" "lr"
+------------------------------
+    "created_by" "uuid",
+    "updated_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_leave_types" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_types" IS 'Institutional staff leave categories and entitlement rules.';
+
+
+
+CREATE OR REPLACE VIEW "public"."staff_leave_summary" AS
+ SELECT "lr"."id",
+    "lr"."request_number",
+    "lr"."staff_id",
+    TRIM(BOTH FROM "concat_ws"(' '::"text", "s"."first_name", "s"."middle_name", "s"."last_name")) AS "staff_name",
+    "s"."employee_number",
+    "lr"."leave_type_id",
+    "lt"."leave_code",
+    "lt"."leave_name",
+    "lr"."leave_year",
+    "lr"."start_date",
+    "lr"."end_date",
+    "lr"."days_requested",
+    "lr"."approved_days",
+    "lr"."request_status",
+    "lr"."submitted_at",
+    "lr"."final_approved_at",
+    "lr"."created_at",
+    "lr"."updated_at"
+   FROM (("public"."staff_leave_requests" "lr"
+     JOIN "public"."staff" "s" ON (("s"."id" = "lr"."staff_id")))
+     JOIN "public"."staff_leave_types" "lt" ON (("lt"."id" = "lr"."leave_type_id")));
+
+
+------------------------------
+    "updated_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_leave_types_annual_entitlement_check" CHECK (("annual_entitlement" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_max_carry_forward_days_check" CHECK (("max_carry_forward_days" >= (0)::numeric)),
+    CONSTRAINT "staff_leave_types_status_check" CHECK ((("status")::"text" = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_leave_types" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_leave_types" IS 'Institutional staff leave categories and entitlement rules.';
+
+
+
+CREATE OR REPLACE VIEW "public"."staff_leave_summary" AS
+ SELECT "lr"."id",
+    "lr"."request_number",
+    "lr"."staff_id",
+    TRIM(BOTH FROM "concat_ws"(' '::"text", "s"."first_name", "s"."middle_name", "s"."last_name")) AS "staff_name",
+    "s"."employee_number",
+    "lr"."leave_type_id",
+    "lt"."leave_code",
+    "lt"."leave_name",
+    "lr"."leave_year",
+    "lr"."start_date",
+    "lr"."end_date",
+    "lr"."days_requested",
+    "lr"."approved_days",
+    "lr"."request_status",
+    "lr"."submitted_at",
+    "lr"."final_approved_at",
+    "lr"."created_at",
+    "lr"."updated_at"
+   FROM (("public"."staff_leave_requests" "lr"
+     JOIN "public"."staff" "s" ON (("s"."id" = "lr"."staff_id")))
+     JOIN "public"."staff_leave_types" "lt" ON (("lt"."id" = "lr"."leave_type_id")));
+
+
+ALTER VIEW "public"."staff_leave_summary" OWNER TO "postgres";
+
+
+------------------------------
+    "lr"."end_date",
+    "lr"."days_requested",
+    "lr"."approved_days",
+    "lr"."request_status",
+    "lr"."submitted_at",
+    "lr"."final_approved_at",
+    "lr"."created_at",
+    "lr"."updated_at"
+   FROM (("public"."staff_leave_requests" "lr"
+     JOIN "public"."staff" "s" ON (("s"."id" = "lr"."staff_id")))
+     JOIN "public"."staff_leave_types" "lt" ON (("lt"."id" = "lr"."leave_type_id")));
+
+
+ALTER VIEW "public"."staff_leave_summary" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."staff_lifecycle_events" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "staff_id" "uuid" NOT NULL,
+    "event_type" character varying(50) NOT NULL,
+    "effective_date" "date" NOT NULL,
+    "previous_status" character varying(40),
+    "new_status" character varying(40),
+    "previous_department_id" "uuid",
+    "new_department_id" "uuid",
+    "previous_job_title" character varying(150),
+    "new_job_title" character varying(150),
+    "reason" "text",
+    "reference_number" character varying(100),
+    "notes" "text",
+    "recorded_by" "uuid",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    CONSTRAINT "staff_lifecycle_events_event_type_check" CHECK ((("event_type")::"text" = ANY ((ARRAY['HIRED'::character varying, 'APPOINTED'::character varying, 'CONFIRMED'::character varying, 'PROMOTED'::character varying, 'TRANSFERRED'::character varying, 'DEPARTMENT_CHANGED'::character varying, 'ROLE_CHANGED'::character varying, 'CONTRACT_STARTED'::character varying, 'CONTRACT_RENEWED'::character varying, 'CONTRACT_ENDED'::character varying, 'SUSPENDED'::character varying, 'RETURNED_FROM_SUSPENSION'::character varying, 'RESIGNED'::character varying, 'TERMINATED'::character varying, 'RETIRED'::character varying, 'RETURNED_FROM_LEAVE'::character varying, 'REACTIVATED'::character varying, 'STATUS_CHANGED'::character varying, 'OTHER'::character varying])::"text"[])))
+);
+
+
+ALTER TABLE "public"."staff_lifecycle_events" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."staff_lifecycle_events" IS 'Chronological employment lifecycle events for staff.';
+
+------------------------------
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_request_number_key" UNIQUE ("request_number");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff"
+    ADD CONSTRAINT "staff_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+    ADD CONSTRAINT "staff_qualifications_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."student_academic_deficiencies"
+    ADD CONSTRAINT "student_academic_deficiencies_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."student_academic_standings"
+    ADD CONSTRAINT "student_academic_standings_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."student_academic_standings"
+------------------------------
+    ADD CONSTRAINT "staff_leave_requests_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_request_number_key" UNIQUE ("request_number");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff"
+    ADD CONSTRAINT "staff_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+    ADD CONSTRAINT "staff_qualifications_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."student_academic_deficiencies"
+    ADD CONSTRAINT "student_academic_deficiencies_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."student_academic_standings"
+    ADD CONSTRAINT "student_academic_standings_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."student_academic_standings"
+    ADD CONSTRAINT "student_academic_standings_student_id_academic_year_id_seme_key" UNIQUE ("student_id", "academic_year_id", "semester_id");
+------------------------------
+ALTER TABLE ONLY "public"."staff_attendance"
+    ADD CONSTRAINT "uq_staff_attendance_day" UNIQUE ("staff_id", "attendance_date");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_balances"
+    ADD CONSTRAINT "uq_staff_leave_balance" UNIQUE ("staff_id", "leave_type_id", "leave_year");
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "uq_staff_leave_type" UNIQUE ("institution_id", "leave_code");
+
+
+
+ALTER TABLE ONLY "public"."staff"
+    ADD CONSTRAINT "uq_staff_national_id" UNIQUE ("national_id");
+
+
+
+ALTER TABLE ONLY "public"."staff"
+    ADD CONSTRAINT "uq_staff_passport" UNIQUE ("passport_number");
+
+
+
+ALTER TABLE ONLY "public"."staff"
+    ADD CONSTRAINT "uq_staff_user" UNIQUE ("user_id");
+
+
+
+ALTER TABLE ONLY "public"."student_financial_accounts"
+    ADD CONSTRAINT "uq_student_financial_account" UNIQUE ("student_id");
+
+
+
+ALTER TABLE ONLY "public"."student_profiles"
+    ADD CONSTRAINT "uq_student_profiles_student" UNIQUE ("student_id");
+
+
+
+ALTER TABLE ONLY "public"."student_registrations"
+------------------------------
+
+
+CREATE INDEX "idx_staff_leave_requests_staff" ON "public"."staff_leave_requests" USING "btree" ("staff_id");
+
+
+
+CREATE INDEX "idx_staff_leave_requests_status" ON "public"."staff_leave_requests" USING "btree" ("request_status");
+
+
+
+CREATE INDEX "idx_staff_leave_types_institution" ON "public"."staff_leave_types" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_staff_leave_types_status" ON "public"."staff_leave_types" USING "btree" ("status");
+
+
+
+CREATE INDEX "idx_staff_lifecycle_events_date" ON "public"."staff_lifecycle_events" USING "btree" ("effective_date");
+
+
+
+CREATE INDEX "idx_staff_lifecycle_events_staff" ON "public"."staff_lifecycle_events" USING "btree" ("staff_id");
+
+
+
+CREATE INDEX "idx_staff_lifecycle_events_type" ON "public"."staff_lifecycle_events" USING "btree" ("event_type");
+
+
+
+CREATE INDEX "idx_staff_qualification_staff" ON "public"."staff_qualifications" USING "btree" ("staff_id");
+
+
+
+CREATE INDEX "idx_staff_qualification_status" ON "public"."staff_qualifications" USING "btree" ("verification_status");
+
+
+
+CREATE INDEX "idx_staff_status" ON "public"."staff" USING "btree" ("employment_status");
+
+
+------------------------------
+
+
+CREATE INDEX "idx_staff_leave_requests_status" ON "public"."staff_leave_requests" USING "btree" ("request_status");
+
+
+
+CREATE INDEX "idx_staff_leave_types_institution" ON "public"."staff_leave_types" USING "btree" ("institution_id");
+
+
+
+CREATE INDEX "idx_staff_leave_types_status" ON "public"."staff_leave_types" USING "btree" ("status");
+
+
+
+CREATE INDEX "idx_staff_lifecycle_events_date" ON "public"."staff_lifecycle_events" USING "btree" ("effective_date");
+
+
+
+CREATE INDEX "idx_staff_lifecycle_events_staff" ON "public"."staff_lifecycle_events" USING "btree" ("staff_id");
+
+
+
+CREATE INDEX "idx_staff_lifecycle_events_type" ON "public"."staff_lifecycle_events" USING "btree" ("event_type");
+
+
+
+CREATE INDEX "idx_staff_qualification_staff" ON "public"."staff_qualifications" USING "btree" ("staff_id");
+
+
+
+CREATE INDEX "idx_staff_qualification_status" ON "public"."staff_qualifications" USING "btree" ("verification_status");
+
+
+
+CREATE INDEX "idx_staff_status" ON "public"."staff" USING "btree" ("employment_status");
+
+
+
+CREATE INDEX "idx_staff_user" ON "public"."staff" USING "btree" ("user_id");
+
+
+------------------------------
+
+
+CREATE OR REPLACE TRIGGER "trg_staff_leave_balances_updated_at" BEFORE UPDATE ON "public"."staff_leave_balances" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_staff_leave_requests_updated_at" BEFORE UPDATE ON "public"."staff_leave_requests" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_staff_leave_types_updated_at" BEFORE UPDATE ON "public"."staff_leave_types" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_staff_qualifications_updated_at" BEFORE UPDATE ON "public"."staff_qualifications" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_staff_updated_at" BEFORE UPDATE ON "public"."staff" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_student_academic_deficiencies_updated_at" BEFORE UPDATE ON "public"."student_academic_deficiencies" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_student_academic_standings_updated_at" BEFORE UPDATE ON "public"."student_academic_standings" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_student_charge_refresh_account" AFTER INSERT OR DELETE OR UPDATE ON "public"."student_charges" FOR EACH ROW EXECUTE FUNCTION "public"."trg_refresh_student_financial_account"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_student_charges_updated_at" BEFORE UPDATE ON "public"."student_charges" FOR EACH ROW EXECUTE FUNCTION "public"."touch_finance_updated_at"();
+
+
+
+CREATE OR REPLACE TRIGGER "trg_student_course_attempts_updated_at" BEFORE UPDATE ON "public"."student_course_attempts" FOR EACH ROW EXECUTE FUNCTION "public"."set_updated_at"();
+
+
+------------------------------
+    ADD CONSTRAINT "staff_leave_approvals_approver_user_id_fkey" FOREIGN KEY ("approver_user_id") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_approvals"
+    ADD CONSTRAINT "staff_leave_approvals_leave_request_id_fkey" FOREIGN KEY ("leave_request_id") REFERENCES "public"."staff_leave_requests"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_balances"
+    ADD CONSTRAINT "staff_leave_balances_leave_type_id_fkey" FOREIGN KEY ("leave_type_id") REFERENCES "public"."staff_leave_types"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_balances"
+    ADD CONSTRAINT "staff_leave_balances_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_current_approver_user_id_fkey" FOREIGN KEY ("current_approver_user_id") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_final_approved_by_fkey" FOREIGN KEY ("final_approved_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_leave_type_id_fkey" FOREIGN KEY ("leave_type_id") REFERENCES "public"."staff_leave_types"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE RESTRICT;
+------------------------------
+    ADD CONSTRAINT "staff_leave_requests_current_approver_user_id_fkey" FOREIGN KEY ("current_approver_user_id") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_final_approved_by_fkey" FOREIGN KEY ("final_approved_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_leave_type_id_fkey" FOREIGN KEY ("leave_type_id") REFERENCES "public"."staff_leave_types"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+------------------------------
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_previous_department_id_fkey" FOREIGN KEY ("previous_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_recorded_by_fkey" FOREIGN KEY ("recorded_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+------------------------------
+    ADD CONSTRAINT "staff_leave_requests_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_previous_department_id_fkey" FOREIGN KEY ("previous_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_recorded_by_fkey" FOREIGN KEY ("recorded_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+------------------------------
+ALTER TABLE ONLY "public"."staff_leave_requests"
+    ADD CONSTRAINT "staff_leave_requests_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_previous_department_id_fkey" FOREIGN KEY ("previous_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_recorded_by_fkey" FOREIGN KEY ("recorded_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+------------------------------
+    ADD CONSTRAINT "staff_leave_requests_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_previous_department_id_fkey" FOREIGN KEY ("previous_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_recorded_by_fkey" FOREIGN KEY ("recorded_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+    ADD CONSTRAINT "staff_qualifications_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+------------------------------
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_previous_department_id_fkey" FOREIGN KEY ("previous_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_recorded_by_fkey" FOREIGN KEY ("recorded_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+    ADD CONSTRAINT "staff_qualifications_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+------------------------------
+    ADD CONSTRAINT "staff_leave_types_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_institution_id_fkey" FOREIGN KEY ("institution_id") REFERENCES "public"."institutions"("id") ON DELETE RESTRICT;
+
+
+
+ALTER TABLE ONLY "public"."staff_leave_types"
+    ADD CONSTRAINT "staff_leave_types_updated_by_fkey" FOREIGN KEY ("updated_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_new_department_id_fkey" FOREIGN KEY ("new_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_previous_department_id_fkey" FOREIGN KEY ("previous_department_id") REFERENCES "public"."departments"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_recorded_by_fkey" FOREIGN KEY ("recorded_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+
+
+
+ALTER TABLE ONLY "public"."staff_lifecycle_events"
+    ADD CONSTRAINT "staff_lifecycle_events_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+    ADD CONSTRAINT "staff_qualifications_staff_id_fkey" FOREIGN KEY ("staff_id") REFERENCES "public"."staff"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."staff_qualifications"
+    ADD CONSTRAINT "staff_qualifications_verified_by_fkey" FOREIGN KEY ("verified_by") REFERENCES "public"."users"("id") ON DELETE SET NULL;
+------------------------------
+GRANT ALL ON SEQUENCE "public"."staff_leave_request_number_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "anon";
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "anon";
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_summary" TO "anon";
+GRANT ALL ON TABLE "public"."staff_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."student_academic_deficiencies" TO "anon";
+------------------------------
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "anon";
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "anon";
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_summary" TO "anon";
+GRANT ALL ON TABLE "public"."staff_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."student_academic_deficiencies" TO "anon";
+GRANT ALL ON TABLE "public"."student_academic_deficiencies" TO "authenticated";
+------------------------------
+
+
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_requests" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_types" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "anon";
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_leave_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "anon";
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_lifecycle_events" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "anon";
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_qualifications" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."staff_summary" TO "anon";
+GRANT ALL ON TABLE "public"."staff_summary" TO "authenticated";
+GRANT ALL ON TABLE "public"."staff_summary" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."student_academic_deficiencies" TO "anon";
+GRANT ALL ON TABLE "public"."student_academic_deficiencies" TO "authenticated";
+GRANT ALL ON TABLE "public"."student_academic_deficiencies" TO "service_role";
+------------------------------

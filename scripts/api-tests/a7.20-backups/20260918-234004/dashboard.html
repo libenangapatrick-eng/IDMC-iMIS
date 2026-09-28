@@ -1,0 +1,4442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Institute of Development and Medical Sciences Integrated Management Information System"
+    >
+
+    <title>IDMC iMIS | Dashboard</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/app.css"
+    >
+
+    <style>
+
+        /* =========================================================
+           IDMC iMIS DASHBOARD — INSTITUTIONAL DESIGN SYSTEM (v3)
+           CSS-only redesign on the existing markup — no HTML
+           structure or script logic changed.
+
+           Concept: "the registrar's seal" — a formal academic
+           record system, built the way a printed transcript or
+           an accreditation letterhead is built: a fine hairline
+           frame, a corner mark instead of a rounded card corner,
+           small-caps running heads, and a single maroon ink used
+           at different strengths rather than a set of unrelated
+           accent colours. Two colour families only: MAROON + WHITE.
+
+           Boxes are intentionally compact — a document's field,
+           not a tile — with a notched top-left corner as the one
+           recurring signature detail across every card type.
+
+           ---------------------------------------------------------
+           FIX (this revision): the two-column app shell
+           (.sidebar + .main-content) was not being forced into a
+           full-bleed flex layout in THIS file — app.css presumably
+           defines .app-shell/.sidebar/.main-content elsewhere with
+           rules that don't force main-content to grow, which is
+           why the content column looked narrow/left-hugging instead
+           of filling the remaining width. The "LAYOUT — CORE SHELL
+           FIX" block below makes the shell explicit and authoritative
+           regardless of what app.css declares, using a high-specificity
+           override placed after the app.css <link>.
+           ========================================================= */
+
+        :root {
+
+            /* ---- Ink & base ---- */
+            --idmc-ink: #2a1116;
+            --idmc-text-muted: #7c6165;
+            --idmc-text-faint: #a58a8e;
+
+            /* ---- Maroon scale (single hue) ---- */
+            --idmc-maroon-950: #330914;
+            --idmc-maroon-900: #4a0d1c;
+            --idmc-maroon-800: #631226;
+            --idmc-maroon-700: #7c1830;
+            --idmc-maroon-600: #932039;
+            --idmc-maroon-500: #ab2a44;
+            --idmc-maroon-tint: #f5e8eb;
+            --idmc-maroon-tint-strong: #ecd3d9;
+
+            /* ---- White / paper scale ---- */
+            --idmc-paper: #ffffff;
+            --idmc-parchment: #faf7f7;
+            --idmc-line: #e8dee1;
+            --idmc-line-soft: #f1e8ea;
+
+            /* ---- Status, still inside the maroon/white family ---- */
+            --idmc-status-ok: #7c1830;
+            --idmc-status-warn: #ab2a44;
+            --idmc-status-neutral: #c9a9ae;
+            --idmc-red: #7c1830;
+
+            --idmc-font-display: "Fraunces", "Source Serif 4", Georgia, serif;
+            --idmc-font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+            --idmc-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+            --idmc-radius: 4px;
+            --idmc-radius-sm: 3px;
+            --idmc-notch: 14px;
+            --idmc-shadow-sm: 0 1px 2px rgba(51, 9, 20, .06);
+            --idmc-shadow-md: 0 10px 22px rgba(51, 9, 20, .11);
+
+            /* fixed sidebar width used by both the shell fix and any
+               app.css rules that read this variable */
+            --idmc-sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background: var(--idmc-parchment);
+            font-family: var(--idmc-font-sans);
+            color: var(--idmc-ink);
+            -webkit-font-smoothing: antialiased;
+            height: 100%;
+        }
+
+        /* Fine engraved page texture — maroon on white, barely there */
+        body {
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(74, 13, 28, .05) 1px, transparent 0);
+            background-size: 22px 22px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* ---------------------------------------------------------
+           LAYOUT — CORE SHELL FIX
+           This is the actual fix for the bug in the screenshot:
+           the content column was not stretching to fill the
+           remaining width next to the sidebar. We make the shell
+           a full-height flex row, pin the sidebar to a fixed width
+           that never shrinks, and force main-content to grow and
+           consume all remaining space, scrolling its own content.
+           --------------------------------------------------------- */
+
+        .app-shell {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            flex: 0 0 var(--idmc-sidebar-width);
+            width: var(--idmc-sidebar-width);
+            max-width: var(--idmc-sidebar-width);
+            min-width: var(--idmc-sidebar-width);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            flex: 1 1 auto;
+            width: 0; /* allows the flex item to shrink/grow correctly
+                         instead of overflowing based on content width */
+            min-width: 0;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            width: 100%;
+        }
+
+        .dashboard-page {
+            width: 100%;
+            flex: 1 1 auto;
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 40;
+                transform: translateX(-100%);
+                transition: transform .2s ease;
+            }
+
+            .sidebar.is-open,
+            [data-sidebar].is-open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                width: 100%;
+            }
+
+        }
+
+        /* ---------------------------------------------------------
+           A CORNER-NOTCH is the one signature device repeated on
+           every card family: a small clipped top-left corner, like
+           a card whose corner has been folded to mark it official.
+           --------------------------------------------------------- */
+
+        .overview-card,
+        .management-card,
+        .quick-action,
+        .module-information,
+        .operations-panel,
+        .system-panel,
+        .institution-note,
+        .global-search-panel {
+            clip-path: polygon(
+                var(--idmc-notch) 0,
+                100% 0,
+                100% 100%,
+                0 100%,
+                0 var(--idmc-notch)
+            );
+        }
+
+        /* ---------------------------------------------------------
+           SIDEBAR — deep maroon ledger panel
+           --------------------------------------------------------- */
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--idmc-maroon-900) 0%, var(--idmc-maroon-950) 100%);
+            border-right: 1px solid rgba(255, 255, 255, .12);
+            position: relative;
+        }
+
+        .sidebar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,.28), transparent 60%);
+        }
+
+        .sidebar-brand {
+            border-bottom: 1px solid rgba(255, 255, 255, .14);
+            padding-bottom: 16px;
+        }
+
+        .brand-logo {
+            background: var(--idmc-paper);
+            color: var(--idmc-maroon-900);
+            font-family: var(--idmc-font-display);
+            font-weight: 600;
+            letter-spacing: .01em;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .brand-logo::after {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            border: 1px solid rgba(74, 13, 28, .25);
+            border-radius: 1px;
+            pointer-events: none;
+        }
+
+        .brand-text strong {
+            font-family: var(--idmc-font-display);
+            color: #ffffff;
+            font-size: 15px;
+            letter-spacing: .01em;
+        }
+
+        .brand-text span {
+            color: rgba(255, 255, 255, .52);
+            font-size: 10.5px;
+            letter-spacing: .06em;
+        }
+
+        .institution-mini {
+            margin: 0 0 6px;
+            padding: 13px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .institution-mini strong {
+            display: block;
+            color: #ffffff;
+            font-family: var(--idmc-font-serif);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .institution-mini span {
+            color: rgba(255, 255, 255, .55);
+            font-size: 10.5px;
+        }
+
+        .sidebar-navigation {
+            color: rgba(255, 255, 255, .85);
+        }
+
+        .nav-loading {
+            color: rgba(255, 255, 255, .48);
+            font-size: 11.5px;
+            padding: 13px 18px;
+            font-style: italic;
+            font-family: var(--idmc-font-serif);
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .security-status strong {
+            color: #ffffff;
+            font-size: 12px;
+        }
+
+        .security-status span {
+            color: rgba(255, 255, 255, .50);
+            font-size: 10.5px;
+        }
+
+        .security-dot {
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .16);
+        }
+
+        .sidebar-version {
+            color: rgba(255, 255, 255, .32);
+            font-size: 10px;
+            letter-spacing: .04em;
+        }
+
+        /* ---------------------------------------------------------
+           TOPBAR
+           --------------------------------------------------------- */
+
+        .topbar {
+            background: var(--idmc-paper);
+            border-bottom: 1px solid var(--idmc-line);
+        }
+
+        .page-eyebrow {
+            color: var(--idmc-maroon-600);
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: .1em;
+        }
+
+        .page-heading h1 {
+            font-family: var(--idmc-font-display);
+            color: var(--idmc-maroon-900);
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: -.01em;
+        }
+
+        .topbar-date {
+            border: 1px solid var(--idmc-line);
+            border-left: 2px solid var(--idmc-maroon-700);
+            background: var(--idmc-parchment);
+            border-radius: 0 var(--idmc-radius-sm) var(--idmc-radius-sm) 0;
+            padding: 7px 12px;
+        }
+
+        .topbar-date strong {
+            color: var(--idmc-maroon-900);
+            font-family: var(--idmc-font-serif);
+            font-variant-numeric: tabular-nums;
+            font-size: 13px;
+        }
+
+        .topbar-date span {
+            color: var(--idmc-text-faint);
+            font-size: 10.5px;
+        }
+
+        .notification-button {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            color: var(--idmc-maroon-800);
+            border-radius: 50%;
+        }
+
+        .notification-button:hover {
+            background: var(--idmc-maroon-tint);
+            border-color: var(--idmc-maroon-500);
+        }
+
+        .notification-dot {
+            background: var(--idmc-red);
+        }
+
+        .user-avatar {
+            background: var(--idmc-maroon-800);
+            color: #ffffff;
+            font-family: var(--idmc-font-display);
+            font-weight: 600;
+            border-radius: 50%;
+            border: 1px solid var(--idmc-maroon-950);
+        }
+
+        .user-meta strong {
+            color: var(--idmc-ink);
+            font-size: 12.5px;
+        }
+
+        .user-meta span {
+            color: var(--idmc-text-faint);
+            font-size: 10.5px;
+        }
+
+        .logout-button {
+            border: 1px solid var(--idmc-line);
+            color: var(--idmc-maroon-800);
+            background: var(--idmc-paper);
+            border-radius: var(--idmc-radius-sm);
+        }
+
+        .logout-button:hover {
+            border-color: var(--idmc-red);
+            color: var(--idmc-red);
+            background: var(--idmc-maroon-tint);
+        }
+
+        /* ---------------------------------------------------------
+           WELCOME PANEL — a compact letterhead band, not a hero
+           --------------------------------------------------------- */
+
+        .welcome-panel {
+            background: linear-gradient(120deg, var(--idmc-maroon-950) 0%, var(--idmc-maroon-700) 100%);
+            border: 1px solid var(--idmc-maroon-950);
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--idmc-radius);
+        }
+
+        .welcome-panel::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: repeating-linear-gradient(
+                180deg,
+                rgba(255,255,255,.9) 0 6px,
+                transparent 6px 12px
+            );
+            opacity: .35;
+        }
+
+        .welcome-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255, 255, 255, .03) 0px,
+                rgba(255, 255, 255, .03) 1px,
+                transparent 1px,
+                transparent 22px
+            );
+            pointer-events: none;
+        }
+
+        .welcome-label {
+            color: rgba(255, 255, 255, .62);
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: .1em;
+        }
+
+        .welcome-content h2 {
+            font-family: var(--idmc-font-display);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: -.01em;
+        }
+
+        .welcome-content p {
+            color: rgba(255, 255, 255, .70);
+            font-size: 13px;
+        }
+
+        .welcome-circle {
+            border: 1px solid rgba(255, 255, 255, .5);
+            color: #ffffff;
+            font-family: var(--idmc-font-display);
+            font-weight: 600;
+            background: rgba(255, 255, 255, .05);
+            position: relative;
+        }
+
+        .welcome-circle::before {
+            content: "";
+            position: absolute;
+            inset: 6px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+        }
+
+        /* ---------------------------------------------------------
+           SECTION HEADINGS — small-caps running head with a
+           short maroon rule, like a page section in a bound report
+           --------------------------------------------------------- */
+
+        .section-heading span {
+            color: var(--idmc-maroon-600);
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .section-heading span::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 9px;
+            height: 1.5px;
+            background: var(--idmc-maroon-600);
+            transform: translateY(-50%);
+        }
+
+        .section-heading h3 {
+            font-family: var(--idmc-font-display);
+            color: var(--idmc-maroon-900);
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 3px;
+        }
+
+        .access-badge {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            color: var(--idmc-text-muted);
+            font-size: 10.5px;
+            border-radius: 999px;
+        }
+
+        .access-badge span {
+            background: var(--idmc-maroon-600);
+        }
+
+        /* ---------------------------------------------------------
+           OVERVIEW CARDS — compact ledger fields, icon in a
+           bordered ring rather than a filled block
+           --------------------------------------------------------- */
+
+        .overview-card {
+            background: var(--idmc-paper);
+            border: 1px solid var(--idmc-line);
+            box-shadow: var(--idmc-shadow-sm);
+            transition: border-color .16s ease, box-shadow .16s ease;
+        }
+
+        .overview-card:hover {
+            border-color: var(--idmc-maroon-500);
+            box-shadow: var(--idmc-shadow-md);
+        }
+
+        .overview-icon {
+            background: var(--idmc-paper);
+            color: var(--idmc-maroon-700);
+            border: 1.5px solid var(--idmc-maroon-tint-strong);
+            border-radius: 50%;
+        }
+
+        .overview-card span {
+            color: var(--idmc-text-faint);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .06em;
+        }
+
+        .overview-card strong {
+            color: var(--idmc-ink);
+            font-family: var(--idmc-font-serif);
+        }
+
+        /* ---------------------------------------------------------
+           MANAGEMENT SHORTCUT CARDS — compact, numbered like
+           entries in a course catalogue
+           --------------------------------------------------------- */
+
+        .management-card {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            box-shadow: var(--idmc-shadow-sm);
+            position: relative;
+        }
+
+        .management-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--idmc-notch);
+            height: var(--idmc-notch);
+            background: var(--idmc-maroon-700);
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+        }
+
+        .management-card:hover {
+            border-color: var(--idmc-maroon-500);
+            box-shadow: var(--idmc-shadow-md);
+        }
+
+        .management-card-icon {
+            background: var(--idmc-maroon-tint);
+            color: var(--idmc-maroon-800);
+            border-radius: var(--idmc-radius-sm);
+        }
+
+        .management-card-content span {
+            color: var(--idmc-maroon-600);
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: .07em;
+        }
+
+        .management-card-content strong {
+            color: var(--idmc-ink);
+            font-family: var(--idmc-font-serif);
+            font-size: 13.5px;
+        }
+
+        .management-card-content p {
+            color: var(--idmc-text-muted);
+        }
+
+        /* ---------------------------------------------------------
+           QUICK ACTIONS — slim, direct
+           --------------------------------------------------------- */
+
+        .quick-action {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            color: var(--idmc-ink);
+            box-shadow: var(--idmc-shadow-sm);
+        }
+
+        .quick-action:hover {
+            border-color: var(--idmc-maroon-500);
+            background: var(--idmc-maroon-tint);
+        }
+
+        .quick-action-icon {
+            background: var(--idmc-paper);
+            border: 1.5px solid var(--idmc-maroon-tint-strong);
+            color: var(--idmc-maroon-800);
+            border-radius: 50%;
+        }
+
+        /* ---------------------------------------------------------
+           MODULE INFORMATION / PERMISSION SUMMARY
+           --------------------------------------------------------- */
+
+        .module-information {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            border-left: 3px solid var(--idmc-maroon-700);
+            box-shadow: var(--idmc-shadow-sm);
+        }
+
+        .module-information-icon {
+            background: var(--idmc-maroon-800);
+            color: #ffffff;
+            border-radius: 50%;
+        }
+
+        .module-information strong {
+            color: var(--idmc-ink);
+            font-family: var(--idmc-font-serif);
+            font-size: 13.5px;
+        }
+
+        .module-information p {
+            color: var(--idmc-text-muted);
+        }
+
+        .permission-chip {
+            background: var(--idmc-maroon-tint);
+            color: var(--idmc-maroon-800);
+            border: 1px solid var(--idmc-maroon-tint-strong);
+        }
+
+        .permission-chip::before {
+            background: var(--idmc-maroon-700);
+        }
+
+        /* ---------------------------------------------------------
+           TODAY'S OPERATIONS + SYSTEM STATUS
+           --------------------------------------------------------- */
+
+        .operations-panel,
+        .system-panel {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            box-shadow: var(--idmc-shadow-sm);
+        }
+
+        .operations-header,
+        .system-header {
+            border-bottom: 1px solid var(--idmc-line-soft);
+        }
+
+        .operations-header div:first-child span,
+        .system-header span {
+            color: var(--idmc-maroon-600);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .07em;
+        }
+
+        .operations-header h3,
+        .system-header h3 {
+            font-family: var(--idmc-font-display);
+            color: var(--idmc-maroon-900);
+            font-size: 15.5px;
+            margin-top: 2px;
+        }
+
+        .operations-date {
+            border: 1px solid var(--idmc-line);
+            color: var(--idmc-text-muted);
+            background: var(--idmc-parchment);
+        }
+
+        .operation-row {
+            border-bottom: 1px solid var(--idmc-line-soft);
+        }
+
+        .operation-status {
+            background: var(--idmc-status-ok);
+        }
+
+        .operation-status.warning {
+            background: var(--idmc-status-warn);
+        }
+
+        .operation-status.neutral {
+            background: var(--idmc-status-neutral);
+        }
+
+        .operation-info strong {
+            color: var(--idmc-ink);
+            font-size: 13px;
+        }
+
+        .operation-info span {
+            color: var(--idmc-text-faint);
+            font-size: 11px;
+        }
+
+        .operation-value {
+            color: var(--idmc-maroon-700);
+            font-family: var(--idmc-font-serif);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .system-row {
+            border-bottom: 1px solid var(--idmc-line-soft);
+        }
+
+        .system-row-left span {
+            color: var(--idmc-ink);
+            font-size: 12px;
+        }
+
+        .status-badge {
+            background: var(--idmc-maroon-tint);
+            color: var(--idmc-maroon-800);
+            border-radius: 3px;
+        }
+
+        .status-badge::before {
+            background: var(--idmc-maroon-700);
+        }
+
+        .status-badge.warning {
+            background: var(--idmc-maroon-tint-strong);
+            color: var(--idmc-maroon-800);
+        }
+
+        .status-badge.warning::before {
+            background: var(--idmc-maroon-600);
+        }
+
+        /* ---------------------------------------------------------
+           GLOBAL SEARCH
+           --------------------------------------------------------- */
+
+        .global-search-panel {
+            border: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+            box-shadow: var(--idmc-shadow-sm);
+        }
+
+        .global-search-panel:focus-within {
+            border-color: var(--idmc-maroon-500);
+            box-shadow: var(--idmc-shadow-md);
+        }
+
+        .search-icon {
+            color: var(--idmc-maroon-600);
+        }
+
+        .global-search-panel input {
+            color: var(--idmc-ink);
+            font-family: var(--idmc-font-sans);
+        }
+
+        .global-search-panel input::placeholder {
+            color: var(--idmc-text-faint);
+        }
+
+        .search-shortcut {
+            border: 1px solid var(--idmc-line);
+            color: var(--idmc-text-faint);
+            background: var(--idmc-parchment);
+        }
+
+        /* ---------------------------------------------------------
+           INSTITUTIONAL NOTE
+           --------------------------------------------------------- */
+
+        .institution-note {
+            border-left: 3px solid var(--idmc-maroon-700);
+            border-top: 1px solid var(--idmc-line);
+            border-right: 1px solid var(--idmc-line);
+            border-bottom: 1px solid var(--idmc-line);
+            background: var(--idmc-paper);
+        }
+
+        .institution-note-icon {
+            background: var(--idmc-paper);
+            border: 1.5px solid var(--idmc-maroon-tint-strong);
+            color: var(--idmc-maroon-800);
+            border-radius: 50%;
+        }
+
+        .institution-note strong {
+            color: var(--idmc-ink);
+            font-family: var(--idmc-font-serif);
+            font-size: 13px;
+        }
+
+        .institution-note p {
+            color: var(--idmc-text-muted);
+        }
+
+        /* ---------------------------------------------------------
+           FOOTER
+           --------------------------------------------------------- */
+
+        .dashboard-footer {
+            border-top: 1px solid var(--idmc-line);
+            color: var(--idmc-text-faint);
+            font-family: var(--idmc-font-serif);
+            font-style: italic;
+        }
+
+        /* ---------------------------------------------------------
+           GRID / LAYOUT — SMALLER, TIGHTER BOXES THROUGHOUT
+           --------------------------------------------------------- */
+
+        .dashboard-page {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 22px 24px 36px;
+        }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .management-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 92px;
+            padding: 15px 16px 15px 18px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+        }
+
+        .management-card:hover {
+            transform: translateY(-1px);
+        }
+
+        .management-card-icon {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .management-card-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .management-card-content {
+            min-width: 0;
+        }
+
+        .management-card-content span {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .management-card-content strong {
+            display: block;
+        }
+
+        .management-card-content p {
+            margin: 4px 0 0;
+            font-size: 11.5px;
+            line-height: 1.45;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .overview-card {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 13px 15px;
+            min-height: 62px;
+        }
+
+        .overview-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overview-icon svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .overview-card span {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .overview-card strong {
+            display: block;
+            font-size: 13.5px;
+        }
+
+        .operations-grid {
+            display: grid;
+            grid-template-columns: 1.4fr .9fr;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .operations-panel,
+        .system-panel {
+            overflow: hidden;
+        }
+
+        .operations-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 14px 17px;
+        }
+
+        .operations-date {
+            padding: 6px 10px;
+            border-radius: var(--idmc-radius-sm);
+            font-size: 10.5px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .operations-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .operation-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 17px;
+        }
+
+        .operation-row:last-child {
+            border-bottom: 0;
+        }
+
+        .operation-status {
+            width: 8px;
+            height: 8px;
+            min-width: 8px;
+            border-radius: 50%;
+        }
+
+        .operation-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .operation-info strong {
+            display: block;
+        }
+
+        .operation-info span {
+            display: block;
+            margin-top: 2px;
+        }
+
+        .operation-value {
+            font-size: 11px;
+            letter-spacing: .01em;
+            white-space: nowrap;
+        }
+
+        .system-header {
+            padding: 14px 17px;
+        }
+
+        .system-list {
+            padding: 4px 17px 10px;
+        }
+
+        .system-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 11px 0;
+        }
+
+        .system-row:last-child {
+            border-bottom: 0;
+        }
+
+        .system-row-left {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: .02em;
+        }
+
+        .status-badge::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-height: 56px;
+            padding: 12px 15px;
+            transition: .16s ease;
+        }
+
+        .quick-action-icon {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-action-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .quick-action span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .welcome-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 22px 26px 22px 28px;
+        }
+
+        .welcome-circle {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .institution-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 15px 17px;
+        }
+
+        .institution-note-icon {
+            width: 26px;
+            height: 26px;
+            min-width: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: var(--idmc-font-serif);
+            font-size: 12px;
+        }
+
+        .institution-note p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .global-search-panel {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px 15px;
+            margin-top: 16px;
+        }
+
+        .global-search-panel input {
+            flex: 1;
+            border: 0;
+            outline: none;
+            font-size: 13px;
+            background: transparent;
+        }
+
+        .search-shortcut {
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-size: 9.5px;
+            font-weight: 700;
+        }
+
+        [data-rbac-hidden="true"] {
+            display: none !important;
+        }
+
+        .account-value {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .user-meta strong,
+        .user-meta span {
+            max-width: 190px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .permission-summary {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .permission-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .permission-chip::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .section-heading {
+            margin-top: 26px;
+        }
+
+        .modules-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .access-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 11px;
+            font-weight: 600;
+        }
+
+        .access-badge span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .module-information {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 15px 18px;
+            margin-top: 14px;
+        }
+
+        .module-information-icon {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        @media (max-width: 1200px) {
+
+            .management-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .overview-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 1100px) {
+
+            .operations-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .dashboard-page {
+                padding: 16px 14px 28px;
+            }
+
+            .management-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .operations-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .operation-row {
+                padding: 12px 14px;
+            }
+
+            .operations-header,
+            .system-header {
+                padding: 13px 14px;
+            }
+
+            .system-list {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .management-card {
+                padding: 14px;
+            }
+
+            .welcome-panel {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 18px;
+            }
+
+        }
+
+
+        /* =========================================================
+           IDMC iMIS — FINAL SIDEBAR HEIGHT / SCROLL FIX
+           Keep the sidebar attached to the viewport from top to bottom.
+           Only the main content area scrolls vertically.
+           ========================================================= */
+
+        html,
+        body {
+            width: 100% !important;
+            min-width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            margin: 0 !important;
+        }
+
+        body {
+            overflow: hidden !important;
+        }
+
+        .app-shell {
+            width: 100% !important;
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+        }
+
+        .app-shell > .sidebar {
+            flex: 0 0 var(--idmc-sidebar-width) !important;
+            width: var(--idmc-sidebar-width) !important;
+            min-width: var(--idmc-sidebar-width) !important;
+            max-width: var(--idmc-sidebar-width) !important;
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            position: sticky !important;
+            top: 0 !important;
+            left: 0 !important;
+            align-self: stretch !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            scrollbar-width: thin;
+        }
+
+        .app-shell > .main-content {
+            flex: 1 1 0% !important;
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            overscroll-behavior: contain;
+        }
+
+        .main-content > .topbar {
+            width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        .main-content > .dashboard-page {
+            width: 100% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+
+        /* =========================================================
+           IDMC iMIS — FINAL LAYOUT / WIDTH REFINEMENT
+           CSS ONLY: existing HTML, RBAC and JavaScript are untouched.
+           Purpose: make the main area use all available width and
+           remove the narrow centered 1180px bottleneck.
+           ========================================================= */
+
+        .app-shell {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            width: 100% !important;
+            min-width: 100% !important;
+            min-height: 100vh !important;
+            margin: 0 !important;
+        }
+
+        .app-shell > .sidebar {
+            flex: 0 0 var(--idmc-sidebar-width) !important;
+            width: var(--idmc-sidebar-width) !important;
+            min-width: var(--idmc-sidebar-width) !important;
+            max-width: var(--idmc-sidebar-width) !important;
+        }
+
+        .app-shell > .main-content {
+            flex: 1 1 0% !important;
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            margin: 0 !important;
+        }
+
+        /* Keep sidebar full-height even when the dashboard content is scrolled. */
+        .app-shell > .sidebar {
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            position: sticky !important;
+            top: 0 !important;
+            align-self: stretch !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+        .app-shell > .main-content {
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+        /* The topbar now spans the complete content column. */
+        .main-content > .topbar {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            padding-left: clamp(24px, 2.4vw, 40px) !important;
+            padding-right: clamp(24px, 2.4vw, 40px) !important;
+        }
+
+        .main-content > .topbar .topbar-left,
+        .main-content > .topbar .topbar-right {
+            min-width: 0 !important;
+        }
+
+        .main-content > .topbar .topbar-left {
+            flex: 1 1 auto !important;
+        }
+
+        .main-content > .topbar .topbar-right {
+            flex: 0 0 auto !important;
+            max-width: 100% !important;
+        }
+
+        /* Remove the 1180px bottleneck visible in the screenshot. */
+        .main-content > .dashboard-page {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            padding: clamp(24px, 2.2vw, 36px)
+                     clamp(24px, 2.4vw, 42px)
+                     48px !important;
+        }
+
+        /* Use the additional horizontal space professionally. */
+        .dashboard-page .welcome-panel {
+            width: 100% !important;
+            min-height: 230px !important;
+        }
+
+        .dashboard-page .overview-grid {
+            width: 100% !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+
+        .dashboard-page .management-grid {
+            width: 100% !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+
+        .dashboard-page .quick-actions {
+            width: 100% !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+
+        .dashboard-page .operations-grid {
+            width: 100% !important;
+            grid-template-columns: minmax(0, 1.55fr) minmax(320px, .9fr) !important;
+        }
+
+        /* Prevent long account/email values from disturbing the grid. */
+        .dashboard-page .overview-card > div:last-child {
+            min-width: 0 !important;
+        }
+
+        /* Desktop spacing: clean institutional rhythm without huge gaps. */
+        @media (min-width: 1401px) {
+            .main-content > .dashboard-page {
+                padding-left: 42px !important;
+                padding-right: 42px !important;
+            }
+
+            .dashboard-page .overview-grid,
+            .dashboard-page .management-grid,
+            .dashboard-page .quick-actions {
+                gap: 16px !important;
+            }
+
+            .dashboard-page .operations-grid {
+                gap: 18px !important;
+            }
+        }
+
+        /* Tablet: keep the full-width shell but let cards reflow. */
+        @media (max-width: 1200px) and (min-width: 901px) {
+            .dashboard-page .overview-grid,
+            .dashboard-page .management-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+
+            .dashboard-page .quick-actions {
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            }
+        }
+
+        /* Mobile: preserve the existing drawer behaviour. */
+        @media (max-width: 900px) {
+            .app-shell > .sidebar {
+                width: var(--idmc-sidebar-width) !important;
+                min-width: var(--idmc-sidebar-width) !important;
+                max-width: var(--idmc-sidebar-width) !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+                position: fixed !important;
+                top: 0 !important;
+                bottom: 0 !important;
+            }
+
+            .main-content > .topbar {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .main-content > .dashboard-page {
+                padding: 18px 16px 32px !important;
+            }
+
+            .dashboard-page .operations-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+    
+
+        /* =========================================================
+           PROFILE ACCESS — added without changing existing modules
+           ========================================================= */
+
+        .sidebar-profile-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 12px 14px 10px;
+            padding: 10px 12px;
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.055);
+            border-radius: 4px;
+            transition: background .16s ease, border-color .16s ease, transform .16s ease;
+        }
+
+        .sidebar-profile-link:hover,
+        .sidebar-profile-link:focus-visible {
+            color: #ffffff;
+            background: rgba(255,255,255,.10);
+            border-color: rgba(255,255,255,.30);
+            transform: translateY(-1px);
+            outline: none;
+        }
+
+        .sidebar-profile-icon {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,.28);
+            border-radius: 50%;
+        }
+
+        .sidebar-profile-icon svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .sidebar-profile-text {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .sidebar-profile-text strong,
+        .sidebar-profile-text small {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sidebar-profile-text strong {
+            font-size: 11.5px;
+            font-weight: 700;
+        }
+
+        .sidebar-profile-text small {
+            margin-top: 2px;
+            color: rgba(255,255,255,.52);
+            font-size: 9.5px;
+        }
+
+        .sidebar-profile-arrow {
+            color: rgba(255,255,255,.55);
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        .user-menu-link {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 4px 6px;
+            transition: background .16s ease;
+        }
+
+        .user-menu-link:hover,
+        .user-menu-link:focus-visible {
+            background: var(--idmc-maroon-tint);
+            outline: none;
+        }
+
+        .dashboard-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+            padding-top: 14px;
+            padding-bottom: 8px;
+        }
+
+        @media (max-width: 700px) {
+            .sidebar-profile-link {
+                margin-left: 12px;
+                margin-right: 12px;
+            }
+
+            .dashboard-footer {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .user-menu-link {
+                min-width: 0;
+            }
+        }
+
+
+
+        /* =========================================================
+           IDMC iMIS — MEDIUM INTERNATIONAL DASHBOARD REFINEMENT
+           CSS ONLY: existing HTML, JavaScript, RBAC and modules are
+           preserved. This only improves proportions and presentation.
+           ========================================================= */
+
+        /* Keep the dashboard in a comfortable institutional reading width
+           instead of stretching every panel across the entire screen. */
+        .main-content > .dashboard-page {
+            width: min(100%, 1320px) !important;
+            max-width: 1320px !important;
+            margin: 0 auto !important;
+            padding: 24px 28px 42px !important;
+        }
+
+        /* Compact welcome panel: professional, not oversized. */
+        .dashboard-page .welcome-panel {
+            min-height: 168px !important;
+            padding: 22px 26px !important;
+            border-radius: 8px !important;
+        }
+
+        .dashboard-page .welcome-content h2 {
+            font-size: 21px !important;
+        }
+
+        .dashboard-page .welcome-content p {
+            max-width: 680px !important;
+            font-size: 12px !important;
+            line-height: 1.55 !important;
+        }
+
+        .dashboard-page .welcome-circle {
+            width: 58px !important;
+            height: 58px !important;
+            min-width: 58px !important;
+        }
+
+        /* Medium cards — enough information without large empty boxes. */
+        .dashboard-page .overview-grid,
+        .dashboard-page .management-grid,
+        .dashboard-page .quick-actions {
+            gap: 12px !important;
+        }
+
+        .dashboard-page .overview-card {
+            min-height: 68px !important;
+            padding: 12px 14px !important;
+            border-radius: 6px !important;
+        }
+
+        .dashboard-page .overview-icon {
+            width: 31px !important;
+            height: 31px !important;
+            min-width: 31px !important;
+        }
+
+        .dashboard-page .overview-card strong {
+            font-size: 13px !important;
+        }
+
+        .dashboard-page .management-card {
+            min-height: 82px !important;
+            padding: 13px 15px 13px 17px !important;
+            border-radius: 6px !important;
+        }
+
+        .dashboard-page .management-card-icon {
+            width: 36px !important;
+            height: 36px !important;
+            min-width: 36px !important;
+        }
+
+        .dashboard-page .management-card-content strong {
+            font-size: 13px !important;
+        }
+
+        .dashboard-page .management-card-content p {
+            font-size: 10.5px !important;
+            line-height: 1.4 !important;
+        }
+
+        .dashboard-page .quick-action {
+            min-height: 52px !important;
+            padding: 10px 13px !important;
+            border-radius: 6px !important;
+        }
+
+        /* Content panels should feel like institutional records, not giant tiles. */
+        .dashboard-page .operations-panel,
+        .dashboard-page .system-panel,
+        .dashboard-page .module-information,
+        .dashboard-page .institution-note,
+        .dashboard-page .global-search-panel {
+            border-radius: 6px !important;
+        }
+
+        .dashboard-page .operations-header,
+        .dashboard-page .system-header {
+            padding: 13px 15px !important;
+        }
+
+        .dashboard-page .operation-row {
+            padding: 10px 15px !important;
+        }
+
+        .dashboard-page .system-list {
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+
+        /* Profile/account block stays medium and visually balanced. */
+        .dashboard-page #member-profile-card,
+        .dashboard-page #member-information {
+            max-width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        /* Section rhythm — less empty vertical space. */
+        .dashboard-page .section-heading {
+            margin-top: 20px !important;
+            margin-bottom: 10px !important;
+        }
+
+        .dashboard-page .section-heading h3 {
+            font-size: 16px !important;
+        }
+
+        /* Footer stays inside the same medium-width content column. */
+        .dashboard-page > .dashboard-footer {
+            width: 100% !important;
+            margin-top: 20px !important;
+        }
+
+        /* Large desktop: slightly wider, but never full-bleed. */
+        @media (min-width: 1440px) {
+            .main-content > .dashboard-page {
+                max-width: 1380px !important;
+                padding-left: 30px !important;
+                padding-right: 30px !important;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 1200px) and (min-width: 901px) {
+            .main-content > .dashboard-page {
+                width: 100% !important;
+                max-width: 1100px !important;
+                padding: 20px 22px 36px !important;
+            }
+        }
+
+        /* Mobile: cards remain medium/compact and never overflow. */
+        @media (max-width: 900px) {
+            .main-content > .dashboard-page {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 17px 14px 30px !important;
+            }
+
+            .dashboard-page .welcome-panel {
+                min-height: 0 !important;
+                padding: 18px !important;
+            }
+
+            .dashboard-page .overview-card,
+            .dashboard-page .management-card,
+            .dashboard-page .quick-action {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .main-content > .dashboard-page {
+                padding-left: 11px !important;
+                padding-right: 11px !important;
+            }
+
+            .dashboard-page .welcome-content h2 {
+                font-size: 19px !important;
+            }
+
+            .dashboard-page .management-card {
+                min-height: 76px !important;
+            }
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="assets/css/module-navigation.css">
+    <link rel="stylesheet" href="assets/css/app-workflow.css">
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <div
+        class="sidebar-overlay"
+        data-sidebar-overlay
+    ></div>
+
+
+    <aside
+        class="sidebar"
+        data-sidebar
+    >
+
+
+        <div class="sidebar-brand">
+
+
+            <div class="brand-logo">
+                IDMC
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>IDMC</strong>
+
+                <span>iMIS</span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="sidebar-close"
+                data-menu-close
+                aria-label="Close navigation"
+            >
+                ×
+            </button>
+
+
+        </div>
+
+
+        <div class="institution-mini">
+
+            <strong>
+                Institute of Development
+            </strong>
+
+            <span>
+                and Medical Sciences
+            </span>
+
+        </div>
+
+
+        <nav
+            class="sidebar-navigation"
+            data-navigation
+            aria-label="IDMC navigation"
+        >
+
+            <div class="nav-loading">
+                Loading modules...
+            </div>
+
+        </nav>
+
+
+        <!-- PROFILE — direct access to the signed-in user's profile -->
+        <a
+            href="profile.html"
+            class="sidebar-profile-link"
+            data-profile-link
+            data-module-link
+            aria-label="Open my profile"
+        >
+            <span class="sidebar-profile-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21a8 8 0 0 1 16 0"></path>
+                </svg>
+            </span>
+            <span class="sidebar-profile-text">
+                <strong>My Profile</strong>
+                <small data-sidebar-profile-role>Account</small>
+            </span>
+            <span class="sidebar-profile-arrow" aria-hidden="true">→</span>
+        </a>
+
+
+        <div class="sidebar-footer">
+
+
+            <div class="security-status">
+
+                <span class="security-dot"></span>
+
+
+                <div>
+
+                    <strong>
+                        Secure Session
+                    </strong>
+
+                    <span>
+                        RBAC Protected
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-version">
+                IDMC iMIS v1.0
+            </div>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+
+            <div class="topbar-left">
+
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    data-menu-toggle
+                    aria-label="Open navigation"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+
+                <div class="page-heading">
+
+                    <span class="page-eyebrow">
+                        IDMC iMIS
+                    </span>
+
+                    <h1>
+                        Institutional Dashboard
+                    </h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- MUHIMU:
+                     data-clock / data-date zimeondolewa hapa.
+                     Zilikuwa zinaandikwa na dashboard.js (24h) NA
+                     na script ya chini (12h) kwa wakati mmoja,
+                     ndio maana saa ilikuwa inabadilika badilika.
+                     Sasa ni script moja tu inayomiliki saa. -->
+
+                <div class="topbar-date">
+
+                    <strong data-idmc-clock>
+                        --:--
+                    </strong>
+
+                    <span data-idmc-date>
+                        Loading date...
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    title="Notifications"
+                >
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                        ></path>
+
+                        <path
+                            d="M10 21h4"
+                        ></path>
+
+                    </svg>
+
+                    <span
+                        class="notification-dot"
+                    ></span>
+
+                </button>
+
+
+                <a
+                    href="profile.html"
+                    class="user-menu user-menu-link"
+                    data-profile-link
+                    data-module-link
+                    aria-label="Open my profile"
+                    title="Open my profile"
+                >
+
+
+                    <div
+                        class="user-avatar"
+                        data-user-avatar
+                    >
+                        ID
+                    </div>
+
+
+                    <div class="user-meta">
+
+                        <strong data-user-name>
+                            Loading...
+                        </strong>
+
+                        <span data-user-role>
+                            Loading...
+                        </span>
+
+                    </div>
+
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    data-logout
+                >
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M10 17l5-5-5-5"
+                        ></path>
+
+                        <path
+                            d="M15 12H3"
+                        ></path>
+
+                        <path
+                            d="M21 3v18"
+                        ></path>
+
+                    </svg>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+        </header>
+
+
+        <section class="dashboard-page">
+
+
+            <!-- =====================================================
+                 WELCOME
+                 ===================================================== -->
+
+
+            <div class="welcome-panel">
+
+
+                <div class="welcome-content">
+
+
+                    <span class="welcome-label">
+                        WELCOME TO IDMC iMIS
+                    </span>
+
+
+                    <h2>
+
+                        Welcome back,
+
+                        <span data-welcome-name>
+                            User
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+                        Integrated institutional management
+                        for academic, administrative and
+                        operational services.
+                    </p>
+
+
+                </div>
+
+
+                <div class="welcome-mark">
+
+                    <div class="welcome-circle">
+                        IDMC
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 ACCOUNT
+                 ===================================================== -->
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <span>
+                        ACCOUNT
+                    </span>
+
+                    <h3>
+                        Profile Overview
+                    </h3>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="overview-grid">
+
+
+                <div class="overview-card">
+
+
+                    <div class="overview-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="7"
+                                r="4"
+                            ></circle>
+
+                            <path
+                                d="M4 21a8 8 0 0 1 16 0"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ACCOUNT NAME
+                        </span>
+
+                        <strong
+                            class="account-value"
+                            data-user-name
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="overview-card">
+
+
+                    <div class="overview-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M4 4h16v16H4z"
+                            ></path>
+
+                            <path
+                                d="M8 8h8"
+                            ></path>
+
+                            <path
+                                d="M8 12h8"
+                            ></path>
+
+                            <path
+                                d="M8 16h5"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            USER NUMBER
+                        </span>
+
+                        <strong
+                            class="account-value"
+                            data-user-number
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="overview-card">
+
+
+                    <div class="overview-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <rect
+                                x="3"
+                                y="5"
+                                width="18"
+                                height="14"
+                                rx="2"
+                            ></rect>
+
+                            <path
+                                d="M3 7l9 6 9-6"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            EMAIL
+                        </span>
+
+                        <strong
+                            class="account-value"
+                            data-user-email
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 MANAGEMENT SHORTCUTS
+                 ===================================================== -->
+
+
+            <div class="section-heading modules-heading">
+
+
+                <div>
+
+                    <span>
+                        MANAGEMENT
+                    </span>
+
+                    <h3>
+                        Institutional Shortcuts
+                    </h3>
+
+                </div>
+
+
+                <div class="access-badge">
+
+                    <span></span>
+
+                    Controlled Access
+
+                </div>
+
+
+            </div>
+
+
+            <div class="management-grid">
+
+
+                <!-- USERS -->
+
+
+                <a
+                    href="users.html"
+                    class="management-card"
+                    data-rbac="users.view"
+                    data-module-link
+                    aria-label="Open User Management"
+                >
+
+
+                    <div class="management-card-icon">
+
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="9"
+                                cy="7"
+                                r="4"
+                            ></circle>
+
+                            <path
+                                d="M2.5 21a6.5 6.5 0 0 1 13 0"
+                            ></path>
+
+                            <path
+                                d="M16 8a3 3 0 1 1 0 6"
+                            ></path>
+
+                            <path
+                                d="M17 17a5 5 0 0 1 5 4"
+                            ></path>
+
+                        </svg>
+
+
+                    </div>
+
+
+                    <div class="management-card-content">
+
+                        <span>
+                            Administration
+                        </span>
+
+                        <strong>
+                            User Management
+                        </strong>
+
+                        <p>
+                            Create users, manage roles,
+                            permissions and account status.
+                        </p>
+
+                    </div>
+
+
+                </a>
+
+
+                <!-- ROLES AND PERMISSIONS -->
+
+
+                <a
+                    href="roles.html"
+                    class="management-card"
+                    data-rbac="roles.view"
+                    data-module-link
+                    aria-label="Open Roles and Permissions"
+                >
+
+
+                    <div class="management-card-icon">
+
+
+                        <svg viewBox="0 0 24 24">
+
+                            <rect
+                                x="4"
+                                y="4"
+                                width="16"
+                                height="16"
+                                rx="2"
+                            ></rect>
+
+                            <path
+                                d="M8 9h8"
+                            ></path>
+
+                            <path
+                                d="M8 13h5"
+                            ></path>
+
+                            <path
+                                d="M8 17h3"
+                            ></path>
+
+                        </svg>
+
+
+                    </div>
+
+
+                    <div class="management-card-content">
+
+                        <span>
+                            Administration
+                        </span>
+
+                        <strong>
+                            Roles &amp; Permissions
+                        </strong>
+
+                        <p>
+                            Manage institutional roles,
+                            permissions and access control.
+                        </p>
+
+                    </div>
+
+
+                </a>
+
+
+                <!-- ACADEMIC -->
+
+
+                <a
+                    href="#"
+                    class="management-card"
+                    data-rbac="departments.view"
+                >
+
+
+                    <div class="management-card-icon">
+
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M3 10l9-6 9 6-9 6-9-6z"
+                            ></path>
+
+                            <path
+                                d="M7 12v5c3 2 7 2 10 0v-5"
+                            ></path>
+
+                            <path
+                                d="M21 10v6"
+                            ></path>
+
+                        </svg>
+
+
+                    </div>
+
+
+                    <div class="management-card-content">
+
+                        <span>
+                            Academic
+                        </span>
+
+                        <strong>
+                            Academic Management
+                        </strong>
+
+                        <p>
+                            Programmes, courses, registration
+                            and academic operations.
+                        </p>
+
+                    </div>
+
+
+                </a>
+
+
+                <!-- STUDENTS -->
+
+
+                <a
+                    href="#"
+                    class="management-card"
+                >
+
+
+                    <div class="management-card-icon">
+
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="8"
+                                r="4"
+                            ></circle>
+
+                            <path
+                                d="M4 21a8 8 0 0 1 16 0"
+                            ></path>
+
+                        </svg>
+
+
+                    </div>
+
+
+                    <div class="management-card-content">
+
+                        <span>
+                            Student Affairs
+                        </span>
+
+                        <strong>
+                            Student Management
+                        </strong>
+
+                        <p>
+                            Student records, registration,
+                            status and institutional services.
+                        </p>
+
+                    </div>
+
+
+                </a>
+
+
+                <!-- FINANCE -->
+
+
+                <a
+                    href="#"
+                    class="management-card"
+                    data-rbac="finance.view"
+                >
+
+
+                    <div class="management-card-icon">
+
+
+                        <svg viewBox="0 0 24 24">
+
+                            <rect
+                                x="3"
+                                y="5"
+                                width="18"
+                                height="14"
+                                rx="2"
+                            ></rect>
+
+                            <path
+                                d="M3 10h18"
+                            ></path>
+
+                            <path
+                                d="M7 15h4"
+                            ></path>
+
+                        </svg>
+
+
+                    </div>
+
+
+                    <div class="management-card-content">
+
+                        <span>
+                            Finance
+                        </span>
+
+                        <strong>
+                            Financial Management
+                        </strong>
+
+                        <p>
+                            Fees, invoices, payments,
+                            adjustments and financial records.
+                        </p>
+
+                    </div>
+
+
+                </a>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 QUICK ACTIONS
+                 ===================================================== -->
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <span>
+                        OPERATIONS
+                    </span>
+
+                    <h3>
+                        Quick Actions
+                    </h3>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <a
+                    href="users.html"
+                    class="quick-action"
+                    data-rbac="users.view"
+                    data-module-link
+                >
+
+
+                    <div class="quick-action-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                            ></path>
+
+                            <circle
+                                cx="9"
+                                cy="7"
+                                r="4"
+                            ></circle>
+
+                            <path
+                                d="M19 8v6"
+                            ></path>
+
+                            <path
+                                d="M22 11h-6"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <span>
+                        Manage Users
+                    </span>
+
+
+                </a>
+
+
+                <a
+                    href="roles.html"
+                    class="quick-action"
+                    data-rbac="roles.view"
+                    data-module-link
+                >
+
+
+                    <div class="quick-action-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M12 3l8 4v5c0 5-3.5 7.8-8 9-4.5-1.2-8-4-8-9V7l8-4z"
+                            ></path>
+
+                            <path
+                                d="M9 12l2 2 4-4"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <span>
+                        Roles &amp; Permissions
+                    </span>
+
+
+                </a>
+
+
+                <a
+                    href="#"
+                    class="quick-action"
+                >
+
+
+                    <div class="quick-action-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M4 19V5"
+                            ></path>
+
+                            <path
+                                d="M4 19h16"
+                            ></path>
+
+                            <path
+                                d="M7 16l4-5 3 2 5-7"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <span>
+                        View Reports
+                    </span>
+
+
+                </a>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 ACCESS CONTROL
+                 ===================================================== -->
+
+
+            <div class="section-heading modules-heading">
+
+
+                <div>
+
+                    <span>
+                        ACCESS CONTROL
+                    </span>
+
+                    <h3>
+                        Available Modules
+                    </h3>
+
+                </div>
+
+
+                <div class="access-badge">
+
+                    <span></span>
+
+                    Permission Based
+
+                </div>
+
+
+            </div>
+
+
+            <div class="module-information">
+
+
+                <div class="module-information-icon">
+                    ✓
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Role-Based Access Control
+                    </strong>
+
+
+                    <p>
+                        Your navigation and institutional
+                        shortcuts are controlled according
+                        to your assigned IDMC iMIS permissions.
+                    </p>
+
+
+                    <div class="permission-summary">
+
+                        <span
+                            class="permission-chip"
+                            data-permission-count
+                        >
+                            Checking access...
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 TODAY'S OPERATIONS
+                 ===================================================== -->
+
+
+            <div class="operations-grid">
+
+
+                <div class="operations-panel">
+
+
+                    <div class="operations-header">
+
+
+                        <div>
+
+                            <span>
+                                INSTITUTIONAL OPERATIONS
+                            </span>
+
+                            <h3>
+                                Today's Operations
+                            </h3>
+
+                        </div>
+
+
+                        <div
+                            class="operations-date"
+                            data-operation-date
+                        >
+                            Today
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="operations-list">
+
+
+                        <div class="operation-row">
+
+                            <span
+                                class="operation-status"
+                            ></span>
+
+
+                            <div class="operation-info">
+
+                                <strong>
+                                    System access
+                                </strong>
+
+                                <span>
+                                    Authentication and RBAC
+                                    services are available.
+                                </span>
+
+                            </div>
+
+
+                            <span class="operation-value">
+                                ACTIVE
+                            </span>
+
+                        </div>
+
+
+                        <div class="operation-row">
+
+                            <span
+                                class="operation-status"
+                            ></span>
+
+
+                            <div class="operation-info">
+
+                                <strong>
+                                    Academic services
+                                </strong>
+
+                                <span>
+                                    Institutional academic modules
+                                    are ready for authorized users.
+                                </span>
+
+                            </div>
+
+
+                            <span class="operation-value">
+                                READY
+                            </span>
+
+                        </div>
+
+
+                        <div class="operation-row">
+
+                            <span
+                                class="operation-status neutral"
+                            ></span>
+
+
+                            <div class="operation-info">
+
+                                <strong>
+                                    Administrative services
+                                </strong>
+
+                                <span>
+                                    Access depends on assigned
+                                    institutional permissions.
+                                </span>
+
+                            </div>
+
+
+                            <span class="operation-value">
+                                RBAC
+                            </span>
+
+                        </div>
+
+
+                        <div class="operation-row">
+
+                            <span
+                                class="operation-status"
+                            ></span>
+
+
+                            <div class="operation-info">
+
+                                <strong>
+                                    Database services
+                                </strong>
+
+                                <span>
+                                    Core institutional data services
+                                    are connected.
+                                </span>
+
+                            </div>
+
+
+                            <span class="operation-value">
+                                ONLINE
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="system-panel">
+
+
+                    <div class="system-header">
+
+                        <span>
+                            PLATFORM
+                        </span>
+
+                        <h3>
+                            System Status
+                        </h3>
+
+                    </div>
+
+
+                    <div class="system-list">
+
+
+                        <div class="system-row">
+
+                            <div class="system-row-left">
+
+                                <span>
+                                    Backend API
+                                </span>
+
+                            </div>
+
+                            <span class="status-badge">
+                                Online
+                            </span>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div class="system-row-left">
+
+                                <span>
+                                    Database
+                                </span>
+
+                            </div>
+
+                            <span class="status-badge">
+                                Connected
+                            </span>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div class="system-row-left">
+
+                                <span>
+                                    Authentication
+                                </span>
+
+                            </div>
+
+                            <span class="status-badge">
+                                Active
+                            </span>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div class="system-row-left">
+
+                                <span>
+                                    RBAC
+                                </span>
+
+                            </div>
+
+                            <span class="status-badge">
+                                Protected
+                            </span>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div class="system-row-left">
+
+                                <span>
+                                    Audit Trail
+                                </span>
+
+                            </div>
+
+                            <span class="status-badge">
+                                Enabled
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 GLOBAL SEARCH
+                 ===================================================== -->
+
+
+            <div class="global-search-panel">
+
+
+                <div class="search-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <circle
+                            cx="11"
+                            cy="11"
+                            r="7"
+                        ></circle>
+
+                        <path
+                            d="M20 20l-4-4"
+                        ></path>
+
+                    </svg>
+
+                </div>
+
+
+                <input
+                    type="search"
+                    placeholder="Search students, applications, courses, finance..."
+                    data-global-search
+                    autocomplete="off"
+                >
+
+
+                <span class="search-shortcut">
+                    ENTER
+                </span>
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 INSTITUTIONAL NOTE
+                 ===================================================== -->
+
+
+            <div class="institution-note">
+
+
+                <div class="institution-note-icon">
+                    i
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Institutional Information
+                    </strong>
+
+
+                    <p>
+                        IDMC iMIS centralizes academic,
+                        administrative, financial and operational
+                        information. Access to records and actions
+                        is controlled through institutional roles,
+                        permissions and security policies.
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <!-- =====================================================
+                 FOOTER
+                 ===================================================== -->
+
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 Institute of Development
+                    and Medical Sciences
+                </span>
+
+                <span>
+                    IDMC iMIS • Integrated Management
+                    Information System
+                </span>
+
+            </footer>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =============================================================
+     CORE SCRIPTS
+     idmc-session.js LAZIMA iwe ya kwanza kabla ya auth.js
+     ============================================================= -->
+
+<script src="assets/js/idmc-session.js"></script>
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+
+<!-- Central frontend RBAC engine -->
+
+
+<script src="assets/js/dashboard.js"></script>
+
+
+<!-- =============================================================
+     IDMC DASHBOARD ACCOUNT + RBAC CONTROLLER
+     ============================================================= -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /* =========================================================
+       SESSION TOKEN
+       ========================================================= */
+
+    function getAccessToken() {
+
+        if (
+            window.IDMCSession &&
+            typeof window.IDMCSession.getAccessToken === "function"
+        ) {
+
+            return window.IDMCSession.getAccessToken();
+
+        }
+
+
+        return (
+            sessionStorage.getItem("idmc_access_token") ||
+            sessionStorage.getItem("access_token") ||
+            sessionStorage.getItem("supabase_access_token") ||
+            null
+        );
+
+    }
+
+
+    /* =========================================================
+       EXTRACT USER
+       ========================================================= */
+
+    function extractUser(payload) {
+
+        if (!payload) {
+            return null;
+        }
+
+
+        if (
+            payload.user &&
+            typeof payload.user === "object"
+        ) {
+
+            return payload.user;
+
+        }
+
+
+        if (
+            payload.data &&
+            payload.data.user &&
+            typeof payload.data.user === "object"
+        ) {
+
+            return payload.data.user;
+
+        }
+
+
+        if (
+            payload.data &&
+            typeof payload.data === "object"
+        ) {
+
+            if (
+                payload.data.id ||
+                payload.data.user_number ||
+                payload.data.email
+            ) {
+
+                return payload.data;
+
+            }
+
+        }
+
+
+        if (
+            payload.id ||
+            payload.user_number ||
+            payload.email
+        ) {
+
+            return payload;
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* =========================================================
+       EXTRACT ROLES
+       ========================================================= */
+
+    function extractRoles(payload) {
+
+        if (!payload) {
+            return [];
+        }
+
+
+        const candidates = [
+
+            payload.roles,
+
+            payload.data?.roles,
+
+            payload.user?.roles,
+
+            payload.data?.user?.roles
+
+        ];
+
+
+        for (const value of candidates) {
+
+            if (Array.isArray(value)) {
+
+                return value;
+
+            }
+
+        }
+
+
+        return [];
+
+    }
+
+
+    /* =========================================================
+       EXTRACT PERMISSIONS
+       ========================================================= */
+
+    function extractPermissions(payload) {
+
+        if (!payload) {
+            return [];
+        }
+
+
+        const candidates = [
+
+            payload.permissions,
+
+            payload.data?.permissions,
+
+            payload.user?.permissions,
+
+            payload.data?.user?.permissions
+
+        ];
+
+
+        for (const value of candidates) {
+
+            if (Array.isArray(value)) {
+
+                return value;
+
+            }
+
+        }
+
+
+        return [];
+
+    }
+
+
+    /* =========================================================
+       NORMALIZE PERMISSION CODE
+       ========================================================= */
+
+    function permissionCode(permission) {
+
+        if (typeof permission === "string") {
+
+            return permission.trim().toLowerCase();
+
+        }
+
+
+        if (
+            permission &&
+            typeof permission === "object"
+        ) {
+
+            return String(
+
+                permission.permission_code ||
+
+                permission.permissionCode ||
+
+                permission.code ||
+
+                ""
+
+            ).trim().toLowerCase();
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /* =========================================================
+       NORMALIZE ROLE NAME
+       ========================================================= */
+
+    function roleName(role) {
+
+        if (typeof role === "string") {
+
+            return role;
+
+        }
+
+
+        if (
+            role &&
+            typeof role === "object"
+        ) {
+
+            return (
+
+                role.role_name ||
+
+                role.roleName ||
+
+                role.name ||
+
+                role.role_code ||
+
+                role.roleCode ||
+
+                ""
+
+            );
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /* =========================================================
+       LOAD CURRENT ACCOUNT
+       ========================================================= */
+
+    async function loadCurrentAccount() {
+
+        try {
+
+            if (
+                !window.IDMCAuth ||
+                typeof window.IDMCAuth.getCurrentUser !==
+                "function"
+            ) {
+
+                console.warn(
+                    "IDMCAuth.getCurrentUser() is not available."
+                );
+
+                return null;
+
+            }
+
+
+            /*
+             * IMPORTANT:
+             * This function NEVER calls logout().
+             */
+
+            const response =
+                await window.IDMCAuth.getCurrentUser();
+
+
+            if (!response) {
+
+                return null;
+
+            }
+
+
+            const user =
+                extractUser(response);
+
+
+            if (!user) {
+
+                console.warn(
+                    "Unable to identify authenticated user.",
+                    response
+                );
+
+                return null;
+
+            }
+
+
+            return {
+
+                user: user,
+
+                roles: extractRoles(response),
+
+                permissions: extractPermissions(response)
+
+            };
+
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard account loading failed:",
+                error
+            );
+
+            return null;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       USER FIELDS
+       ========================================================= */
+
+    function getUserName(user) {
+
+        return (
+
+            user.display_name ||
+
+            user.displayName ||
+
+            user.full_name ||
+
+            user.fullName ||
+
+            [
+                user.first_name,
+                user.middle_name,
+                user.last_name
+            ]
+                .filter(Boolean)
+                .join(" ") ||
+
+            user.username ||
+
+            user.email ||
+
+            "User"
+
+        );
+
+    }
+
+
+    function getUserNumber(user) {
+
+        return (
+
+            user.user_number ||
+
+            user.userNumber ||
+
+            user.user_no ||
+
+            user.userNo ||
+
+            user.employee_number ||
+
+            user.employeeNumber ||
+
+            "Not assigned"
+
+        );
+
+    }
+
+
+    function getUserEmail(user) {
+
+        return (
+
+            user.email ||
+
+            user.email_address ||
+
+            user.emailAddress ||
+
+            "Not available"
+
+        );
+
+    }
+
+
+    function getPrimaryRole(roles) {
+
+        if (!Array.isArray(roles)) {
+
+            return "User";
+
+        }
+
+
+        const names =
+            roles
+                .map(roleName)
+                .filter(Boolean);
+
+
+        return names.length
+            ? names[0]
+            : "User";
+
+    }
+
+
+    function getInitials(name) {
+
+        const words =
+            String(name || "")
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+
+
+        if (!words.length) {
+
+            return "ID";
+
+        }
+
+
+        if (words.length === 1) {
+
+            return words[0]
+                .substring(0, 2)
+                .toUpperCase();
+
+        }
+
+
+        return (
+
+            words[0].charAt(0) +
+            words[words.length - 1].charAt(0)
+
+        ).toUpperCase();
+
+    }
+
+
+    /* =========================================================
+       RENDER ACCOUNT
+       ========================================================= */
+
+    function renderAccount(account) {
+
+        if (!account) {
+
+            return;
+
+        }
+
+
+        const user = account.user;
+
+        const name = getUserName(user);
+
+        const number = getUserNumber(user);
+
+        const email = getUserEmail(user);
+
+        const role = getPrimaryRole(account.roles);
+
+
+        document
+            .querySelectorAll("[data-user-name]")
+            .forEach(element => {
+
+                element.textContent = name;
+
+                element.title = name;
+
+            });
+
+
+        document
+            .querySelectorAll("[data-welcome-name]")
+            .forEach(element => {
+
+                element.textContent = name;
+
+            });
+
+
+        document
+            .querySelectorAll("[data-user-number]")
+            .forEach(element => {
+
+                element.textContent = number;
+
+                element.title = number;
+
+            });
+
+
+        document
+            .querySelectorAll("[data-user-email]")
+            .forEach(element => {
+
+                element.textContent = email;
+
+                element.title = email;
+
+            });
+
+
+        document
+            .querySelectorAll("[data-user-role]")
+            .forEach(element => {
+
+                element.textContent = role;
+
+                element.title = role;
+
+            });
+
+
+        document
+            .querySelectorAll("[data-sidebar-profile-role]")
+            .forEach(element => {
+                element.textContent = role;
+                element.title = role;
+            });
+
+
+        document
+            .querySelectorAll("[data-user-avatar]")
+            .forEach(element => {
+
+                element.textContent = getInitials(name);
+
+            });
+
+
+        const permissionCount =
+            document.querySelector(
+                "[data-permission-count]"
+            );
+
+
+        if (permissionCount) {
+
+            const count = account.permissions.length;
+
+            permissionCount.textContent =
+
+                count +
+                " permission" +
+                (count === 1 ? "" : "s") +
+                " assigned";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       APPLY RBAC
+
+       Kumbuka: kama permissions hazikupatikana kabisa
+       (mtandao umekata), HATUFICHI kitu — tunaacha kama ilivyo,
+       ili mtumiaji asikwame bila sababu.
+       ========================================================= */
+
+    function applyRBAC(account) {
+
+        const codes =
+            account.permissions
+                .map(permissionCode)
+                .filter(Boolean);
+
+
+        if (!codes.length) {
+
+            return;
+
+        }
+
+
+        const permissions = new Set(codes);
+
+
+        document
+            .querySelectorAll("[data-rbac]")
+            .forEach(element => {
+
+                const required =
+                    String(element.dataset.rbac || "")
+                        .trim()
+                        .toLowerCase();
+
+
+                if (!required) {
+
+                    return;
+
+                }
+
+
+                if (!permissions.has(required)) {
+
+                    element.setAttribute(
+                        "data-rbac-hidden",
+                        "true"
+                    );
+
+                    element.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                } else {
+
+                    element.removeAttribute(
+                        "data-rbac-hidden"
+                    );
+
+                    element.removeAttribute(
+                        "aria-hidden"
+                    );
+
+                }
+
+            });
+
+    }
+
+
+    /* =========================================================
+       DATE
+       ========================================================= */
+
+    function updateDate() {
+
+        const date =
+            new Date().toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-operation-date], [data-idmc-date]"
+            )
+            .forEach(element => {
+
+                element.textContent = date;
+
+            });
+
+    }
+
+
+    /* =========================================================
+       CLOCK — 12 HOUR ONLY
+
+       21:00 -> 9:00:00 PM
+       09:00 -> 9:00:00 AM
+
+       Kipengele hiki ndicho pekee kinachoandika saa.
+       ========================================================= */
+
+    function updateClock() {
+
+        const clock =
+            document.querySelector(
+                "[data-idmc-clock]"
+            );
+
+
+        if (!clock) {
+
+            return;
+
+        }
+
+
+        clock.textContent =
+            new Date().toLocaleTimeString(
+                "en-US",
+                {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true
+                }
+            );
+
+    }
+
+
+    /* =========================================================
+       LOGOUT — hii pekee ndiyo inaruhusiwa kutoa mtumiaji
+       ========================================================= */
+
+    function setupLogout() {
+
+        document
+            .querySelectorAll("[data-logout]")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    async function (event) {
+
+                        event.preventDefault();
+
+                        event.stopPropagation();
+
+
+                        button.disabled = true;
+
+
+                        try {
+
+                            if (
+                                window.IDMCAuth &&
+                                typeof window.IDMCAuth.logout ===
+                                "function"
+                            ) {
+
+                                await window.IDMCAuth.logout();
+
+                            }
+
+                        } catch (error) {
+
+                            console.error(
+                                "Logout failed:",
+                                error
+                            );
+
+                        } finally {
+
+                            if (window.IDMCSession) {
+
+                                window.IDMCSession.clear();
+
+                            }
+
+
+                            window.location.href = "login.html";
+
+                        }
+
+                    },
+                    false
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       MODULE LINKS
+
+       Kabla ya kwenda users.html / roles.html tunahakikisha
+       token imehifadhiwa kwa majina yote yanayotumika,
+       ili ukurasa unaofuata usikose token na kukurudisha login.
+       ========================================================= */
+
+    function protectModuleLinks() {
+
+        document
+            .querySelectorAll("[data-module-link]")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        if (
+                            window.IDMCSession &&
+                            typeof window.IDMCSession.sync ===
+                            "function"
+                        ) {
+
+                            window.IDMCSession.sync();
+
+                        }
+
+                    },
+                    false
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       BLOCK EMPTY "#" LINKS
+       ========================================================= */
+
+    function protectEmptyLinks() {
+
+        document
+            .querySelectorAll('a[href="#"]')
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.preventDefault();
+
+                    },
+                    false
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       INITIALIZE
+       ========================================================= */
+
+    async function initializeDashboard() {
+
+        updateDate();
+
+        updateClock();
+
+        setupLogout();
+
+        protectModuleLinks();
+
+        protectEmptyLinks();
+
+
+        if (!getAccessToken()) {
+
+            console.warn(
+                "No access token found in this browser session."
+            );
+
+        }
+
+
+        /*
+         * CENTRAL FRONTEND RBAC
+         *
+         * The stored IDMC account contains:
+         *   user
+         *   roles
+         *   permissions
+         *
+         * Load it into rbac.js before applying UI visibility.
+         */
+        if (
+            window.IDMC_RBAC_API &&
+            typeof window.IDMC_RBAC_API.loadCurrentUserRBAC === "function"
+        ) {
+            try {
+
+                await window.IDMC_RBAC_API.loadCurrentUserRBAC();
+
+                if (
+                    typeof window.IDMC_RBAC_API.applyPermissionVisibility ===
+                    "function"
+                ) {
+
+                    window.IDMC_RBAC_API.applyPermissionVisibility(
+                        document
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Central frontend RBAC initialization failed:",
+                    error
+                );
+
+            }
+        }
+
+
+        /*
+         * Preserve the existing dashboard account loading.
+         */
+        const account = await loadCurrentAccount();
+
+
+        if (!account) {
+
+            /*
+             * Fallback to the locally stored IDMC account when
+             * authentication validation cannot return the account.
+             *
+             * This does not create permissions. It only renders
+             * permissions already stored in idmc_user.
+             */
+            try {
+
+                const raw =
+                    sessionStorage.getItem("idmc_user");
+
+                if (raw) {
+
+                    const stored =
+                        JSON.parse(raw);
+
+                    const fallbackAccount = {
+
+                        user:
+                            stored.user || null,
+
+                        roles:
+                            Array.isArray(stored.roles)
+                                ? stored.roles
+                                : [],
+
+                        permissions:
+                            Array.isArray(stored.permissions)
+                                ? stored.permissions
+                                : []
+
+                    };
+
+
+                    if (fallbackAccount.user) {
+
+                        renderAccount(
+                            fallbackAccount
+                        );
+
+                        applyRBAC(
+                            fallbackAccount
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Stored dashboard account fallback failed:",
+                    error
+                );
+
+            }
+
+            return;
+
+        }
+
+
+        renderAccount(account);
+
+        applyRBAC(account);
+
+
+        /*
+         * Final centralized UI synchronization.
+         */
+        if (
+            window.IDMC_RBAC_API &&
+            typeof window.IDMC_RBAC_API.applyPermissionVisibility ===
+            "function"
+        ) {
+
+            try {
+
+                window.IDMC_RBAC_API.applyPermissionVisibility(
+                    document
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "Final central RBAC visibility update failed:",
+                    error
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =========================================================
+       START
+       ========================================================= */
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initializeDashboard
+        );
+
+    } else {
+
+        initializeDashboard();
+
+    }
+
+
+    setInterval(updateClock, 1000);
+
+    setInterval(updateDate, 60000);
+
+
+})();
+
+</script>
+
+
+    <script src="assets/js/module-navigation.js"></script>
+    <script src="assets/js/app-workflow.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,1890 @@
+====================================================
+ IDMC iMIS - A6.10 EXACT CRUD CONTRACT
+ Generated: 2026-09-18 20:30:15
+====================================================
+
+
+====================================================
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html
+====================================================
+  691: 
+  692:             <div class="modal-footer">
+  693: 
+  694:                 <button
+  695:                     type="button"
+  696:                     class="secondary"
+  697:                     id="cancelModalButton"
+  698:                 >
+  699:                     Cancel
+  700:                 </button>
+  701: 
+  702:                 <button
+  703:                     id="saveStudentButton"
+  704:                     type="submit"
+  705:                 >
+  706:                     Save Student
+  707:                 </button>
+  708: 
+  709:             </div>
+  710: 
+  711:         </form>
+  712: 
+  713:     </div>
+  714: 
+  715: </div>
+  716: 
+  717: <script src="assets/js/idmc-session.js"></script>
+  718: <script src="assets/js/config.js"></script>
+  719: <script src="assets/js/auth.js"></script>
+  720: <script src="assets/js/api.js"></script>
+  721: <script src="assets/js/rbac.js"></script>
+  722: 
+  723: <script>
+  736:         return String(value ?? "")
+  737:             .replace(/&/g, "&amp;")
+  738:             .replace(/</g, "&lt;")
+  739:             .replace(/>/g, "&gt;")
+  740:             .replace(/"/g, "&quot;")
+  741:             .replace(/'/g, "&#039;");
+  742: 
+  743:     }
+  744: 
+  745:     function can(permission) {
+  746: 
+  747:         return (
+  748:             typeof window.IDMC_RBAC_API?.hasPermission ===
+  749:                 "function" &&
+  750:             window.IDMC_RBAC_API.hasPermission(permission)
+  751:         );
+  752: 
+  753:     }
+  754: 
+  755:     function setStatus(message) {
+  756: 
+  757:         const element =
+  758:             $("#recordStatus");
+  759: 
+  760:         if (element) {
+  761:             element.textContent = message;
+  762:         }
+  763: 
+  764:     }
+  765: 
+  766:     function openModal(student = null) {
+  767: 
+  768:         $("#studentModal")
+  769:             ?.classList
+  770:             .add("open");
+  955:             .forEach(button => {
+  956: 
+  957:                 button.addEventListener(
+  958:                     "click",
+  959:                     async () => {
+  960: 
+  961:                         try {
+  962: 
+  963:                             const id =
+  964:                                 button.dataset.edit;
+  965: 
+  966:                             const result =
+  967:                                 await window.IDMC_RBAC_API
+  968:                                     .request(
+  969:                                         `/students/${id}`
+  970:                                     );
+  971: 
+  972:                             openModal(
+  973:                                 result?.data
+  974:                             );
+  975: 
+  976:                         } catch (error) {
+  977: 
+  978:                             console.error(
+  979:                                 "Unable to open student:",
+  980:                                 error
+  981:                             );
+  982: 
+  983:                             alert(
+  984:                                 error?.message ||
+  985:                                 "Unable to load student."
+  986:                             );
+  987:                         }
+  988: 
+  989:                     }
+ 1026:                 );
+ 1027:             }
+ 1028: 
+ 1029:             params.set("page", "1");
+ 1030:             params.set("limit", "100");
+ 1031: 
+ 1032:             const query =
+ 1033:                 params.toString()
+ 1034:                     ? `?${params.toString()}`
+ 1035:                     : "";
+ 1036: 
+ 1037:             const result =
+ 1038:                 await window.IDMC_RBAC_API
+ 1039:                     .request(
+ 1040:                         `/students${query}`
+ 1041:                     );
+ 1042: 
+ 1043:             students =
+ 1044:                 Array.isArray(result?.data?.rows)
+ 1045:                     ? result.data.rows
+ 1046:                     : [];
+ 1047: 
+ 1048:             renderStudents();
+ 1049: 
+ 1050:             setStatus(
+ 1051:                 `${students.length} record(s)`
+ 1052:             );
+ 1053: 
+ 1054:         } catch (error) {
+ 1055: 
+ 1056:             console.error(
+ 1057:                 "Failed to load students:",
+ 1058:                 error
+ 1059:             );
+ 1060: 
+ 1080:                 `;
+ 1081: 
+ 1082:             }
+ 1083: 
+ 1084:             setStatus(
+ 1085:                 "Unable to load"
+ 1086:             );
+ 1087: 
+ 1088:         }
+ 1089: 
+ 1090:     }
+ 1091: 
+ 1092:     async function saveStudent(event) {
+ 1093: 
+ 1094:         event.preventDefault();
+ 1095: 
+ 1096:         if (!can("students.manage")) {
+ 1097: 
+ 1098:             alert(
+ 1099:                 "You do not have permission to manage students."
+ 1100:             );
+ 1101: 
+ 1102:             return;
+ 1103: 
+ 1104:         }
+ 1105: 
+ 1106:         const id =
+ 1107:             $("#studentId").value.trim();
+ 1108: 
+ 1109:         const body = {
+ 1110: 
+ 1111:             institutionId:
+ 1112:                 $("#institutionId").value.trim(),
+ 1180:                 $("#emergencyContactPhone").value.trim() ||
+ 1181:                 null,
+ 1182: 
+ 1183:             notes:
+ 1184:                 $("#notes").value.trim() ||
+ 1185:                 null
+ 1186: 
+ 1187:         };
+ 1188: 
+ 1189:         try {
+ 1190: 
+ 1191:             const result =
+ 1192:                 await window.IDMCAPI.request(
+ 1193:                     id
+ 1194:                         ? `/students/${id}`
+ 1195:                         : "/students",
+ 1196:                     {
+ 1197:                         method:
+ 1198:                             id
+ 1199:                                 ? "PATCH"
+ 1200:                                 : "POST",
+ 1201: 
+ 1202:                         body:
+ 1203:                             JSON.stringify(body)
+ 1204:                     }
+ 1205:                 );
+ 1206: 
+ 1207:             if (!result?.success) {
+ 1208: 
+ 1209:                 throw new Error(
+ 1210:                     result?.message ||
+ 1211:                     "Student operation failed."
+ 1212:                 );
+ 1213: 
+ 1214:             }
+ 1215: 
+ 1286:                     closeModal
+ 1287:                 );
+ 1288: 
+ 1289:             $("#cancelModalButton")
+ 1290:                 ?.addEventListener(
+ 1291:                     "click",
+ 1292:                     closeModal
+ 1293:                 );
+ 1294: 
+ 1295:             $("#studentForm")
+ 1296:                 ?.addEventListener(
+ 1297:                     "submit",
+ 1298:                     saveStudent
+ 1299:                 );
+ 1300: 
+ 1301:             $("#searchButton")
+ 1302:                 ?.addEventListener(
+ 1303:                     "click",
+ 1304:                     loadStudents
+ 1305:                 );
+ 1306: 
+ 1307:             $("#refreshButton")
+ 1308:                 ?.addEventListener(
+ 1309:                     "click",
+ 1310:                     loadStudents
+ 1311:                 );
+ 1312: 
+ 1313:             $("#searchInput")
+ 1314:                 ?.addEventListener(
+ 1315:                     "keydown",
+ 1316:                     event => {
+ 1317: 
+ 1318:                         if (
+
+
+====================================================
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\users.html
+====================================================
+ 1462:     </footer>
+ 1463: 
+ 1464: </main>
+ 1465: 
+ 1466: </div>
+ 1467: 
+ 1468: <!-- =====================================================
+ 1469:      CREATE USER MODAL
+ 1470: ====================================================== -->
+ 1471: 
+ 1472: <div
+ 1473:     class="modal-overlay"
+ 1474:     id="createUserModal"
+ 1475:     aria-hidden="true"
+ 1476: >
+ 1477: 
+ 1478: <div class="modal">
+ 1479: 
+ 1480:     <div class="modal-header">
+ 1481: 
+ 1482:         <div>
+ 1483:             <h3>Create New User</h3>
+ 1484:             <p>Create an IDMC system account.</p>
+ 1485:         </div>
+ 1486: 
+ 1487:         <button
+ 1488:             type="button"
+ 1489:             class="close-btn"
+ 1490:             data-close-modal="createUserModal"
+ 1491:         >
+ 1492:             <i class="fa-solid fa-xmark"></i>
+ 1493:         </button>
+ 1494: 
+ 1495:     </div>
+ 1496: 
+ 1497: 
+ 1498:     <form id="createUserForm">
+ 1499: 
+ 1500:         <div class="modal-body">
+ 1501: 
+ 1502:             <div class="form-grid">
+ 1503: 
+ 1504:                 <div class="field">
+ 1505:                     <label>First Name *</label>
+ 1506:                     <input
+ 1507:                         type="text"
+ 1508:                         id="createFirstName"
+ 1509:                         required
+ 1510:                     >
+ 1511:                 </div>
+ 1512: 
+ 1513:                 <div class="field">
+ 1514:                     <label>Middle Name</label>
+ 1515:                     <input
+ 1516:                         type="text"
+ 1517:                         id="createMiddleName"
+ 1518:                     >
+ 1530:                 <div class="field">
+ 1531:                     <label>Display Name</label>
+ 1532:                     <input
+ 1533:                         type="text"
+ 1534:                         id="createDisplayName"
+ 1535:                     >
+ 1536:                 </div>
+ 1537: 
+ 1538:                 <div class="field">
+ 1539:                     <label>Username</label>
+ 1540:                     <input
+ 1541:                         type="text"
+ 1542:                         id="createUsername"
+ 1543:                     >
+ 1544:                 </div>
+ 1545: 
+ 1546:                 <div class="field">
+ 1547:                     <label>Phone</label>
+ 1548:                     <input
+ 1549:                         type="tel"
+ 1550:                         id="createPhone"
+ 1551:                     >
+ 1552:                 </div>
+ 1553: 
+ 1554:                 <div class="field">
+ 1555:                     <label>Email *</label>
+ 1556:                     <input
+ 1557:                         type="email"
+ 1558:                         id="createEmail"
+ 1559:                         required
+ 1560:                     >
+ 1561:                 </div>
+ 1562: 
+ 1580:                         >
+ 1581:                             <i class="fa-solid fa-eye"></i>
+ 1582:                         </button>
+ 1583: 
+ 1584:                     </div>
+ 1585: 
+ 1586:                 </div>
+ 1587: 
+ 1588:                 <div class="field">
+ 1589: 
+ 1590:                     <label>Initial Role</label>
+ 1591: 
+ 1592:                     <select id="createRole">
+ 1593: 
+ 1594:                         <option value="">
+ 1595:                             No role
+ 1596:                         </option>
+ 1597: 
+ 1598:                     </select>
+ 1599: 
+ 1600:                 </div>
+ 1601: 
+ 1602:                 <div class="field">
+ 1603: 
+ 1604:                     <label>Status</label>
+ 1605: 
+ 1606:                     <select id="createStatus">
+ 1607: 
+ 1608:                         <option value="ACTIVE">
+ 1609:                             Active
+ 1610:                         </option>
+ 1611: 
+ 1612:                         <option value="PENDING">
+ 1617:                             Inactive
+ 1618:                         </option>
+ 1619: 
+ 1620:                     </select>
+ 1621: 
+ 1622:                 </div>
+ 1623: 
+ 1624:             </div>
+ 1625: 
+ 1626: 
+ 1627:             <div
+ 1628:                 class="success-box"
+ 1629:                 id="createUserSuccess"
+ 1630:             >
+ 1631:                 <div id="createdUserMessage"></div>
+ 1632:             </div>
+ 1633: 
+ 1634:         </div>
+ 1635: 
+ 1636: 
+ 1637:         <div class="modal-footer">
+ 1638: 
+ 1639:             <button
+ 1640:                 type="button"
+ 1641:                 class="btn btn-secondary"
+ 1642:                 data-close-modal="createUserModal"
+ 1643:             >
+ 1644:                 Cancel
+ 1645:             </button>
+ 1646: 
+ 1647:             <button
+ 1648:                 type="submit"
+ 1649:                 class="btn btn-primary"
+ 1650:                 id="createUserButton"
+ 1651:             >
+ 1652:                 <i class="fa-solid fa-user-plus"></i>
+ 1653:                 Create User
+ 1654:             </button>
+ 1655: 
+ 1656:         </div>
+ 1657: 
+ 1658:     </form>
+ 1659: 
+ 1660: </div>
+ 1661: 
+ 1662: </div>
+ 1663: 
+ 1664: <!-- =====================================================
+ 1665:      VIEW USER MODAL
+ 1666: ====================================================== -->
+ 1667: 
+ 1668: <div
+ 1669:     class="modal-overlay"
+ 1670:     id="viewModal"
+ 1918: 
+ 1919:             <button
+ 1920:                 type="button"
+ 1921:                 class="btn btn-secondary"
+ 1922:                 data-close-modal="editModal"
+ 1923:             >
+ 1924:                 Cancel
+ 1925:             </button>
+ 1926: 
+ 1927:             <button
+ 1928:                 type="submit"
+ 1929:                 class="btn btn-primary"
+ 1930:                 id="saveUserButton"
+ 1931:             >
+ 1932:                 <i class="fa-solid fa-check"></i>
+ 1933:                 Save Changes
+ 1934:             </button>
+ 1935: 
+ 1936:         </div>
+ 1937: 
+ 1938:     </form>
+ 1939: 
+ 1940: </div>
+ 1941: </div>
+ 1942: 
+ 1943: <!-- =====================================================
+ 1944:      ROLE MANAGEMENT MODAL
+ 1945: ====================================================== -->
+ 1946: 
+ 1947: <div
+ 1948:     class="modal-overlay"
+ 1949:     id="rolesModal"
+ 1950:     aria-hidden="true"
+ 2129: ====================================================== -->
+ 2130: 
+ 2131: <div
+ 2132:     class="toast"
+ 2133:     id="toast"
+ 2134:     role="status"
+ 2135:     aria-live="polite"
+ 2136: ></div>
+ 2137: 
+ 2138: <script>
+ 2139:     document.addEventListener("DOMContentLoaded", async () => {
+ 2140: 
+ 2141:         const allowed = await IDMC_RBAC_API.requireRBACPage("users.view");
+ 2142: 
+ 2143:         if (!allowed) {
+ 2144:             return;
+ 2145:         }
+ 2146: 
+ 2147:         var yearEl = document.getElementById("footerYear");
+ 2148:         if (yearEl) yearEl.textContent = new Date().getFullYear();
+ 2149: 
+ 2150:         var clockEl = document.getElementById("systemClock");
+ 2151:         function tick() {
+ 2152:             if (!clockEl) return;
+ 2153:             var now = new Date();
+ 2154:             var h = String(now.getHours()).padStart(2, "0");
+ 2155:             var m = String(now.getMinutes()).padStart(2, "0");
+ 2156:             clockEl.textContent = h + ":" + m;
+ 2157:         }
+ 2158:         tick();
+ 2159:         setInterval(tick, 1000 * 30);
+ 2160: 
+ 2161:     });
+ 2162: </script>
+ 2163: 
+ 2164: <script src="./assets/js/users.js"></script>
+ 2165: 
+ 2166: </body>
+ 2167: 
+ 2168: </html>
+
+
+====================================================
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\roles.html
+====================================================
+  956:             </h1>
+  957: 
+  958:             <p>
+  959:                 Manage system roles and control access
+  960:                 to IDMC iMIS modules.
+  961:             </p>
+  962: 
+  963:         </div>
+  964: 
+  965: 
+  966:         <button
+  967:             class="btn btn-primary"
+  968:             onclick="openCreateRoleModal()"
+  969:         >
+  970:             <i class="fa-solid fa-plus"></i>
+  971:             New Role
+  972:         </button>
+  973: 
+  974:     </div>
+  975: 
+  976: 
+  977: 
+  978:     <!-- =================================================
+  979:          MAIN GRID
+  980:     ================================================= -->
+  981: 
+  982:     <section class="grid">
+  983: 
+  984: 
+  985:         <!-- =================================================
+  986:              ROLES
+  987:         ================================================= -->
+  988: 
+ 1689:         );
+ 1690: 
+ 1691: 
+ 1692:     container.innerHTML =
+ 1693:         `<div class="empty">
+ 1694:             Loading roles...
+ 1695:         </div>`;
+ 1696: 
+ 1697: 
+ 1698:     try {
+ 1699: 
+ 1700:         const response =
+ 1701:             await IDMC_RBAC_API.listRoles();
+ 1702: 
+ 1703: 
+ 1704:         roles =
+ 1705:             Array.isArray(response?.data)
+ 1706:                 ? response.data
+ 1707:                 : [];
+ 1708: 
+ 1709: 
+ 1710:         showSessionWarning(false);
+ 1711: 
+ 1712: 
+ 1713:         renderRoles();
+ 1714: 
+ 1715: 
+ 1716:         /*
+ 1717:          * Restore selected role after refresh.
+ 1718:          */
+ 1719: 
+ 1720:         if (selectedRole) {
+ 1721: 
+ 1878: 
+ 1879: 
+ 1880: 
+ 1881: /* =========================================================
+ 1882:    SELECT ROLE
+ 1883: ========================================================= */
+ 1884: 
+ 1885: async function selectRole(roleId) {
+ 1886: 
+ 1887:     try {
+ 1888: 
+ 1889:         const response =
+ 1890:             await IDMC_RBAC_API.getRole(
+ 1891:                 roleId
+ 1892:             );
+ 1893: 
+ 1894: 
+ 1895:         selectedRole =
+ 1896:             response?.data || null;
+ 1897: 
+ 1898: 
+ 1899:         showSessionWarning(false);
+ 1900: 
+ 1901: 
+ 1902:         renderRoles();
+ 1903: 
+ 1904: 
+ 1905:         await renderRoleDetail();
+ 1906: 
+ 1907:     } catch (error) {
+ 1908: 
+ 1909:         handleApiError(
+ 1910:             error,
+ 1987:                             </span>
+ 1988:                         `
+ 1989:                         : ""
+ 1990:                 }
+ 1991: 
+ 1992:             </div>
+ 1993: 
+ 1994: 
+ 1995:             <div class="detail-actions">
+ 1996: 
+ 1997:                 <button
+ 1998:                     class="btn btn-primary"
+ 1999:                     onclick="openAssignPermissionModal()"
+ 2000:                 >
+ 2001:                     <i class="fa-solid fa-plus"></i>
+ 2002:                     Assign Permission
+ 2003:                 </button>
+ 2004: 
+ 2005: 
+ 2006:                 <button
+ 2007:                     class="btn"
+ 2008:                     onclick="openEditRoleModal()"
+ 2009:                 >
+ 2010:                     <i class="fa-solid fa-pen"></i>
+ 2011:                     Edit Role
+ 2012:                 </button>
+ 2013: 
+ 2014: 
+ 2015:                 <button
+ 2016:                     class="btn"
+ 2017:                     onclick="loadRolePermissionsOnly()"
+ 2018:                 >
+ 2019:                     <i class="fa-solid fa-rotate"></i>
+ 2071:     }
+ 2072: 
+ 2073: 
+ 2074:     area.innerHTML =
+ 2075:         `<div class="empty">
+ 2076:             Loading permissions...
+ 2077:         </div>`;
+ 2078: 
+ 2079: 
+ 2080:     try {
+ 2081: 
+ 2082:         const response =
+ 2083:             await IDMC_RBAC_API.getRolePermissions(
+ 2084:                 selectedRole.id
+ 2085:             );
+ 2086: 
+ 2087: 
+ 2088:         const assigned =
+ 2089:             Array.isArray(response?.data)
+ 2090:                 ? response.data
+ 2091:                 : [];
+ 2092: 
+ 2093: 
+ 2094:         /*
+ 2095:          * Keep selectedRole synchronized
+ 2096:          * with the latest backend data.
+ 2097:          */
+ 2098: 
+ 2099:         selectedRole.role_permissions =
+ 2100:             assigned;
+ 2101: 
+ 2102: 
+ 2103:         showSessionWarning(false);
+ 2267:    LOAD ALL PERMISSIONS
+ 2268: ========================================================= */
+ 2269: 
+ 2270: /* =========================================================
+ 2271:    LOAD ALL PERMISSIONS
+ 2272: ========================================================= */
+ 2273: 
+ 2274: async function loadPermissions() {
+ 2275: 
+ 2276:     try {
+ 2277: 
+ 2278:         const response =
+ 2279:             await IDMC_RBAC_API.listPermissions();
+ 2280: 
+ 2281:         permissions =
+ 2282:             Array.isArray(response?.data)
+ 2283:                 ? response.data
+ 2284:                 : [];
+ 2285: 
+ 2286:         populatePermissionSelect();
+ 2287: 
+ 2288:         showSessionWarning(false);
+ 2289: 
+ 2290:     } catch (error) {
+ 2291: 
+ 2292:         handleApiError(
+ 2293:             error,
+ 2294:             "Could not load permissions list."
+ 2295:         );
+ 2296: 
+ 2297:     }
+ 2298: 
+ 2299: }
+ 2429:                 item?.permissions?.id ||
+ 2430:                 item?.permission?.id ||
+ 2431:                 null
+ 2432:         )
+ 2433:         .filter(Boolean)
+ 2434:         .map(String);
+ 2435: 
+ 2436: }
+ 2437: /* =========================================================
+ 2438:    CREATE ROLE MODAL
+ 2439: ========================================================= */
+ 2440: 
+ 2441: function openCreateRoleModal() {
+ 2442: 
+ 2443:     document.getElementById(
+ 2444:         "roleModalTitle"
+ 2445:     ).textContent =
+ 2446:         "Create Role";
+ 2447: 
+ 2448: 
+ 2449:     document.getElementById(
+ 2450:         "roleId"
+ 2451:     ).value = "";
+ 2452: 
+ 2453: 
+ 2454:     document.getElementById(
+ 2455:         "roleCode"
+ 2456:     ).value = "";
+ 2457: 
+ 2458: 
+ 2459:     document.getElementById(
+ 2460:         "roleName"
+ 2461:     ).value = "";
+ 2622:             true
+ 2623:         );
+ 2624: 
+ 2625:         return;
+ 2626: 
+ 2627:     }
+ 2628: 
+ 2629: 
+ 2630:     try {
+ 2631: 
+ 2632:         if (id) {
+ 2633: 
+ 2634:             await IDMC_RBAC_API.updateRole(
+ 2635:                 id,
+ 2636:                 {
+ 2637:                     roleName,
+ 2638:                     description,
+ 2639:                     status
+ 2640:                 }
+ 2641:             );
+ 2642: 
+ 2643: 
+ 2644:             showToast(
+ 2645:                 "Role updated successfully."
+ 2646:             );
+ 2647: 
+ 2648:         } else {
+ 2649: 
+ 2650:             await IDMC_RBAC_API.createRole(
+ 2651:                 {
+ 2652:                     roleCode,
+ 2653:                     roleName,
+ 2654:                     description,
+ 2655:                     status
+ 2656:                 }
+ 2657:             );
+ 2658: 
+ 2659: 
+ 2660:             showToast(
+ 2661:                 "Role created successfully."
+ 2662:             );
+ 2663: 
+ 2664:         }
+ 2665: 
+ 2666: 
+ 2667:         closeRoleModal();
+ 2668: 
+ 2669: 
+ 2670:         await loadRoles();
+ 2682: }
+ 2683: 
+ 2684: 
+ 2685: 
+ 2686: /* =========================================================
+ 2687:    ASSIGN PERMISSION MODAL
+ 2688: ========================================================= */
+ 2689: 
+ 2690: /* =========================================================
+ 2691:    ASSIGN PERMISSION MODAL
+ 2692: ========================================================= */
+ 2693: 
+ 2694: function openAssignPermissionModal() {
+ 2695: 
+ 2696:     if (!selectedRole) {
+ 2697: 
+ 2698:         showToast(
+ 2699:             "Select a role first.",
+ 2700:             true
+ 2701:         );
+ 2702: 
+ 2703:         return;
+ 2704: 
+ 2705:     }
+ 2706: 
+ 2707: 
+ 2708:     /*
+ 2709:      * Refresh the permission list so that
+ 2710:      * already assigned permissions are hidden.
+ 2711:      */
+ 2712: 
+ 2713:     populatePermissionSelect();
+ 2714: 
+ 2790:         showToast(
+ 2791:             "Select a role first.",
+ 2792:             true
+ 2793:         );
+ 2794: 
+ 2795:         return;
+ 2796: 
+ 2797:     }
+ 2798: 
+ 2799: 
+ 2800:     try {
+ 2801: 
+ 2802:         await IDMC_RBAC_API.assignPermission(
+ 2803:             selectedRole.id,
+ 2804:             permissionId
+ 2805:         );
+ 2806: 
+ 2807: 
+ 2808:         showToast(
+ 2809:             "Permission assigned successfully."
+ 2810:         );
+ 2811: 
+ 2812: 
+ 2813:         closePermissionModal();
+ 2814: 
+ 2815: 
+ 2816:         await loadRolePermissionsOnly();
+ 2817: 
+ 2818: 
+ 2819:     } catch (error) {
+ 2820: 
+ 2821:         handleApiError(
+ 2822:             error,
+ 2824:         );
+ 2825: 
+ 2826:     }
+ 2827: 
+ 2828: }
+ 2829: 
+ 2830: 
+ 2831: 
+ 2832: /* =========================================================
+ 2833:    REMOVE PERMISSION
+ 2834: ========================================================= */
+ 2835: 
+ 2836: async function removePermission(
+ 2837:     roleId,
+ 2838:     permissionId
+ 2839: ) {
+ 2840: 
+ 2841:     const confirmed =
+ 2842:         window.confirm(
+ 2843:             "Remove this permission from the role?"
+ 2844:         );
+ 2845: 
+ 2846: 
+ 2847:     if (!confirmed) {
+ 2848:         return;
+ 2849:     }
+ 2850: 
+ 2851: 
+ 2852:     try {
+ 2853: 
+ 2854:         await IDMC_RBAC_API.removePermission(
+ 2855:             roleId,
+ 2856:             permissionId
+ 2857:         );
+ 2858: 
+ 2859: 
+ 2860:         showToast(
+ 2861:             "Permission removed successfully."
+ 2862:         );
+ 2863: 
+ 2864: 
+ 2865:         await loadRolePermissionsOnly();
+ 2866: 
+ 2867: 
+ 2868:     } catch (error) {
+ 2869: 
+ 2870:         handleApiError(
+ 2871:             error,
+ 2872:             "Could not remove the permission."
+ 2873:         );
+ 2874: 
+ 2974: 
+ 2975:         const removeBtn =
+ 2976:             event.target.closest(
+ 2977:                 "[data-remove-permission]"
+ 2978:             );
+ 2979: 
+ 2980: 
+ 2981:         if (
+ 2982:             removeBtn &&
+ 2983:             selectedRole
+ 2984:         ) {
+ 2985: 
+ 2986:             removePermission(
+ 2987:                 selectedRole.id,
+ 2988:                 removeBtn.dataset
+ 2989:                     .removePermission
+ 2990:             );
+ 2991: 
+ 2992:             return;
+ 2993: 
+ 2994:         }
+ 2995: 
+ 2996: 
+ 2997: 
+ 2998:         /* -----------------------------------------------
+ 2999:            SELECT ROLE
+ 3000:         ------------------------------------------------ */
+ 3001: 
+ 3002:         const roleItem =
+ 3003:             event.target.closest(
+ 3004:                 "[data-role-id]"
+ 3005:             );
+ 3006: 
+ 3007: 
+ 3008:         if (roleItem) {
+ 3009: 
+
+
+====================================================
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js
+====================================================
+  187:                         class="loading-state"
+  188:                     >
+  189:                         Loading student records...
+  190:                     </td>
+  191:                 </tr>
+  192:             `;
+  193: 
+  194:         }
+  195: 
+  196:         try {
+  197: 
+  198:             if (
+  199:                 !window.IDMC_RBAC_API ||
+  200:                 typeof
+  201:                     window.IDMCAPI.request !==
+  202:                     "function"
+  203:             ) {
+  204: 
+  205:                 throw new Error(
+  206:                     "IDMC frontend RBAC API is not available."
+  207:                 );
+  208: 
+  209:             }
+  210: 
+  211:             if (
+  212:                 typeof
+  213:                     window.IDMC_RBAC_API.hasPermission ===
+  214:                     "function"
+  215:             ) {
+  216: 
+  217:                 if (
+  218:                     !window.IDMC_RBAC_API.hasPermission(
+  219:                         REQUIRED_PERMISSION
+  220:                     )
+  221:                 ) {
+  222: 
+  223:                     throw new Error(
+  224:                         "You do not have permission to view students."
+  225:                     );
+  226: 
+  227:                 }
+  228: 
+  229:             }
+  230: 
+  231:             const search =
+  232:                 $("#studentSearch")
+  233:                     ?.value
+  234:                     ?.trim() || "";
+  235: 
+  236:             const status =
+  237:                 $("#studentStatus")
+  238:                     ?.value
+  257:                     search
+  258:                 );
+  259:             }
+  260: 
+  261:             if (status) {
+  262:                 params.set(
+  263:                     "status",
+  264:                     status
+  265:                 );
+  266:             }
+  267: 
+  268:             const result =
+  269:                 await window.IDMCAPI.request(
+  270:                     `/students?${params.toString()}`
+  271:                 );
+  272: 
+  273:             students =
+  274:                 Array.isArray(
+  275:                     result?.data?.items
+  276:                 )
+  277:                     ? result.data.items
+  278:                     : [];
+  279: 
+  280:             render(
+  281:                 students
+  282:             );
+  283: 
+  284:             setStatus(
+  285:                 `${students.length} student(s)`
+  286:             );
+  287: 
+  288:         } catch (error) {
+  289: 
+  290:             console.error(
+  322: 
+  323:     async function viewStudent(
+  324:         id
+  325:     ) {
+  326: 
+  327:         if (!id) {
+  328:             return;
+  329:         }
+  330: 
+  331:         try {
+  332: 
+  333:             const result =
+  334:                 await window.IDMCAPI.request(
+  335:                     `/students/${encodeURIComponent(id)}`
+  336:                 );
+  337: 
+  338:             const student =
+  339:                 result?.data;
+  340: 
+  341:             if (!student) {
+  342:                 throw new Error(
+  343:                     "Student record not found."
+  344:                 );
+  345:             }
+  346: 
+  347:             const name =
+  348:                 getStudentName(
+  349:                     student
+  350:                 );
+  351: 
+  352:             alert(
+  353:                 [
+  354:                     `Student Number: ${
+  355:                         student.student_number ||
+
+
+====================================================
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js
+====================================================
+  447:             button.innerHTML = `
+  448:                 <i class="fa-solid fa-rotate"></i>
+  449:                 Refresh
+  450:             `;
+  451:         }
+  452:     }
+  453: 
+  454:     async function loadUsers() {
+  455:         try {
+  456:             setLoading(true);
+  457: 
+  458:             const result =
+  459:                 await apiRequest("/users");
+  460: 
+  461:             users =
+  462:                 Array.isArray(result.data)
+  463:                     ? result.data
+  464:                     : [];
+  465: 
+  466:             renderUsers();
+  467: 
+  468:         } catch (error) {
+  469:             console.error(
+  470:                 "Failed to load users:",
+  471:                 error
+  472:             );
+  473: 
+  474:             showToast(
+  475:                 error.message ||
+  476:                 "Failed to load users",
+  477:                 "error"
+  478:             );
+  479: 
+  505:                     </tr>
+  506:                 `;
+  507:             }
+  508: 
+  509:         } finally {
+  510:             setLoading(false);
+  511:         }
+  512:     }
+  513: 
+  514:     async function loadRoles() {
+  515:         try {
+  516:             const result =
+  517:                 await apiRequest("/users/roles");
+  518: 
+  519:             roles =
+  520:                 Array.isArray(result.data)
+  521:                     ? result.data
+  522:                     : [];
+  523: 
+  524:             populateRoleSelect(
+  525:                 $("#roleSelect"),
+  526:                 roles,
+  527:                 "Select role"
+  528:             );
+  529: 
+  530:         } catch (error) {
+  531:             console.error(
+  532:                 "Failed to load roles:",
+  533:                 error
+  534:             );
+  535:         }
+  536:     }
+  537: 
+ 1011:                                 aria-label="Remove role"
+ 1012:                             >
+ 1013:                                 <i class="fa-solid fa-trash"></i>
+ 1014:                             </button>
+ 1015: 
+ 1016:                         </div>
+ 1017: 
+ 1018:                     </div>
+ 1019:                 `;
+ 1020:             })
+ 1021:             .join("");
+ 1022: }
+ 1023:     async function saveUser(event) {
+ 1024:         event.preventDefault();
+ 1025: 
+ 1026:         if (!selectedUser) {
+ 1027:             return;
+ 1028:         }
+ 1029: 
+ 1030:         const button =
+ 1031:             $("#saveUserButton");
+ 1032: 
+ 1033:         try {
+ 1034:             if (button) {
+ 1035:                 button.disabled = true;
+ 1036:                 button.innerHTML = `
+ 1037:                     <i class="fa-solid fa-spinner fa-spin"></i>
+ 1038:                     Saving...
+ 1039:                 `;
+ 1040:             }
+ 1041: 
+ 1042:             const body = {
+ 1043:                 firstName:
+ 1044:                     $("#editFirstName")?.value.trim() ||
+ 1045:                     null,
+ 1046: 
+ 1047:                 middleName:
+ 1048:                     $("#editMiddleName")?.value.trim() ||
+ 1049:                     null,
+ 1050: 
+ 1051:                 lastName:
+ 1065:                     null,
+ 1066: 
+ 1067:                 phone:
+ 1068:                     $("#editPhone")?.value.trim() ||
+ 1069:                     null,
+ 1070: 
+ 1071:                 status:
+ 1072:                     $("#editStatus")?.value ||
+ 1073:                     "ACTIVE"
+ 1074:             };
+ 1075: 
+ 1076:             await apiRequest(
+ 1077:                 `/users/${encodeURIComponent(
+ 1078:                     selectedUser.id
+ 1079:                 )}`,
+ 1080:                 {
+ 1081:                     method: "PATCH",
+ 1082:                     body: JSON.stringify(body)
+ 1083:                 }
+ 1084:             );
+ 1085: 
+ 1086:             closeModal("editModal");
+ 1087: 
+ 1088:             showToast(
+ 1089:                 "User updated successfully."
+ 1090:             );
+ 1091: 
+ 1092:             await loadUsers();
+ 1093: 
+ 1094:         } catch (error) {
+ 1095:             console.error(
+ 1096:                 "Failed to update user:",
+ 1097:                 error
+ 1098:             );
+ 1099: 
+ 1100:             showToast(
+ 1101:                 error.message ||
+ 1164:             $("#assignRoleButton");
+ 1165: 
+ 1166:         try {
+ 1167:             if (button) {
+ 1168:                 button.disabled = true;
+ 1169:                 button.innerHTML = `
+ 1170:                     <i class="fa-solid fa-spinner fa-spin"></i>
+ 1171:                     Assigning...
+ 1172:                 `;
+ 1173:             }
+ 1174: 
+ 1175:             await apiRequest(
+ 1176:                 `/users/${encodeURIComponent(
+ 1177:                     selectedUser.id
+ 1178:                 )}/roles`,
+ 1179:                 {
+ 1180:                     method: "POST",
+ 1181:                     body: JSON.stringify(payload)
+ 1182:                 }
+ 1183:             );
+ 1184: 
+ 1185:             showToast(
+ 1186:                 "Role assigned successfully."
+ 1187:             );
+ 1188: 
+ 1189:             if (roleSelect) {
+ 1190:                 roleSelect.value = "";
+ 1191:             }
+ 1192: 
+ 1193:             await loadUsers();
+ 1194: 
+ 1195:             selectedUser =
+ 1196:                 findUser(selectedUser.id);
+ 1197: 
+ 1198:             if (selectedUser) {
+ 1199:                 renderAssignedRoles(
+ 1200:                     selectedUser
+ 1231: 
+ 1232:         const confirmed =
+ 1233:             window.confirm(
+ 1234:                 "Are you sure you want to remove this role from the user?"
+ 1235:             );
+ 1236: 
+ 1237:         if (!confirmed) {
+ 1238:             return;
+ 1239:         }
+ 1240: 
+ 1241:         try {
+ 1242:             await apiRequest(
+ 1243:                 `/users/${encodeURIComponent(
+ 1244:                     selectedUser.id
+ 1245:                 )}/roles/${encodeURIComponent(
+ 1246:                     roleId
+ 1247:                 )}`,
+ 1248:                 {
+ 1249:                     method: "DELETE"
+ 1250:                 }
+ 1251:             );
+ 1252: 
+ 1253:             showToast(
+ 1254:                 "Role removed successfully."
+ 1255:             );
+ 1256: 
+ 1257:             await loadUsers();
+ 1258: 
+ 1259:             selectedUser =
+ 1260:                 findUser(selectedUser.id);
+ 1261: 
+ 1262:             if (selectedUser) {
+ 1263:                 renderAssignedRoles(
+ 1264:                     selectedUser
+ 1265:                 );
+ 1266:             }
+ 1267: 
+ 1268:         } catch (error) {
+ 1269:             console.error(
+ 1273: 
+ 1274:             showToast(
+ 1275:                 error.message ||
+ 1276:                 "Failed to remove role",
+ 1277:                 "error"
+ 1278:             );
+ 1279:         }
+ 1280:     }
+ 1281: 
+ 1282:     function createOpenModal() {
+ 1283:         const modal =
+ 1284:             document.getElementById(
+ 1285:                 "createUserModal"
+ 1286:             );
+ 1287: 
+ 1288:         if (!modal) {
+ 1289:             return;
+ 1290:         }
+ 1291: 
+ 1292:         modal.classList.add("open");
+ 1293:         document.body.classList.add(
+ 1294:             "modal-open"
+ 1295:         );
+ 1296: 
+ 1297:         const success =
+ 1298:             document.getElementById(
+ 1299:                 "createUserSuccess"
+ 1300:             );
+ 1301: 
+ 1302:         if (success) {
+ 1303:             success.classList.remove("show");
+ 1304:         }
+ 1305:     }
+ 1306: 
+ 1307:     function createCloseModal() {
+ 1308:         closeModal("createUserModal");
+ 1309:     }
+ 1310: 
+ 1311:     function resetCreateForm() {
+ 1312:         const form =
+ 1313:             document.getElementById(
+ 1314:                 "createUserForm"
+ 1315:             );
+ 1316: 
+ 1317:         if (form) {
+ 1318:             form.reset();
+ 1319:         }
+ 1320: 
+ 1321:         const success =
+ 1322:             document.getElementById(
+ 1323:                 "createUserSuccess"
+ 1324:             );
+ 1325: 
+ 1326:         if (success) {
+ 1327:             success.classList.remove("show");
+ 1328:         }
+ 1329: 
+ 1330:         const message =
+ 1331:             document.getElementById(
+ 1332:                 "createdUserMessage"
+ 1333:             );
+ 1334: 
+ 1335:         if (message) {
+ 1336:             message.textContent = "";
+ 1337:         }
+ 1338: 
+ 1339:         const password =
+ 1340:             document.getElementById(
+ 1341:                 "createPassword"
+ 1342:             );
+ 1343: 
+ 1349:             document.getElementById(
+ 1350:                 "toggleCreatePassword"
+ 1351:             );
+ 1352: 
+ 1353:         if (toggle) {
+ 1354:             toggle.innerHTML = `
+ 1355:                 <i class="fa-solid fa-eye"></i>
+ 1356:             `;
+ 1357:         }
+ 1358: 
+ 1359:         populateRoleSelect(
+ 1360:             document.getElementById(
+ 1361:                 "createRole"
+ 1362:             ),
+ 1363:             roles,
+ 1364:             "No role"
+ 1365:         );
+ 1366:     }
+ 1367: 
+ 1368:     async function loadCreateRoles() {
+ 1369:         const select =
+ 1370:             document.getElementById(
+ 1371:                 "createRole"
+ 1372:             );
+ 1373: 
+ 1374:         if (!select) {
+ 1375:             return;
+ 1376:         }
+ 1377: 
+ 1378:         try {
+ 1379:             const result =
+ 1380:                 await apiRequest(
+ 1381:                     "/users/roles"
+ 1382:                 );
+ 1383: 
+ 1384:             const roleData =
+ 1385:                 Array.isArray(result.data)
+ 1386:                     ? result.data
+ 1387:                     : [];
+ 1388: 
+ 1389:             roles = roleData;
+ 1390: 
+ 1391:             populateRoleSelect(
+ 1392:                 select,
+ 1393:                 roleData,
+ 1394:                 "No role"
+ 1395:             );
+ 1396: 
+ 1397:         } catch (error) {
+ 1398:             console.error(
+ 1399:                 "Failed to load creation roles:",
+ 1400:                 error
+ 1401:             );
+ 1402:         }
+ 1403:     }
+ 1404: 
+ 1405:     async function submitCreateUser(event) {
+ 1406:         event.preventDefault();
+ 1407: 
+ 1408:         const button =
+ 1409:             document.getElementById(
+ 1410:                 "createUserButton"
+ 1411:             );
+ 1412: 
+ 1413:         const emailInput =
+ 1414:             document.getElementById(
+ 1415:                 "createEmail"
+ 1416:             );
+ 1417: 
+ 1418:         const passwordInput =
+ 1419:             document.getElementById(
+ 1420:                 "createPassword"
+ 1421:             );
+ 1422: 
+ 1423:         const email =
+ 1424:             emailInput?.value.trim() || "";
+ 1425: 
+ 1426:         const password =
+ 1427:             passwordInput?.value || "";
+ 1428: 
+ 1429:         if (!email) {
+ 1430:             showToast(
+ 1450: 
+ 1451:         const getValue = (id) =>
+ 1452:             document
+ 1453:                 .getElementById(id)
+ 1454:                 ?.value
+ 1455:                 .trim() || null;
+ 1456: 
+ 1457:         const payload = {
+ 1458:             email,
+ 1459:             password,
+ 1460: 
+ 1461:             username:
+ 1462:                 getValue("createUsername"),
+ 1463: 
+ 1464:             firstName:
+ 1465:                 getValue("createFirstName"),
+ 1466: 
+ 1467:             middleName:
+ 1468:                 getValue("createMiddleName"),
+ 1469: 
+ 1470:             lastName:
+ 1471:                 getValue("createLastName"),
+ 1472: 
+ 1473:             displayName:
+ 1474:                 getValue("createDisplayName"),
+ 1475: 
+ 1476:             phone:
+ 1477:                 getValue("createPhone"),
+ 1478: 
+ 1479:             initialRole:
+ 1480:                 document.getElementById(
+ 1481:                     "createRole"
+ 1482:                 )?.value || null,
+ 1483: 
+ 1484:             status:
+ 1485:                 document.getElementById(
+ 1486:                     "createStatus"
+ 1487:                 )?.value ||
+ 1488:                 "ACTIVE"
+ 1489:         };
+ 1490: 
+ 1491:         try {
+ 1492:             if (button) {
+ 1493:                 button.disabled = true;
+ 1494:                 button.innerHTML = `
+ 1495:                     <i class="fa-solid fa-spinner fa-spin"></i>
+ 1496:                     Creating...
+ 1497:                 `;
+ 1498:             }
+ 1499: 
+ 1500:             const result =
+ 1501:                 await apiRequest(
+ 1502:                     "/users",
+ 1503:                     {
+ 1504:                         method: "POST",
+ 1505:                         body: JSON.stringify(
+ 1506:                             payload
+ 1507:                         )
+ 1508:                     }
+ 1509:                 );
+ 1510: 
+ 1511:             const user =
+ 1512:                 result.data || {};
+ 1513: 
+ 1514:             const success =
+ 1515:                 document.getElementById(
+ 1516:                     "createUserSuccess"
+ 1517:                 );
+ 1518: 
+ 1519:             const message =
+ 1520:                 document.getElementById(
+ 1521:                     "createdUserMessage"
+ 1522:                 );
+ 1523: 
+ 1524:             if (message) {
+ 1525:                 message.innerHTML = `
+ 1526:                     User Number:
+ 1527:                     <strong>
+ 1528:                         ${escapeHtml(
+ 1529:                             user.user_number ||
+ 1530:                             "—"
+ 1531:                         )}
+ 1532:                     </strong>
+ 1533:                 `;
+ 1534:             }
+ 1535: 
+ 1536:             if (success) {
+ 1587:             );
+ 1588: 
+ 1589:             if (button) {
+ 1590:                 button.disabled = false;
+ 1591:                 button.innerHTML = `
+ 1592:                     <i class="fa-solid fa-user-plus"></i>
+ 1593:                     Create User
+ 1594:                 `;
+ 1595:             }
+ 1596:         }
+ 1597:     }
+ 1598: 
+ 1599:     async function initializeCreateUser() {
+ 1600:         const addButton =
+ 1601:             document.getElementById(
+ 1602:                 "addUserButton"
+ 1603:             );
+ 1604: 
+ 1605:         if (
+ 1606:             addButton &&
+ 1607:             hasPermission("users.create")
+ 1608:         ) {
+ 1609:             addButton.style.display =
+ 1610:                 "inline-flex";
+ 1611: 
+ 1612:             if (
+ 1613:                 !addButton.dataset.bound
+ 1614:             ) {
+ 1615:                 addButton.dataset.bound =
+ 1616:                     "true";
+ 1617: 
+ 1618:                 addButton.addEventListener(
+ 1619:                     "click",
+ 1620:                     async () => {
+ 1621:                         resetCreateForm();
+ 1622:                         createOpenModal();
+ 1623:                         await loadCreateRoles();
+ 1624:                     }
+ 1625:                 );
+ 1626:             }
+ 1627: 
+ 1628:         } else if (addButton) {
+ 1629:             addButton.style.display =
+ 1630:                 "none";
+ 1631:         }
+ 1632: 
+ 1633:         const form =
+ 1634:             document.getElementById(
+ 1635:                 "createUserForm"
+ 1636:             );
+ 1637: 
+ 1638:         if (
+ 1639:             form &&
+ 1640:             !form.dataset.bound
+ 1641:         ) {
+ 1642:             form.dataset.bound = "true";
+ 1643: 
+ 1644:             form.addEventListener(
+ 1645:                 "submit",
+ 1646:                 submitCreateUser
+ 1647:             );
+ 1648:         }
+ 1649: 
+ 1650:         const toggle =
+ 1651:             document.getElementById(
+ 1652:                 "toggleCreatePassword"
+ 1653:             );
+ 1654: 
+ 1655:         if (
+ 1656:             toggle &&
+ 1657:             !toggle.dataset.bound
+ 1658:         ) {
+ 1659:             toggle.dataset.bound = "true";
+ 1660: 
+ 1661:             toggle.addEventListener(
+ 1662:                 "click",
+ 1663:                 () => {
+ 1664:                     const input =
+ 1665:                         document.getElementById(
+ 1666:                             "createPassword"
+ 1798: 
+ 1799:         const editForm =
+ 1800:             $("#editForm");
+ 1801: 
+ 1802:         if (
+ 1803:             editForm &&
+ 1804:             !editForm.dataset.bound
+ 1805:         ) {
+ 1806:             editForm.dataset.bound = "true";
+ 1807: 
+ 1808:             editForm.addEventListener(
+ 1809:                 "submit",
+ 1810:                 saveUser
+ 1811:             );
+ 1812:         }
+ 1813: 
+ 1814:         const roleForm =
+ 1815:             $("#roleForm");
+ 1816: 
+ 1817:         if (
+ 1818:             roleForm &&
+ 1819:             !roleForm.dataset.bound
+ 1820:         ) {
+ 1821:             roleForm.dataset.bound = "true";
+ 1822: 
+ 1823:             roleForm.addEventListener(
+ 1824:                 "submit",
+ 1825:                 assignRole
+ 1826:             );
+ 1827:         }
+ 1828: 
+ 1829:         const usersTableBody =
+ 1830:             $("#usersTableBody");
+ 1958:                     "function"
+ 1959:             ) {
+ 1960:                 const authenticatedUser =
+ 1961:                     await window.IDMCAuth.requireAuth();
+ 1962: 
+ 1963:                 if (!authenticatedUser) {
+ 1964:                     return;
+ 1965:                 }
+ 1966:             }
+ 1967: 
+ 1968:             bindEvents();
+ 1969: 
+ 1970:             await initializeCreateUser();
+ 1971: 
+ 1972:             await Promise.all([
+ 1973:                 loadUsers(),
+ 1974:                 loadRoles()
+ 1975:             ]);
+ 1976: 
+ 1977:         } catch (error) {
+ 1978:             console.error(
+ 1979:                 "Users initialization failed:",
+ 1980:                 error
+ 1981:             );
+ 1982: 
+ 1983:             showToast(
+ 1984:                 error.message ||
+ 1985:                 "Failed to initialize Users page.",
+ 1986:                 "error"
+ 1987:             );
+ 1988:         }
+ 1989:     }
+ 1990: 
+
+
+====================================================
+FILE: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js
+====================================================
+ 2065:         "RBAC page protection failed:",
+ 2066:         error
+ 2067:       );
+ 2068: 
+ 2069:       return false;
+ 2070:     }
+ 2071:   }
+ 2072: 
+ 2073:   /* ============================================================
+ 2074:      ROLES API
+ 2075:   ============================================================ */
+ 2076: 
+ 2077:   async function listRoles() {
+ 2078:     return request(
+ 2079:       "/roles"
+ 2080:     );
+ 2081:   }
+ 2082: 
+ 2083:   async function getRole(
+ 2084:     roleId
+ 2085:   ) {
+ 2086: 
+ 2087:     return request(
+ 2088:       `/roles/${encodeURIComponent(
+ 2089:         roleId
+ 2090:       )}`
+ 2091:     );
+ 2092: 
+ 2093:   }
+ 2094: 
+ 2095:   async function listPermissions() {
+ 2096: 
+ 2097:     return request(
+ 2098:       "/roles/permissions"
+ 2099:     );
+ 2100: 
+ 2101:   }
+ 2102: 
+ 2103:   async function getRolePermissions(
+ 2104:     roleId
+ 2105:   ) {
+ 2106: 
+ 2107:     return request(
+ 2108:       `/roles/${encodeURIComponent(
+ 2109:         roleId
+ 2110:       )}/permissions`
+ 2111:     );
+ 2112: 
+ 2113:   }
+ 2114: 
+ 2115:   async function createRole(
+ 2116:     payload
+ 2117:   ) {
+ 2118: 
+ 2119:     return request(
+ 2120:       "/roles",
+ 2121:       {
+ 2122:         method:
+ 2123:           "POST",
+ 2124: 
+ 2125:         body:
+ 2126:           JSON.stringify(
+ 2127:             payload
+ 2128:           )
+ 2129:       }
+ 2130:     );
+ 2131: 
+ 2132:   }
+ 2133: 
+ 2134:   async function updateRole(
+ 2135:     roleId,
+ 2136:     payload
+ 2137:   ) {
+ 2138: 
+ 2139:     return request(
+ 2140:       `/roles/${encodeURIComponent(
+ 2141:         roleId
+ 2142:       )}`,
+ 2143:       {
+ 2144:         method:
+ 2145:           "PATCH",
+ 2146: 
+ 2147:         body:
+ 2148:           JSON.stringify(
+ 2149:             payload
+ 2150:           )
+ 2151:       }
+ 2152:     );
+ 2153: 
+ 2154:   }
+ 2155: 
+ 2156:   async function assignPermission(
+ 2157:     roleId,
+ 2158:     permissionId
+ 2159:   ) {
+ 2160: 
+ 2161:     return request(
+ 2162:       `/roles/${encodeURIComponent(
+ 2163:         roleId
+ 2164:       )}/permissions`,
+ 2165:       {
+ 2166:         method:
+ 2167:           "POST",
+ 2168: 
+ 2169:         body:
+ 2170:           JSON.stringify({
+ 2171:             permissionId
+ 2172:           })
+ 2173:       }
+ 2174:     );
+ 2175: 
+ 2176:   }
+ 2177: 
+ 2178:   async function removePermission(
+ 2179:     roleId,
+ 2180:     permissionId
+ 2181:   ) {
+ 2182: 
+ 2183:     return request(
+ 2184:       `/roles/${encodeURIComponent(
+ 2185:         roleId
+ 2186:       )}/permissions/${encodeURIComponent(
+ 2187:         permissionId
+ 2188:       )}`,
+ 2189:       {
+ 2190:         method:
+ 2191:           "DELETE"
+ 2192:       }
+ 2193:     );
+ 2194: 
+ 2195:   }
+ 2196: 
+ 2197:   /* ============================================================
+ 2198:      DEBUG / STATE
+ 2199:      ------------------------------------------------------------
+ 2200:      Useful for diagnosing frontend RBAC without exposing tokens.
+ 2201:   ============================================================ */
+ 2202: 
+ 2203:   function getRBACState() {
+ 2204: 
+ 2220:       permissionCount:
+ 2221:         currentPermissions.size,
+ 2222: 
+ 2223:       roleCount:
+ 2224:         currentRoles.length
+ 2225:     };
+ 2226:   }
+ 2227: 
+ 2228:   /* ============================================================
+ 2229:      PUBLIC API
+ 2230:   ============================================================ */
+ 2231: 
+ 2232:   window.IDMC_RBAC_API = {
+ 2233: 
+ 2234:     request,
+ 2235: 
+ 2236:     loadCurrentUserRBAC,
+ 2237: 
+ 2238:     ensureRBACLoaded,
+ 2239: 
+ 2240:     hasPermission,
+ 2241: 
+ 2242:     hasAnyPermission,
+ 2243: 
+ 2244:     hasAllPermissions,
+ 2245: 
+ 2246:     hasRole,
+ 2247: 
+ 2248:     hasAnyRole,
+ 2249: 
+ 2250:     requireRBACPage,
+ 2251: 
+ 2252:     listRoles,
+ 2253: 
+ 2254:     getRole,
+ 2255: 
+ 2256:     listPermissions,
+ 2257: 
+ 2258:     getRolePermissions,
+ 2259: 
+ 2260:     createRole,
+ 2261: 
+ 2262:     updateRole,
+ 2263: 
+ 2264:     assignPermission,
+ 2265: 
+ 2266:     removePermission,
+ 2267: 
+ 2268:     applyPermissionVisibility,
+ 2269: 
+ 2270:     getSessionToken,
+ 2271: 
+ 2272:     getStoredUser,
+ 2273: 
+ 2274:     getRBACState
+ 2275: 
+ 2276:   };
+ 2277: 
+ 2278:   /* ============================================================
+ 2279:      AUTO APPLY
+ 2280:   ============================================================ */
+ 2281: 
+ 2282:   async function autoApplyRBAC() {
+ 2283: 
+ 2284:     try {
+ 2285: 
+ 2286:       /*

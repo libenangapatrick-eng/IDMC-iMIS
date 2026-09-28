@@ -1,0 +1,1072 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6b1025">
+
+<title>IDMC iMIS | Integrated Management Information System</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700;8..60,800&family=Inter:wght@400;500;600;700;800&display=swap"
+>
+
+<style>
+    :root {
+        --maroon: #6b1025;
+        --deep: #430715;
+        --light: #9d3350;
+        --white: #ffffff;
+        --text: #3d4048;
+        --muted: #737780;
+        --line: #dedee2;
+        --error: #b42318;
+        --success: #087443;
+        --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+        --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px 18px;
+        font-family: var(--font-sans);
+        color: var(--text);
+        background:
+            radial-gradient(
+                circle at 8% 78%,
+                rgba(107, 16, 37, .09) 0 18%,
+                transparent 18.2%
+            ),
+            linear-gradient(
+                135deg,
+                #fbf6f7,
+                #eee0e4
+            );
+    }
+
+    .portal-card {
+        width: min(100%, 440px);
+        overflow: hidden;
+        border-radius: 22px;
+        background: var(--white);
+        box-shadow:
+            0 20px 50px rgba(67, 7, 21, .16);
+    }
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    .portal-header {
+        position: relative;
+        min-height: 224px;
+        padding: 38px 32px 68px;
+        text-align: center;
+        color: var(--white);
+
+        background:
+            radial-gradient(
+                circle at 90% 8%,
+                rgba(255,255,255,.14) 0 14%,
+                transparent 14.4%
+            ),
+            radial-gradient(
+                circle at 4% 98%,
+                rgba(255,255,255,.10) 0 29%,
+                transparent 29.4%
+            ),
+            linear-gradient(
+                135deg,
+                var(--deep),
+                var(--maroon) 55%,
+                var(--light)
+            );
+    }
+
+    .portal-header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background:
+            linear-gradient(
+                120deg,
+                transparent 35%,
+                rgba(255,255,255,.07) 50%,
+                transparent 65%
+            );
+
+        pointer-events: none;
+    }
+
+    .institution-name {
+        position: relative;
+        z-index: 1;
+
+        font-family: var(--font-serif);
+        font-size: clamp(22px, 5.4vw, 28px);
+        line-height: 1.18;
+        font-weight: 700;
+        letter-spacing: -.2px;
+    }
+
+    .portal-name {
+        position: relative;
+        z-index: 1;
+
+        margin-top: 12px;
+
+        color: rgba(255,255,255,.80);
+
+        font-size: 13.5px;
+        line-height: 1.5;
+        font-weight: 500;
+        letter-spacing: .01em;
+    }
+
+    /* =========================
+       LOGO
+       ========================= */
+
+    .logo {
+        position: absolute;
+        z-index: 2;
+
+        left: 50%;
+        bottom: -38px;
+
+        width: 78px;
+        height: 78px;
+
+        display: grid;
+        place-items: center;
+
+        transform: translateX(-50%);
+
+        border: 3px solid var(--white);
+        border-radius: 50%;
+
+        color: var(--maroon);
+        background: var(--white);
+
+        box-shadow:
+            0 8px 20px rgba(67,7,21,.20);
+
+        font-family: var(--font-serif);
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -.5px;
+    }
+
+    /* =========================
+       LOGIN CONTENT
+       ========================= */
+
+    .login-content {
+        padding: 64px 38px 36px;
+    }
+
+    .message {
+        display: none;
+
+        margin-bottom: 18px;
+        padding: 11px 13px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .message.show {
+        display: block;
+    }
+
+    .message.error {
+        color: var(--error);
+        background: #fff1f0;
+        border: 1px solid #ffd0ca;
+    }
+
+    .message.success {
+        color: var(--success);
+        background: #ecfdf3;
+        border: 1px solid #abefc6;
+    }
+
+    .field {
+        margin-bottom: 19px;
+    }
+
+    .account-type {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding: 5px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #faf7f8;
+    }
+
+    .account-type button {
+        min-height: 42px;
+        border: 0;
+        border-radius: 8px;
+        color: var(--muted);
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+        font-size: 13.5px;
+        font-weight: 700;
+    }
+
+    .account-type button.active {
+        color: var(--white);
+        background: var(--maroon);
+        box-shadow: 0 5px 12px rgba(107,16,37,.18);
+    }
+
+    .account-help {
+        margin: -10px 0 18px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    input {
+        width: 100%;
+        height: 48px;
+
+        border: 1px solid var(--line);
+        border-radius: 11px;
+
+        padding: 0 15px;
+
+        color: var(--text);
+        background: var(--white);
+
+        font: inherit;
+        font-size: 14.5px;
+
+        outline: none;
+
+        transition:
+            border-color .2s,
+            box-shadow .2s;
+    }
+
+    input:focus {
+        border-color: var(--maroon);
+
+        box-shadow:
+            0 0 0 4px rgba(107,16,37,.12);
+    }
+
+    input::placeholder {
+        color: #9a9da4;
+    }
+
+    /* =========================
+       PASSWORD
+       ========================= */
+
+    .password-field {
+        position: relative;
+    }
+
+    .password-field input {
+        padding-right: 68px;
+    }
+
+    .password-toggle {
+        position: absolute;
+
+        top: 50%;
+        right: 8px;
+
+        transform: translateY(-50%);
+
+        min-width: 48px;
+        height: 32px;
+
+        border: 0;
+        border-radius: 7px;
+
+        color: var(--maroon);
+        background: #f8ebee;
+
+        cursor: pointer;
+
+        font-size: 12.5px;
+        font-weight: 700;
+    }
+
+    .password-toggle:hover {
+        background: #f2dfe4;
+    }
+
+    /* =========================
+       LOGIN BUTTON
+       ========================= */
+
+    .login-button {
+        width: 100%;
+        height: 50px;
+
+        margin-top: 5px;
+
+        border: 0;
+        border-radius: 11px;
+
+        color: var(--white);
+        background: var(--maroon);
+
+        box-shadow:
+            0 10px 20px rgba(107,16,37,.20);
+
+        cursor: pointer;
+
+        font: inherit;
+        font-size: 15.5px;
+        font-weight: 700;
+        letter-spacing: .01em;
+
+        transition:
+            background .2s,
+            transform .2s,
+            opacity .2s;
+    }
+
+    .login-button:hover:not(:disabled) {
+        background: var(--deep);
+        transform: translateY(-1px);
+    }
+
+    .login-button:disabled {
+        cursor: not-allowed;
+        opacity: .7;
+    }
+
+    /* =========================
+       FORGOT PASSWORD
+       ========================= */
+
+    .forgot-password {
+        display: block;
+
+        width: fit-content;
+
+        margin: 22px auto 0;
+
+        border: 0;
+
+        color: var(--muted);
+        background: transparent;
+
+        cursor: pointer;
+
+        font: inherit;
+        font-size: 13.5px;
+    }
+
+    .forgot-password:hover {
+        color: var(--maroon);
+        text-decoration: underline;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    .footer {
+        margin-top: 28px;
+
+        color: #93959b;
+
+        text-align: center;
+
+        font-size: 11px;
+        letter-spacing: .02em;
+        line-height: 1.6;
+    }
+
+    /* =========================
+       LOADING
+       ========================= */
+
+    .login-button.loading {
+        position: relative;
+    }
+
+    .login-button.loading::after {
+        content: "";
+
+        display: inline-block;
+
+        width: 13px;
+        height: 13px;
+
+        margin-left: 8px;
+
+        border: 2px solid rgba(255,255,255,.45);
+        border-top-color: #fff;
+
+        border-radius: 50%;
+
+        vertical-align: -2px;
+
+        animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 500px) {
+
+        body {
+            padding: 14px;
+        }
+
+        .portal-card {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .portal-header {
+            min-height: 205px;
+            padding: 34px 22px 62px;
+        }
+
+        .login-content {
+            padding: 58px 24px 30px;
+        }
+
+        .institution-name {
+            font-size: 22px;
+        }
+
+        .portal-name {
+            font-size: 12.5px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            bottom: -34px;
+        }
+
+    }
+</style>
+
+
+    <link rel="stylesheet" href="assets/css/idmc-deep-ui.css">
+    <link rel="stylesheet" href="assets/css/idmc-current-repair.css">
+</head>
+
+<body>
+
+<main class="portal-card">
+
+<!-- =========================
+     IDMC HEADER
+     ========================= -->
+
+<header class="portal-header">
+
+    <h1 class="institution-name">
+        Institute of Development<br>
+        and Medical Sciences
+    </h1>
+
+    <p class="portal-name">
+        Integrated Management Information System
+    </p>
+
+    <!--
+        IDMC
+
+        Baadaye tunaweza kuweka logo halisi
+        ya taasisi hapa bila kubadilisha layout.
+    -->
+
+    <div
+        class="logo"
+        aria-label="IDMC logo">
+
+        IDMC
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     LOGIN SECTION
+     ========================= -->
+
+<section
+    class="login-content"
+    aria-label="IDMC iMIS Sign in">
+
+    <div
+        id="loginMessage"
+        class="message"
+        role="alert"
+        aria-live="polite">
+    </div>
+
+
+    <form
+        id="loginForm"
+        autocomplete="on">
+
+        <div class="account-type" role="group" aria-label="Choose account type">
+            <button id="staffAccountButton" class="active" type="button" aria-pressed="true">
+                Staff / Admin
+            </button>
+            <button id="studentAccountButton" type="button" aria-pressed="false">
+                Student
+            </button>
+        </div>
+
+        <input id="accountType" name="accountType" type="hidden" value="STAFF">
+
+        <p id="accountHelp" class="account-help">
+            Staff and administrators sign in with their registered email address.
+        </p>
+
+        <!-- USERNAME / EMAIL -->
+
+        <div class="field">
+
+            <label id="identifierLabel" for="username">
+                Staff / Administrator Email
+            </label>
+
+            <input
+                id="username"
+                name="username"
+                type="text"
+                autocomplete="username"
+                placeholder="name@example.com"
+                required>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="field">
+
+            <label for="password">
+                Password
+            </label>
+
+            <div class="password-field">
+
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Enter password"
+                    required>
+
+                <button
+                    id="togglePassword"
+                    class="password-toggle"
+                    type="button"
+                    aria-label="Show password">
+
+                    Show
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <button
+            id="loginButton"
+            class="login-button"
+            type="submit">
+
+            Log In
+
+        </button>
+
+    </form>
+
+
+    <!-- FORGOT PASSWORD -->
+
+    <button
+        id="forgotPassword"
+        class="forgot-password"
+        type="button">
+
+        Forgot password?
+
+    </button>
+
+
+    <p class="footer">
+        IDMC iMIS · Secure Institutional Access
+    </p>
+
+</section>
+
+</main>
+
+<!-- =========================
+     IDMC CONFIGURATION
+     ========================= -->
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/auth.js"></script>
+
+<script>
+
+(async function () {
+
+    "use strict";
+
+
+    /* =========================================
+       EXISTING SESSION CHECK
+       ========================================= */
+
+    const existingSession =
+        IDMCAuth.getSession();
+
+    if (existingSession) {
+
+        try {
+
+            await IDMCAuth.getCurrentUser();
+
+            IDMCAuth.redirectAfterLogin();
+
+            return;
+
+        } catch (error) {
+
+            console.warn(
+                "Existing session invalid:",
+                error
+            );
+
+            IDMCAuth.clearSession();
+
+        }
+
+    }
+
+
+    /* =========================================
+       ELEMENTS
+       ========================================= */
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+    const usernameInput =
+        document.getElementById(
+            "username"
+        );
+
+    const accountTypeInput = document.getElementById("accountType");
+    const staffAccountButton = document.getElementById("staffAccountButton");
+    const studentAccountButton = document.getElementById("studentAccountButton");
+    const identifierLabel = document.getElementById("identifierLabel");
+    const accountHelp = document.getElementById("accountHelp");
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+    const togglePassword =
+        document.getElementById(
+            "togglePassword"
+        );
+
+    const loginButton =
+        document.getElementById(
+            "loginButton"
+        );
+
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    const forgotPassword =
+        document.getElementById(
+            "forgotPassword"
+        );
+
+    function selectAccountType(accountType) {
+        const studentSelected = accountType === "STUDENT";
+
+        accountTypeInput.value = studentSelected ? "STUDENT" : "STAFF";
+        staffAccountButton.classList.toggle("active", !studentSelected);
+        studentAccountButton.classList.toggle("active", studentSelected);
+        staffAccountButton.setAttribute("aria-pressed", String(!studentSelected));
+        studentAccountButton.setAttribute("aria-pressed", String(studentSelected));
+
+        identifierLabel.textContent = studentSelected
+            ? "Registration No. or Application No."
+            : "Staff / Administrator Email";
+        usernameInput.placeholder = studentSelected
+            ? "Example: IDMC/2026/00001"
+            : "name@example.com";
+        usernameInput.inputMode = studentSelected ? "text" : "email";
+        accountHelp.textContent = studentSelected
+            ? "Students sign in with their Registration or Application Number."
+            : "Staff and administrators sign in with their registered email address.";
+        clearMessage();
+        usernameInput.focus();
+    }
+
+    staffAccountButton.addEventListener("click", function () {
+        selectAccountType("STAFF");
+    });
+
+    studentAccountButton.addEventListener("click", function () {
+        selectAccountType("STUDENT");
+    });
+
+
+    /* =========================================
+       MESSAGE
+       ========================================= */
+
+    function showMessage(
+        message,
+        type = "error"
+    ) {
+
+        loginMessage.textContent =
+            message;
+
+        loginMessage.className =
+            `message show ${type}`;
+
+    }
+
+
+    function clearMessage() {
+
+        loginMessage.textContent = "";
+
+        loginMessage.className =
+            "message";
+
+    }
+
+
+    /* =========================================
+       PASSWORD SHOW / HIDE
+       ========================================= */
+
+    togglePassword.addEventListener(
+        "click",
+        function () {
+
+            const visible =
+                passwordInput.type === "text";
+
+            passwordInput.type =
+                visible
+                    ? "password"
+                    : "text";
+
+            togglePassword.textContent =
+                visible
+                    ? "Show"
+                    : "Hide";
+
+            togglePassword.setAttribute(
+                "aria-label",
+                visible
+                    ? "Show password"
+                    : "Hide password"
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       LOGIN
+       ========================================= */
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            clearMessage();
+
+            const username =
+                usernameInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            const accountType = accountTypeInput.value;
+
+            if (!username || !password) {
+
+                showMessage(
+                    "Student: enter Registration/Application Number. Staff: enter Email."
+                );
+
+                return;
+            }
+
+
+            loginButton.disabled = true;
+
+            loginButton.classList.add(
+                "loading"
+            );
+
+            loginButton.textContent =
+                "Signing in...";
+
+
+            try {
+
+                /*
+                 * Supabase authentication
+                 *
+                 * The backend authentication
+                 * layer will then verify the
+                 * authenticated user against
+                 * IDMC iMIS public.users.
+                 */
+
+                /*
+                 * Canonical IDMC iMIS login.
+                 *
+                 * The backend resolves the identifier
+                 * (email, student number, or staff
+                 * number) to the account's registered
+                 * email before authenticating against
+                 * Supabase, so both staff and students
+                 * can sign in with their own identifier.
+                 */
+
+                await IDMCAuth.login(
+                    username,
+                    password,
+                    accountType
+                );
+
+
+                /*
+                 * Verify the authenticated account
+                 * against the IDMC iMIS backend.
+                 */
+
+                const userData =
+                    await IDMCAuth.getCurrentUser();
+
+
+                if (
+                    !userData ||
+                    !userData.user
+                ) {
+
+                    throw new Error(
+                        "Your account could not be verified in IDMC iMIS."
+                    );
+
+                }
+
+
+                if (
+                    userData.user.status !==
+                    "ACTIVE"
+                ) {
+
+                    throw new Error(
+                        `Your IDMC iMIS account is ${userData.user.status}. Please contact the ICT Office.`
+                    );
+
+                }
+
+
+                /*
+                 * =================================================
+                 * ROLE-BASED LANDING PAGE
+                 * =================================================
+                 *
+                 * STUDENT -> student-portal.html
+                 * STAFF   -> dashboard.html
+                 *
+                 */
+
+                const roleCodes = Array.isArray(userData.roles)
+                    ? userData.roles.map(
+                        function (role) {
+                            return role.roleCode || role.role_code;
+                        }
+                    )
+                    : [];
+
+                const isStudent =
+                    roleCodes.length > 0 &&
+                    roleCodes.every(function (roleCode) {
+                        return roleCode === "STUDENT";
+                    });
+
+                showMessage(
+                    isStudent
+                        ? "Login successful. Opening your Student Portal..."
+                        : "Login successful. Opening your IDMC iMIS dashboard...",
+                    "success"
+                );
+
+
+                /*
+                 * Small delay so the user can see
+                 * successful login message.
+                 */
+
+                window.setTimeout(
+                    function () {
+
+                        if (isStudent) {
+
+                            window.location.replace(
+                                "student-portal.html"
+                            );
+
+                        } else {
+
+                            window.location.replace(
+                                "dashboard.html"
+                            );
+
+                        }
+
+                    },
+                    450
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "IDMC login error:",
+                    error
+                );
+
+
+                IDMCAuth.clearSession();
+
+
+                showMessage(
+                    error?.message ||
+                    "Unable to sign in. Please check your credentials and try again."
+                );
+
+
+            } finally {
+
+                loginButton.disabled =
+                    false;
+
+                loginButton.classList.remove(
+                    "loading"
+                );
+
+                loginButton.textContent =
+                    "Log In";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       FORGOT PASSWORD
+       ========================================= */
+
+    forgotPassword.addEventListener(
+        "click",
+        function () {
+
+            showMessage(
+                "Please use the registered email address to reset your password. The password reset workflow will be connected to IDMC iMIS."
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       AUTO FOCUS
+       ========================================= */
+
+    usernameInput.focus();
+
+})();
+
+</script>
+
+    <script src="assets/js/idmc-current-repair.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,447 @@
+{
+  "generated_at": "2026-09-26T12:59:08.939Z",
+  "authoritative_directory": "supabase/migrations",
+  "reference_only_directory": "database/migrations",
+  "migrations": [
+    {
+      "version": "001",
+      "name": "001_institution_foundation.sql",
+      "sha256": "90111ec53989225a6c00987ce66c8fe000253d873cf6018d9e1a13727fc5384f",
+      "bytes": 5326,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "002",
+      "name": "002_identity_rbac_audit.sql",
+      "sha256": "0077d8a2bc6e7e9ce8a822af7f4c56db7009cf923505c9b49ddb8670e9311c8c",
+      "bytes": 16295,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "003",
+      "name": "003_user_profiles_account_lifecycle.sql",
+      "sha256": "132a06a046f6fc781029ad367f8415ff81ae81bd176fe8942a323b70845575fa",
+      "bytes": 8981,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "004",
+      "name": "004_academic_structure.sql",
+      "sha256": "bb2e92553c0eaa51a47de9bd0c6f411d29cab69ae3d3e6f9f9d3bc1fe34ea6d7",
+      "bytes": 15660,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "005",
+      "name": "005_applications_admissions.sql",
+      "sha256": "7bd68089589c5b538d9ed187b951a6bffc527368fe5c807a28de4243618f7b2f",
+      "bytes": 23624,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "006",
+      "name": "006_student_core.sql",
+      "sha256": "16bf450c82727fab92bd41f1fabedf372d28700718f5869802aba715006af19e",
+      "bytes": 5161,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150001",
+      "name": "202609150001_admissions_integrity_hardening.sql",
+      "sha256": "2593980abb3c1d6673cbe2708edaf11afb4ddbc67e6bf7b09ee073e30d8c5e4e",
+      "bytes": 11285,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150002",
+      "name": "202609150002_student_core_conversion.sql",
+      "sha256": "2af710d50580e8b79d8a52b385cc710e9f73f827a06f27c70c51fa404b6887ad",
+      "bytes": 27011,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150003",
+      "name": "202609150003_academic_registration_core.sql",
+      "sha256": "af9b25daf0260c7df69d9fc2c710dde248b64dd8172ad92db2d731831e9a50d6",
+      "bytes": 28642,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150004",
+      "name": "202609150004_teaching_timetable_core.sql",
+      "sha256": "3b4ccee092c6bc2ce08f0f47fbf7ab7e69f70b46bef5033252cb290cd724cf20",
+      "bytes": 21322,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150005",
+      "name": "202609150005_timetable_integrity_hardening.sql",
+      "sha256": "ccaad9415ba533396e4240a0449ba6d07013bfdd0625c0bfa6d11b668ec297a3",
+      "bytes": 14337,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150006",
+      "name": "202609150006_attendance_core.sql",
+      "sha256": "f4d59198a89e45b1807f2a9d89cc2b46bc513da188e78f41732db75961172487",
+      "bytes": 17109,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150007",
+      "name": "202609150007_assessment_coursework_core.sql",
+      "sha256": "7e084634ebb47186f324491ee94afe76b2657182a38e64c149c09ec5a276f905",
+      "bytes": 15546,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150008",
+      "name": "202609150008_assessment_integrity_hardening.sql",
+      "sha256": "2baef3d10094c6075f96c56e48dc28b65efb086953780a9b6d293d03915291ab",
+      "bytes": 13014,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150009",
+      "name": "202609150009_examination_core.sql",
+      "sha256": "770656187b0b3a5fdcae121a13d31340d9259434e5514917286537525f8cd89f",
+      "bytes": 26083,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150010",
+      "name": "202609150010_examination_integrity_hardening.sql",
+      "sha256": "6f04a0bc323d6ccee25bcb2111744b9b54697fadf3e743fb2a027ae3c366fd5e",
+      "bytes": 25518,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150011",
+      "name": "202609150011_results_gpa_core.sql",
+      "sha256": "0d7e96c7da7f56e8833248ae8ec1f919bdcf8c903d96cdd971a8830fc5afdc1d",
+      "bytes": 33043,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150012",
+      "name": "202609150012_results_integrity_hardening.sql",
+      "sha256": "19ffefc254cd765051d5d07739591ad4ffd25d7cdb335ea3acce05c465d0f699",
+      "bytes": 20909,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150013",
+      "name": "202609150013_transcript_academic_standing_core.sql",
+      "sha256": "03bb482f021bb407b6571a065ff2f86e9ca1a50b5e72f94f2c338f7512b2d292",
+      "bytes": 27844,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150014",
+      "name": "202609150014_transcript_workflow_hardening.sql",
+      "sha256": "97697a321267c7bd480f505afae5029da67b4d820838f3cdeeee270ed960ffdf",
+      "bytes": 16182,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150015",
+      "name": "202609150015_function_dependency_fixes.sql",
+      "sha256": "31a84b4df0e9efe4c5584305f62f554ec37228b04e5559b4d96e2b7500c48bc4",
+      "bytes": 10624,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150016",
+      "name": "202609150016_function_lint_cleanup.sql",
+      "sha256": "53738a89e59b6c2a4bf58303154179836d6f95cc636dc16b8eee110d091a9739",
+      "bytes": 9359,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150017",
+      "name": "202609150017_graduation_clearance_certification_core.sql",
+      "sha256": "cc7e8919418cd635c05e1de996ca5a44521ac4ae6d9cbd5741acdd1f2d95229d",
+      "bytes": 35798,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150018",
+      "name": "202609150018_graduation_integrity_hardening.sql",
+      "sha256": "e0d258e189f38fe5b65c58ccc58a74983c5be157435bfdb91960be5babcfa836",
+      "bytes": 18583,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150019",
+      "name": "202609150019_alumni_lifecycle_integrity.sql",
+      "sha256": "dd99e6f724ab3db61eefe26d3d546930ef436937fadd03532ec1208dbdd351f5",
+      "bytes": 9761,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150020",
+      "name": "202609150020_communication_notification_core.sql",
+      "sha256": "507bb0193e72168c816e55e3450ffddc626287d6ab949205785817f6645aa3d3",
+      "bytes": 13675,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150021",
+      "name": "202609150021_finance_student_billing_core.sql",
+      "sha256": "e9a335d98f232472c9a95d6ca8003c079681f3e1c7dbf6c97a079c975f528aa7",
+      "bytes": 31578,
+      "transactional": true,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150022",
+      "name": "202609150022_finance_integrity_automation.sql",
+      "sha256": "da0563479c8f8f3a92d29f61e0b53d2b34d1ad33817b269d96ca289e128cc7b3",
+      "bytes": 19886,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150023",
+      "name": "202609150023_finance_function_integrity_fix.sql",
+      "sha256": "d1a9291814a4fef1aecc4e3baf253fdfa49dda17981ad6faf755b83d66d731ea",
+      "bytes": 7943,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150024",
+      "name": "202609150024_finance_balance_integrity_hardening.sql",
+      "sha256": "fc600452543d8b168c7c06c86efe9415cc51f45ad90816c006debbfc6e74b32f",
+      "bytes": 7824,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150025",
+      "name": "202609150025_finance_refresh_account_fix.sql",
+      "sha256": "43171b44ac5252c6ca4536765c558cbd0fd56cc3c92908f802d78bdf48574c1e",
+      "bytes": 6332,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609150026",
+      "name": "202609150026_finance_rbac_permissions.sql",
+      "sha256": "699da955b009b697eb949bec6e2f8a0692a1a0a035f3b24c534e19a75d2ce884",
+      "bytes": 3597,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917070608",
+      "name": "20260917070608_003_student_core.sql",
+      "sha256": "11e3428d1e8d1319da2c848c5438a3826a5958aaca7c0be2a14e90b2da9b7a30",
+      "bytes": 5971,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917170000",
+      "name": "20260917170000_human_resources_staff_core.sql",
+      "sha256": "8ec7b62e746c519a70f183d012cfd46c46f315be7f77d46c33c470272b0f7710",
+      "bytes": 13594,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917180000",
+      "name": "20260917180000_hr_lifecycle_leave_attendance.sql",
+      "sha256": "75e7d9056b81e0e408579121747b7fd2ae5bc262217fb8f546e831baa968d71c",
+      "bytes": 21538,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917190000",
+      "name": "20260917190000_operations_procurement_inventory_assets.sql",
+      "sha256": "05c80b189732a37293256afbaa3d350215c5eb54e9fe9967ab394ce11c2c919d",
+      "bytes": 30066,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917200000",
+      "name": "20260917200000_hostel_library_core.sql",
+      "sha256": "85f6363bb13a8974ff9fadc14a7bc5654686076df4707ba1a0724e5d6efa32e8",
+      "bytes": 26700,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917210000",
+      "name": "20260917210000_research_quality_assurance.sql",
+      "sha256": "acb31b4c6643677485c0ed7130992d582ef94c68e8a3eb071e9716afe084ab91",
+      "bytes": 14713,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917220000",
+      "name": "20260917220000_communications_documents_helpdesk.sql",
+      "sha256": "2fc6259c1bf5e30e812284c00cd061710977f6df0203cbb2b8dc752137c88a36",
+      "bytes": 11050,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917230000",
+      "name": "20260917230000_reports_analytics.sql",
+      "sha256": "07dcd73dbe14c187527f1c5e1939bc7c7b58e7af428320328b13448c16d44b2d",
+      "bytes": 7413,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917240000",
+      "name": "20260917240000_system_configuration_final_controls.sql",
+      "sha256": "1d9732015f932f9e390a5fa4f70b5f9014cc38994b7e722a500f3432a59cced6",
+      "bytes": 9355,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260917250000",
+      "name": "20260917250000_core_academic_api_permissions.sql",
+      "sha256": "8641020b1d7960a9cd415c48c92d8edb3ff520615f7fca3069e83225cbec65ec",
+      "bytes": 4539,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609180001",
+      "name": "202609180001_workflow_permissions.sql",
+      "sha256": "13957a9a85e4356680f9f0eb9ebb50f136f85f55aa44a8b67f7ba6e3e8122eda",
+      "bytes": 7491,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609200001",
+      "name": "202609200001_admission_offer_schema_compatibility.sql",
+      "sha256": "9611ad54a606debfa8b92c81cb16e0931bde8a19be64292baf9b6f7a798481aa",
+      "bytes": 3755,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609200002",
+      "name": "202609200002_fix_acceptance_application_status.sql",
+      "sha256": "cd2558d464cf66c36814018cbff025f1890f2cb56205308240b4fe896f5c698e",
+      "bytes": 2071,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609200003",
+      "name": "202609200003_identity_rbac_reconciliation.sql",
+      "sha256": "4749615e4882e16d195adba75604c911b0b0731a4766b8b461615c206fc14aa5",
+      "bytes": 2521,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609210028",
+      "name": "202609210028_student_self_service_completion.sql",
+      "sha256": "c5f428c8bdc755e672d0f87b8695231ad5594b3b105eff18937d4a4f8b4a69bb",
+      "bytes": 4833,
+      "transactional": true,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609210029",
+      "name": "202609210029_staff_role_workspaces.sql",
+      "sha256": "407a027b526b9a84e26804042caa219317e778fd7977543f6a7e55366b09b1cc",
+      "bytes": 9080,
+      "transactional": true,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609210030",
+      "name": "202609210030_staff_account_provisioning.sql",
+      "sha256": "4267b6100bfdfaa239c77efab33a0bd4ed3a89c9983f4e777c5aea2c6d36e075",
+      "bytes": 799,
+      "transactional": true,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609220001",
+      "name": "202609220001_hod_requests_student_exam_results.sql",
+      "sha256": "e7ba51e24fe09ac4d9b8ddf6f1778cae053009e6e961605ee670028240e3d6ab",
+      "bytes": 4309,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609230002",
+      "name": "202609230002_applicant_self_service.sql",
+      "sha256": "ce711d27b546005814de9b4e7e46282d3de413f5eb7198a40a386b8afa92c6ed",
+      "bytes": 1466,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609230003",
+      "name": "202609230003_missing_admin_modules.sql",
+      "sha256": "b864ed021dfa27f600a1cd6fbf4ad3e084c4c2234deb9cd054a0fb6ca486b2ad",
+      "bytes": 12188,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "202609230004",
+      "name": "202609230004_self_service_action_layer.sql",
+      "sha256": "bdc8a42d97eaac41130a07356c906d13e1a6eab047cd834feae5e53beb29eb0c",
+      "bytes": 2910,
+      "transactional": false,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260926151502",
+      "name": "20260926151502_regno_results_import.sql",
+      "sha256": "2e2d08516bbbc6fd1b1d812fbb0aca16df082268322f6af266b4077cd2d26d89",
+      "bytes": 17424,
+      "transactional": true,
+      "source_of_truth": true
+    },
+    {
+      "version": "20260926151503",
+      "name": "20260926151503_student_portal_completion.sql",
+      "sha256": "8a46f2fb9c44797b5c9e1d12b8de7fc77dc5845940bdaad7aed6547015e631d9",
+      "bytes": 5841,
+      "transactional": true,
+      "source_of_truth": true
+    }
+  ]
+}

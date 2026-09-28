@@ -1,0 +1,54 @@
+﻿
+  apps\frontend\institutions.html:1989:             *     data: {
+  apps\frontend\institutions.html:1990:             *         items: [...],
+> apps\frontend\institutions.html:1991:             *         pagination: {...}
+  apps\frontend\institutions.html:1992:             *     }
+  apps\frontend\institutions.html:1993:             * }
+  apps\frontend\institutions.html:1994:             */
+  apps\frontend\institutions.html:1995:
+  apps\frontend\institutions.html:1998:            if (
+  apps\frontend\institutions.html:1999:                Array.isArray(
+> apps\frontend\institutions.html:2000:                    result?.data?.items
+  apps\frontend\institutions.html:2001:                )
+  apps\frontend\institutions.html:2002:            ) {
+  apps\frontend\institutions.html:2003:
+  apps\frontend\institutions.html:2004:                data =
+> apps\frontend\institutions.html:2005:                    result.data.items;
+  apps\frontend\institutions.html:2006:
+  apps\frontend\institutions.html:2007:            } else if (
+  apps\frontend\institutions.html:2008:                Array.isArray(
+> apps\frontend\institutions.html:2009:                    result?.items
+  apps\frontend\institutions.html:2010:                )
+  apps\frontend\institutions.html:2011:            ) {
+  apps\frontend\institutions.html:2012:
+  apps\frontend\institutions.html:2013:                data =
+> apps\frontend\institutions.html:2014:                    result.items;
+  apps\frontend\institutions.html:2015:
+  apps\frontend\institutions.html:2016:            } else if (
+  apps\frontend\institutions.html:2017:                Array.isArray(
+> apps\frontend\institutions.html:2018:                    result?.data
+  apps\frontend\institutions.html:2019:                )
+  apps\frontend\institutions.html:2020:            ) {
+  apps\frontend\institutions.html:2021:
+  apps\frontend\institutions.html:2022:                data =
+> apps\frontend\institutions.html:2023:                    result.data;
+  apps\frontend\institutions.html:2024:
+  apps\frontend\institutions.html:2025:            } else if (
+  apps\frontend\institutions.html:2026:                Array.isArray(
+  apps\frontend\institutions.html:2027:                    result?.institutions
+  apps\frontend\institutions.html:2030:
+  apps\frontend\institutions.html:2031:                data =
+> apps\frontend\institutions.html:2032:                    result.institutions;
+  apps\frontend\institutions.html:2033:
+  apps\frontend\institutions.html:2034:            } else if (
+  apps\frontend\institutions.html:2035:                Array.isArray(result)
+  apps\frontend\institutions.html:2036:            ) {
+  apps\frontend\institutions.html:2836:
+  apps\frontend\institutions.html:2837:                    const id =
+> apps\frontend\institutions.html:2838:                        button.dataset.editId;
+  apps\frontend\institutions.html:2839:
+  apps\frontend\institutions.html:2840:
+  apps\frontend\institutions.html:2841:                    const institution =
+  apps\frontend\institutions.html:2842:                        institutions.find(
+
+

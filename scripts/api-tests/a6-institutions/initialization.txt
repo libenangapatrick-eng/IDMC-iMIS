@@ -1,0 +1,63 @@
+﻿
+  apps\frontend\institutions.html:1941:       LOAD INSTITUTIONS
+  apps\frontend\institutions.html:1942:    ========================================================== */
+  apps\frontend\institutions.html:1943:
+> apps\frontend\institutions.html:1944:    async function loadInstitutions() {
+  apps\frontend\institutions.html:1945:
+  apps\frontend\institutions.html:1946:        const table =
+  apps\frontend\institutions.html:1947:            document.querySelector(
+  apps\frontend\institutions.html:1948:                "[data-institutions-table]"
+  apps\frontend\institutions.html:1949:            );
+  apps\frontend\institutions.html:1950:
+  apps\frontend\institutions.html:1951:        if (table) {
+  apps\frontend\institutions.html:1952:
+  apps\frontend\institutions.html:2657:
+  apps\frontend\institutions.html:2658:            closeModal();
+  apps\frontend\institutions.html:2659:
+> apps\frontend\institutions.html:2660:            await loadInstitutions();
+  apps\frontend\institutions.html:2661:
+  apps\frontend\institutions.html:2662:
+  apps\frontend\institutions.html:2663:        } catch (error) {
+  apps\frontend\institutions.html:2664:
+  apps\frontend\institutions.html:2665:            console.error(
+  apps\frontend\institutions.html:2666:                "Failed to save institution:",
+  apps\frontend\institutions.html:2667:                error
+  apps\frontend\institutions.html:2668:            );
+  apps\frontend\institutions.html:2970:        try {
+  apps\frontend\institutions.html:2971:
+  apps\frontend\institutions.html:2972:            await window.IDMCAuth
+> apps\frontend\institutions.html:2973:                .requireAuth();
+  apps\frontend\institutions.html:2974:
+  apps\frontend\institutions.html:2975:
+  apps\frontend\institutions.html:2976:            await IDMC_RBAC_API
+  apps\frontend\institutions.html:2977:                .loadCurrentUserRBAC();
+  apps\frontend\institutions.html:2978:
+  apps\frontend\institutions.html:2979:
+  apps\frontend\institutions.html:2980:            const allowed =
+  apps\frontend\institutions.html:2981:                IDMC_RBAC_API
+  apps\frontend\institutions.html:3002:
+  apps\frontend\institutions.html:3003:            renderUserFromSession();
+  apps\frontend\institutions.html:3004:
+> apps\frontend\institutions.html:3005:            await loadInstitutions();
+  apps\frontend\institutions.html:3006:
+  apps\frontend\institutions.html:3007:
+  apps\frontend\institutions.html:3008:        } catch (error) {
+  apps\frontend\institutions.html:3009:
+  apps\frontend\institutions.html:3010:            console.error(
+  apps\frontend\institutions.html:3011:                "Institutions page initialization failed:",
+  apps\frontend\institutions.html:3012:                error
+  apps\frontend\institutions.html:3013:            );
+  apps\frontend\institutions.html:3083:    ) {
+  apps\frontend\institutions.html:3084:
+  apps\frontend\institutions.html:3085:        document.addEventListener(
+> apps\frontend\institutions.html:3086:            "DOMContentLoaded",
+  apps\frontend\institutions.html:3087:            initialize
+  apps\frontend\institutions.html:3088:        );
+  apps\frontend\institutions.html:3089:
+  apps\frontend\institutions.html:3090:    } else {
+  apps\frontend\institutions.html:3091:
+  apps\frontend\institutions.html:3092:        initialize();
+  apps\frontend\institutions.html:3093:
+  apps\frontend\institutions.html:3094:    }
+
+

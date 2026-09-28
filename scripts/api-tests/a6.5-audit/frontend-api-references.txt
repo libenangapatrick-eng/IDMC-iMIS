@@ -1,0 +1,42 @@
+﻿C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\academics\academics.html:582: "/api/v1/academics";
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2079: "/roles"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2088: `/roles/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2098: "/roles/permissions"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2108: `/roles/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2120: "/roles",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2140: `/roles/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2162: `/roles/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\rbac.js:2184: `/roles/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:270: `/students?${params.toString()}`
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\students.js:335: `/students/${encodeURIComponent(id)}`
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:459: await apiRequest("/users");
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:517: await apiRequest("/users/roles");
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1077: `/users/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1176: `/users/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1178: )}/roles`,
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1243: `/users/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1245: )}/roles/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1381: "/users/roles"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js\users.js:1502: "/users",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2158: "/campuses"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2387: `/campuses/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\campuses.html:2402: "/campuses",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2221: "/departments"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2297: "/schools"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2505: `/departments/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\departments.html:2521: "/departments",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:1971: "/institutions"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2625: `/institutions/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\institutions.html:2640: "/institutions",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2196: "/schools"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2272: "/campuses"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2474: `/schools/${encodeURIComponent(
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\schools.html:2489: "/schools",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-portal.html:1070: "Requesting current student: /students/me"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-portal.html:1076: "/students/me"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\student-profile.html:324: "/students/me"
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:969: `/students/${id}`
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:1040: `/students${query}`
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:1194: ? `/students/${id}`
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\students.html:1195: : "/students",
+C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\users.html:2164: <script src="./assets/js/users.js"></script>

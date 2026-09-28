@@ -1,0 +1,26 @@
+name: IDMC iMIS CI
+on:
+  push:
+  pull_request:
+jobs:
+  backend-and-integration-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/backend/package-lock.json
+      - run: npm ci
+        working-directory: apps/backend
+      - run: npm run audit:write
+        working-directory: apps/backend
+      - run: npm run test:ci
+        working-directory: apps/backend
+      - run: npm run build
+        working-directory: apps/backend
+      - name: Reject secrets and generated environment files
+        run: |
+          test ! -f apps/backend/.env
+          ! git grep -nE 'SUPABASE_SERVICE_ROLE_KEY[[:space:]]*[:=][[:space:]]*[^$]' -- apps/frontend

@@ -1,0 +1,25 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+apps/backend/.env
+apps/backend/.env.*
+!apps/backend/.env.example
+
+# Dependencies and generated builds
+node_modules/
+dist/
+coverage/
+
+# Local repair artifacts
+backup-*/
+backups/
+repair-backups/
+releases/
+*.bak
+*.backup*
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db

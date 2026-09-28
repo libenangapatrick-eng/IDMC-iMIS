@@ -1,0 +1,11 @@
+IDMC iMIS SECTION 16B
+=====================
+
+This package is cumulative: it contains Section 16A and Section 16B repairs.
+
+Extract the ZIP into C:\Users\liben\Documents\IDMC_iMIS, then run:
+
+Set-ExecutionPolicy -Scope Process Bypass -Force
+.\IDMC-Section-16B-Missing-Modules-Repair.ps1 -ProjectRoot "C:\Users\liben\Documents\IDMC_iMIS" -StartServers -OpenBrowser
+
+Both -StartServers and -RestartServers are accepted.

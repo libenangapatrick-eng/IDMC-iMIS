@@ -1,0 +1,84 @@
+.idmc-e2e-panel {
+    margin: 0 0 1.25rem;
+    padding: 1rem;
+    border: 1px solid rgba(127,127,127,.28);
+    border-radius: 14px;
+    background: var(--surface, #fff);
+}
+
+.idmc-e2e-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .75rem;
+}
+
+.idmc-e2e-head strong,
+.idmc-e2e-head small {
+    display: block;
+}
+
+.idmc-e2e-head small {
+    margin-top: .2rem;
+    opacity: .65;
+}
+
+.idmc-e2e-live {
+    padding: .3rem .55rem;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    border: 1px solid currentColor;
+}
+
+.idmc-e2e-status {
+    margin: 0 0 .8rem;
+    padding: .65rem .75rem;
+    border-radius: 9px;
+    background: rgba(127,127,127,.08);
+}
+
+.idmc-e2e-status[data-type="error"] {
+    font-weight: 700;
+}
+
+.idmc-e2e-status[data-type="warning"] {
+    font-weight: 700;
+}
+
+.idmc-e2e-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+}
+
+.idmc-e2e-actions button {
+    min-height: 38px;
+    padding: .5rem .8rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.idmc-e2e-actions button:disabled {
+    cursor: wait;
+    opacity: .55;
+}
+
+.idmc-e2e-note {
+    margin: .8rem 0 0;
+    font-size: .82rem;
+    opacity: .7;
+}
+
+@media (max-width: 640px) {
+    .idmc-e2e-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .idmc-e2e-actions button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,35 @@
+
+Resource    File                                                                                                                    
+--------    ----                                                                                                                    
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts      
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts         
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts        
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts           
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts   
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\auth\services\auth.service.ts                               
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                       
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                       
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\roles.service.ts                             
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts        
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts           
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.controller.ts                           
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts                              
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\controllers\finance.controller.ts                   
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\finance\services\finance.service.ts                         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.controller.ts          
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts             
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\auth\controllers\auth.controller.ts                         
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\auth\services\auth.service.ts                               
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts             
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                       
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                       
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                             
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\services\audit.service.ts                                           
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\services\email.service.ts                                           
+
+
+

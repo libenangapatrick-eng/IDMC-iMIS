@@ -1,0 +1,3336 @@
+{
+  "generated_at": "2026-09-26T12:59:08.979Z",
+  "count": 588,
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/academics/academics.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/academics/academics.routes.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/academics/academics.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/academics/academics.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/academics/academics.routes.ts"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/admission-acceptances",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/admission-acceptances",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/admission-acceptances",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/admission-acceptances",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-acceptances",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/admission-decisions",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/admission-decisions",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/admission-decisions",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/admission-decisions",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-decisions",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/admission-offers",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/admission-offers",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/admission-offers",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/admission-offers",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-offers",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "admissions.view | admissions.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/choices",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/choices",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/choices",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/choices",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/choices",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/admissions/admissions.routes.ts",
+      "permissions": "applications.view | applications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/records",
+      "source": "apps/backend/src/modules/alumni/alumni.routes.ts",
+      "permissions": "alumni.view | alumni.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/records",
+      "source": "apps/backend/src/modules/alumni/alumni.routes.ts",
+      "permissions": "alumni.view | alumni.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/records",
+      "source": "apps/backend/src/modules/alumni/alumni.routes.ts",
+      "permissions": "alumni.view | alumni.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/records",
+      "source": "apps/backend/src/modules/alumni/alumni.routes.ts",
+      "permissions": "alumni.view | alumni.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/records",
+      "source": "apps/backend/src/modules/alumni/alumni.routes.ts",
+      "permissions": "alumni.view | alumni.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/${config.path}",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/${config.path}",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/${config.path}/:id",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/${config.path}/:id",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applicants",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/applicants/:id",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applications",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/applications/:id",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applications/:id/submit",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/lookups/programmes",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/lookups/years",
+      "source": "apps/backend/src/modules/applicant-self-service/applicant-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/audit/audit.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "source": "apps/backend/src/modules/auth/routes/auth.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "source": "apps/backend/src/modules/auth/routes/auth.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "source": "apps/backend/src/modules/auth/routes/auth.routes.ts"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/announcement-audiences",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/announcement-audiences",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/announcement-audiences",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/announcement-audiences",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/announcement-audiences",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/announcements",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/announcements",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/announcements",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/announcements",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/announcements",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "communications.view | communications.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/document-versions",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/document-versions",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/document-versions",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/document-versions",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/document-versions",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "documents.view | documents.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/helpdesk/categories",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/categories",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/helpdesk/categories",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/helpdesk/categories",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/categories",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/helpdesk/messages",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/messages",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/helpdesk/messages",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/helpdesk/messages",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/messages",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/helpdesk/tickets",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/helpdesk/tickets",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/helpdesk/tickets",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/helpdesk/tickets",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk/tickets",
+      "source": "apps/backend/src/modules/communications/communications.routes.ts",
+      "permissions": "helpdesk.view | helpdesk.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/fee-structures",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts",
+      "permissions": "finance.view | finance.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/fee-structures",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts",
+      "permissions": "finance.view | finance.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/fee-structures",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts",
+      "permissions": "finance.view | finance.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/fee-structures",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts",
+      "permissions": "finance.view | finance.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/fee-structures",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts",
+      "permissions": "finance.view | finance.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/account",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/adjustments",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/charges",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/invoices",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/payments",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/refunds",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/scholarships",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/students/:studentId/transactions",
+      "source": "apps/backend/src/modules/finance/routes/finance.routes.ts"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/allocations",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.allocate"
+    },
+    {
+      "method": "GET",
+      "path": "/allocations",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.allocate"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/allocations",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.allocate"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/allocations",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.allocate"
+    },
+    {
+      "method": "POST",
+      "path": "/allocations",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.allocate"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/beds",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/beds",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/beds",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/beds",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/beds",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/fees",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/fees",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/fees",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/fees",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/fees",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/hostels",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/hostels",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/hostels",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/hostels",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/hostels",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/rooms",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/rooms",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/rooms",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/rooms",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/rooms",
+      "source": "apps/backend/src/modules/hostel/hostel.routes.ts",
+      "permissions": "hostel.view | hostel.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/attendance",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/attendance",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/attendance",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/attendance",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/attendance",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/attendance/adjustments",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/attendance/adjustments",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/attendance/adjustments",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/attendance/adjustments",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/attendance/adjustments",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.attendance.view | staff.attendance.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/employment-history",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/employment-history",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/employment-history",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/employment-history",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/employment-history",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/leave/approvals",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.approve"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/approvals",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.approve"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/leave/approvals",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.approve"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/leave/approvals",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.approve"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/approvals",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.approve"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/leave/balances",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/balances",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/leave/balances",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/leave/balances",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/balances",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/leave/requests",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/requests",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/leave/requests",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/leave/requests",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/requests",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/leave/types",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/leave/types",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/leave/types",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/leave/types",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/leave/types",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "leave.view | leave.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/lifecycle",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.lifecycle.view | staff.lifecycle.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/lifecycle",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.lifecycle.view | staff.lifecycle.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/lifecycle",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.lifecycle.view | staff.lifecycle.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/lifecycle",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.lifecycle.view | staff.lifecycle.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/lifecycle",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.lifecycle.view | staff.lifecycle.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/qualifications",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/staff",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/staff",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/staff",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/staff",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/staff",
+      "source": "apps/backend/src/modules/hr/hr.routes.ts",
+      "permissions": "staff.view | staff.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/campuses/campuses.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/campuses/campuses.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/campuses/campuses.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/campuses/campuses.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/departments/departments.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/departments/departments.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/departments/departments.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/departments/departments.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/campuses",
+      "source": "apps/backend/src/modules/institution-management/institution-management.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/departments",
+      "source": "apps/backend/src/modules/institution-management/institution-management.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/institutions",
+      "source": "apps/backend/src/modules/institution-management/institution-management.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/schools",
+      "source": "apps/backend/src/modules/institution-management/institution-management.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/institutions/institutions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/institutions/institutions.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/institutions/institutions.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/institutions/institutions.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/schools/schools.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/institution-management/schools/schools.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/schools/schools.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/institution-management/schools/schools.routes.ts"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/clinical/assessments",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/clinical/assessments",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/clinical/assessments",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/clinical/assessments",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/clinical/assessments",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/clinical/placements",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/clinical/placements",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/clinical/placements",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/clinical/placements",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/clinical/placements",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/clinical/sites",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/clinical/sites",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/clinical/sites",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/clinical/sites",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/clinical/sites",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "clinical.view | clinical.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/field/organizations",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/field/organizations",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/field/organizations",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/field/organizations",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/field/organizations",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/field/practicals",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/field/practicals",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/field/practicals",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/field/practicals",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/field/practicals",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/field/reports",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/field/reports",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/field/reports",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/field/reports",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/field/reports",
+      "source": "apps/backend/src/modules/institutional-development/institutional-development.routes.ts",
+      "permissions": "field_practical.view | field_practical.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/fines",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.fines.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/fines",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.fines.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/fines",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.fines.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/fines",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.fines.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/fines",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.fines.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/items",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/items",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/items",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/items",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/items",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/loans",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.issue"
+    },
+    {
+      "method": "GET",
+      "path": "/loans",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.issue"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/loans",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.issue"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/loans",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.issue"
+    },
+    {
+      "method": "POST",
+      "path": "/loans",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.issue"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/members",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/members",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/members",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/members",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/members",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/reservations",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/reservations",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/reservations",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/reservations",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/reservations",
+      "source": "apps/backend/src/modules/library/library.routes.ts",
+      "permissions": "library.view | library.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/assets",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/assets",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/assets",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/assets",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/assets",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/assets/assignments",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.assign"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/assignments",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.assign"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/assets/assignments",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.assign"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/assets/assignments",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.assign"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/assignments",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.assign"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/assets/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/assets/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/assets/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/assets/maintenance",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/maintenance",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/assets/maintenance",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/assets/maintenance",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/assets/maintenance",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "assets.view | assets.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/inventory/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/inventory/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/inventory/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/inventory/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/inventory/categories",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/inventory/items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/inventory/items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/inventory/items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/inventory/items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/inventory/items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/inventory/transactions",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/inventory/transactions",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/inventory/transactions",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/inventory/transactions",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/inventory/transactions",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "inventory.view | inventory.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/procurement/order-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/procurement/order-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/procurement/order-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/procurement/order-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/procurement/order-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/procurement/orders",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/procurement/orders",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/procurement/orders",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/procurement/orders",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/procurement/orders",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/procurement/request-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/procurement/request-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/procurement/request-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/procurement/request-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/procurement/request-items",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/procurement/requests",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/procurement/requests",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/procurement/requests",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/procurement/requests",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/procurement/requests",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/suppliers",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/suppliers",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/suppliers",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/suppliers",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/suppliers",
+      "source": "apps/backend/src/modules/operations/operations.routes.ts",
+      "permissions": "procurement.view | procurement.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/definitions",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/definitions",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/definitions",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/definitions",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/definitions",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/runs",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.run"
+    },
+    {
+      "method": "GET",
+      "path": "/runs",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.run"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/runs",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.run"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/runs",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.run"
+    },
+    {
+      "method": "POST",
+      "path": "/runs",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.run"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/schedules",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.schedule"
+    },
+    {
+      "method": "GET",
+      "path": "/schedules",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.schedule"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/schedules",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.schedule"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/schedules",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.schedule"
+    },
+    {
+      "method": "POST",
+      "path": "/schedules",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "reports.view | reports.schedule"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/widgets",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "dashboard.widgets.view | dashboard.widgets.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/widgets",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "dashboard.widgets.view | dashboard.widgets.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/widgets",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "dashboard.widgets.view | dashboard.widgets.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/widgets",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "dashboard.widgets.view | dashboard.widgets.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/widgets",
+      "source": "apps/backend/src/modules/reports/reports.routes.ts",
+      "permissions": "dashboard.widgets.view | dashboard.widgets.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/ethics-reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/ethics-reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/ethics-reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/ethics-reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/ethics-reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/funding",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/funding",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/funding",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/funding",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/funding",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/outputs",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/outputs",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/outputs",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/outputs",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/outputs",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/projects",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/projects",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/projects",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/projects",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/projects",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/quality/actions",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/quality/actions",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/quality/actions",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/quality/actions",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/quality/actions",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/quality/findings",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/quality/findings",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/quality/findings",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/quality/findings",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/quality/findings",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/quality/reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/quality/reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/quality/reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/quality/reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/quality/reviews",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/quality/standards",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/quality/standards",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/quality/standards",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/quality/standards",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/quality/standards",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "qa.view | qa.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/team-members",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/team-members",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/team-members",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/team-members",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/team-members",
+      "source": "apps/backend/src/modules/research/research.routes.ts",
+      "permissions": "research.view | research.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/results/result-import.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/:id/confirm",
+      "source": "apps/backend/src/modules/results/result-import.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/validate",
+      "source": "apps/backend/src/modules/results/result-import.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/imports",
+      "source": "apps/backend/src/modules/results/results.routes.ts"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/transcript-courses",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/transcript-courses",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/transcript-courses",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/transcript-courses",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/transcript-courses",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/transcript-semesters",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/transcript-semesters",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/transcript-semesters",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/transcript-semesters",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/transcript-semesters",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/transcripts",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/transcripts",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/transcripts",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/transcripts",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/transcripts",
+      "source": "apps/backend/src/modules/results/results.routes.ts",
+      "permissions": "transcripts.view | transcripts.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/callback",
+      "source": "apps/backend/src/modules/self-service-actions/payment-provider.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/staff/me",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/staff/me/leave",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/staff/me/profile",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/student/documents/upload",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/student/payments",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/student/payments/control-number",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/student/registration",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/student/registration/add-drop",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/student/registration/select",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/student/registration/submit",
+      "source": "apps/backend/src/modules/self-service-actions/self-service-actions.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/admin/accounts",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/admin/accounts",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/finance/payments",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/lecturer",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/lecturer/attendance",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/lecturer/marks",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/lecturer/marks/submit",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/lecturer/results/submit",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/registry",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/registry/requests/decide",
+      "source": "apps/backend/src/modules/staff-workspace/staff-workspace.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/students",
+      "source": "apps/backend/src/modules/student-management/student-management.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/attendance",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/change-password",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-evaluations",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/coursework-responses",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/documents",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/documents/:id/download",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/finance",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/helpdesk",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/notifications/:id/read",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/notifications/read-all",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/portal",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/profile",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/profile-photo",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/registration",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/requests",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/results",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/summary",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/timetable",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/transcript",
+      "source": "apps/backend/src/modules/student-management/students/student-self-service.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/student-management/students/students.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/student-management/students/students.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/student-management/students/students.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/student-management/students/students.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "source": "apps/backend/src/modules/student-management/students/students.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/me",
+      "source": "apps/backend/src/modules/student-management/students/students.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/student-requests/student-requests.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/:id/decision",
+      "source": "apps/backend/src/modules/student-requests/student-requests.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "source": "apps/backend/src/modules/student-self-service/student-results.routes.ts"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/features",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.features.view | system.features.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/features",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.features.view | system.features.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/features",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.features.view | system.features.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/features",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.features.view | system.features.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/features",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.features.view | system.features.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/maintenance-windows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.maintenance.view | system.maintenance.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/maintenance-windows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.maintenance.view | system.maintenance.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/maintenance-windows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.maintenance.view | system.maintenance.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/maintenance-windows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.maintenance.view | system.maintenance.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/maintenance-windows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.maintenance.view | system.maintenance.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/number-sequences",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/number-sequences",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/number-sequences",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/number-sequences",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/number-sequences",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/settings",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/settings",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/settings",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/settings",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/settings",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.config.view | system.config.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/workflow-steps",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/workflow-steps",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/workflow-steps",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/workflow-steps",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/workflow-steps",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "DELETE/:id",
+      "path": "/workflows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/workflows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "GET/:id",
+      "path": "/workflows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "PATCH/:id",
+      "path": "/workflows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "POST",
+      "path": "/workflows",
+      "source": "apps/backend/src/modules/system/system.routes.ts",
+      "permissions": "system.workflows.view | system.workflows.manage"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id/permissions",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/:id/permissions",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/:id/permissions/:permissionId",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/permissions",
+      "source": "apps/backend/src/modules/users/routes/roles.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/:id",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/:id/roles",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/:id/roles/:roleId",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roles",
+      "source": "apps/backend/src/modules/users/routes/users.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/add-drop/:id/decide",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-acceptances/:id/accept",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-acceptances/:id/decline",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-applications/:id/convert-to-student",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-decisions/:id/decide",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/admission-offers/:id/issue",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/alumni/:id/activate",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applications/:id/eligibility",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applications/:id/review",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applications/:id/submit",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/applications/:id/verify",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessment-corrections/:id/decide",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessment-marks/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessment-marks/:id/lock",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessment-marks/:id/submit",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessments/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessments/:id/lock",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessments/:id/open",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/assessments/:id/submit",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/certificates/:id/issue",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/certificates/:id/revoke",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-results/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-results/:id/calculate",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-results/:id/lock",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-results/:id/publish",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-results/:id/review",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/course-results/:id/submit",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/examination-candidates/:id/eligibility",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/examination-marks/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/examination-marks/:id/lock",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/examination-marks/:id/submit",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/graduation-candidates/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/graduation-candidates/:id/eligibility",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/graduation-candidates/:id/graduate",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/graduation-clearances/:id/clear",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/registrations/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/registrations/:id/lock",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/registrations/:id/register",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/registrations/:id/submit",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/students/:id/activate",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timetables/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timetables/:id/lock",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timetables/:id/publish",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/timetables/:id/review",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/transcripts/:id/approve",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/transcripts/:id/generate",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/transcripts/:id/issue",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/transcripts/:id/review",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/transcripts/:id/revoke",
+      "source": "apps/backend/src/modules/workflows/workflow.routes.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/academics",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/assets",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/attendance",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/audit-logs",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/auth",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/communications",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/documents",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/finance",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/helpdesk",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/hostel",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/hr",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/library",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/operations",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/payment-provider",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/procurement",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/registrations",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/reports",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/research",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/roles",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/self-service",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/student-requests",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/student-results",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/system",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/timetables",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/transcripts",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/users",
+      "source": "apps/backend/src/routes/index.ts"
+    },
+    {
+      "method": "USE",
+      "path": "/workflows",
+      "source": "apps/backend/src/routes/index.ts"
+    }
+  ]
+}

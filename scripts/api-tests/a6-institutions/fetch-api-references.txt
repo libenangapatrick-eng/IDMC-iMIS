@@ -1,0 +1,416 @@
+﻿
+  apps\frontend\institutions.html:15:        content="IDMC iMIS Institution Management"
+  apps\frontend\institutions.html:16:    >
+  apps\frontend\institutions.html:17:
+> apps\frontend\institutions.html:18:    <title>IDMC iMIS | Institutions</title>
+  apps\frontend\institutions.html:19:
+  apps\frontend\institutions.html:20:    <link
+  apps\frontend\institutions.html:21:        rel="preconnect"
+  apps\frontend\institutions.html:22:        href="https://fonts.googleapis.com"
+  apps\frontend\institutions.html:23:    >
+  apps\frontend\institutions.html:24:
+  apps\frontend\institutions.html:1340:
+  apps\frontend\institutions.html:1341:                <a
+  apps\frontend\institutions.html:1342:                    class="nav-item active"
+> apps\frontend\institutions.html:1343:                    href="institutions.html"
+> apps\frontend\institutions.html:1344:                    data-rbac="institutions.view"
+  apps\frontend\institutions.html:1345:                >
+  apps\frontend\institutions.html:1346:                    <span class="nav-icon">⌂</span>
+  apps\frontend\institutions.html:1347:                    <span class="nav-label">
+> apps\frontend\institutions.html:1348:                        Institutions
+  apps\frontend\institutions.html:1349:                    </span>
+  apps\frontend\institutions.html:1350:                </a>
+  apps\frontend\institutions.html:1351:
+  apps\frontend\institutions.html:1352:                <a
+  apps\frontend\institutions.html:1353:                    class="nav-item"
+  apps\frontend\institutions.html:1354:                    href="campuses.html"
+  apps\frontend\institutions.html:1401:                </span>
+  apps\frontend\institutions.html:1402:
+  apps\frontend\institutions.html:1403:                <h1 class="page-title">
+> apps\frontend\institutions.html:1404:                    Institutions
+  apps\frontend\institutions.html:1405:                </h1>
+  apps\frontend\institutions.html:1406:
+  apps\frontend\institutions.html:1407:            </div>
+  apps\frontend\institutions.html:1408:
+  apps\frontend\institutions.html:1409:
+  apps\frontend\institutions.html:1410:            <div class="topbar-right">
+  apps\frontend\institutions.html:1444:                Institution Management
+  apps\frontend\institutions.html:1445:                /
+  apps\frontend\institutions.html:1446:                <strong>
+> apps\frontend\institutions.html:1447:                    Institutions
+  apps\frontend\institutions.html:1448:                </strong>
+  apps\frontend\institutions.html:1449:
+  apps\frontend\institutions.html:1450:            </div>
+  apps\frontend\institutions.html:1451:
+  apps\frontend\institutions.html:1452:
+  apps\frontend\institutions.html:1453:            <div class="module-header">
+  apps\frontend\institutions.html:1463:                    </h2>
+  apps\frontend\institutions.html:1464:
+  apps\frontend\institutions.html:1465:                    <p class="module-description">
+> apps\frontend\institutions.html:1466:                        Manage institutions registered within
+  apps\frontend\institutions.html:1467:                        the IDMC iMIS environment, including
+  apps\frontend\institutions.html:1468:                        institution identity, code, status and
+  apps\frontend\institutions.html:1469:                        institutional description.
+  apps\frontend\institutions.html:1470:                    </p>
+  apps\frontend\institutions.html:1471:
+  apps\frontend\institutions.html:1472:                </div>
+  apps\frontend\institutions.html:1475:                <button
+  apps\frontend\institutions.html:1476:                    type="button"
+  apps\frontend\institutions.html:1477:                    class="button"
+> apps\frontend\institutions.html:1478:                    data-rbac="institutions.manage"
+  apps\frontend\institutions.html:1479:                    data-add-institution
+  apps\frontend\institutions.html:1480:                >
+  apps\frontend\institutions.html:1481:                    + Add Institution
+  apps\frontend\institutions.html:1482:                </button>
+  apps\frontend\institutions.html:1483:
+  apps\frontend\institutions.html:1484:            </div>
+  apps\frontend\institutions.html:1490:                <div class="stat-card">
+  apps\frontend\institutions.html:1491:
+  apps\frontend\institutions.html:1492:                    <span>
+> apps\frontend\institutions.html:1493:                        TOTAL INSTITUTIONS
+  apps\frontend\institutions.html:1494:                    </span>
+  apps\frontend\institutions.html:1495:
+  apps\frontend\institutions.html:1496:                    <strong data-total>
+  apps\frontend\institutions.html:1497:                        0
+  apps\frontend\institutions.html:1498:                    </strong>
+  apps\frontend\institutions.html:1499:
+  apps\frontend\institutions.html:1655:
+  apps\frontend\institutions.html:1656:
+  apps\frontend\institutions.html:1657:                        <tbody
+> apps\frontend\institutions.html:1658:                            data-institutions-table
+  apps\frontend\institutions.html:1659:                        >
+  apps\frontend\institutions.html:1660:
+  apps\frontend\institutions.html:1661:                            <tr>
+  apps\frontend\institutions.html:1662:
+  apps\frontend\institutions.html:1663:                                <td
+  apps\frontend\institutions.html:1664:                                    colspan="6"
+  apps\frontend\institutions.html:1666:                                >
+  apps\frontend\institutions.html:1667:
+  apps\frontend\institutions.html:1668:                                    <strong>
+> apps\frontend\institutions.html:1669:                                        Loading institutions...
+  apps\frontend\institutions.html:1670:                                    </strong>
+  apps\frontend\institutions.html:1671:
+  apps\frontend\institutions.html:1672:                                </td>
+  apps\frontend\institutions.html:1673:
+  apps\frontend\institutions.html:1674:                            </tr>
+  apps\frontend\institutions.html:1675:
+  apps\frontend\institutions.html:1812:                <button
+  apps\frontend\institutions.html:1813:                    type="submit"
+  apps\frontend\institutions.html:1814:                    class="button"
+> apps\frontend\institutions.html:1815:                    data-rbac="institutions.manage"
+  apps\frontend\institutions.html:1816:                >
+  apps\frontend\institutions.html:1817:                    Save Institution
+  apps\frontend\institutions.html:1818:                </button>
+  apps\frontend\institutions.html:1819:
+  apps\frontend\institutions.html:1820:            </div>
+  apps\frontend\institutions.html:1821:
+  apps\frontend\institutions.html:1847:    "use strict";
+  apps\frontend\institutions.html:1848:
+  apps\frontend\institutions.html:1849:
+> apps\frontend\institutions.html:1850:    let institutions = [];
+  apps\frontend\institutions.html:1851:
+  apps\frontend\institutions.html:1852:    let editingId = null;
+  apps\frontend\institutions.html:1853:
+  apps\frontend\institutions.html:1854:
+  apps\frontend\institutions.html:1855:    /* =========================================================
+  apps\frontend\institutions.html:1856:       HELPERS
+  apps\frontend\institutions.html:1938:
+  apps\frontend\institutions.html:1939:
+  apps\frontend\institutions.html:1940:    /* =========================================================
+> apps\frontend\institutions.html:1941:       LOAD INSTITUTIONS
+  apps\frontend\institutions.html:1942:    ========================================================== */
+  apps\frontend\institutions.html:1943:
+> apps\frontend\institutions.html:1944:    async function loadInstitutions() {
+  apps\frontend\institutions.html:1945:
+  apps\frontend\institutions.html:1946:        const table =
+  apps\frontend\institutions.html:1947:            document.querySelector(
+> apps\frontend\institutions.html:1948:                "[data-institutions-table]"
+  apps\frontend\institutions.html:1949:            );
+  apps\frontend\institutions.html:1950:
+  apps\frontend\institutions.html:1951:        if (table) {
+  apps\frontend\institutions.html:1952:
+  apps\frontend\institutions.html:1953:            table.innerHTML = `
+  apps\frontend\institutions.html:1954:                <tr>
+  apps\frontend\institutions.html:1957:                        class="empty-state"
+  apps\frontend\institutions.html:1958:                    >
+  apps\frontend\institutions.html:1959:                        <strong>
+> apps\frontend\institutions.html:1960:                            Loading institutions...
+  apps\frontend\institutions.html:1961:                        </strong>
+  apps\frontend\institutions.html:1962:                    </td>
+  apps\frontend\institutions.html:1963:                </tr>
+  apps\frontend\institutions.html:1964:            `;
+  apps\frontend\institutions.html:1965:
+  apps\frontend\institutions.html:1966:        }
+  apps\frontend\institutions.html:1968:        try {
+  apps\frontend\institutions.html:1969:
+  apps\frontend\institutions.html:1970:            console.log(
+> apps\frontend\institutions.html:1971:                "[Institutions] Loading institutions..."
+  apps\frontend\institutions.html:1972:            );
+  apps\frontend\institutions.html:1973:
+  apps\frontend\institutions.html:1974:            const result =
+  apps\frontend\institutions.html:1975:                await apiRequest(
+> apps\frontend\institutions.html:1976:                    "/institutions"
+  apps\frontend\institutions.html:1977:                );
+  apps\frontend\institutions.html:1978:
+  apps\frontend\institutions.html:1979:            console.log(
+> apps\frontend\institutions.html:1980:                "[Institutions] Raw API response:",
+  apps\frontend\institutions.html:1981:                result
+  apps\frontend\institutions.html:1982:            );
+  apps\frontend\institutions.html:1983:
+  apps\frontend\institutions.html:1984:            /*
+  apps\frontend\institutions.html:1985:             * Backend response:
+  apps\frontend\institutions.html:1986:             *
+  apps\frontend\institutions.html:2024:
+  apps\frontend\institutions.html:2025:            } else if (
+  apps\frontend\institutions.html:2026:                Array.isArray(
+> apps\frontend\institutions.html:2027:                    result?.institutions
+  apps\frontend\institutions.html:2028:                )
+  apps\frontend\institutions.html:2029:            ) {
+  apps\frontend\institutions.html:2030:
+  apps\frontend\institutions.html:2031:                data =
+> apps\frontend\institutions.html:2032:                    result.institutions;
+  apps\frontend\institutions.html:2033:
+  apps\frontend\institutions.html:2034:            } else if (
+  apps\frontend\institutions.html:2035:                Array.isArray(result)
+  apps\frontend\institutions.html:2036:            ) {
+  apps\frontend\institutions.html:2037:
+  apps\frontend\institutions.html:2038:                data =
+  apps\frontend\institutions.html:2041:            }
+  apps\frontend\institutions.html:2042:
+  apps\frontend\institutions.html:2043:            console.log(
+> apps\frontend\institutions.html:2044:                "[Institutions] Extracted records:",
+  apps\frontend\institutions.html:2045:                data
+  apps\frontend\institutions.html:2046:            );
+  apps\frontend\institutions.html:2047:
+  apps\frontend\institutions.html:2048:            console.log(
+> apps\frontend\institutions.html:2049:                "[Institutions] Number of records:",
+  apps\frontend\institutions.html:2050:                data.length
+  apps\frontend\institutions.html:2051:            );
+  apps\frontend\institutions.html:2052:
+> apps\frontend\institutions.html:2053:            institutions =
+  apps\frontend\institutions.html:2054:                Array.isArray(data)
+  apps\frontend\institutions.html:2055:                    ? data
+  apps\frontend\institutions.html:2056:                    : [];
+  apps\frontend\institutions.html:2057:
+  apps\frontend\institutions.html:2058:            updateStats();
+  apps\frontend\institutions.html:2059:
+> apps\frontend\institutions.html:2060:            renderInstitutions();
+  apps\frontend\institutions.html:2061:
+  apps\frontend\institutions.html:2062:        } catch (error) {
+  apps\frontend\institutions.html:2063:
+  apps\frontend\institutions.html:2064:            console.error(
+> apps\frontend\institutions.html:2065:                "[Institutions] Failed to load:",
+  apps\frontend\institutions.html:2066:                error
+  apps\frontend\institutions.html:2067:            );
+  apps\frontend\institutions.html:2068:
+> apps\frontend\institutions.html:2069:            institutions = [];
+  apps\frontend\institutions.html:2070:
+  apps\frontend\institutions.html:2071:            updateStats();
+  apps\frontend\institutions.html:2072:
+  apps\frontend\institutions.html:2073:            if (table) {
+  apps\frontend\institutions.html:2074:
+  apps\frontend\institutions.html:2075:                table.innerHTML = `
+  apps\frontend\institutions.html:2079:                            class="empty-state"
+  apps\frontend\institutions.html:2080:                        >
+  apps\frontend\institutions.html:2081:                            <strong>
+> apps\frontend\institutions.html:2082:                                Unable to load institutions
+  apps\frontend\institutions.html:2083:                            </strong>
+  apps\frontend\institutions.html:2084:
+  apps\frontend\institutions.html:2085:                            <span>
+  apps\frontend\institutions.html:2086:                                ${escapeHtml(
+  apps\frontend\institutions.html:2087:                                    error?.message ||
+  apps\frontend\institutions.html:2088:                                    "Please check the backend service."
+  apps\frontend\institutions.html:2105:    function updateStats() {
+  apps\frontend\institutions.html:2106:
+  apps\frontend\institutions.html:2107:        const total =
+> apps\frontend\institutions.html:2108:            institutions.length;
+  apps\frontend\institutions.html:2109:
+  apps\frontend\institutions.html:2110:
+  apps\frontend\institutions.html:2111:        const active =
+> apps\frontend\institutions.html:2112:            institutions.filter(
+  apps\frontend\institutions.html:2113:                item =>
+  apps\frontend\institutions.html:2114:                    String(
+  apps\frontend\institutions.html:2115:                        getField(
+  apps\frontend\institutions.html:2116:                            item,
+  apps\frontend\institutions.html:2117:                            "status"
+  apps\frontend\institutions.html:2118:                        )
+  apps\frontend\institutions.html:2126:
+  apps\frontend\institutions.html:2127:
+  apps\frontend\institutions.html:2128:        const latest =
+> apps\frontend\institutions.html:2129:            institutions
+  apps\frontend\institutions.html:2130:                .map(
+  apps\frontend\institutions.html:2131:                    item =>
+  apps\frontend\institutions.html:2132:                        getField(
+  apps\frontend\institutions.html:2133:                            item,
+  apps\frontend\institutions.html:2134:                            "updated_at",
+  apps\frontend\institutions.html:2135:                            "updatedAt"
+  apps\frontend\institutions.html:2192:       RENDER TABLE
+  apps\frontend\institutions.html:2193:    ========================================================== */
+  apps\frontend\institutions.html:2194:
+> apps\frontend\institutions.html:2195:    function renderInstitutions() {
+  apps\frontend\institutions.html:2196:
+  apps\frontend\institutions.html:2197:        const table =
+  apps\frontend\institutions.html:2198:            document.querySelector(
+> apps\frontend\institutions.html:2199:                "[data-institutions-table]"
+  apps\frontend\institutions.html:2200:            );
+  apps\frontend\institutions.html:2201:
+  apps\frontend\institutions.html:2202:
+  apps\frontend\institutions.html:2203:        if (!table) {
+  apps\frontend\institutions.html:2204:            return;
+  apps\frontend\institutions.html:2205:        }
+  apps\frontend\institutions.html:2226:
+  apps\frontend\institutions.html:2227:
+  apps\frontend\institutions.html:2228:        const filtered =
+> apps\frontend\institutions.html:2229:            institutions.filter(
+  apps\frontend\institutions.html:2230:                item => {
+  apps\frontend\institutions.html:2231:
+  apps\frontend\institutions.html:2232:                    const code =
+  apps\frontend\institutions.html:2233:                        String(
+  apps\frontend\institutions.html:2234:                            getField(
+  apps\frontend\institutions.html:2235:                                item,
+  apps\frontend\institutions.html:2290:                        class="empty-state"
+  apps\frontend\institutions.html:2291:                    >
+  apps\frontend\institutions.html:2292:                        <strong>
+> apps\frontend\institutions.html:2293:                            No institutions found
+  apps\frontend\institutions.html:2294:                        </strong>
+  apps\frontend\institutions.html:2295:
+  apps\frontend\institutions.html:2296:                        <span>
+  apps\frontend\institutions.html:2297:                            Adjust your search or add a new institution.
+  apps\frontend\institutions.html:2298:                        </span>
+  apps\frontend\institutions.html:2299:                    </td>
+  apps\frontend\institutions.html:2407:                                        type="button"
+  apps\frontend\institutions.html:2408:                                        class="icon-button"
+  apps\frontend\institutions.html:2409:                                        title="Edit institution"
+> apps\frontend\institutions.html:2410:                                        data-rbac="institutions.manage"
+  apps\frontend\institutions.html:2411:                                        data-edit-id="${escapeHtml(id)}"
+  apps\frontend\institutions.html:2412:                                    >
+  apps\frontend\institutions.html:2413:                                        ✎
+  apps\frontend\institutions.html:2414:                                    </button>
+  apps\frontend\institutions.html:2415:
+  apps\frontend\institutions.html:2416:                                </div>
+  apps\frontend\institutions.html:2627:            if (editingId) {
+  apps\frontend\institutions.html:2628:
+  apps\frontend\institutions.html:2629:                await apiRequest(
+> apps\frontend\institutions.html:2630:                    `/institutions/${encodeURIComponent(
+  apps\frontend\institutions.html:2631:                        editingId
+  apps\frontend\institutions.html:2632:                    )}`,
+  apps\frontend\institutions.html:2633:                    {
+  apps\frontend\institutions.html:2634:                        method: "PATCH",
+  apps\frontend\institutions.html:2635:                        body:
+  apps\frontend\institutions.html:2636:                            JSON.stringify(
+  apps\frontend\institutions.html:2642:            } else {
+  apps\frontend\institutions.html:2643:
+  apps\frontend\institutions.html:2644:                await apiRequest(
+> apps\frontend\institutions.html:2645:                    "/institutions",
+  apps\frontend\institutions.html:2646:                    {
+  apps\frontend\institutions.html:2647:                        method: "POST",
+  apps\frontend\institutions.html:2648:                        body:
+  apps\frontend\institutions.html:2649:                            JSON.stringify(
+  apps\frontend\institutions.html:2650:                                payload
+  apps\frontend\institutions.html:2651:                            )
+  apps\frontend\institutions.html:2657:
+  apps\frontend\institutions.html:2658:            closeModal();
+  apps\frontend\institutions.html:2659:
+> apps\frontend\institutions.html:2660:            await loadInstitutions();
+  apps\frontend\institutions.html:2661:
+  apps\frontend\institutions.html:2662:
+  apps\frontend\institutions.html:2663:        } catch (error) {
+  apps\frontend\institutions.html:2664:
+  apps\frontend\institutions.html:2665:            console.error(
+  apps\frontend\institutions.html:2666:                "Failed to save institution:",
+  apps\frontend\institutions.html:2716:                    if (
+  apps\frontend\institutions.html:2717:                        !IDMC_RBAC_API
+  apps\frontend\institutions.html:2718:                            .hasPermission(
+> apps\frontend\institutions.html:2719:                                "institutions.manage"
+  apps\frontend\institutions.html:2720:                            )
+  apps\frontend\institutions.html:2721:                    ) {
+  apps\frontend\institutions.html:2722:
+  apps\frontend\institutions.html:2723:                        return;
+  apps\frontend\institutions.html:2724:
+  apps\frontend\institutions.html:2725:                    }
+  apps\frontend\institutions.html:2736:            )
+  apps\frontend\institutions.html:2737:            ?.addEventListener(
+  apps\frontend\institutions.html:2738:                "click",
+> apps\frontend\institutions.html:2739:                loadInstitutions
+  apps\frontend\institutions.html:2740:            );
+  apps\frontend\institutions.html:2741:
+  apps\frontend\institutions.html:2742:
+  apps\frontend\institutions.html:2743:        document
+  apps\frontend\institutions.html:2744:            .querySelector(
+  apps\frontend\institutions.html:2745:                "[data-search]"
+  apps\frontend\institutions.html:2746:            )
+  apps\frontend\institutions.html:2747:            ?.addEventListener(
+  apps\frontend\institutions.html:2748:                "input",
+> apps\frontend\institutions.html:2749:                renderInstitutions
+  apps\frontend\institutions.html:2750:            );
+  apps\frontend\institutions.html:2751:
+  apps\frontend\institutions.html:2752:
+  apps\frontend\institutions.html:2753:        document
+  apps\frontend\institutions.html:2754:            .querySelector(
+  apps\frontend\institutions.html:2755:                "[data-status-filter]"
+  apps\frontend\institutions.html:2756:            )
+  apps\frontend\institutions.html:2757:            ?.addEventListener(
+  apps\frontend\institutions.html:2758:                "change",
+> apps\frontend\institutions.html:2759:                renderInstitutions
+  apps\frontend\institutions.html:2760:            );
+  apps\frontend\institutions.html:2761:
+  apps\frontend\institutions.html:2762:
+  apps\frontend\institutions.html:2763:        document
+  apps\frontend\institutions.html:2764:            .querySelector(
+  apps\frontend\institutions.html:2765:                "[data-institution-form]"
+  apps\frontend\institutions.html:2825:                    if (
+  apps\frontend\institutions.html:2826:                        !IDMC_RBAC_API
+  apps\frontend\institutions.html:2827:                            .hasPermission(
+> apps\frontend\institutions.html:2828:                                "institutions.manage"
+  apps\frontend\institutions.html:2829:                            )
+  apps\frontend\institutions.html:2830:                    ) {
+  apps\frontend\institutions.html:2831:
+  apps\frontend\institutions.html:2832:                        return;
+  apps\frontend\institutions.html:2833:
+  apps\frontend\institutions.html:2834:                    }
+  apps\frontend\institutions.html:2839:
+  apps\frontend\institutions.html:2840:
+  apps\frontend\institutions.html:2841:                    const institution =
+> apps\frontend\institutions.html:2842:                        institutions.find(
+  apps\frontend\institutions.html:2843:                            item =>
+  apps\frontend\institutions.html:2844:                                String(
+  apps\frontend\institutions.html:2845:                                    getField(
+  apps\frontend\institutions.html:2846:                                        item,
+  apps\frontend\institutions.html:2847:                                        "id"
+  apps\frontend\institutions.html:2848:                                    )
+  apps\frontend\institutions.html:2980:            const allowed =
+  apps\frontend\institutions.html:2981:                IDMC_RBAC_API
+  apps\frontend\institutions.html:2982:                    .hasPermission(
+> apps\frontend\institutions.html:2983:                        "institutions.view"
+  apps\frontend\institutions.html:2984:                    );
+  apps\frontend\institutions.html:2985:
+  apps\frontend\institutions.html:2986:
+  apps\frontend\institutions.html:2987:            if (!allowed) {
+  apps\frontend\institutions.html:2988:
+  apps\frontend\institutions.html:2989:                await IDMC_RBAC_API
+  apps\frontend\institutions.html:2990:                    .requireRBACPage(
+> apps\frontend\institutions.html:2991:                        "institutions.view"
+  apps\frontend\institutions.html:2992:                    );
+  apps\frontend\institutions.html:2993:
+  apps\frontend\institutions.html:2994:                return;
+  apps\frontend\institutions.html:2995:
+  apps\frontend\institutions.html:2996:            }
+  apps\frontend\institutions.html:2997:
+  apps\frontend\institutions.html:3002:
+  apps\frontend\institutions.html:3003:            renderUserFromSession();
+  apps\frontend\institutions.html:3004:
+> apps\frontend\institutions.html:3005:            await loadInstitutions();
+  apps\frontend\institutions.html:3006:
+  apps\frontend\institutions.html:3007:
+  apps\frontend\institutions.html:3008:        } catch (error) {
+  apps\frontend\institutions.html:3009:
+  apps\frontend\institutions.html:3010:            console.error(
+> apps\frontend\institutions.html:3011:                "Institutions page initialization failed:",
+  apps\frontend\institutions.html:3012:                error
+  apps\frontend\institutions.html:3013:            );
+  apps\frontend\institutions.html:3014:
+  apps\frontend\institutions.html:3015:        }
+  apps\frontend\institutions.html:3016:
+  apps\frontend\institutions.html:3017:    }
+
+

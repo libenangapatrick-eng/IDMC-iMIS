@@ -1,0 +1,77 @@
+IDMC SECTION 12K - FINAL END-TO-END AUDIT REPORT
+=================================================
+Generated UTC       : 2026-09-20T13:27:18.6526157Z
+Audit mode          : READ-ONLY (GET requests only)
+Base URL            : http://127.0.0.1:4000/api/v1
+
+1. STUDENT: PASS
+   Student ID        : dc03917a-5cc7-4ad6-abdd-03fc38cee8f9
+   Student number    : IDMC/2026/00001
+   Student status    : ACTIVE
+
+2. PARENT REGISTRATION: PASS
+   Registration ID   : 07435cec-e3c6-4cdc-b5a2-b2e9a4206f1e
+   Status            : REGISTERED
+   Credits           : 60 (minimum 60 / maximum 60)
+   Eligibility       : ELIGIBLE / CLEARED / CLEARED
+   Submitted at      : 2026-09-20T12:41:17.606873+00:00
+   Approved by       : 61d61593-748e-422e-a63f-ccec7628e458
+   Approved at       : 2026-09-20T12:48:45.481+00:00
+   Locked            : NO
+
+3. APPROVAL WORKFLOW: PASS
+   Level / role      : 1 / ACADEMIC
+   Status            : APPROVED
+   Approved by       : 61d61593-748e-422e-a63f-ccec7628e458
+   Approved at       : 2026-09-20T12:48:45.481+00:00
+
+4. COURSE MASTER: PASS
+   Total rows found  : 57
+   Required courses  : 6 / 6 ACTIVE
+   Required duplicates: 0
+
+5. CURRICULUM / OFFERINGS / COURSE REGISTRATIONS: PASS
+   Curriculum ID     : 25284c69-38e4-467f-80a6-e153c3ea1bc1
+   Year / semester   : 1 / 1
+   Courses           : 6 / 6 REGISTERED
+   Credits           : 60
+   Duplicate courses : 0
+   Duplicate offers  : 0
+
+   COURSE DETAILS
+   --------------
+   GST 04101 | Communication Skills | 9 credits | CORE | REGISTERED | offering OPEN
+      course_id=88f548a6-a2fa-4706-b31c-be9051564d38
+      offering_id=88894d29-1925-431c-abb8-85d04807af38
+      course_registration_id=1e0744dd-1fac-4ce8-87a6-8750c522b69f
+   GST 04102 | Basic Computer Applications | 9 credits | CORE | REGISTERED | offering OPEN
+      course_id=0dc4b215-3819-4e19-b3b6-1c1c55ee6625
+      offering_id=43c45a4a-907f-4071-a849-ea2c4251f6c3
+      course_registration_id=1d94a136-5632-4454-8b19-826b035bc0b0
+   PPA 04101 | Principles of Project Planning | 12 credits | CORE | REGISTERED | offering OPEN
+      course_id=cb103619-7848-4a0a-bab8-4bb20e9fdbf7
+      offering_id=75fddb71-cc4c-480d-9242-db4c51fab3cd
+      course_registration_id=9ca1e6dd-b71f-4196-8f01-257c197fc88e
+   BAD 04101 | Principles of Business Administration | 12 credits | CORE | REGISTERED | offering OPEN
+      course_id=0330695e-93d8-4b26-ae89-386c68018acb
+      offering_id=44173acb-35b9-452b-b36a-45b206e11634
+      course_registration_id=237aa694-26d6-4127-91bd-eebe17248c6e
+   ACC 04101 | Elements of Financial Accounting | 10 credits | CORE | REGISTERED | offering OPEN
+      course_id=f153d530-b3f3-4740-b462-8d2c7af5eb10
+      offering_id=19bfd36f-f8a4-4214-95e4-9440e4ef35fe
+      course_registration_id=31abe441-95e1-4ae1-84d6-63b34ff8fbfd
+   GST 04103 | Development Perspectives & Ethics | 8 credits | GENERAL | REGISTERED | offering OPEN
+      course_id=7731d87e-27da-40eb-9705-bfc21631353b
+      offering_id=d2fa67cd-5795-4657-8053-616d9e366953
+      course_registration_id=e45dfb2e-0c7f-4346-baa5-addef7d7847a
+
+FINAL VERDICT: PASS
+Student              : IDMC/2026/00001 / ACTIVE
+Registration         : 07435cec-e3c6-4cdc-b5a2-b2e9a4206f1e / REGISTERED
+Course registrations : 6 / 6 REGISTERED
+Credits              : 60
+Approval             : Level 1 / ACADEMIC / APPROVED
+Registration locked  : NO
+
+No POST, PATCH, PUT, or DELETE request was performed.
+SECTION 12 IS COMPLETE.

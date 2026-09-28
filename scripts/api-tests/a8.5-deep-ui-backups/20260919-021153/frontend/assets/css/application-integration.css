@@ -1,0 +1,57 @@
+.idmc-app-runtime-banner {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9998;
+    display: none;
+    max-width: 420px;
+    padding: 12px 14px;
+    border: 1px solid rgba(127,127,127,.3);
+    border-radius: 12px;
+    background: var(--surface, #fff);
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    font-size: .875rem;
+}
+
+.idmc-app-runtime-banner[data-visible="true"] {
+    display: block;
+}
+
+.idmc-app-runtime-banner[data-type="error"] {
+    border-width: 2px;
+}
+
+.idmc-app-runtime-banner strong {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.idmc-app-runtime-banner button {
+    margin-top: 8px;
+    min-height: 32px;
+    padding: 4px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.idmc-app-busy {
+    cursor: progress;
+}
+
+.idmc-app-busy button,
+.idmc-app-busy input[type="submit"] {
+    cursor: progress;
+}
+
+[data-idmc-permission-hidden="true"] {
+    display: none !important;
+}
+
+@media (max-width: 640px) {
+    .idmc-app-runtime-banner {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        max-width: none;
+    }
+}

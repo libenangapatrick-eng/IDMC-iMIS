@@ -1,0 +1,61 @@
+IDMC iMIS LOGIN / IDENTITY DIAGNOSIS
+====================================
+Source reviewed: IDMC_iMIS (2)(1).zip
+Review date: 2026-09-21
+
+PROJECT INVENTORY
+- 46 SQL migrations
+- 78 backend TypeScript files
+- 39 backend router-bearing files
+- 52 top-level frontend HTML pages
+
+LIVE EVIDENCE PRESERVED IN THE PROJECT
+repair-backups\identity-rbac-20260921-163959\before.json
+repair-backups\identity-rbac-20260921-163959\after.json
+
+CONFIRMED IDENTITY STATE
+1. Owner Auth identity exists:
+   email: libenangapatrick@gmail.com
+   auth id: e84d7422-b1cc-411a-b062-70c2e7496e4f
+2. Owner public.users row exists, maps to the same Auth ID, and is ACTIVE.
+3. Owner has ADMIN and SUPER_ADMIN roles. It does not have STUDENT in the
+   latest completed Section 13C read-back.
+4. Student IDMC/2026/00001 is ACTIVE and maps to public user
+   c24e3b97-1542-4a9c-8fbe-a1c572812fe6.
+5. The student maps to a separate Auth identity
+   3aabd34d-ed0b-4beb-9b0f-3a5da49958fc and has only STUDENT.
+6. Student password authentication passed during Section 13C.
+7. Therefore the current admin Invalid login credentials is a Supabase Auth
+   password mismatch. It is not caused by public.users, RBAC, or student link.
+
+CODE DEFECTS FOUND
+1. The shared service-role Supabase client was also used for password sign-in.
+   A signed-in user session must not share the privileged database client.
+2. The UI offered one ambiguous identifier field for staff and students.
+3. login.html redirected to Student Portal when any STUDENT role existed,
+   while auth.js redirected only student-only accounts. These rules conflicted.
+4. The client did not tell the backend which account type was being used.
+5. Backend errors were intentionally generic at the browser boundary; detailed
+   causes are available only in backend logs, which is the safer behavior.
+
+SECURITY / DATABASE OBSERVATIONS
+1. Identity/RBAC tables have RLS enabled but no browser-facing policies in the
+   migration set. Current design intentionally routes privileged data access
+   through the backend service key.
+2. The secret/service key remains backend-only. The login client uses the
+   public publishable key and is isolated per login request.
+3. Section 13D removes an owner STUDENT assignment if one appears, removes
+   ADMIN/SUPER_ADMIN from the student, and verifies there is no owner-to-student
+   row link.
+4. Passwords are never written to source, reports, command arguments, or JSON.
+   Section 13D collects the new owner password through hidden prompts.
+
+SECTION 13D CORRECTIONS
+- Separate Staff/Admin and Student modes in login.html.
+- Pass accountType to the backend and enforce it after authentication.
+- Use an isolated publishable-key Supabase client for password sign-in.
+- Keep the shared secret-key client session-free for database/admin operations.
+- Normalize landing-page logic: student-only -> Student Portal; otherwise ->
+  administration dashboard.
+- Reset and verify the owner password safely.
+- Reconcile and verify owner/student role separation.

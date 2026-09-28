@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HOD Academic Desk | IDMC iMIS</title>
+  <link rel="stylesheet" href="assets/css/student-requests.css">
+</head>
+<body>
+<header class="request-topbar">
+  <a class="request-brand" href="dashboard.html"><span>IDMC</span><div>Academic Desk<small>Head of Department</small></div></a>
+  <nav><a href="staff-portal.html">Staff Portal</a><a href="dashboard.html">Dashboard</a></nav>
+</header>
+<main class="request-shell">
+  <section class="request-title">
+    <div><span class="request-kicker">Department workflow</span><h1>HOD Academic Desk</h1><p>Review every student request and control result confirmation, approval and publication.</p></div>
+    <button id="refreshButton" type="button">Refresh</button>
+  </section>
+  <div class="workflow-strip"><span>1. Lecturer calculates</span><span>2. HOD confirms &amp; reviews</span><span>3. HOD approves</span><span>4. HOD publishes</span><span>5. Student views</span></div>
+  <div class="desk-tabs" role="tablist"><button class="active" data-tab="requests">Student Requests</button><button data-tab="results">Result Approval &amp; Publication</button></div>
+
+  <section id="requestsPanel" class="desk-panel">
+    <section id="summary" class="request-summary"></section>
+    <section class="request-panel">
+      <div class="request-filters">
+        <label><span>Search student or request</span><input id="searchInput" placeholder="Name, student number, subject or course"></label>
+        <label><span>Status</span><select id="statusFilter"><option value="">All statuses</option><option>PENDING</option><option>SUBMITTED</option><option>UNDER_REVIEW</option><option>APPROVED</option><option>REJECTED</option><option>COMPLETED</option><option>CANCELLED</option></select></label>
+        <button id="filterButton" type="button">Apply Filters</button>
+      </div>
+      <div id="requestMessage" class="request-message">Loading requests...</div>
+      <div class="request-table-wrap"><table><thead><tr><th>Student</th><th>Request</th><th>Details</th><th>Academic Period</th><th>Reason</th><th>Requested</th><th>Status</th><th>Decision</th></tr></thead><tbody id="requestRows"></tbody></table></div>
+    </section>
+  </section>
+
+  <section id="resultsPanel" class="desk-panel" hidden>
+    <section id="resultSummary" class="request-summary"></section>
+    <section class="bulk-workflow" id="bulkWorkflow"></section>
+    <section class="request-panel">
+      <div class="request-filters result-filters">
+        <label><span>Search student or course</span><input id="resultSearch" placeholder="Student number, name, course code or course name"></label>
+        <label><span>Workflow status</span><select id="resultStatus"><option value="">All workflow results</option><option>CALCULATED</option><option>SUBMITTED</option><option>UNDER_REVIEW</option><option>APPROVED</option><option>PUBLISHED</option><option>LOCKED</option></select></label>
+        <button id="resultFilterButton" type="button">Apply Filters</button>
+      </div>
+      <div id="resultMessage" class="request-message">Loading department results...</div>
+      <div id="resultBatches" class="result-batches"></div>
+    </section>
+  </section>
+</main>
+
+<dialog id="decisionDialog"><form method="dialog" id="decisionForm"><h2 id="decisionTitle">Decide Request</h2><p id="decisionStudent"></p><label><span>Decision note</span><textarea id="decisionReason" rows="4" placeholder="Required when rejecting"></textarea></label><div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button id="decisionSubmit" value="default" type="submit">Confirm</button></div></form></dialog>
+<dialog id="workflowDialog"><form method="dialog" id="workflowForm"><h2 id="workflowTitle">Confirm Result Action</h2><p id="workflowText"></p><div class="warning-note">The system changes only records at the correct workflow stage. Published results become visible in the Student Portal immediately.</div><div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button id="workflowSubmit" value="default" type="submit">Confirm</button></div></form></dialog>
+<script src="assets/js/idmc-session.js"></script><script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/rbac.js"></script><script src="assets/js/student-requests.js"></script>
+</body></html>
+

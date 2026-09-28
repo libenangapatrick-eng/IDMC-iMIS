@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Staff Accounts | IDMC iMIS</title>
+  <link rel="stylesheet" href="assets/css/staff-institutional.css">
+</head>
+<body>
+<header class="masthead"><div class="brand">IDMC</div><div><strong>Institute of Development and Medical Sciences</strong><span>Integrated Management Information System</span></div><button id="menuButton" class="menu" type="button">Menu</button></header>
+<div class="layout">
+  <aside id="sidebar" class="sidebar">
+    <section class="identity"><div class="portrait"><span>AD</span></div><strong>Staff Account Administration</strong><small>Authorized access only</small></section>
+    <nav aria-label="Administration"><a href="dashboard.html">Dashboard</a><a class="active" href="staff-accounts.html">Staff Accounts</a><a href="users.html">Users</a><a href="roles.html">Roles &amp; Permissions</a></nav>
+    <button id="logoutButton" class="logout" type="button">Log Out</button>
+  </aside>
+  <main class="main">
+    <div class="utility"><strong>Identity and RBAC Administration</strong><span id="today"></span></div>
+    <div id="message" class="message" hidden></div>
+    <div class="content">
+      <h1>Staff Accounts and Roles</h1>
+      <p class="lead">Create a real IDMC login or link an existing login to one staff profile and one authorized operational role.</p>
+      <section class="panel">
+        <h2>Provision Staff Account</h2>
+        <p class="notice">Use verified personal or institutional details. A temporary password is sent only to Supabase Auth and is never stored in the staff record.</p>
+        <form id="accountForm" class="form-grid" autocomplete="off">
+          <label class="field">Account action<select name="mode" id="mode" required><option value="CREATE">Create new account</option><option value="LINK">Link existing IDMC account</option></select></label>
+          <label class="field link-field" hidden>Existing email, username or user number<input name="identifier" id="identifier" maxlength="255"></label>
+          <label class="field create-field">First name<input name="firstName" id="firstName" maxlength="100"></label>
+          <label class="field create-field">Middle name<input name="middleName" maxlength="100"></label>
+          <label class="field create-field">Last name<input name="lastName" id="lastName" maxlength="100"></label>
+          <label class="field create-field">Email<input name="email" id="email" type="email" maxlength="255"></label>
+          <label class="field create-field">Username<input name="username" maxlength="100"></label>
+          <label class="field create-field">Temporary password<input name="password" id="password" type="password" minlength="10" autocomplete="new-password"></label>
+          <label class="field">Employee number (optional)<input name="employeeNumber" maxlength="50" placeholder="Generated automatically when blank"></label>
+          <label class="field">Operational role<select name="roleCode" id="roleCode" required><option value="">Select role</option></select></label>
+          <label class="field">Institution<select name="institutionId" id="institutionId" required><option value="">Select institution</option></select></label>
+          <label class="field">Department<select name="departmentId" id="departmentId"><option value="">No department selected</option></select></label>
+          <label class="field">Job title<input name="jobTitle" maxlength="150" placeholder="Defaults from selected role"></label>
+          <label class="field">Phone<input name="phone" maxlength="50"></label>
+          <label class="field">Employment type<select name="employmentType"><option>FULL_TIME</option><option>PART_TIME</option><option>CONTRACT</option><option>TEMPORARY</option><option>VOLUNTEER</option><option>INTERNSHIP</option><option>OTHER</option></select></label>
+          <label class="field">Appointment date<input name="appointmentDate" type="date"></label>
+          <div class="full"><button class="button" type="submit">Save Staff Account</button></div>
+        </form>
+      </section>
+      <h2>Connected Staff Accounts</h2>
+      <div id="accounts"><p class="loading">Loading staff accounts…</p></div>
+    </div>
+    <footer>IDMC iMIS · Identity, Staff Profile and Role Control</footer>
+  </main>
+</div>
+<script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/staff-account-admin.js"></script>
+</body>
+</html>

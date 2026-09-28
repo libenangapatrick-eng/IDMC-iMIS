@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Notifications | IDMC iMIS</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/student-portal-pages.css"
+    >
+</head>
+
+<body>
+<div class="idmc-shell">
+
+    <header class="idmc-topbar">
+        <div class="idmc-brand">
+            <div class="idmc-brand-mark">NT</div>
+
+            <div>
+                <h1>IDMC iMIS</h1>
+                <p>Student Information Portal</p>
+            </div>
+        </div>
+
+        <div class="idmc-user">
+            Signed in as
+            <strong id="current-user">Student</strong>
+        </div>
+    </header>
+
+    <div class="idmc-layout">
+
+        <aside class="idmc-sidebar">
+            <nav class="idmc-nav">
+            <a href="student-portal.html">Portal</a>
+            <a href="student-profile.html">Profile</a>
+            <a href="student-registration.html">Registration</a>
+            <a href="student-attendance.html">Attendance</a>
+            <a href="student-results.html">Results</a>
+            <a href="student-timetable.html">Timetable</a>
+            <a href="student-fees.html">Fees & Payments</a>
+            <a href="student-documents.html">Documents</a>
+            <a class="active" href="student-notifications.html">Notifications</a>
+
+            </nav>
+        </aside>
+
+        <main class="idmc-main">
+
+            <div class="idmc-heading">
+                <div>
+                    <h2>Notifications</h2>
+                    <p>
+                        View your current notifications
+                        information.
+                    </p>
+                </div>
+
+                <div class="idmc-actions">
+                    <a
+                        class="idmc-button"
+                        href="student-portal.html"
+                    >
+                        Back to Portal
+                    </a>
+
+                    <button
+                        class="idmc-button primary"
+                        type="button"
+                        onclick="window.IDMCStudentPortalPage?.refresh?.()"
+                    >
+                        Refresh
+                    </button>
+                </div>
+            </div>
+
+            <section class="idmc-profile-strip">
+                <div>
+                    <span>Student</span>
+                    <strong id="student-name">—</strong>
+                </div>
+
+                <div>
+                    <span>Registration Number</span>
+                    <strong id="student-number">—</strong>
+                </div>
+
+                <div>
+                    <span>Programme</span>
+                    <strong id="student-programme">—</strong>
+                </div>
+            </section>
+
+            <section class="idmc-grid">
+                <div class="idmc-stat">
+                    <div class="idmc-stat-label">
+                        Records
+                    </div>
+
+                    <div
+                        id="record-count"
+                        class="idmc-stat-value"
+                    >
+                        —
+                    </div>
+                </div>
+
+
+            </section>
+
+            <section class="idmc-card">
+                <div class="idmc-card-header">
+                    <h3>Notifications</h3>
+
+                    <span class="idmc-badge">
+                        Live
+                    </span>
+                </div>
+
+                <div id="page-content">
+                    <div class="idmc-state">
+                        <div>
+                            <strong>Loading</strong>
+                            Preparing student information...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<script src="assets/js/idmc-session.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/rbac.js"></script>
+
+<script>
+window.IDMC_STUDENT_PAGE = {
+    title: "Notifications",
+    view: "notifications",
+    permission: "communications.view"
+};
+</script>
+
+<script src="assets/js/student-portal-pages.js"></script>
+
+</body>
+</html>

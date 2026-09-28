@@ -1,0 +1,158 @@
+IDMC iMIS - A8.1 APPLICATION ACCEPTANCE + RELEASE READINESS
+Generated: 2026-09-18 23:42:44
+
+PASS: 136
+FAIL: 1
+SKIP: 0
+
+RESULTS
+=======
+[PASS] Pre-flight :: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend :: 
+[PASS] Pre-flight :: C:\Users\liben\Documents\IDMC_iMIS\apps\backend :: 
+[PASS] Pre-flight :: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\js :: 
+[PASS] Pre-flight :: C:\Users\liben\Documents\IDMC_iMIS\apps\frontend\assets\css :: 
+[PASS] Page inventory :: dashboard.html :: 
+[PASS] Page inventory :: institutions.html :: 
+[PASS] Page inventory :: campuses.html :: 
+[PASS] Page inventory :: departments.html :: 
+[PASS] Page inventory :: schools.html :: 
+[PASS] Page inventory :: students.html :: 
+[PASS] Page inventory :: users.html :: 
+[PASS] Page inventory :: roles.html :: 
+[PASS] Page inventory :: profile.html :: 
+[PASS] Page inventory :: student-portal.html :: 
+[PASS] Page inventory :: student-profile.html :: 
+[PASS] Page inventory :: student-registration.html :: 
+[PASS] Page inventory :: student-attendance.html :: 
+[PASS] Page inventory :: student-results.html :: 
+[PASS] Page inventory :: student-timetable.html :: 
+[PASS] Page inventory :: student-fees.html :: 
+[PASS] Page inventory :: student-documents.html :: 
+[PASS] Page inventory :: student-notifications.html :: 
+[PASS] Page inventory :: admissions.html :: 
+[PASS] Page inventory :: registration.html :: 
+[PASS] Page inventory :: attendance.html :: 
+[PASS] Page inventory :: assessment.html :: 
+[PASS] Page inventory :: examinations.html :: 
+[PASS] Page inventory :: results.html :: 
+[PASS] Page inventory :: timetable.html :: 
+[PASS] Page inventory :: finance.html :: 
+[PASS] Page inventory :: communications.html :: 
+[PASS] Page inventory :: library.html :: 
+[PASS] Page inventory :: hostel.html :: 
+[PASS] Page inventory :: hr.html :: 
+[PASS] Page inventory :: research.html :: 
+[PASS] Page inventory :: graduation.html :: 
+[PASS] Page inventory :: alumni.html :: 
+[PASS] Page inventory :: transcripts.html :: 
+[PASS] Page inventory :: operations.html :: 
+[PASS] Page inventory :: reports.html :: 
+[PASS] Page inventory :: system.html :: 
+[PASS] JavaScript runtime :: api.js :: 
+[PASS] JavaScript runtime :: auth.js :: 
+[PASS] JavaScript runtime :: rbac.js :: 
+[PASS] JavaScript runtime :: module-contracts.js :: 
+[PASS] JavaScript runtime :: module-pages.js :: 
+[PASS] JavaScript runtime :: module-crud.js :: 
+[PASS] JavaScript runtime :: module-relationships.js :: 
+[PASS] JavaScript runtime :: module-full-forms.js :: 
+[PASS] JavaScript runtime :: module-crud-live-guard.js :: 
+[PASS] JavaScript runtime :: module-e2e.js :: 
+[PASS] JavaScript runtime :: application-integration.js :: 
+[PASS] Stylesheet runtime :: module-full-forms.css :: 
+[PASS] Stylesheet runtime :: module-e2e.css :: 
+[PASS] Stylesheet runtime :: application-integration.css :: 
+[PASS] JS syntax :: api.js :: 
+[PASS] JS syntax :: app-workflow.js :: 
+[PASS] JS syntax :: application-integration.js :: 
+[PASS] JS syntax :: auth.js :: 
+[PASS] JS syntax :: config.js :: 
+[PASS] JS syntax :: dashboard.js :: 
+[PASS] JS syntax :: idmc-session.js :: 
+[PASS] JS syntax :: module-contracts.js :: 
+[PASS] JS syntax :: module-crud-execution.js :: 
+[PASS] JS syntax :: module-crud-live-guard.js :: 
+[PASS] JS syntax :: module-crud.js :: 
+[PASS] JS syntax :: module-e2e.js :: 
+[PASS] JS syntax :: module-form-binding.js :: 
+[PASS] JS syntax :: module-full-forms.js :: 
+[PASS] JS syntax :: module-navigation.js :: 
+[PASS] JS syntax :: module-pages.js :: 
+[PASS] JS syntax :: module-relationships.js :: 
+[PASS] JS syntax :: rbac.js :: 
+[PASS] JS syntax :: student-portal-home.js :: 
+[PASS] JS syntax :: student-portal-pages.js :: 
+[PASS] JS syntax :: students.js :: 
+[PASS] JS syntax :: users.js :: 
+[PASS] Inline JS :: campuses.html #1 :: 
+[PASS] Inline JS :: dashboard.html #1 :: 
+[PASS] Inline JS :: departments.html #1 :: 
+[PASS] Inline JS :: institutions.html #1 :: 
+[PASS] Inline JS :: login.html #1 :: 
+[PASS] Inline JS :: profile.html #1 :: 
+[PASS] Inline JS :: roles.html #1 :: 
+[PASS] Inline JS :: schools.html #1 :: 
+[PASS] Inline JS :: set-password.html #1 :: 
+[PASS] Inline JS :: student-attendance.html #1 :: 
+[PASS] Inline JS :: student-documents.html #1 :: 
+[PASS] Inline JS :: student-fees.html #1 :: 
+[PASS] Inline JS :: student-notifications.html #1 :: 
+[PASS] Inline JS :: student-profile.html #1 :: 
+[PASS] Inline JS :: student-registration.html #1 :: 
+[PASS] Inline JS :: student-results.html #1 :: 
+[PASS] Inline JS :: student-timetable.html #1 :: 
+[PASS] Inline JS :: students.html #1 :: 
+[PASS] Inline JS :: users.html #1 :: 
+[PASS] Inline JS :: academics.html #1 :: 
+[PASS] Navigation :: Internal HTML links :: Broken links: 0
+[PASS] Student portal :: student-registration.html :: 
+[PASS] Student portal :: student-attendance.html :: 
+[PASS] Student portal :: student-results.html :: 
+[PASS] Student portal :: student-timetable.html :: 
+[PASS] Student portal :: student-fees.html :: 
+[PASS] Student portal :: student-documents.html :: 
+[PASS] Student portal :: student-notifications.html :: 
+[PASS] Module integration :: admissions.html :: 
+[PASS] Module integration :: registration.html :: 
+[PASS] Module integration :: attendance.html :: 
+[PASS] Module integration :: assessment.html :: 
+[PASS] Module integration :: examinations.html :: 
+[PASS] Module integration :: results.html :: 
+[PASS] Module integration :: timetable.html :: 
+[PASS] Module integration :: finance.html :: 
+[PASS] Module integration :: communications.html :: 
+[PASS] Module integration :: library.html :: 
+[PASS] Module integration :: hostel.html :: 
+[PASS] Module integration :: hr.html :: 
+[PASS] Module integration :: research.html :: 
+[PASS] Module integration :: graduation.html :: 
+[PASS] Module integration :: alumni.html :: 
+[PASS] Module integration :: transcripts.html :: 
+[PASS] Module integration :: operations.html :: 
+[PASS] Module integration :: reports.html :: 
+[PASS] Module integration :: system.html :: 
+[PASS] Architecture :: Central IDMCAPI transport :: No direct fetch() in protected application runtime.
+[PASS] Backend :: Health :: HTTP 200
+[PASS] Authentication :: Existing access token :: Active; approximately 41 minute(s) remaining.
+[PASS] Authenticated GET :: Institutions :: HTTP 200
+[PASS] Authenticated GET :: Campuses :: HTTP 200
+[PASS] Authenticated GET :: Departments :: HTTP 200
+[PASS] Authenticated GET :: Schools :: HTTP 200
+[PASS] Authenticated GET :: Students :: HTTP 200
+[PASS] Authenticated GET :: Users :: HTTP 200
+[PASS] Authenticated GET :: Roles :: HTTP 200
+[FAIL] Authenticated GET :: Students Me :: HTTP 404
+[PASS] Backend :: TypeScript typecheck :: 
+[PASS] Backend :: Production build :: 
+
+SAFETY
+======
+GET requests only
+NO POST
+NO PATCH
+NO PUT
+NO DELETE
+NO database mutation
+NO token generated
+NO frontend modification
+NO backend modification

@@ -1,0 +1,31 @@
+IDMC iMIS LOGIN REPAIR
+
+1. Copy the whole FIX-IDMC-LOGIN-AND-SUPABASE folder to:
+   C:\Users\liben\Documents\IDMC_iMIS\
+
+2. Open PowerShell as your normal Windows user.
+
+3. Run:
+   cd C:\Users\liben\Documents\IDMC_iMIS\
+   Set-ExecutionPolicy -Scope Process Bypass
+   .\FIX-IDMC-LOGIN-AND-SUPABASE\FIX-IDMC-LOGIN-AND-SUPABASE.ps1
+
+4. When asked for Password, enter the existing Supabase password for:
+   libenangapatrick@gmail.com
+
+The script:
+- confirms the existing Supabase Auth account;
+- finds the matching public.users row by auth_user_id/email;
+- repairs only a stale mapping and never deletes the Auth account;
+- creates public.users only when no matching application account exists;
+- activates SUPER_ADMIN and its user assignment;
+- reconciles active permissions for SUPER_ADMIN;
+- starts the backend if it is not already running;
+- tests POST /api/v1/auth/login;
+- tests GET /api/v1/auth/me using the returned access token;
+- writes a safe report under storage\repair-reports.
+
+For database repair only without starting the backend automatically:
+   .\FIX-IDMC-LOGIN-AND-SUPABASE\FIX-IDMC-LOGIN-AND-SUPABASE.ps1 -NoStartBackend
+
+Do not include or share the .env file. This repair folder contains no credentials.

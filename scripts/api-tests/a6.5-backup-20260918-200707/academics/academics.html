@@ -1,0 +1,1169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="IDMC iMIS Academics Management"
+    >
+
+    <title>IDMC iMIS | Academics</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+            background: #f4f7f6;
+            color: #17352a;
+        }
+
+        header {
+            background: #174a35;
+            color: white;
+            padding: 18px 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            opacity: .85;
+            font-size: 13px;
+        }
+
+        main {
+            width: min(1400px, 96%);
+            margin: 24px auto;
+        }
+
+        .toolbar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow:
+                0 2px 10px
+                rgba(0,0,0,.06);
+        }
+
+        input,
+        select,
+        button,
+        textarea {
+            font: inherit;
+        }
+
+        input,
+        select,
+        textarea {
+            border: 1px solid #ccd8d2;
+            border-radius: 8px;
+            padding: 10px 12px;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #28723e;
+        }
+
+        button {
+            border: 0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .primary {
+            background: #174a35;
+            color: white;
+        }
+
+        .secondary {
+            background: #e7efeb;
+            color: #174a35;
+        }
+
+        .danger {
+            background: #b42318;
+            color: white;
+        }
+
+        .card {
+            margin-top: 18px;
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow:
+                0 2px 10px
+                rgba(0,0,0,.06);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th,
+        td {
+            padding: 11px;
+            border-bottom:
+                1px solid #e4ebe7;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background: #f0f5f2;
+            font-size: 12px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background: #e7efeb;
+            font-size: 11px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+
+            .form-grid {
+                grid-template-columns:
+                    repeat(2, minmax(140px, 1fr));
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 15px;
+            }
+
+            main {
+                width: 94%;
+                margin: 15px auto;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toolbar {
+                align-items: stretch;
+            }
+
+            .toolbar input,
+            .toolbar select,
+            .toolbar button {
+                width: 100%;
+            }
+
+            .card {
+                padding: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>IDMC iMIS — Academics</h1>
+
+    <p>
+        Student academic records management
+    </p>
+
+</header>
+
+<main>
+
+    <section class="toolbar">
+
+        <input
+            id="institutionId"
+            placeholder="Institution ID"
+        >
+
+        <input
+            id="search"
+            placeholder="Search course, code or student..."
+        >
+
+        <select id="statusFilter">
+
+            <option value="">
+                All Statuses
+            </option>
+
+            <option value="ACTIVE">
+                Active
+            </option>
+
+            <option value="INACTIVE">
+                Inactive
+            </option>
+
+            <option value="COMPLETED">
+                Completed
+            </option>
+
+            <option value="SUSPENDED">
+                Suspended
+            </option>
+
+            <option value="WITHDRAWN">
+                Withdrawn
+            </option>
+
+        </select>
+
+        <button
+            class="primary"
+            id="loadButton"
+            type="button"
+        >
+            Load Records
+        </button>
+
+        <button
+            class="secondary"
+            id="newButton"
+            type="button"
+        >
+            New Record
+        </button>
+
+    </section>
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
+    <section
+        id="formCard"
+        class="card hidden"
+    >
+
+        <h2 id="formTitle">
+            New Academic Record
+        </h2>
+
+        <form id="academicForm">
+
+            <input
+                type="hidden"
+                id="recordId"
+            >
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label>
+                        Student ID *
+                    </label>
+
+                    <input
+                        id="studentId"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>
+                        Academic Year
+                    </label>
+
+                    <input
+                        id="academicYear"
+                        placeholder="2026/2027"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>
+                        Semester
+                    </label>
+
+                    <input
+                        id="semester"
+                        placeholder="Semester 1"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>
+                        Programme ID
+                    </label>
+
+                    <input id="programmeId">
+                </div>
+
+                <div class="field">
+                    <label>
+                        Course Code
+                    </label>
+
+                    <input
+                        id="courseCode"
+                        placeholder="CSC101"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>
+                        Course Name
+                    </label>
+
+                    <input id="courseName">
+                </div>
+
+                <div class="field">
+                    <label>
+                        Registration Status
+                    </label>
+
+                    <select id="registrationStatus">
+
+                        <option value="ACTIVE">
+                            Active
+                        </option>
+
+                        <option value="INACTIVE">
+                            Inactive
+                        </option>
+
+                        <option value="COMPLETED">
+                            Completed
+                        </option>
+
+                        <option value="SUSPENDED">
+                            Suspended
+                        </option>
+
+                        <option value="WITHDRAWN">
+                            Withdrawn
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>
+                        Credits
+                    </label>
+
+                    <input
+                        id="credits"
+                        type="number"
+                        step="0.01"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>
+                        Grade
+                    </label>
+
+                    <input
+                        id="grade"
+                        placeholder="A"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>
+                        Grade Point
+                    </label>
+
+                    <input
+                        id="gradePoint"
+                        type="number"
+                        step="0.01"
+                    >
+                </div>
+
+                <div class="field full">
+
+                    <label>
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        rows="3"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <button
+                class="primary"
+                type="submit"
+            >
+                Save Record
+            </button>
+
+            <button
+                class="secondary"
+                type="button"
+                id="cancelButton"
+            >
+                Cancel
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="card">
+
+        <h2>
+            Academic Records
+        </h2>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Student
+                        </th>
+
+                        <th>
+                            Year
+                        </th>
+
+                        <th>
+                            Semester
+                        </th>
+
+                        <th>
+                            Course
+                        </th>
+
+                        <th>
+                            Code
+                        </th>
+
+                        <th>
+                            Credits
+                        </th>
+
+                        <th>
+                            Grade
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="recordsBody">
+
+                    <tr>
+
+                        <td
+                            colspan="9"
+                            style="text-align:center"
+                        >
+                            No records loaded.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+"use strict";
+
+const API_BASE =
+    "/api/v1/academics";
+
+let records = [];
+
+const $ = id =>
+    document.getElementById(id);
+
+function message(text, error = false) {
+
+    const element =
+        $("message");
+
+    element.textContent = text;
+
+    element.style.color =
+        error
+            ? "#b42318"
+            : "#28723e";
+}
+
+function institutionId() {
+
+    return $("institutionId")
+        .value
+        .trim();
+
+}
+
+function getToken() {
+
+    return (
+        localStorage.getItem("access_token") ||
+        localStorage.getItem("token") ||
+        sessionStorage.getItem("access_token") ||
+        sessionStorage.getItem("token") ||
+        ""
+    );
+
+}
+
+function headers() {
+
+    const token =
+        getToken();
+
+    const result = {
+        "Content-Type":
+            "application/json"
+    };
+
+    if (token) {
+
+        result.Authorization =
+            `Bearer ${token}`;
+
+    }
+
+    return result;
+
+}
+
+async function api(
+    url,
+    options = {}
+) {
+
+    const response =
+        await fetch(
+            url,
+            {
+                ...options,
+                headers: {
+                    ...headers(),
+                    ...(options.headers || {})
+                }
+            }
+        );
+
+    if (
+        response.status === 204
+    ) {
+
+        return null;
+
+    }
+
+    const data =
+        await response.json()
+            .catch(() => null);
+
+    if (!response.ok) {
+
+        throw new Error(
+            data?.message ||
+            `Request failed (${response.status})`
+        );
+
+    }
+
+    return data;
+
+}
+
+async function loadRecords() {
+
+    const id =
+        institutionId();
+
+    if (!id) {
+
+        message(
+            "Institution ID is required.",
+            true
+        );
+
+        return;
+
+    }
+
+    try {
+
+        message(
+            "Loading academic records..."
+        );
+
+        records =
+            await api(
+                `${API_BASE}/?institutionId=${encodeURIComponent(id)}`
+            );
+
+        render();
+
+        message(
+            `${records.length} record(s) loaded.`
+        );
+
+    } catch (error) {
+
+        message(
+            error.message,
+            true
+        );
+
+    }
+
+}
+
+function render() {
+
+    const body =
+        $("recordsBody");
+
+    const search =
+        $("search")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const status =
+        $("statusFilter").value;
+
+    const filtered =
+        records.filter(record => {
+
+            const text =
+                [
+                    record.student_id,
+                    record.course_code,
+                    record.course_name,
+                    record.academic_year,
+                    record.semester,
+                    record.grade
+                ]
+                .join(" ")
+                .toLowerCase();
+
+            const searchMatch =
+                !search ||
+                text.includes(search);
+
+            const statusMatch =
+                !status ||
+                record.registration_status === status;
+
+            return (
+                searchMatch &&
+                statusMatch
+            );
+
+        });
+
+    if (!filtered.length) {
+
+        body.innerHTML = `
+            <tr>
+                <td colspan="9"
+                    style="text-align:center">
+                    No matching records.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+    body.innerHTML =
+        filtered
+            .map(record => `
+
+                <tr>
+
+                    <td>
+                        ${escapeHtml(
+                            record.student_id
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.academic_year || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.semester || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.course_name || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.course_code || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${record.credits ?? "-"}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.grade || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        <span class="status">
+                            ${escapeHtml(
+                                record.registration_status
+                            )}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="secondary"
+                                type="button"
+                                onclick="editRecord('${record.id}')"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="danger"
+                                type="button"
+                                onclick="deleteRecord('${record.id}')"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `)
+            .join("");
+
+}
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+function showForm(record = null) {
+
+    $("formCard")
+        .classList
+        .remove("hidden");
+
+    $("formTitle")
+        .textContent =
+        record
+            ? "Edit Academic Record"
+            : "New Academic Record";
+
+    $("recordId").value =
+        record?.id || "";
+
+    $("studentId").value =
+        record?.student_id || "";
+
+    $("academicYear").value =
+        record?.academic_year || "";
+
+    $("semester").value =
+        record?.semester || "";
+
+    $("programmeId").value =
+        record?.programme_id || "";
+
+    $("courseCode").value =
+        record?.course_code || "";
+
+    $("courseName").value =
+        record?.course_name || "";
+
+    $("registrationStatus").value =
+        record?.registration_status ||
+        "ACTIVE";
+
+    $("credits").value =
+        record?.credits ?? "";
+
+    $("grade").value =
+        record?.grade || "";
+
+    $("gradePoint").value =
+        record?.grade_point ?? "";
+
+    $("notes").value =
+        record?.notes || "";
+
+}
+
+function hideForm() {
+
+    $("formCard")
+        .classList
+        .add("hidden");
+
+    $("academicForm")
+        .reset();
+
+    $("recordId").value = "";
+
+}
+
+function formPayload() {
+
+    const value =
+        id => $(id).value.trim();
+
+    const numeric =
+        id => {
+
+            const raw =
+                value(id);
+
+            return raw === ""
+                ? null
+                : Number(raw);
+
+        };
+
+    return {
+
+        institutionId:
+            institutionId(),
+
+        studentId:
+            value("studentId"),
+
+        academicYear:
+            value("academicYear") || null,
+
+        semester:
+            value("semester") || null,
+
+        programmeId:
+            value("programmeId") || null,
+
+        courseCode:
+            value("courseCode") || null,
+
+        courseName:
+            value("courseName") || null,
+
+        registrationStatus:
+            $("registrationStatus").value,
+
+        credits:
+            numeric("credits"),
+
+        grade:
+            value("grade") || null,
+
+        gradePoint:
+            numeric("gradePoint"),
+
+        notes:
+            value("notes") || null
+
+    };
+
+}
+
+async function saveRecord(event) {
+
+    event.preventDefault();
+
+    const id =
+        $("recordId").value;
+
+    try {
+
+        message(
+            id
+                ? "Updating record..."
+                : "Creating record..."
+        );
+
+        await api(
+            id
+                ? `${API_BASE}/${id}`
+                : `${API_BASE}/`,
+            {
+                method:
+                    id
+                        ? "PATCH"
+                        : "POST",
+
+                body:
+                    JSON.stringify(
+                        formPayload()
+                    )
+            }
+        );
+
+        hideForm();
+
+        await loadRecords();
+
+        message(
+            id
+                ? "Academic record updated."
+                : "Academic record created."
+        );
+
+    } catch (error) {
+
+        message(
+            error.message,
+            true
+        );
+
+    }
+
+}
+
+window.editRecord =
+    function(id) {
+
+        const record =
+            records.find(
+                item => item.id === id
+            );
+
+        if (record) {
+
+            showForm(record);
+
+        }
+
+    };
+
+window.deleteRecord =
+    async function(id) {
+
+        const record =
+            records.find(
+                item => item.id === id
+            );
+
+        if (!record) {
+            return;
+        }
+
+        const confirmed =
+            window.confirm(
+                "Delete this academic record?"
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+
+            message(
+                "Deleting record..."
+            );
+
+            await api(
+                `${API_BASE}/${id}?institutionId=${encodeURIComponent(
+                    institutionId()
+                )}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+            await loadRecords();
+
+            message(
+                "Academic record deleted."
+            );
+
+        } catch (error) {
+
+            message(
+                error.message,
+                true
+            );
+
+        }
+
+    };
+
+$("loadButton")
+    .addEventListener(
+        "click",
+        loadRecords
+    );
+
+$("newButton")
+    .addEventListener(
+        "click",
+        () => showForm()
+    );
+
+$("cancelButton")
+    .addEventListener(
+        "click",
+        hideForm
+    );
+
+$("academicForm")
+    .addEventListener(
+        "submit",
+        saveRecord
+    );
+
+$("search")
+    .addEventListener(
+        "input",
+        render
+    );
+
+$("statusFilter")
+    .addEventListener(
+        "change",
+        render
+    );
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Information System | IDMC</title>
+  <link rel="stylesheet" href="assets/css/student-institutional.css">
+</head>
+<body>
+  <header class="masthead"><div class="brand-mark" aria-hidden="true">IDMC</div><div><strong>Institute of Development and Medical Sciences</strong><span>Integrated Management Information System</span></div><button id="menuButton" class="menu-button" type="button">Menu</button></header>
+  <div class="portal-grid">
+    <aside id="sidebar" class="sidebar">
+      <section class="identity"><div class="portrait"><img id="studentPhoto" alt="Student profile photograph"><span id="photoInitials">ST</span></div><strong id="sideName">Student</strong><span id="sideNumber">—</span><span id="sideProgramme">—</span></section>
+      <nav aria-label="Student portal">
+        <a href="#home" data-view="home">Home</a><a href="#profile" data-view="profile">Student Information</a><a href="#registration" data-view="registration">Registration</a><a href="#timetable" data-view="timetable">Timetable</a><a href="#academic" data-view="academic">Academic</a><a href="#attendance" data-view="attendance">Attendance</a><a href="student-placements.html">Clinical &amp; Field</a><a href="#financial" data-view="financial">Financial</a><a href="#accommodation" data-view="accommodation">Accommodation</a><a href="#requests" data-view="requests">Requests</a><a href="#communication" data-view="communication">Communication</a><a href="#help" data-view="help">Help</a><a href="#security" data-view="security">Security</a>
+      </nav><button id="logoutButton" class="logout" type="button">Log Out</button>
+    </aside>
+    <main><div class="utility"><span id="academicYearLabel">Academic Year: —</span><span id="todayLabel"></span></div><div id="message" class="message" hidden></div><div id="portalContent" class="content"><p class="loading">Loading student information…</p></div><footer>IDMC iMIS · Student Self-Service</footer></main>
+  </div>
+  <script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/student-institutional.js"></script>
+</body></html>

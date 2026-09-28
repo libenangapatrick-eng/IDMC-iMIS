@@ -1,0 +1,21 @@
+.idmc-reg-workspace{margin:24px 0;padding:24px;background:#fff;border:1px solid #eadde1;border-radius:16px;box-shadow:0 12px 30px rgba(74,13,28,.08)}
+.idmc-reg-head,.idmc-reg-toolbar,.idmc-reg-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.idmc-reg-head h2{margin:0;color:#4a0d1c}.idmc-reg-head p{margin:5px 0 0;color:#765f64}
+.idmc-reg-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 14px}
+.idmc-reg-tabs button{padding:10px 14px;border:1px solid #d8c3c9;background:#fff;color:#631226;cursor:pointer}
+.idmc-reg-tabs button[aria-selected="true"]{background:#631226;color:#fff;border-color:#631226}
+.idmc-reg-toolbar{padding:14px;background:#faf7f8;border-radius:12px;margin-bottom:16px}
+.idmc-reg-toolbar input{flex:1;min-width:220px;padding:10px 12px;border:1px solid #d8c3c9;border-radius:8px}
+.idmc-reg-toolbar button,.idmc-reg-head button,.idmc-reg-actions button,.idmc-reg-table button{padding:9px 13px;border:1px solid #631226;border-radius:8px;cursor:pointer}
+.idmc-reg-table{overflow:auto}.idmc-reg-table table{width:100%;border-collapse:collapse}
+.idmc-reg-table th,.idmc-reg-table td{padding:10px;border-bottom:1px solid #eadde1;text-align:left;white-space:nowrap}
+.idmc-reg-table th{background:#631226;color:#fff}
+.idmc-reg-empty{padding:28px;text-align:center;color:#765f64}
+.idmc-reg-dialog{width:min(900px,94vw);border:0;border-radius:16px;padding:0;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+.idmc-reg-dialog::backdrop{background:rgba(30,5,12,.55)}
+.idmc-reg-dialog form{padding:24px}.idmc-reg-dialog h3{margin-top:0;color:#4a0d1c}
+.idmc-reg-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.idmc-reg-field{display:flex;flex-direction:column;gap:6px}.idmc-reg-field span{font-weight:700;color:#4a0d1c}
+.idmc-reg-field input,.idmc-reg-field select,.idmc-reg-field textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #d8c3c9;border-radius:8px;background:#fff}
+.idmc-reg-actions{margin-top:20px;justify-content:flex-end}
+@media(max-width:720px){.idmc-reg-fields{grid-template-columns:1fr}}

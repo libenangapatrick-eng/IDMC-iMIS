@@ -1,0 +1,227 @@
+
+Resource    File                                                                                                                     Line Text                                 
+--------    ----                                                                                                                     ---- ----                                 
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts         17 normalizeNullableString,             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts         18 normalizeString,                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts         20 requireString,                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts         37 normalizeString(req.query.search);   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts         40 normalizeString(req.query.status);   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts         43 normalizeString(                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        149 requireString(                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        150 req.body?.institution_id,            
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        179 requireString(                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        180 req.body?.campus_code,               
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        185 requireString(                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        186 req.body?.campus_name,               
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        191 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        192 req.body?.campus_type                
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        196 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        197 req.body?.physical_address           
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        201 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        202 req.body?.city                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        206 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        207 req.body?.region                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        211 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        212 req.body?.phone                      
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        216 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        217 req.body?.email                      
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        221 normalizeString(                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        222 req.body?.status                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        277 const body = req.body ?? {};         
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        283 const allowedFields = [              
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        296 for (const field of allowedFields) { 
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        305 ? normalizeString(body[field])       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.controller.ts        306 : normalizeNullableString(           
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts             6 CampusCreateInput,                   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts             7 CampusUpdateInput                    
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts           126 input: CampusCreateInput             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts           133 .insert({                            
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts           158 input: CampusUpdateInput             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\campuses\campuses.service.ts           165 .update({                            
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           18 normalizeNullableString,             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           19 normalizeString,                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           21 requireString,                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           38 normalizeString(req.query.search);   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           41 normalizeString(req.query.status);   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           44 normalizeString(                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           49 normalizeString(                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          167 requireString(                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          168 req.body?.institution_id,            
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          193 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          194 req.body?.campus_id                  
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          230 requireString(                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          231 req.body?.school_code,               
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          236 requireString(                       
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          237 req.body?.school_name,               
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          242 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          243 req.body?.dean_title                 
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          247 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          248 req.body?.email                      
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          252 normalizeNullableString(             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          253 req.body?.phone                      
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          257 normalizeString(                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          258 req.body?.status                     
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          313 const body = req.body ?? {};         
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          320 const allowedFields = [              
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          331 for (const field of allowedFields) { 
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          340 ? normalizeString(                   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          343 : normalizeNullableString(           
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts               6 SchoolCreateInput,                   
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts               7 SchoolUpdateInput                    
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             154 input: SchoolCreateInput             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             161 .insert({                            
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             191 input: SchoolUpdateInput             
+Campuses    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             198 .update({                            
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   18 normalizeNullableString,             
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   19 normalizeString,                     
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   21 requireString,                       
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   38 normalizeString(req.query.search);   
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   41 normalizeString(req.query.status);   
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   44 normalizeString(                     
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   49 normalizeString(                     
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  167 requireString(                       
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  168 req.body?.institution_id,            
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  173 requireString(                       
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  174 req.body?.school_id,                 
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  231 requireString(                       
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  232 req.body?.department_code,           
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  237 requireString(                       
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  238 req.body?.department_name,           
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  243 normalizeNullableString(             
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  244 req.body?.head_title                 
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  248 normalizeNullableString(             
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  249 req.body?.email                      
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  253 normalizeNullableString(             
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  254 req.body?.phone                      
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  258 normalizeString(                     
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  259 req.body?.status                     
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  314 const body = req.body ?? {};         
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  320 const allowedFields = [              
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  331 for (const field of allowedFields) { 
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  340 ? normalizeString(                   
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  343 : normalizeNullableString(           
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts       6 DepartmentCreateInput,               
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts       7 DepartmentUpdateInput                
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     154 input: DepartmentCreateInput         
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     161 .insert({                            
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     192 input: DepartmentUpdateInput         
+Departments C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     199 .update({                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                          82 } = req.body;                        
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         125 roleName: req.body.roleName,         
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         126 description: req.body.description,   
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         127 status: req.body.status,             
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         180 const { permissionId } = req.body;   
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         137 } = req.body;                        
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         243 req.body,                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         280 typeof req.body.roleCode === "string"
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         281 ? req.body.roleCode                  
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\roles.service.ts                               121 .insert({                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\roles.service.ts                               164 .update(payload)                     
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\roles.service.ts                               285 .insert({                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               460 .insert({                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               541 .insert({                            
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               857 .update(updates)                     
+Roles       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               937 .insert({                            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   18 normalizeNullableString,             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   19 normalizeString,                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   21 requireString,                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   38 normalizeString(req.query.search);   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   41 normalizeString(req.query.status);   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   44 normalizeString(                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts   49 normalizeString(                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  167 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  168 req.body?.institution_id,            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  173 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  174 req.body?.school_id,                 
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  231 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  232 req.body?.department_code,           
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  237 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  238 req.body?.department_name,           
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  243 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  244 req.body?.head_title                 
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  248 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  249 req.body?.email                      
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  253 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  254 req.body?.phone                      
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  258 normalizeString(                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  259 req.body?.status                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  314 const body = req.body ?? {};         
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  320 const allowedFields = [              
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  331 for (const field of allowedFields) { 
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  340 ? normalizeString(                   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.controller.ts  343 : normalizeNullableString(           
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts       6 DepartmentCreateInput,               
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts       7 DepartmentUpdateInput                
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     154 input: DepartmentCreateInput         
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     161 .insert({                            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     192 input: DepartmentUpdateInput         
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\departments\departments.service.ts     199 .update({                            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           18 normalizeNullableString,             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           19 normalizeString,                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           21 requireString,                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           38 normalizeString(req.query.search);   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           41 normalizeString(req.query.status);   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           44 normalizeString(                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts           49 normalizeString(                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          167 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          168 req.body?.institution_id,            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          193 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          194 req.body?.campus_id                  
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          230 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          231 req.body?.school_code,               
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          236 requireString(                       
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          237 req.body?.school_name,               
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          242 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          243 req.body?.dean_title                 
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          247 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          248 req.body?.email                      
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          252 normalizeNullableString(             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          253 req.body?.phone                      
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          257 normalizeString(                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          258 req.body?.status                     
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          313 const body = req.body ?? {};         
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          320 const allowedFields = [              
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          331 for (const field of allowedFields) { 
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          340 ? normalizeString(                   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.controller.ts          343 : normalizeNullableString(           
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts               6 SchoolCreateInput,                   
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts               7 SchoolUpdateInput                    
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             154 input: SchoolCreateInput             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             161 .insert({                            
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             191 input: SchoolUpdateInput             
+Schools     C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\institution-management\schools\schools.service.ts             198 .update({                            
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.controller.ts                              90 const input = req.body;              
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.controller.ts                             136 await academicsService.update(       
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.controller.ts                             138 req.body                             
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts                                 98 .insert(payload)                     
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\academics\academics.service.ts                                182 .update(payload)                     
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.controller.ts             50 req.body &&                          
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.controller.ts             51 typeof req.body === "object"         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.controller.ts             52 ? req.body                           
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts                76 .insert({                            
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               110 function normalizeCreateInput(       
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               466 normalizeCreateInput(input);         
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               496 .insert(payload)                     
+Students    C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               704 .update(updates)                     
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts                76 .insert({                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               110 function normalizeCreateInput(       
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               466 normalizeCreateInput(input);         
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               496 .insert(payload)                     
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\student-management\students\students.service.ts               704 .update(updates)                     
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                          82 } = req.body;                        
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         125 roleName: req.body.roleName,         
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         126 description: req.body.description,   
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         127 status: req.body.status,             
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\roles.controller.ts                         180 const { permissionId } = req.body;   
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         137 } = req.body;                        
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         243 req.body,                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         280 typeof req.body.roleCode === "string"
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\controllers\users.controller.ts                         281 ? req.body.roleCode                  
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               460 .insert({                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               541 .insert({                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               857 .update(updates)                     
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\modules\users\services\users.service.ts                               937 .insert({                            
+Users       C:\Users\liben\Documents\IDMC_iMIS\apps\backend\src\services\audit.service.ts                                              42 .insert(payload);                    
+
+
+

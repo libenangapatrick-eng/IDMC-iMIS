@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Staff Portal | IDMC iMIS</title>
+  <link rel="stylesheet" href="assets/css/idmc-deep-ui.css"><link rel="stylesheet" href="assets/css/idmc-current-repair.css">
+</head>
+<body>
+<main class="idmc-deep-shell">
+  <header class="idmc-deep-head"><div><h1>IDMC iMIS</h1><h2>Authorized Staff Workspaces</h2><p>Only workspaces allowed by your assigned roles and permissions are displayed.</p></div><a class="idmc-portal-link" href="dashboard.html">Dashboard</a></header>
+  <section class="idmc-portal-grid">
+    <article class="idmc-portal-card"><h3>My Profile</h3><p>Personal identity, security and account information.</p><a class="idmc-portal-link" href="profile.html">Open Profile</a></article>
+    <article class="idmc-portal-card" data-permission="portal.lecturer" hidden><h3>Lecturer Workspace</h3><p>Assigned courses, attendance, assessment and result submission.</p><a class="idmc-portal-link" href="lecturer-portal.html">Open Lecturer Portal</a></article>
+    <article class="idmc-portal-card" data-permission="portal.finance" hidden><h3>Finance Workspace</h3><p>Student accounts, verified payments, receipts and ledgers.</p><a class="idmc-portal-link" href="finance-portal.html">Open Finance Portal</a></article>
+    <article class="idmc-portal-card" data-permission="portal.registry" hidden><h3>Registry Workspace</h3><p>Student records, registrations, results and official requests.</p><a class="idmc-portal-link" href="registry-portal.html">Open Registry Portal</a></article>
+    <article class="idmc-portal-card" data-permission="student_requests.view_department" hidden><h3>Department Requests</h3><p>HOD and Deputy HOD department-scoped request queue.</p><a class="idmc-portal-link" href="student-requests.html">Review Requests</a></article>
+    <article class="idmc-portal-card" data-permission="staff.view" hidden><h3>Human Resources</h3><p>Staff register, qualifications and employment records.</p><a class="idmc-portal-link" href="staff.html">Open Staff Register</a></article>
+    <article class="idmc-portal-card" data-permission="payroll.view" hidden><h3>Payroll</h3><p>Payroll periods, components and staff payroll records.</p><a class="idmc-portal-link" href="payroll.html">Open Payroll</a></article>
+    <article class="idmc-portal-card" data-permission="communications.view" hidden><h3>Communications</h3><p>Institutional announcements and audiences.</p><a class="idmc-portal-link" href="announcements.html">Open Announcements</a></article>
+  </section>
+</main>
+<script src="assets/js/config.js"></script><script src="assets/js/auth.js"></script><script src="assets/js/api.js"></script><script src="assets/js/rbac.js"></script><script src="assets/js/idmc-current-repair.js"></script>
+</body></html>

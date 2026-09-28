@@ -1,0 +1,14 @@
+﻿IDMC iMIS A5 CONTRACT SOURCE
+Generated: 2026-09-18 18:44:38
+
+Explicit files copied: 45
+Extra validation/type files: 6
+
+IMPORTANT:
+No .env files included.
+No secrets included intentionally.
+No node_modules included.
+No database modifications performed.
+
+MISSING EXPLICIT FILES:
+NONE

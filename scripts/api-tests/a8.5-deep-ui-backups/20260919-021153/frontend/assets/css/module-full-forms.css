@@ -1,0 +1,394 @@
+:root {
+    --idmc-page-bg: #f4f7fb;
+    --idmc-card-bg: #ffffff;
+    --idmc-border: #dfe5ee;
+    --idmc-text: #172033;
+    --idmc-muted: #667085;
+    --idmc-primary: #155eef;
+    --idmc-primary-dark: #004eeb;
+    --idmc-danger: #d92d20;
+    --idmc-success: #067647;
+    --idmc-warning: #b54708;
+    --idmc-radius: 14px;
+    --idmc-shadow:
+        0 1px 3px rgba(16,24,40,.08),
+        0 1px 2px rgba(16,24,40,.04);
+}
+
+.idmc-module-shell {
+    min-height: 100vh;
+    background: var(--idmc-page-bg);
+    color: var(--idmc-text);
+}
+
+.idmc-module-main {
+    width: min(1500px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0 48px;
+}
+
+.idmc-module-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.idmc-module-eyebrow {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--idmc-primary);
+}
+
+.idmc-module-title {
+    margin: 0;
+    font-size: clamp(26px, 4vw, 38px);
+    line-height: 1.15;
+}
+
+.idmc-module-subtitle {
+    max-width: 760px;
+    margin: 10px 0 0;
+    color: var(--idmc-muted);
+    line-height: 1.6;
+}
+
+.idmc-module-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.idmc-btn {
+    min-height: 40px;
+    padding: 9px 15px;
+    border: 1px solid var(--idmc-border);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--idmc-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.idmc-btn:hover {
+    background: #f8fafc;
+}
+
+.idmc-btn-primary {
+    border-color: var(--idmc-primary);
+    background: var(--idmc-primary);
+    color: #fff;
+}
+
+.idmc-btn-primary:hover {
+    background: var(--idmc-primary-dark);
+}
+
+.idmc-btn-danger {
+    border-color: #fecdca;
+    color: var(--idmc-danger);
+    background: #fff;
+}
+
+.idmc-btn[disabled] {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.idmc-module-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(300px, 390px);
+    gap: 20px;
+    align-items: start;
+}
+
+.idmc-card {
+    border: 1px solid var(--idmc-border);
+    border-radius: var(--idmc-radius);
+    background: var(--idmc-card-bg);
+    box-shadow: var(--idmc-shadow);
+}
+
+.idmc-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--idmc-border);
+}
+
+.idmc-card-header h2,
+.idmc-card-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.idmc-card-body {
+    padding: 20px;
+}
+
+.idmc-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.idmc-search {
+    flex: 1 1 260px;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid var(--idmc-border);
+    border-radius: 9px;
+    background: #fff;
+    font: inherit;
+}
+
+.idmc-runtime-host {
+    min-height: 220px;
+}
+
+.idmc-form-host {
+    min-height: 100px;
+}
+
+.idmc-form-host form {
+    display: grid;
+    gap: 15px;
+}
+
+.idmc-form-host label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.idmc-form-host input,
+.idmc-form-host select,
+.idmc-form-host textarea {
+    width: 100%;
+    min-height: 42px;
+    box-sizing: border-box;
+    padding: 9px 11px;
+    border: 1px solid var(--idmc-border);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--idmc-text);
+    font: inherit;
+}
+
+.idmc-form-host textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.idmc-status {
+    display: none;
+    margin-bottom: 16px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.idmc-status[data-state="loading"] {
+    display: block;
+    background: #eff4ff;
+    color: #3538cd;
+}
+
+.idmc-status[data-state="success"] {
+    display: block;
+    background: #ecfdf3;
+    color: var(--idmc-success);
+}
+
+.idmc-status[data-state="error"] {
+    display: block;
+    background: #fef3f2;
+    color: var(--idmc-danger);
+}
+
+.idmc-status[data-state="warning"] {
+    display: block;
+    background: #fffaeb;
+    color: var(--idmc-warning);
+}
+
+.idmc-empty {
+    padding: 34px 18px;
+    text-align: center;
+    color: var(--idmc-muted);
+}
+
+.idmc-capability-list {
+    display: grid;
+    gap: 10px;
+}
+
+.idmc-capability {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.idmc-capability:last-child {
+    border-bottom: 0;
+}
+
+.idmc-capability span:last-child {
+    font-weight: 700;
+}
+
+.idmc-runtime-host table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.idmc-runtime-host th,
+.idmc-runtime-host td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #eaecf0;
+    text-align: left;
+    vertical-align: top;
+}
+
+.idmc-runtime-host th {
+    font-size: 12px;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: var(--idmc-muted);
+    background: #f9fafb;
+}
+
+.idmc-runtime-host {
+    overflow-x: auto;
+}
+
+.idmc-module-note {
+    margin: 0;
+    color: var(--idmc-muted);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+    .idmc-module-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .idmc-module-header {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .idmc-module-main {
+        width: min(100% - 20px, 1500px);
+        padding-top: 18px;
+    }
+
+    .idmc-card-header,
+    .idmc-card-body {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .idmc-module-actions {
+        width: 100%;
+    }
+
+    .idmc-module-actions .idmc-btn {
+        flex: 1;
+    }
+}
+/* A7.13 FIELD UX */
+
+.idmc-field {
+    display: grid;
+    gap: 6px;
+}
+
+.idmc-field label {
+    font-size: 13px;
+    font-weight: 650;
+    color: var(--idmc-text);
+}
+
+.idmc-required {
+    color: var(--idmc-danger);
+}
+
+.idmc-field-error {
+    min-height: 17px;
+    font-size: 12px;
+    color: var(--idmc-danger);
+}
+
+.idmc-field input[aria-invalid="true"],
+.idmc-field select[aria-invalid="true"],
+.idmc-field textarea[aria-invalid="true"] {
+    border-color: var(--idmc-danger);
+    outline-color: var(--idmc-danger);
+}
+
+.idmc-checkbox-wrap {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 42px;
+}
+
+.idmc-checkbox-wrap input {
+    width: 18px !important;
+    min-height: 18px !important;
+    height: 18px;
+    margin: 0;
+}
+
+.idmc-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--idmc-border);
+}
+
+.idmc-form-actions .idmc-btn {
+    min-width: 120px;
+}
+
+@media (max-width: 640px) {
+    .idmc-form-actions .idmc-btn {
+        flex: 1 1 100%;
+    }
+}
+/* A7.14 RECORD ACTIONS */
+
+.idmc-record-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.idmc-record-actions .idmc-btn {
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+[data-idmc-status][data-state="loading"] {
+    cursor: progress;
+}

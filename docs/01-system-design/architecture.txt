@@ -1,0 +1,26 @@
+﻿IDMC iMIS
+│
+├── apps
+│   ├── web
+│   └── api
+│
+├── database
+│   ├── migrations
+│   └── seeds
+│
+├── docs
+│   └── 01-system-design
+│       ├── organizational-structure
+│       ├── users-and-roles
+│       ├── academic-structure
+│       ├── modules
+│       ├── workflows
+│       └── erd
+│
+├── storage
+│   ├── documents
+│   └── images
+│
+├── scripts
+│
+└── backups

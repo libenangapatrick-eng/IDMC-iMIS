@@ -1,0 +1,559 @@
+
+====================================================
+FILE: modules\academic-core\academic-core.routes.ts
+====================================================
+   10: const REG_VIEW = "registration.view";
+   11: const REG_MANAGE = "registration.manage";
+   12: const REG_APPROVE = "registration.approve";
+   13: const TT_VIEW = "timetable.view";
+   14: const TT_MANAGE = "timetable.manage";
+   15: const TT_PUBLISH = "timetable.publish";
+   50: fields:{ academicYearId:"academic_year_id", semesterId:"semester_id", programmeId:"programme_id", programmeVersionId:"programme_version_id", courseId:"course_id", offeringCode:"offering_code", sectionName:"section_name", capacity:"capacity", minimumStudents:"minimum_students", deliveryMode:"delivery_mode", status:"status", registrationOpenAt:"registration_open_at", registrationCloseAt:"registration_close_at", createdBy:"created_by", updatedBy:"updated_by" } }, "/course-offerings");
+   52: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"student_registrations", table:"student_registrations", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+   53: searchFields:["registration_number","registration_status","academic_eligibility_status","finance_eligibility_status","document_eligibility_status"], filterFields:["student_id","academic_year_id","semester_id","programme_id","programme_version_id","registration_status"], defaultOrderField:"created_at",
+   54: fields:{ studentId:"student_id", academicYearId:"academic_year_id", semesterId:"semester_id", programmeId:"programme_id", programmeVersionId:"programme_version_id", registrationNumber:"registration_number", registrationStatus:"registration_status", academicEligibilityStatus:"academic_eligibility_status", financeEligibilityStatus:"finance_eligibility_status", documentEligibilityStatus:"document_eligibility_status", totalRegisteredCredits:"total_registered_credits", minimumCredits:"minimum_credits", maximumCredits:"maximum_credits", submittedAt:"submitted_at", approvedAt:"approved_at", approvedBy:"approved_by", lockedAt:"locked_at", lockedBy:"locked_by", rejectionReason:"rejection_reason", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/registrations");
+   56: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"registration_approvals", table:"registration_approvals", permissionView:REG_VIEW, permissionManage:REG_APPROVE,
+   57: searchFields:["approval_level","approval_role","approval_status","comments"], filterFields:["student_registration_id","approval_level","approval_role","approval_status"], defaultOrderField:"created_at",
+   58: fields:{ studentRegistrationId:"student_registration_id", approvalLevel:"approval_level", approvalRole:"approval_role", approvalStatus:"approval_status", comments:"comments", approvedBy:"approved_by", approvedAt:"approved_at", rejectedAt:"rejected_at" } }, "/registration-approvals");
+   60: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"course_registrations", table:"course_registrations", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+   61: searchFields:["registration_type","registration_status","eligibility_status","prerequisite_status"], filterFields:["student_registration_id","student_id","course_id","course_offering_id","registration_type","registration_status"], defaultOrderField:"created_at",
+   62: fields:{ studentRegistrationId:"student_registration_id", studentId:"student_id", courseId:"course_id", courseOfferingId:"course_offering_id", registrationType:"registration_type", registrationStatus:"registration_status", credits:"credits", attemptNumber:"attempt_number", isCore:"is_core", isElective:"is_elective", prerequisiteStatus:"prerequisite_status", eligibilityStatus:"eligibility_status", selectedAt:"selected_at", approvedAt:"approved_at", approvedBy:"approved_by", droppedAt:"dropped_at", dropReason:"drop_reason", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/course-registrations");
+   64: registerCrudResource(router, { moduleCode:"REGISTRATION", entityType:"course_add_drop_requests", table:"course_add_drop_requests", permissionView:REG_VIEW, permissionManage:REG_MANAGE,
+   65: searchFields:["request_type","request_status","reason","decision_reason"], filterFields:["student_registration_id","student_id","course_id","course_offering_id","request_type","request_status"], defaultOrderField:"created_at",
+   66: fields:{ studentRegistrationId:"student_registration_id", studentId:"student_id", courseId:"course_id", courseOfferingId:"course_offering_id", requestType:"request_type", requestStatus:"request_status", reason:"reason", decisionReason:"decision_reason", requestedBy:"requested_by", reviewedBy:"reviewed_by", requestedAt:"requested_at", reviewedAt:"reviewed_at" } }, "/add-drop-requests");
+   68: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetables", table:"timetables", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+   69: searchFields:["timetable_code","timetable_name","status"], filterFields:["academic_year_id","semester_id","campus_id","status"], defaultOrderField:"created_at",
+   70: fields:{ academicYearId:"academic_year_id", semesterId:"semester_id", campusId:"campus_id", timetableCode:"timetable_code", timetableName:"timetable_name", status:"status", publishedAt:"published_at", publishedBy:"published_by", lockedAt:"locked_at", lockedBy:"locked_by", createdBy:"created_by", updatedBy:"updated_by" } }, "/timetables");
+   72: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetable_slots", table:"timetable_slots", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+   74: fields:{ slotCode:"slot_code", dayOfWeek:"day_of_week", startTime:"start_time", endTime:"end_time", durationMinutes:"duration_minutes", status:"status" } }, "/timetable-slots");
+   76: registerCrudResource(router, { moduleCode:"TIMETABLE", entityType:"timetable_entries", table:"timetable_entries", permissionView:TT_VIEW, permissionManage:TT_MANAGE,
+   77: searchFields:["entry_type","status","notes"], filterFields:["timetable_id","class_id","course_offering_id","lecturer_assignment_id","room_id","timetable_slot_id","entry_date","status"], defaultOrderField:"created_at",
+   78: fields:{ timetableId:"timetable_id", classId:"class_id", courseOfferingId:"course_offering_id", lecturerAssignmentId:"lecturer_assignment_id", roomId:"room_id", timetableSlotId:"timetable_slot_id", entryDate:"entry_date", entryType:"entry_type", status:"status", notes:"notes", createdBy:"created_by", updatedBy:"updated_by" } }, "/timetable-entries");
+   88: registerCrudResource(router, { moduleCode:"ACADEMICS", entityType:"class_students", table:"class_students", permissionView:VIEW, permissionManage:MANAGE,
+   89: searchFields:["enrollment_status"], filterFields:["class_id","student_id","course_registration_id","enrollment_status"], defaultOrderField:"created_at",
+   90: fields:{ classId:"class_id", studentId:"student_id", courseRegistrationId:"course_registration_id", enrollmentStatus:"enrollment_status", enrolledAt:"enrolled_at", withdrawnAt:"withdrawn_at" } }, "/class-students");
+   94: fields:{ academicYearId:"academic_year_id", programmeId:"programme_id", title:"title", description:"description", documentUrl:"document_url", versionNumber:"version_number", status:"status", publishedAt:"published_at", publishedBy:"published_by" } }, "/joining-instructions");
+
+====================================================
+FILE: modules\admissions\admissions.routes.ts
+====================================================
+   47: awardName:"award_name", indexNumber:"index_number", registrationNumber:"registration_number", startYear:"start_year",
+   53: moduleCode: "APPLICATIONS", entityType: "application_documents", table: "application_documents",
+   55: searchFields: ["document_type","document_name","document_number","mime_type","verification_status"],
+   56: filterFields: ["application_id","document_type","verification_status"], defaultOrderField: "uploaded_at",
+   57: fields: { applicationId:"application_id", documentType:"document_type", documentName:"document_name", fileUrl:"file_url",
+   58: fileSize:"file_size", mimeType:"mime_type", documentNumber:"document_number", issueDate:"issue_date", expiryDate:"expiry_date",
+   60: }, "/documents");
+   68: academicCheck:"academic_check", documentCheck:"document_check", approvedBy:"approved_by", approvedAt:"approved_at" }
+
+====================================================
+FILE: modules\assessment\assessment.routes.ts
+====================================================
+    9: registerCrudResource(router,{moduleCode:"ASSESSMENT",entityType:"assessment_marks",table:"assessment_marks",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade","status","remarks"],filterFields:["assessment_id","student_id","course_registration_id","status"],defaultOrderField:"created_at",fields:{assessmentId:"assessment_id",studentId:"student_id",courseRegistrationId:"course_registration_id",marks:"marks",percentage:"percentage",grade:"grade",remarks:"remarks",status:"status",enteredBy:"entered_by",enteredAt:"entered_at",submittedBy:"submitted_by",submittedAt:"submitted_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/marks");
+
+====================================================
+FILE: modules\attendance\attendance.routes.ts
+====================================================
+    9: const VIEW = "attendance.view";
+   10: const MANAGE = "attendance.manage";
+   15: moduleCode: "ATTENDANCE",
+   16: entityType: "attendance_sessions",
+   17: table: "attendance_sessions",
+   31: "timetable_entry_id",
+   44: timetableEntryId: "timetable_entry_id",
+   68: moduleCode: "ATTENDANCE",
+   69: entityType: "attendance_records",
+   70: table: "attendance_records",
+   75: "attendance_status",
+   80: "attendance_session_id",
+   82: "course_registration_id",
+   83: "attendance_status",
+   90: attendanceSessionId: "attendance_session_id",
+   92: courseRegistrationId: "course_registration_id",
+   93: attendanceStatus: "attendance_status",
+  108: moduleCode: "ATTENDANCE",
+  109: entityType: "attendance_corrections",
+  110: table: "attendance_corrections",
+  123: "attendance_record_id",
+  132: attendanceRecordId: "attendance_record_id",
+
+====================================================
+FILE: modules\communications\communications.routes.ts
+====================================================
+    9: moduleCode: "COMMUNICATIONS", entityType: "announcements", table: "announcements",
+   10: permissionView: "communications.view", permissionManage: "communications.manage",
+   11: searchFields: ["announcement_number","title","summary","body"], filterFields: ["institution_id","status","announcement_type","priority"],
+   14: institutionId:"institution_id", announcementNumber:"announcement_number", title:"title", summary:"summary",
+   15: body:"body", announcementType:"announcement_type", priority:"priority", status:"status",
+   19: }, "/announcements");
+   22: moduleCode: "COMMUNICATIONS", entityType: "announcement_audiences", table: "announcement_audiences",
+   23: permissionView: "communications.view", permissionManage: "communications.manage",
+   24: searchFields: ["audience_type","audience_label"], filterFields: ["announcement_id","audience_type"],
+   27: announcementId:"announcement_id", audienceType:"audience_type", audienceRefId:"audience_ref_id", audienceLabel:"audience_label"
+   29: }, "/announcement-audiences");
+   32: moduleCode: "DOCUMENTS", entityType: "documents", table: "documents",
+   33: permissionView: "documents.view", permissionManage: "documents.manage",
+   34: searchFields: ["document_number","title","document_type","module_code","file_name"],
+   38: institutionId:"institution_id", documentNumber:"document_number", title:"title", documentType:"document_type",
+   44: }, "/documents");
+   47: moduleCode: "DOCUMENTS", entityType: "document_versions", table: "document_versions",
+   48: permissionView: "documents.view", permissionManage: "documents.manage",
+   49: searchFields: ["file_name","mime_type","change_summary"], filterFields: ["document_id","version_number","uploaded_by"],
+   52: documentId:"document_id", versionNumber:"version_number", fileName:"file_name", mimeType:"mime_type",
+   56: }, "/document-versions");
+
+====================================================
+FILE: modules\examinations\examinations.routes.ts
+====================================================
+    9: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_candidates",table:"examination_candidates",permissionView:VIEW,permissionManage:MANAGE,searchFields:["candidate_number","eligibility_status","attendance_status","candidate_status"],filterFields:["examination_paper_id","student_id","course_registration_id","eligibility_status","candidate_status"],defaultOrderField:"created_at",fields:{examinationPaperId:"examination_paper_id",studentId:"student_id",courseRegistrationId:"course_registration_id",candidateNumber:"candidate_number",eligibilityStatus:"eligibility_status",eligibilityReason:"eligibility_reason",attendanceStatus:"attendance_status",candidateStatus:"candidate_status"}},"/candidates");
+   11: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_attendance",table:"examination_attendance",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attendance_status","seat_number","remarks"],filterFields:["examination_session_id","examination_candidate_id","attendance_status"],defaultOrderField:"marked_at",fields:{examinationSessionId:"examination_session_id",examinationCandidateId:"examination_candidate_id",attendanceStatus:"attendance_status",checkInTime:"check_in_time",seatNumber:"seat_number",identityVerified:"identity_verified",remarks:"remarks",markedBy:"marked_by",markedAt:"marked_at"}},"/attendance");
+   13: registerCrudResource(router,{moduleCode:"EXAMINATIONS",entityType:"examination_marks",table:"examination_marks",permissionView:VIEW,permissionManage:MARKS,searchFields:["grade","status","remarks"],filterFields:["examination_paper_id","examination_candidate_id","student_id","course_registration_id","status"],defaultOrderField:"created_at",fields:{examinationPaperId:"examination_paper_id",examinationCandidateId:"examination_candidate_id",studentId:"student_id",courseRegistrationId:"course_registration_id",marks:"marks",percentage:"percentage",grade:"grade",remarks:"remarks",status:"status",enteredBy:"entered_by",enteredAt:"entered_at",submittedBy:"submitted_by",submittedAt:"submitted_at",approvedBy:"approved_by",approvedAt:"approved_at",lockedBy:"locked_by",lockedAt:"locked_at"}},"/marks");
+
+====================================================
+FILE: modules\finance\routes\finance.routes.ts
+====================================================
+    2: import * as controller from "../controllers/finance.controller.js";
+    9: router.get("/fee-structures", requirePermission("finance.view"), controller.listFeeStructures);
+   10: router.get("/fee-structures/:id", requirePermission("finance.view"), controller.getFeeStructure);
+   12: router.get("/students/:studentId/account", requirePermission("finance.view"), controller.getFinancialAccount);
+   13: router.get("/students/:studentId/charges", requirePermission("finance.charges.view"), controller.getCharges);
+   14: router.get("/students/:studentId/invoices", requirePermission("finance.invoices.view"), controller.getInvoices);
+   15: router.get("/students/:studentId/payments", requirePermission("finance.payments.view"), controller.getPayments);
+   16: router.get("/students/:studentId/refunds", requirePermission("finance.refunds.view"), controller.getRefunds);
+   17: router.get("/students/:studentId/scholarships", requirePermission("finance.scholarships.view"), controller.getScholarships);
+   18: router.get("/students/:studentId/adjustments", requirePermission("finance.charges.view"), controller.getAdjustments);
+   19: router.get("/students/:studentId/transactions", requirePermission("finance.view"), controller.getTransactions);
+
+====================================================
+FILE: modules\graduation\graduation.routes.ts
+====================================================
+   12: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"certificates",table:"certificates",permissionView:VIEW,permissionManage:APPROVE,searchFields:["certificate_number","certificate_type","award_name","verification_code","status"],filterFields:["graduation_award_id","student_id","programme_id","certificate_type","status"],defaultOrderField:"issue_date",fields:{graduationAwardId:"graduation_award_id",studentId:"student_id",certificateNumber:"certificate_number",certificateType:"certificate_type",awardName:"award_name",programmeId:"programme_id",programmeVersionId:"programme_version_id",issueDate:"issue_date",verificationCode:"verification_code",documentFileId:"document_file_id",status:"status",issuedBy:"issued_by",issuedAt:"issued_at",revokedBy:"revoked_by",revokedAt:"revoked_at",revocationReason:"revocation_reason",replacementOf:"replacement_of"}},"/certificates");
+   13: registerCrudResource(router,{moduleCode:"GRADUATION",entityType:"certificate_verifications",table:"certificate_verifications",permissionView:VIEW,permissionManage:APPROVE,searchFields:["verification_code","verification_result"],filterFields:["certificate_id","verification_result"],defaultOrderField:"verified_at",fields:{certificateId:"certificate_id",verificationCode:"verification_code",verifiedAt:"verified_at",verificationResult:"verification_result",ipAddress:"ip_address",userAgent:"user_agent"}},"/certificate-verifications");
+
+====================================================
+FILE: modules\hostel\hostel.routes.ts
+====================================================
+   33: moduleCode: "OPERATIONS", entityType: "hostel_fees", table: "hostel_fees", permissionView: "hostel.view", permissionManage: "hostel.manage",
+   34: searchFields: ["fee_name", "academic_year"], filterFields: ["institution_id", "hostel_id", "academic_year", "status"],
+   35: fields: { institutionId: "institution_id", hostelId: "hostel_id", academicYear: "academic_year", feeName: "fee_name", amount: "amount", currency: "currency", status: "status" }
+   36: }, "/fees");
+
+====================================================
+FILE: modules\hr\hr.routes.ts
+====================================================
+   25: professionalRegistrationNumber: "professional_registration_number", emergencyContactName: "emergency_contact_name",
+   46: moduleCode: "HUMAN_RESOURCES", entityType: "staff_documents", table: "staff_documents",
+   47: permissionView: "staff.view", permissionManage: "staff.manage", searchFields: ["document_type", "document_name", "document_number"],
+   49: fields: { staffId: "staff_id", documentType: "document_type", documentName: "document_name", documentUrl: "document_url", storagePath: "storage_path", documentNumber: "document_number", issueDate: "issue_date", expiryDate: "expiry_date", verificationStatus: "verification_status", verificationNotes: "verification_notes" }
+   50: }, "/documents");
+   55: fields: { institutionId: "institution_id", leaveCode: "leave_code", leaveName: "leave_name", annualEntitlement: "annual_entitlement", requiresDocument: "requires_document", requiresApproval: "requires_approval", paidLeave: "paid_leave", carryForwardAllowed: "carry_forward_allowed", maxCarryForwardDays: "max_carry_forward_days", status: "status", description: "description" }
+   77: moduleCode: "HUMAN_RESOURCES", entityType: "staff_attendance", table: "staff_attendance",
+   78: permissionView: "staff.attendance.view", permissionManage: "staff.attendance.manage", searchFields: ["location", "remarks"], filterFields: ["staff_id", "attendance_date", "attendance_status", "source"], defaultOrderField: "attendance_date",
+   79: fields: { staffId: "staff_id", attendanceDate: "attendance_date", attendanceStatus: "attendance_status", checkIn: "check_in", checkOut: "check_out", lateMinutes: "late_minutes", workedMinutes: "worked_minutes", source: "source", location: "location", remarks: "remarks", markedBy: "marked_by" }
+   80: }, "/attendance");
+   83: moduleCode: "HUMAN_RESOURCES", entityType: "staff_attendance_adjustments", table: "staff_attendance_adjustments",
+   84: permissionView: "staff.attendance.view", permissionManage: "staff.attendance.manage", searchFields: ["adjustment_reason", "adjustment_status"], filterFields: ["attendance_id", "adjustment_status"],
+   85: fields: { attendanceId: "attendance_id", requestedBy: "requested_by", reviewedBy: "reviewed_by", oldStatus: "old_status", newStatus: "new_status", oldCheckIn: "old_check_in", newCheckIn: "new_check_in", oldCheckOut: "old_check_out", newCheckOut: "new_check_out", adjustmentReason: "adjustment_reason", adjustmentStatus: "adjustment_status", reviewedAt: "reviewed_at" }
+   86: }, "/attendance/adjustments");
+
+====================================================
+FILE: modules\library\library.routes.ts
+====================================================
+   17: fields: { institutionId: "institution_id", studentId: "student_id", staffId: "staff_id", membershipNumber: "membership_number", membershipType: "membership_type", membershipStatus: "membership_status", registrationDate: "registration_date", expiryDate: "expiry_date", maxActiveLoans: "max_active_loans" }
+
+====================================================
+FILE: modules\operations\operations.routes.ts
+====================================================
+   11: fields: { institutionId: "institution_id", supplierCode: "supplier_code", supplierName: "supplier_name", supplierType: "supplier_type", registrationNumber: "registration_number", taxIdentificationNumber: "tax_identification_number", contactPerson: "contact_person", phone: "phone", email: "email", physicalAddress: "physical_address", postalAddress: "postal_address", bankName: "bank_name", bankAccountName: "bank_account_name", bankAccountNumber: "bank_account_number", status: "status", notes: "notes" }
+
+====================================================
+FILE: modules\registration\registration.routes.ts
+====================================================
+    9: const VIEW = "registration.view";
+   10: const MANAGE = "registration.manage";
+   15: moduleCode: "REGISTRATION",
+   16: entityType: "student_registrations",
+   17: table: "student_registrations",
+   22: "registration_number",
+   23: "registration_status",
+   25: "finance_eligibility_status",
+   26: "document_eligibility_status"
+   35: "registration_status",
+   37: "finance_eligibility_status",
+   38: "document_eligibility_status"
+   49: registrationNumber: "registration_number",
+   50: registrationStatus: "registration_status",
+   52: financeEligibilityStatus: "finance_eligibility_status",
+   53: documentEligibilityStatus: "document_eligibility_status",
+   74: moduleCode: "REGISTRATION",
+   75: entityType: "course_registrations",
+   76: table: "course_registrations",
+   81: "registration_status"
+   85: "student_registration_id",
+   88: "registration_status"
+   94: studentRegistrationId: "student_registration_id",
+   97: registrationStatus: "registration_status",
+  108: moduleCode: "REGISTRATION",
+  122: "student_registration_id",
+  123: "course_registration_id",
+  131: studentRegistrationId: "student_registration_id",
+  132: courseRegistrationId: "course_registration_id",
+  148: moduleCode: "REGISTRATION",
+  149: entityType: "registration_approvals",
+  150: table: "registration_approvals",
+  161: "student_registration_id",
+  169: studentRegistrationId: "student_registration_id",
+
+====================================================
+FILE: modules\reports\reports.routes.ts
+====================================================
+   31: resultLocation:"result_location", rowCount:"row_count", errorMessage:"error_message"
+
+====================================================
+FILE: modules\results\results.routes.ts
+====================================================
+    5: const VIEW="results.view", MANAGE="results.manage", APPROVE="results.approve", CORRECT="results.corrections.manage";
+    6: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_results",table:"course_results",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","result_status","result_type","pass_status","remarks"],filterFields:["student_id","course_offering_id","course_registration_id","academic_year_id","semester_id","result_status","pass_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",academicYearId:"academic_year_id",semesterId:"semester_id",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",passStatus:"pass_status",resultStatus:"result_status",attemptNumber:"attempt_number",resultType:"result_type",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/course-results");
+    7: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_result_corrections",table:"course_result_corrections",permissionView:VIEW,permissionManage:CORRECT,searchFields:["reason","status","review_comment"],filterFields:["course_result_id","requested_by","status"],defaultOrderField:"requested_at",fields:{courseResultId:"course_result_id",requestedBy:"requested_by",requestedAt:"requested_at",oldCourseworkMark:"old_coursework_mark",newCourseworkMark:"new_coursework_mark",oldExaminationMark:"old_examination_mark",newExaminationMark:"new_examination_mark",oldTotalMark:"old_total_mark",newTotalMark:"new_total_mark",oldGradeCode:"old_grade_code",newGradeCode:"new_grade_code",oldGradePoint:"old_grade_point",newGradePoint:"new_grade_point",reason:"reason",evidenceFileId:"evidence_file_id",status:"status",reviewedBy:"reviewed_by",reviewedAt:"reviewed_at",reviewComment:"review_comment"}},"/course-result-corrections");
+    8: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_semester_results",table:"student_semester_results",permissionView:VIEW,permissionManage:APPROVE,searchFields:["academic_standing","result_status","remarks"],filterFields:["student_id","academic_year_id","semester_id","programme_version_id","academic_standing","result_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",programmeVersionId:"programme_version_id",totalRegisteredCredits:"total_registered_credits",totalAttemptedCredits:"total_attempted_credits",totalEarnedCredits:"total_earned_credits",totalQualityPoints:"total_quality_points",gpa:"gpa",coursesAttempted:"courses_attempted",coursesPassed:"courses_passed",coursesFailed:"courses_failed",academicStanding:"academic_standing",resultStatus:"result_status",calculatedAt:"calculated_at",submittedAt:"submitted_at",submittedBy:"submitted_by",approvedAt:"approved_at",approvedBy:"approved_by",publishedAt:"published_at",publishedBy:"published_by",lockedAt:"locked_at",lockedBy:"locked_by",remarks:"remarks"}},"/semester-results");
+    9: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_standings",table:"student_academic_standings",permissionView:VIEW,permissionManage:APPROVE,searchFields:["standing_code","standing_name","status","remarks"],filterFields:["student_id","academic_year_id","semester_id","standing_rule_id","standing_code","status"],defaultOrderField:"created_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",cgpa:"cgpa",standingRuleId:"standing_rule_id",standingCode:"standing_code",standingName:"standing_name",remarks:"remarks",status:"status",calculatedAt:"calculated_at",approvedBy:"approved_by",approvedAt:"approved_at"}},"/academic-standings");
+   10: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"grade_scales",table:"grade_scales",permissionView:VIEW,permissionManage:MANAGE,searchFields:["scale_code","scale_name","description","status"],filterFields:["status","is_default"],defaultOrderField:"created_at",fields:{scaleCode:"scale_code",scaleName:"scale_name",description:"description",minimumTotal:"minimum_total",maximumTotal:"maximum_total",status:"status",isDefault:"is_default"}},"/grade-scales");
+   11: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"grade_scale_details",table:"grade_scale_details",permissionView:VIEW,permissionManage:MANAGE,searchFields:["grade_code","grade_name","result_classification","status"],filterFields:["grade_scale_id","pass_status","status"],defaultOrderField:"minimum_mark",fields:{gradeScaleId:"grade_scale_id",gradeCode:"grade_code",gradeName:"grade_name",minimumMark:"minimum_mark",maximumMark:"maximum_mark",gradePoint:"grade_point",passStatus:"pass_status",resultClassification:"result_classification",status:"status"}},"/grade-scale-details");
+   12: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"course_result_policies",table:"course_result_policies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["status"],filterFields:["course_offering_id","grade_scale_id","status"],defaultOrderField:"created_at",fields:{courseOfferingId:"course_offering_id",gradeScaleId:"grade_scale_id",courseworkWeight:"coursework_weight",examinationWeight:"examination_weight",minimumCourseworkRequired:"minimum_coursework_required",minimumExamRequired:"minimum_exam_required",minimumPassMark:"minimum_pass_mark",status:"status",createdBy:"created_by",approvedBy:"approved_by",approvedAt:"approved_at"}},"/course-result-policies");
+   13: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_gpa_records",table:"student_gpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",totalCredits:"total_credits",totalQualityPoints:"total_quality_points",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/gpa-records");
+   14: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_cgpa_records",table:"student_cgpa_records",permissionView:VIEW,permissionManage:APPROVE,searchFields:["calculation_version"],filterFields:["student_id","academic_year_id","semester_id"],defaultOrderField:"calculated_at",fields:{studentId:"student_id",academicYearId:"academic_year_id",semesterId:"semester_id",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",calculationVersion:"calculation_version",calculatedAt:"calculated_at"}},"/cgpa-records");
+   15: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_course_attempts",table:"student_course_attempts",permissionView:VIEW,permissionManage:MANAGE,searchFields:["attempt_type","attempt_status","grade_code","remarks"],filterFields:["student_id","course_id","course_offering_id","course_registration_id","academic_year_id","semester_id","attempt_number","attempt_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseRegistrationId:"course_registration_id",courseResultId:"course_result_id",academicYearId:"academic_year_id",semesterId:"semester_id",attemptNumber:"attempt_number",attemptType:"attempt_type",attemptStatus:"attempt_status",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",credits:"credits",startedAt:"started_at",completedAt:"completed_at",remarks:"remarks"}},"/course-attempts");
+   16: registerCrudResource(router,{moduleCode:"RESULTS",entityType:"student_academic_deficiencies",table:"student_academic_deficiencies",permissionView:VIEW,permissionManage:MANAGE,searchFields:["deficiency_type","deficiency_status","remarks"],filterFields:["student_id","course_id","course_offering_id","course_result_id","deficiency_type","deficiency_status"],defaultOrderField:"created_at",fields:{studentId:"student_id",courseId:"course_id",courseOfferingId:"course_offering_id",courseResultId:"course_result_id",deficiencyType:"deficiency_type",deficiencyStatus:"deficiency_status",firstRecordedAt:"first_recorded_at",resolvedAt:"resolved_at",resolutionCourseResultId:"resolution_course_result_id",remarks:"remarks"}},"/academic-deficiencies");
+   17: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcripts",table:"student_transcripts",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["transcript_number","transcript_type","transcript_status","verification_code"],filterFields:["student_id","programme_version_id","transcript_type","transcript_status"],defaultOrderField:"created_at",fields:{transcriptNumber:"transcript_number",studentId:"student_id",programmeVersionId:"programme_version_id",transcriptType:"transcript_type",issueReason:"issue_reason",cumulativeCredits:"cumulative_credits",cumulativeEarnedCredits:"cumulative_earned_credits",cumulativeQualityPoints:"cumulative_quality_points",cgpa:"cgpa",finalAcademicStanding:"final_academic_standing",transcriptStatus:"transcript_status",generatedAt:"generated_at",generatedBy:"generated_by",approvedAt:"approved_at",approvedBy:"approved_by",issuedAt:"issued_at",issuedBy:"issued_by",revokedAt:"revoked_at",revokedBy:"revoked_by",replacementOf:"replacement_of",documentFileId:"document_file_id",verificationCode:"verification_code",remarks:"remarks"}},"/transcripts");
+   18: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_semesters",table:"student_transcript_semesters",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["academic_standing"],filterFields:["transcript_id","academic_year_id","semester_id","semester_result_id"],defaultOrderField:"sequence_no",fields:{transcriptId:"transcript_id",academicYearId:"academic_year_id",semesterId:"semester_id",semesterResultId:"semester_result_id",gpa:"gpa",registeredCredits:"registered_credits",attemptedCredits:"attempted_credits",earnedCredits:"earned_credits",qualityPoints:"quality_points",academicStanding:"academic_standing",sequenceNo:"sequence_no"}},"/transcript-semesters");
+   19: registerCrudResource(router,{moduleCode:"TRANSCRIPTS",entityType:"student_transcript_courses",table:"student_transcript_courses",permissionView:"transcripts.view",permissionManage:"transcripts.manage",searchFields:["course_code","course_name","grade_code","result_type","pass_status"],filterFields:["transcript_id","transcript_semester_id","course_result_id","course_id"],defaultOrderField:"display_sequence",fields:{transcriptId:"transcript_id",transcriptSemesterId:"transcript_semester_id",courseResultId:"course_result_id",courseRegistrationId:"course_registration_id",courseId:"course_id",courseCode:"course_code",courseName:"course_name",credits:"credits",courseworkMark:"coursework_mark",examinationMark:"examination_mark",totalMark:"total_mark",gradeCode:"grade_code",gradePoint:"grade_point",resultType:"result_type",attemptNumber:"attempt_number",passStatus:"pass_status",displaySequence:"display_sequence"}},"/transcript-courses");
+
+====================================================
+FILE: modules\student-management\students\students.routes.ts
+====================================================
+   15: listStudentsController,
+   17: } from "./students.controller.js";
+   26: requirePermission("students.self.view"),
+   32: requirePermission("students.view"),
+   33: listStudentsController
+   38: requirePermission("students.view"),
+   44: requirePermission("students.manage"),
+   50: requirePermission("students.manage"),
+
+====================================================
+FILE: modules\student-management\student-management.routes.ts
+====================================================
+    3: import studentsRoutes from "./students/students.routes.js";
+    9: "/students",
+   10: studentsRoutes
+
+====================================================
+FILE: modules\timetable\timetable.routes.ts
+====================================================
+    9: const VIEW = "timetable.view";
+   10: const MANAGE = "timetable.manage";
+   15: moduleCode: "TIMETABLE",
+   16: entityType: "timetables",
+   17: table: "timetables",
+   22: "timetable_code",
+   23: "timetable_name",
+   40: timetableCode: "timetable_code",
+   41: timetableName: "timetable_name",
+   57: moduleCode: "TIMETABLE",
+   58: entityType: "timetable_entries",
+   59: table: "timetable_entries",
+   68: "timetable_id",
+   73: "timetable_slot_id",
+   80: timetableId: "timetable_id",
+   85: timetableSlotId: "timetable_slot_id",
+   97: moduleCode: "TIMETABLE",
+   98: entityType: "timetable_slots",
+   99: table: "timetable_slots",
+  126: moduleCode: "TIMETABLE",
+  159: moduleCode: "TIMETABLE",
+
+====================================================
+FILE: modules\transcripts\transcripts.routes.ts
+====================================================
+   62: documentFileId: "document_file_id",
+   85: "semester_result_id"
+   94: semesterResultId: "semester_result_id"
+
+====================================================
+FILE: modules\workflows\workflow.routes.ts
+====================================================
+  107: const result = String(req.body?.status ?? "").toUpperCase();
+  108: if (!["ELIGIBLE", "INELIGIBLE", "CONDITIONAL"].includes(result)) return fail(res, 400, "status must be ELIGIBLE, INELIGIBLE or CONDITIONAL");
+  113: const status = result === "ELIGIBLE" ? "ELIGIBLE" : result === "INELIGIBLE" ? "INELIGIBLE" : "ELIGIBLE";
+  114: const { data: updated, error: updateError } = await supabase.from("applications").update({ eligibility_status: result, status, updated_at: new Date().toISOString() }).eq("id", String(req.params.id)).select("*").single();
+  181: router.post("/students/:id/activate", requirePermission("students.activate"), async (req, res, next) => {
+  183: const { data, error } = await supabase.from("students").select("*").eq("id", String(req.params.id)).maybeSingle();
+  187: const { data: updated, error: updateError } = await supabase.from("students").update({ student_status: "ACTIVE", enrollment_date: data.enrollment_date ?? new Date().toISOString().slice(0,10), activated_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", String(req.params.id)).select("*").single();
+  189: await audit(req, "STUDENT_ACTIVATE", "students", String(req.params.id), data, updated);
+  193: // ---------------- Registration ----------------
+  194: router.post("/registrations/:id/submit", requirePermission("registration.submit"), async (req, res, next) => {
+  196: const { data, error } = await supabase.from("student_registrations").select("*").eq("id", String(req.params.id)).maybeSingle();
+  198: if (!data) return fail(res, 404, "Student registration not found");
+  199: if (!transition(data.registration_status, ["DRAFT"], "SUBMITTED", res)) return;
+  201: if (!["CLEARED", "OVERRIDE"].includes(data.finance_eligibility_status)) return fail(res, 409, "Finance eligibility is not cleared");
+  202: if (!["CLEARED", "OVERRIDE"].includes(data.document_eligibility_status)) return fail(res, 409, "Document eligibility is not cleared");
+  203: const { data: updated, error: updateError } = await supabase.from("student_registrations").update({ registration_status: "SUBMITTED", submitted_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }).eq("id", String(req.params.id)).select("*").single();
+  205: await audit(req, "REGISTRATION_SUBMIT", "student_registrations", String(req.params.id), data, updated);
+  209: router.post("/registrations/:id/approve", requirePermission("registration.approve"), async (req, res, next) => {
+  211: const { data, error } = await supabase.from("student_registrations").select("*").eq("id", String(req.params.id)).maybeSingle();
+  213: if (!data) return fail(res, 404, "Student registration not found");
+  214: if (!["SUBMITTED", "PENDING_APPROVAL"].includes(data.registration_status)) return fail(res, 409, `Registration cannot be approved from ${data.registration_status}`);
+  215: const { data: updated, error: updateError } = await supabase.from("student_registrations").update({ registration_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }).eq("id", String(req.params.id)).select("*").single();
+  217: const { error: approvalError } = await supabase.from("registration_approvals").upsert({ student_registration_id: String(req.params.id), approval_level: Number(req.body?.approval_level ?? 1), approval_role: String(req.body?.approval_role ?? "ACADEMIC"), approval_status: "APPROVED", comments: req.body?.comments ?? null, approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, { onConflict: "student_registration_id,approval_level" });
+  219: await audit(req, "REGISTRATION_APPROVE", "student_registrations", String(req.params.id), data, updated);
+  223: router.post("/registrations/:id/register", requirePermission("registration.register"), async (req, res, next) => {
+  224: return updateById(req, res, next, "student_registrations", String(req.params.id), { registration_status: "REGISTERED", updated_by: actor(req), updated_at: new Date().toISOString() }, "registration.register", "REGISTRATION_REGISTER", "student_registrations");
+  227: router.post("/registrations/:id/lock", requirePermission("registration.lock"), async (req, res, next) => {
+  228: return updateById(req, res, next, "student_registrations", String(req.params.id), { registration_status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "registration.lock", "REGISTRATION_LOCK", "student_registrations");
+  231: router.post("/add-drop/:id/decide", requirePermission("registration.add_drop.decide"), async (req, res, next) => {
+  234: return updateById(req, res, next, "course_add_drop_requests", String(req.params.id), { request_status: decision, decision_reason: req.body?.reason ?? null, reviewed_by: actor(req), reviewed_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "registration.add_drop.decide", "ADD_DROP_DECIDE", "course_add_drop_requests");
+  237: // ---------------- Timetable ----------------
+  238: router.post("/timetables/:id/review", requirePermission("timetable.review"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "UNDER_REVIEW", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.review", "TIMETABLE_REVIEW", "timetables"));
+  239: router.post("/timetables/:id/approve", requirePermission("timetable.approve"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "APPROVED", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.approve", "TIMETABLE_APPROVE", "timetables"));
+  240: router.post("/timetables/:id/publish", requirePermission("timetable.publish"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.publish", "TIMETABLE_PUBLISH", "timetables"));
+  241: router.post("/timetables/:id/lock", requirePermission("timetable.lock"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.lock", "TIMETABLE_LOCK", "timetables"));
+  286: // ---------------- Results ----------------
+  287: router.post("/course-results/:id/calculate", requirePermission("results.calculate"), async (req, res, next) => {
+  290: const { data: before, error: readError } = await supabase.from("course_results").select("*").eq("id", String(req.params.id)).maybeSingle();
+  292: if (!before) return fail(res, 404, "Course result not found");
+  293: const { data: calculated, error } = await supabase.rpc("calculate_course_result", { p_course_result_id: String(req.params.id) });
+  295: await audit(req, "RESULT_CALCULATE", "course_results", String(req.params.id), before, calculated);
+  299: router.post("/course-results/:id/submit", requirePermission("results.submit"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.submit", "RESULT_SUBMIT", "course_results"));
+  300: router.post("/course-results/:id/review", requirePermission("results.review"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "UNDER_REVIEW", updated_at: new Date().toISOString() }, "results.review", "RESULT_REVIEW", "course_results"));
+  301: router.post("/course-results/:id/approve", requirePermission("results.approve"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.approve", "RESULT_APPROVE", "course_results"));
+  302: router.post("/course-results/:id/publish", requirePermission("results.publish"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.publish", "RESULT_PUBLISH", "course_results"));
+  303: router.post("/course-results/:id/lock", requirePermission("results.lock"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.lock", "RESULT_LOCK", "course_results"));
+
+====================================================
+FILE: routes\core-routes.ts
+====================================================
+    7: import resultsRoutes from "../modules/results/results.routes.js";
+   18: router.use("/results", resultsRoutes);
+
+ROUTER METHODS: modules\academics\academics.routes.ts
+   16: router.get(
+   22: router.get(
+   28: router.post(
+   34: router.patch(
+   40: router.delete(
+
+ROUTER METHODS: modules\auth\routes\auth.routes.ts
+    7: router.get("/health", controller.authHealth);
+    9: router.get("/me", authenticate, controller.me);
+
+ROUTER METHODS: modules\finance\routes\finance.routes.ts
+    9: router.get("/fee-structures", requirePermission("finance.view"), controller.listFeeStructures);
+   10: router.get("/fee-structures/:id", requirePermission("finance.view"), controller.getFeeStructure);
+   12: router.get("/students/:studentId/account", requirePermission("finance.view"), controller.getFinancialAccount);
+   13: router.get("/students/:studentId/charges", requirePermission("finance.charges.view"), controller.getCharges);
+   14: router.get("/students/:studentId/invoices", requirePermission("finance.invoices.view"), controller.getInvoices);
+   15: router.get("/students/:studentId/payments", requirePermission("finance.payments.view"), controller.getPayments);
+   16: router.get("/students/:studentId/refunds", requirePermission("finance.refunds.view"), controller.getRefunds);
+   17: router.get("/students/:studentId/scholarships", requirePermission("finance.scholarships.view"), controller.getScholarships);
+   18: router.get("/students/:studentId/adjustments", requirePermission("finance.charges.view"), controller.getAdjustments);
+   19: router.get("/students/:studentId/transactions", requirePermission("finance.view"), controller.getTransactions);
+
+ROUTER METHODS: modules\institution-management\campuses\campuses.routes.ts
+   22: router.get(
+   28: router.get(
+   34: router.post(
+   40: router.patch(
+
+ROUTER METHODS: modules\institution-management\departments\departments.routes.ts
+   22: router.get(
+   28: router.get(
+   34: router.post(
+   40: router.patch(
+
+ROUTER METHODS: modules\institution-management\institutions\institutions.routes.ts
+   22: router.get(
+   28: router.get(
+   34: router.post(
+   40: router.patch(
+
+ROUTER METHODS: modules\institution-management\schools\schools.routes.ts
+   22: router.get(
+   28: router.get(
+   34: router.post(
+   40: router.patch(
+
+ROUTER METHODS: modules\student-management\students\students.routes.ts
+   24: router.get(
+   30: router.get(
+   36: router.get(
+   42: router.post(
+   48: router.patch(
+
+ROUTER METHODS: modules\users\routes\roles.routes.ts
+   20: router.get(
+   26: router.get(
+   32: router.get(
+   38: router.get(
+   44: router.post(
+   50: router.patch(
+   56: router.post(
+   62: router.delete(
+
+ROUTER METHODS: modules\users\routes\users.routes.ts
+   31: router.get(
+   37: router.get(
+   43: router.get(
+   49: router.post(
+   55: router.patch(
+   67: router.post(
+   73: router.delete(
+
+ROUTER METHODS: modules\workflows\workflow.routes.ts
+   77: router.post("/applications/:id/submit", requirePermission("admissions.submit"), async (req, res, next) => {
+   90: router.post("/applications/:id/review", requirePermission("admissions.review"), async (req, res, next) => {
+   94: router.post("/applications/:id/verify", requirePermission("admissions.verify"), async (req, res, next) => {
+  106: router.post("/applications/:id/eligibility", requirePermission("admissions.eligibility"), async (req, res, next) => {
+  120: router.post("/admission-decisions/:id/decide", requirePermission("admissions.decide"), async (req, res, next) => {
+  135: router.post("/admission-offers/:id/issue", requirePermission("admissions.offer"), async (req, res, next) => {
+  154: router.post("/admission-acceptances/:id/accept", requirePermission("admissions.accept"), async (req, res, next) => {
+  167: router.post("/admission-acceptances/:id/decline", requirePermission("admissions.accept"), async (req, res, next) => {
+  181: router.post("/students/:id/activate", requirePermission("students.activate"), async (req, res, next) => {
+  194: router.post("/registrations/:id/submit", requirePermission("registration.submit"), async (req, res, next) => {
+  209: router.post("/registrations/:id/approve", requirePermission("registration.approve"), async (req, res, next) => {
+  223: router.post("/registrations/:id/register", requirePermission("registration.register"), async (req, res, next) => {
+  227: router.post("/registrations/:id/lock", requirePermission("registration.lock"), async (req, res, next) => {
+  231: router.post("/add-drop/:id/decide", requirePermission("registration.add_drop.decide"), async (req, res, next) => {
+  238: router.post("/timetables/:id/review", requirePermission("timetable.review"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "UNDER_REVIEW", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.review", "TIMETABLE_REVIEW", "timetables"));
+  239: router.post("/timetables/:id/approve", requirePermission("timetable.approve"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "APPROVED", updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.approve", "TIMETABLE_APPROVE", "timetables"));
+  240: router.post("/timetables/:id/publish", requirePermission("timetable.publish"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.publish", "TIMETABLE_PUBLISH", "timetables"));
+  241: router.post("/timetables/:id/lock", requirePermission("timetable.lock"), async (req, res, next) => updateById(req, res, next, "timetables", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "timetable.lock", "TIMETABLE_LOCK", "timetables"));
+  244: router.post("/assessments/:id/open", requirePermission("assessment.open"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "OPEN", updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.open", "ASSESSMENT_OPEN", "assessments"));
+  245: router.post("/assessments/:id/submit", requirePermission("assessment.submit"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "SUBMITTED", updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.submit", "ASSESSMENT_SUBMIT", "assessments"));
+  246: router.post("/assessments/:id/approve", requirePermission("assessment.approve"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.approve", "ASSESSMENT_APPROVE", "assessments"));
+  247: router.post("/assessments/:id/lock", requirePermission("assessment.lock"), async (req, res, next) => updateById(req, res, next, "assessments", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_by: actor(req), updated_at: new Date().toISOString() }, "assessment.lock", "ASSESSMENT_LOCK", "assessments"));
+  249: router.post("/assessment-marks/:id/submit", requirePermission("assessment.marks.submit"), async (req, res, next) => updateById(req, res, next, "assessment_marks", String(req.params.id), { status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "assessment.marks.submit", "ASSESSMENT_MARK_SUBMIT", "assessment_marks"));
+  250: router.post("/assessment-marks/:id/approve", requirePermission("assessment.marks.approve"), async (req, res, next) => updateById(req, res, next, "assessment_marks", String(req.params.id), { status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "assessment.marks.approve", "ASSESSMENT_MARK_APPROVE", "assessment_marks"));
+  251: router.post("/assessment-marks/:id/lock", requirePermission("assessment.marks.lock"), async (req, res, next) => updateById(req, res, next, "assessment_marks", String(req.params.id), { status: "LOCKED", updated_at: new Date().toISOString() }, "assessment.marks.lock", "ASSESSMENT_MARK_LOCK", "assessment_marks"));
+  253: router.post("/assessment-corrections/:id/decide", requirePermission("assessment.correction.decide"), async (req, res, next) => {
+  277: router.post("/examination-candidates/:id/eligibility", requirePermission("examination.eligibility"), async (req, res, next) => {
+  282: router.post("/examination-marks/:id/submit", requirePermission("examination.marks.submit"), async (req, res, next) => updateById(req, res, next, "examination_marks", String(req.params.id), { status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "examination.marks.submit", "EXAM_MARK_SUBMIT", "examination_marks"));
+  283: router.post("/examination-marks/:id/approve", requirePermission("examination.marks.approve"), async (req, res, next) => updateById(req, res, next, "examination_marks", String(req.params.id), { status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "examination.marks.approve", "EXAM_MARK_APPROVE", "examination_marks"));
+  284: router.post("/examination-marks/:id/lock", requirePermission("examination.marks.lock"), async (req, res, next) => updateById(req, res, next, "examination_marks", String(req.params.id), { status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "examination.marks.lock", "EXAM_MARK_LOCK", "examination_marks"));
+  287: router.post("/course-results/:id/calculate", requirePermission("results.calculate"), async (req, res, next) => {
+  299: router.post("/course-results/:id/submit", requirePermission("results.submit"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "SUBMITTED", submitted_by: actor(req), submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.submit", "RESULT_SUBMIT", "course_results"));
+  300: router.post("/course-results/:id/review", requirePermission("results.review"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "UNDER_REVIEW", updated_at: new Date().toISOString() }, "results.review", "RESULT_REVIEW", "course_results"));
+  301: router.post("/course-results/:id/approve", requirePermission("results.approve"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.approve", "RESULT_APPROVE", "course_results"));
+  302: router.post("/course-results/:id/publish", requirePermission("results.publish"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "PUBLISHED", published_by: actor(req), published_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.publish", "RESULT_PUBLISH", "course_results"));
+  303: router.post("/course-results/:id/lock", requirePermission("results.lock"), async (req, res, next) => updateById(req, res, next, "course_results", String(req.params.id), { result_status: "LOCKED", locked_by: actor(req), locked_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "results.lock", "RESULT_LOCK", "course_results"));
+  306: router.post("/transcripts/:id/generate", requirePermission("transcript.generate"), async (req, res, next) => {
+  319: router.post("/transcripts/:id/review", requirePermission("transcript.review"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "REVIEW", updated_at: new Date().toISOString() }, "transcript.review", "TRANSCRIPT_REVIEW", "student_transcripts"));
+  320: router.post("/transcripts/:id/approve", requirePermission("transcript.approve"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "APPROVED", approved_by: actor(req), approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "transcript.approve", "TRANSCRIPT_APPROVE", "student_transcripts"));
+  321: router.post("/transcripts/:id/issue", requirePermission("transcript.issue"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "ISSUED", issued_by: actor(req), issued_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "transcript.issue", "TRANSCRIPT_ISSUE", "student_transcripts"));
+  322: router.post("/transcripts/:id/revoke", requirePermission("transcript.revoke"), async (req, res, next) => updateById(req, res, next, "student_transcripts", String(req.params.id), { transcript_status: "REVOKED", revoked_by: actor(req), revoked_at: new Date().toISOString(), remarks: req.body?.reason ?? "Revoked", updated_at: new Date().toISOString() }, "transcript.revoke", "TRANSCRIPT_REVOKE", "student_transcripts"));
+  325: router.post("/graduation-clearances/:id/clear", requirePermission("graduation.clearance"), async (req, res, next) => updateById(req, res, next, "graduation_clearances", String(req.params.id), { status: "CLEARED", cleared_by: actor(req), cleared_at: new Date().toISOString(), remarks: req.body?.remarks ?? null, updated_at: new Date().toISOString() }, "graduation.clearance", "GRADUATION_CLEARANCE", "graduation_clearances"));
+  326: router.post("/graduation-candidates/:id/eligibility", requirePermission("graduation.eligibility"), async (req, res, next) => {
+  331: router.post("/graduation-candidates/:id/approve", requirePermission("graduation.approve"), async (req, res, next) => {
+  347: router.post("/graduation-candidates/:id/graduate", requirePermission("graduation.graduate"), async (req, res, next) => {
+  350: router.post("/certificates/:id/issue", requirePermission("certificate.issue"), async (req, res, next) => updateById(req, res, next, "certificates", String(req.params.id), { status: "ISSUED", issued_by: actor(req), issue_date: new Date().toISOString().slice(0,10), issued_at: new Date().toISOString(), updated_at: new Date().toISOString() }, "certificate.issue", "CERTIFICATE_ISSUE", "certificates"));
+  351: router.post("/certificates/:id/revoke", requirePermission("certificate.revoke"), async (req, res, next) => {
+  356: router.post("/alumni/:id/activate", requirePermission("alumni.activate"), async (req, res, next) => updateById(req, res, next, "alumni_records", String(req.params.id), { status: "ACTIVE", updated_at: new Date().toISOString() }, "alumni.activate", "ALUMNI_ACTIVATE", "alumni_records"));
+app.ts [17]: app.use(
+app.ts [23]: app.use(
+app.ts [30]: app.use(express.json({ limit: "10mb" }));
+app.ts [31]: app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.ts [89]: app.use(API_BASE, apiRouter);
+app.ts [90]: app.use(API_BASE, institutionManagementRoutes);
+app.ts [91]: app.use(API_BASE, studentManagementRoutes);
+app.ts [93]: app.use(notFoundHandler);
+app.ts [94]: app.use(errorHandler);
+modules\academic-core\academic-core.routes.ts [6]: router.use(authenticate);
+modules\academics\academics.routes.ts [14]: router.use(authenticate);
+modules\admissions\admissions.routes.ts [6]: router.use(authenticate);
+modules\alumni\alumni.routes.ts [4]: const router=Router(); router.use(authenticate);
+modules\assessment\assessment.routes.ts [5]: const router = Router(); router.use(authenticate);
+modules\attendance\attendance.routes.ts [7]: router.use(authenticate);
+modules\communications\communications.routes.ts [6]: router.use(authenticate);
+modules\examinations\examinations.routes.ts [4]: const router=Router(); router.use(authenticate);
+modules\finance\routes\finance.routes.ts [7]: router.use(authenticate);
+modules\graduation\graduation.routes.ts [4]: const router=Router(); router.use(authenticate);
+modules\hostel\hostel.routes.ts [6]: router.use(authenticate);
+modules\hr\hr.routes.ts [6]: router.use(authenticate);
+modules\institution-management\institution-management.routes.ts [17]: router.use(
+modules\institution-management\institution-management.routes.ts [22]: router.use(
+modules\institution-management\institution-management.routes.ts [27]: router.use(
+modules\institution-management\institution-management.routes.ts [32]: router.use(
+modules\institution-management\campuses\campuses.routes.ts [20]: router.use(authenticate);
+modules\institution-management\departments\departments.routes.ts [20]: router.use(authenticate);
+modules\institution-management\institutions\institutions.routes.ts [20]: router.use(authenticate);
+modules\institution-management\schools\schools.routes.ts [20]: router.use(authenticate);
+modules\library\library.routes.ts [6]: router.use(authenticate);
+modules\operations\operations.routes.ts [6]: router.use(authenticate);
+modules\registration\registration.routes.ts [7]: router.use(authenticate);
+modules\reports\reports.routes.ts [6]: router.use(authenticate);
+modules\research\research.routes.ts [6]: router.use(authenticate);
+modules\results\results.routes.ts [4]: const router=Router(); router.use(authenticate);
+modules\student-management\student-management.routes.ts [8]: router.use(
+modules\student-management\students\students.routes.ts [22]: router.use(authenticate);
+modules\system\system.routes.ts [6]: router.use(authenticate);
+modules\timetable\timetable.routes.ts [7]: router.use(authenticate);
+modules\transcripts\transcripts.routes.ts [7]: router.use(authenticate);
+modules\users\routes\roles.routes.ts [18]: router.use(authenticate);
+modules\users\routes\users.routes.ts [23]: router.use(authenticate);
+modules\workflows\workflow.routes.ts [8]: router.use(authenticate);
+routes\core-routes.ts [12]: router.use("/applications", admissionsRoutes);
+routes\core-routes.ts [13]: router.use("/admissions", admissionsRoutes);
+routes\core-routes.ts [14]: router.use("/academic-core", academicCoreRoutes);
+routes\core-routes.ts [15]: router.use("/assessment", assessmentRoutes);
+routes\core-routes.ts [16]: router.use("/assessments", assessmentRoutes);
+routes\core-routes.ts [17]: router.use("/examinations", examinationRoutes);
+routes\core-routes.ts [18]: router.use("/results", resultsRoutes);
+routes\core-routes.ts [19]: router.use("/graduation", graduationRoutes);
+routes\core-routes.ts [20]: router.use("/alumni", alumniRoutes);
+routes\index.ts [44]: router.use("/auth", authRoutes);
+routes\index.ts [45]: router.use("/users", usersRoutes);
+routes\index.ts [46]: router.use("/roles", rolesRoutes);
+routes\index.ts [53]: router.use("/finance", financeRoutes);
+routes\index.ts [54]: router.use("/hr", hrRoutes);
+routes\index.ts [61]: router.use("/academics", academicsRoutes);
+routes\index.ts [69]: router.use("/operations", operationsRoutes);
+routes\index.ts [83]: router.use("/assets", operationsRoutes);
+routes\index.ts [84]: router.use("/procurement", operationsRoutes);
+routes\index.ts [91]: router.use("/hostel", hostelRoutes);
+routes\index.ts [92]: router.use("/library", libraryRoutes);
+routes\index.ts [99]: router.use("/research", researchRoutes);
+routes\index.ts [100]: router.use("/communications", communicationsRoutes);
+routes\index.ts [116]: router.use("/documents", communicationsRoutes);
+routes\index.ts [117]: router.use("/helpdesk", communicationsRoutes);
+routes\index.ts [124]: router.use("/reports", reportsRoutes);
+routes\index.ts [125]: router.use("/system", systemRoutes);
+routes\index.ts [141]: router.use("/registrations", registrationRoutes);
+routes\index.ts [142]: router.use("/timetables", timetableRoutes);
+routes\index.ts [143]: router.use("/attendance", attendanceRoutes);
+routes\index.ts [144]: router.use("/transcripts", transcriptsRoutes);
+routes\index.ts [146]: router.use("/", coreAcademicRoutes);
+routes\index.ts [153]: router.use("/workflows", workflowRoutes);
+modules\auth\routes\auth.routes.ts [9]: router.get("/me", authenticate, controller.me);
+modules\student-management\students\students.routes.ts [25]: "/me",
+
+STUDENT LINK: modules\student-management\students\students.service.ts
+   19: user?.auth_user_id ??
+   41: `id.eq.${identity},auth_user_id.eq.${identity}`
+   77: actor_user_id: actorUserId,
+  152: user_id:
+  251: user_id,
+  356: user_id,
+  415: user_id,
+  441: `user_id.eq.${identity}`
+  540: updates.user_id =
+ 1070: "Requesting current student: /students/me"
+ 1076: "/students/me"
+  302: await api("/students/me");
+  322: "/registrations" +
+  368: "/attendance" +
+  414: "/results/course-results" +
+  482: await api("/timetables");
+  537: "/finance/students/" +
+  546: "/finance/students/" +
+  598: "/documents/documents" +
+  641: "/communications/notifications",
+  642: "/communications/announcements"

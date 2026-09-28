@@ -1,0 +1,72 @@
+:root{
+  --idmc-maroon:#631226;
+  --idmc-maroon-dark:#4a0d1c;
+  --idmc-maroon-deep:#330914;
+  --idmc-maroon-light:#932039;
+  --idmc-white:#fff;
+  --idmc-bg:#faf7f8;
+  --idmc-line:#e7dadd;
+  --idmc-text:#2b151a;
+  --idmc-muted:#765f64;
+}
+html,body{background:var(--idmc-bg);color:var(--idmc-text);font-family:"Times New Roman",Times,serif}
+a{color:var(--idmc-maroon)}
+a:hover{color:var(--idmc-maroon-light)}
+button,.btn,[role="button"]{border-radius:8px}
+.btn-primary,button[type="submit"],.idmc-primary{
+  background:var(--idmc-maroon)!important;
+  border-color:var(--idmc-maroon)!important;
+  color:#fff!important
+}
+.btn-primary:hover,button[type="submit"]:hover,.idmc-primary:hover{
+  background:var(--idmc-maroon-dark)!important
+}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{
+  outline:3px solid rgba(99,18,38,.18);
+  outline-offset:2px
+}
+input,select,textarea{
+  max-width:100%;
+}
+table{max-width:100%}
+.idmc-form-host:empty::before,
+#module-crud:empty::before{
+  content:"Loading form and records...";
+  display:block;
+  padding:18px;
+  color:var(--idmc-muted);
+  background:#fff;
+  border:1px dashed var(--idmc-line);
+  border-radius:10px
+}
+.idmc-runtime-error{
+  padding:14px 16px;
+  margin:12px 0;
+  border-left:4px solid var(--idmc-maroon);
+  background:#fff;
+  color:var(--idmc-text)
+}
+::selection{background:var(--idmc-maroon);color:#fff}
+
+/* Shared institutional form treatment used by every administration module. */
+form{line-height:1.45}
+label{color:var(--idmc-maroon-dark);font-weight:700;letter-spacing:.01em}
+input,select,textarea{
+  min-height:42px;
+  padding:9px 11px;
+  border:1px solid #cdbcc0;
+  border-radius:5px;
+  background:#fff;
+  color:var(--idmc-text);
+  font:16px/1.35 "Times New Roman",Times,serif;
+  transition:border-color .15s ease,box-shadow .15s ease
+}
+textarea{min-height:96px}
+input[readonly],input:disabled,select:disabled,textarea:disabled{background:#f2edef;color:#6f5b60}
+fieldset{margin:0 0 18px;padding:18px;border:1px solid var(--idmc-line);border-radius:7px;background:#fff}
+legend{padding:0 8px;color:var(--idmc-maroon);font-weight:700}
+table{border-collapse:collapse;background:#fff}
+th{background:#f3e9ec;color:var(--idmc-maroon-dark);font-weight:700}
+th,td{padding:10px 12px;border-bottom:1px solid var(--idmc-line);text-align:left;vertical-align:top}
+dialog,.modal-content,.card,.panel{box-shadow:0 8px 24px rgba(51,9,20,.08)}
+@media(max-width:720px){input,select,textarea,button{font-size:16px}}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Academic Transcript | IDMC iMIS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/student-portal-pages.css">
+</head>
+<body>
+<div class="portal-shell">
+  <header class="portal-header"><div class="portal-header-inner"><div class="portal-brand"><div class="portal-brand-mark"><i class="fa-solid fa-graduation-cap"></i></div><div>IDMC iMIS<small>Student Panel</small></div></div><div class="portal-user"><div class="portal-user-icon"><i class="fa-solid fa-user"></i></div><div id="currentUser">Student</div></div></div></header>
+  <div class="portal-layout">
+    <aside class="portal-sidebar">
+      <section class="portal-student-card"><h3 id="studentName">Student</h3><p><strong>Student No:</strong> <span id="studentNumber">—</span></p><p><strong>Programme:</strong> <span id="studentProgramme">—</span></p></section>
+      <nav class="portal-nav">
+        <a href="student-portal.html"><i class="fa-solid fa-house"></i> Panel Home</a>
+        <a href="student-registration.html"><i class="fa-solid fa-clipboard-check"></i> Registration</a>
+        <a href="student-results.html"><i class="fa-solid fa-chart-column"></i> Results</a>
+        <a href="student-fees.html"><i class="fa-solid fa-wallet"></i> Fees</a>
+        <a href="student-documents.html"><i class="fa-solid fa-folder-open"></i> Documents</a>
+        <a href="student-transcript.html" class="active"><i class="fa-solid fa-file-lines"></i> Transcript</a>
+      </nav>
+    </aside>
+    <main class="portal-main">
+      <section class="portal-page-heading"><h1><i class="fa-solid fa-file-lines"></i> Academic Transcript</h1><p>Official transcript status, semester summaries and immutable issued academic records.</p></section>
+      <section class="portal-card"><div class="portal-card-header"><h2>Transcript Record</h2><div><button class="portal-button" id="requestTranscript">Request Transcript</button> <button class="portal-button" id="printTranscript">Print / Save PDF</button></div></div><div class="portal-card-body" id="portalContent"><div class="portal-state"><div class="portal-spinner"></div><h3>Loading transcript</h3></div></div></section>
+    </main>
+  </div>
+</div>
+<script src="assets/js/idmc-session.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/student-transcript.js"></script>
+</body>
+</html>

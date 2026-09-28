@@ -1,0 +1,196 @@
+{
+  "generated_at": "2026-09-26T12:59:09.000Z",
+  "count": 18,
+  "forms": [
+    {
+      "page": "academics/academics.html",
+      "form_id": "academicForm",
+      "method": "JS",
+      "action": null,
+      "fields": []
+    },
+    {
+      "page": "campuses.html",
+      "form_id": null,
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "campusCode",
+        "status",
+        "campusName",
+        "location",
+        "description"
+      ]
+    },
+    {
+      "page": "departments.html",
+      "form_id": null,
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "departmentCode",
+        "status",
+        "departmentName",
+        "schoolId",
+        "description"
+      ]
+    },
+    {
+      "page": "institutions.html",
+      "form_id": null,
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "institutionCode",
+        "status",
+        "institutionName",
+        "description"
+      ]
+    },
+    {
+      "page": "login.html",
+      "form_id": "loginForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "username",
+        "password"
+      ]
+    },
+    {
+      "page": "schools.html",
+      "form_id": null,
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "schoolCode",
+        "status",
+        "schoolName",
+        "campusId",
+        "description"
+      ]
+    },
+    {
+      "page": "set-password.html",
+      "form_id": "passwordForm",
+      "method": "JS",
+      "action": null,
+      "fields": []
+    },
+    {
+      "page": "staff-accounts.html",
+      "form_id": "accountForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "mode",
+        "identifier",
+        "firstName",
+        "middleName",
+        "lastName",
+        "email",
+        "username",
+        "password",
+        "employeeNumber",
+        "roleCode",
+        "institutionId",
+        "departmentId",
+        "jobTitle",
+        "phone",
+        "employmentType",
+        "appointmentDate"
+      ]
+    },
+    {
+      "page": "staff-self-service.html",
+      "form_id": "profileForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "phone",
+        "emergencyContactName",
+        "emergencyContactPhone",
+        "postalAddress",
+        "physicalAddress"
+      ]
+    },
+    {
+      "page": "staff-self-service.html",
+      "form_id": "leaveForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "leaveTypeId",
+        "startDate",
+        "endDate",
+        "reason"
+      ]
+    },
+    {
+      "page": "staff-self-service.html",
+      "form_id": "passwordForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "newPassword",
+        "confirmPassword"
+      ]
+    },
+    {
+      "page": "student-actions.html",
+      "form_id": "addDropForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "requestType",
+        "courseOfferingId",
+        "reason"
+      ]
+    },
+    {
+      "page": "student-actions.html",
+      "form_id": "uploadForm",
+      "method": "JS",
+      "action": null,
+      "fields": [
+        "documentType",
+        "file"
+      ]
+    },
+    {
+      "page": "student-requests.html",
+      "form_id": "decisionForm",
+      "method": "DIALOG",
+      "action": null,
+      "fields": []
+    },
+    {
+      "page": "students.html",
+      "form_id": "studentForm",
+      "method": "JS",
+      "action": null,
+      "fields": []
+    },
+    {
+      "page": "users.html",
+      "form_id": "createUserForm",
+      "method": "JS",
+      "action": null,
+      "fields": []
+    },
+    {
+      "page": "users.html",
+      "form_id": "editForm",
+      "method": "JS",
+      "action": null,
+      "fields": []
+    },
+    {
+      "page": "users.html",
+      "form_id": "roleForm",
+      "method": "JS",
+      "action": null,
+      "fields": []
+    }
+  ]
+}

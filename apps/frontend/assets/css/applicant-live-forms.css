@@ -1,0 +1,211 @@
+:root {
+    --idmc-maroon: #7a0019;
+    --idmc-maroon-dark: #560012;
+    --idmc-maroon-soft: #f8eef1;
+    --idmc-white: #ffffff;
+    --idmc-border: #e3d4d8;
+    --idmc-text: #2d2024;
+    --idmc-muted: #6f6266;
+    --idmc-danger: #a3122f;
+    --idmc-success: #216e39;
+}
+
+#idmc-applicant-live {
+    margin: 24px 0;
+    color: var(--idmc-text);
+}
+
+.idmc-live-header {
+    background: var(--idmc-maroon);
+    color: var(--idmc-white);
+    padding: 22px;
+    border-radius: 14px 14px 0 0;
+}
+
+.idmc-live-header h2 {
+    margin: 0 0 6px;
+    color: var(--idmc-white);
+}
+
+.idmc-live-header p {
+    margin: 0;
+    opacity: .92;
+}
+
+.idmc-live-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px;
+    background: var(--idmc-white);
+    border: 1px solid var(--idmc-border);
+    border-top: 0;
+}
+
+.idmc-live-tab,
+.idmc-button {
+    appearance: none;
+    border: 1px solid var(--idmc-maroon);
+    background: var(--idmc-white);
+    color: var(--idmc-maroon);
+    border-radius: 8px;
+    padding: 10px 15px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.idmc-live-tab:hover,
+.idmc-button:hover {
+    background: var(--idmc-maroon-soft);
+}
+
+.idmc-live-tab.active,
+.idmc-button.primary {
+    background: var(--idmc-maroon);
+    color: var(--idmc-white);
+}
+
+.idmc-button.danger {
+    border-color: var(--idmc-danger);
+    color: var(--idmc-danger);
+}
+
+.idmc-button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.idmc-live-body {
+    background: var(--idmc-white);
+    border: 1px solid var(--idmc-border);
+    border-top: 0;
+    border-radius: 0 0 14px 14px;
+    padding: 20px;
+}
+
+.idmc-panel {
+    display: none;
+}
+
+.idmc-panel.active {
+    display: block;
+}
+
+.idmc-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 15px;
+}
+
+.idmc-field.full {
+    grid-column: 1 / -1;
+}
+
+.idmc-field label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.idmc-field input,
+.idmc-field select,
+.idmc-field textarea {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--idmc-border);
+    border-radius: 8px;
+    padding: 11px 12px;
+    background: var(--idmc-white);
+    color: var(--idmc-text);
+    font: inherit;
+}
+
+.idmc-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.idmc-field input:focus,
+.idmc-field select:focus,
+.idmc-field textarea:focus {
+    outline: 2px solid rgba(122,0,25,.15);
+    border-color: var(--idmc-maroon);
+}
+
+.idmc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.idmc-status {
+    display: none;
+    margin: 14px 0;
+    padding: 12px 14px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+}
+
+.idmc-status.show {
+    display: block;
+}
+
+.idmc-status.info {
+    background: #f4f4f4;
+}
+
+.idmc-status.success {
+    background: #edf8f0;
+    color: var(--idmc-success);
+}
+
+.idmc-status.error {
+    background: #fff0f3;
+    color: var(--idmc-danger);
+}
+
+.idmc-table-wrap {
+    overflow-x: auto;
+    margin-top: 18px;
+}
+
+.idmc-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.idmc-table th,
+.idmc-table td {
+    border-bottom: 1px solid var(--idmc-border);
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.idmc-table th {
+    background: var(--idmc-maroon-soft);
+    color: var(--idmc-maroon-dark);
+}
+
+.idmc-empty {
+    padding: 20px;
+    text-align: center;
+    color: var(--idmc-muted);
+}
+
+.idmc-section-title {
+    color: var(--idmc-maroon);
+    margin-top: 0;
+}
+
+@media (max-width: 760px) {
+    .idmc-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .idmc-field.full {
+        grid-column: auto;
+    }
+}
