@@ -1,4 +1,4 @@
-name = "idmc-imis"
+﻿name = "idmc-imis"
 main = "src/server.ts"
 compatibility_date = "2026-09-28"
 compatibility_flags = [ "nodejs_compat" ]
