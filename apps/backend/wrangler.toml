@@ -1,7 +1,9 @@
-﻿name = "idmc-imis"
-main = "src/server.ts"
+name = "idmc-imis"
+main = "src/worker.ts"
 compatibility_date = "2026-09-28"
 compatibility_flags = [ "nodejs_compat" ]
+workers_dev = true
+preview_urls = true
 
 [build]
 command = "npm run build"
